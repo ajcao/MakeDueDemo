@@ -34,6 +34,12 @@ public abstract class Ability
         this.PC = inputC;
     }
     
+    public PlayableCharacter getPlayableCharacter()
+    {
+        return PC;
+    }
+    
+    
     public TargetingTypeEnum getTargetingType()
     {
         return targetingType;
@@ -77,6 +83,11 @@ public abstract class Ability
     public void postCast()
     {
         currentCooldown = maxCooldown;
+    }
+    
+    public bool canCast()
+    {
+        return true;
     }
     
 }

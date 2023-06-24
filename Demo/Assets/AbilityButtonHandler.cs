@@ -76,30 +76,39 @@ public class AbilityButtonHandler : MonoBehaviour
     {
         StartCoroutine(CastingMode());
     }
+    
+    IEnumerator CastingMode()
+    {
+        while (EveryoneHasCasted() == false)
+        {
+            StartCoroutine(CharacterCasting());
+            yield return null;
+        }
+        Debug.Log("everyone attacked");
+    }
 
     //Temporariy function to test that casting works as expected
-    IEnumerator CastingMode()
+    IEnumerator CharacterCasting()
     {
         while (currentTarget == null)
         {
             //User must have ability selected when they click a target
             if ((currentAbility != null) & Input.GetMouseButtonDown(0))
             {
+                
+                //Define target to be hit by ability
                 RaycastHit2D click = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition),Vector2.zero,Mathf.Infinity);
                 if (click.collider != null && currentAbility.getTargetingType() == TargetingTypeEnum.EnemyTarget && click.collider.gameObject.tag == "EnemyCharacter")
                 {
                     currentTarget = click.collider.gameObject.GetComponent<EnemyCharacter>();;
+                    currentAbility.getPlayableCharacter().setHasCasted(true);
                     currentAbility.onCast((Character) currentTarget);
                 }
                 else if (click.collider != null && currentAbility.getTargetingType() == TargetingTypeEnum.PlayerTarget && click.collider.gameObject.tag == "PlayableCharacter")
                 {
                     currentTarget = click.collider.gameObject.GetComponent<PlayableCharacter>();
+                    currentAbility.getPlayableCharacter().setHasCasted(true);
                     currentAbility.onCast((Character) currentTarget);
-                }
-                else if (currentAbility.getTargetingType() == TargetingTypeEnum.NoTarget)
-                {
-                    currentAbility.onCast(null);
-                    break;
                 }
             }
             yield return null;
@@ -111,14 +120,16 @@ public class AbilityButtonHandler : MonoBehaviour
     
     public bool EveryoneHasCasted()
     {
-        bool P1Cast = PlayerParty.getPartyMember(0).GetComponent<PlayableCharacter>().GetHasCasted();
-        bool P2Cast = PlayerParty.getPartyMember(1).GetComponent<PlayableCharacter>().GetHasCasted();
-        bool P3Cast = PlayerParty.getPartyMember(2).GetComponent<PlayableCharacter>().GetHasCasted();
-        bool P4Cast = PlayerParty.getPartyMember(3).GetComponent<PlayableCharacter>().GetHasCasted();
+        bool P1Cast = PlayerParty.getPartyMember(0).GetComponent<PlayableCharacter>().getHasCasted();
+        bool P2Cast = PlayerParty.getPartyMember(1).GetComponent<PlayableCharacter>().getHasCasted();
+        bool P3Cast = PlayerParty.getPartyMember(2).GetComponent<PlayableCharacter>().getHasCasted();
+        bool P4Cast = PlayerParty.getPartyMember(3).GetComponent<PlayableCharacter>().getHasCasted();
         return (P1Cast && P2Cast && P3Cast && P4Cast);
     }
     
     //Update ability buttons to always display current Characters Abilities
+    //Also handles colors of Abillity buttons
+    //Does not handle color of SelectCharacter button
     public void Update()
     {                
         if (currentCharacter != null)
@@ -130,7 +141,26 @@ public class AbilityButtonHandler : MonoBehaviour
                 Ability A = currentCharacter.getAbilityPool()[i];
                 AbilityButton.GetComponent<AbilityButtonScript>().DefineAbility(A);
                 AbilityButton.GetComponent<Image>().sprite = A.getIcon();
-                if (currentAbility == A) //Highllight current Ability
+                
+                //Determines whether an ability is castable and thus intertable
+                //Checks if owning character is able to cast
+                if (currentCharacter.getHasCasted() == true)
+                {
+                    AbilityButton.GetComponent<Button>().interactable = false;
+                }
+                //Abilities that cannot be cast for internal reasons (mana cost, cooldown, etc)
+                //are displayed but cannot be cast
+                else if (A.canCast() == false)
+                {
+                    AbilityButton.GetComponent<Button>().interactable = false;
+                }
+                else
+                {
+                    AbilityButton.GetComponent<Button>().interactable = true;
+                }
+                
+                //Highllight current Ability
+                if (currentAbility == A)
                 {
                     AbilityButton.GetComponent<Image>().color = Color.yellow;
                 }

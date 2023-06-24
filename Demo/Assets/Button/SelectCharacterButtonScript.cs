@@ -17,10 +17,15 @@ public class SelectCharacterButtonScript : MonoBehaviour
     
     public void onButtonClick()
     {
-        //If Player is alive and has not moved, display character's moveset
-        if (C.isAlive() & !C.GetHasCasted())
+        AB.SetCurrentCharacter(C);
+    }
+    
+    public void Update()
+    {
+        if (C != null && C.getHasCasted() == true)
         {
-            AB.SetCurrentCharacter(C);
+              this.GetComponent<Image>().color = Color.gray;
         }
+        
     }
 }

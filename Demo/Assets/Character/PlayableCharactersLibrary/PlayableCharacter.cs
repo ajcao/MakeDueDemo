@@ -41,12 +41,12 @@ public abstract class PlayableCharacter : Character
 		return DefenseStat;
 	}
 	
-	public void SetHasCasted(bool b)
+	public void setHasCasted(bool b)
 	{
 		HasCasted = b;
 	}
 	
-	public bool GetHasCasted()
+	public bool getHasCasted()
 	{
 		return HasCasted;
 	}
