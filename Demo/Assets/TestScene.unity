@@ -630,6 +630,8 @@ MonoBehaviour:
   P4: {fileID: 3063199090697513369, guid: fb1701b96ef362a46a84f3e55f714581, type: 3}
   E1: {fileID: 2465709451207476951, guid: baa9ecdb38a83774b90ac134940092f3, type: 3}
   E2: {fileID: 6710686837782463586, guid: a31d07b3bd9a6c648b2e53d611ab94f4, type: 3}
+  AB_Handler: {fileID: 374263448}
+  HB_Handler: {fileID: 368847712}
 --- !u!1 &2018507671
 GameObject:
   m_ObjectHideFlags: 0

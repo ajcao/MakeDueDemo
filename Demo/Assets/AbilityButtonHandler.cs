@@ -74,17 +74,7 @@ public class AbilityButtonHandler : MonoBehaviour
     
     public void StartCastingMode()
     {
-        StartCoroutine(CastingMode());
-    }
-    
-    IEnumerator CastingMode()
-    {
-        while (EveryoneHasCasted() == false)
-        {
-            StartCoroutine(CharacterCasting());
-            yield return null;
-        }
-        Debug.Log("everyone attacked");
+        StartCoroutine(CharacterCasting());
     }
 
     //Temporariy function to test that casting works as expected
@@ -116,6 +106,11 @@ public class AbilityButtonHandler : MonoBehaviour
         currentCharacter = null;
         currentTarget = null;
         currentAbility = null;
+        
+        if (EveryoneHasCasted() == false)
+        {
+            StartCoroutine(CharacterCasting());
+        }
     }
     
     public bool EveryoneHasCasted()
@@ -125,6 +120,16 @@ public class AbilityButtonHandler : MonoBehaviour
         bool P3Cast = PlayerParty.getPartyMember(2).GetComponent<PlayableCharacter>().getHasCasted();
         bool P4Cast = PlayerParty.getPartyMember(3).GetComponent<PlayableCharacter>().getHasCasted();
         return (P1Cast && P2Cast && P3Cast && P4Cast);
+    }
+    
+    public void ResetEveryoneCast()
+    {
+        PlayerParty.getPartyMember(0).GetComponent<PlayableCharacter>().setHasCasted(false);
+        PlayerParty.getPartyMember(1).GetComponent<PlayableCharacter>().setHasCasted(false);
+        PlayerParty.getPartyMember(2).GetComponent<PlayableCharacter>().setHasCasted(false);
+        PlayerParty.getPartyMember(3).GetComponent<PlayableCharacter>().setHasCasted(false);
+        
+        
     }
     
     //Update ability buttons to always display current Characters Abilities

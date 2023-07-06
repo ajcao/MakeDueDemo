@@ -26,6 +26,10 @@ public class SelectCharacterButtonScript : MonoBehaviour
         {
               this.GetComponent<Image>().color = Color.gray;
         }
+        else if (C != null)
+        {
+              this.GetComponent<Image>().color = Color.white;
+        }
         
     }
 }

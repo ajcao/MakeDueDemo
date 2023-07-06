@@ -12,6 +12,13 @@ public class BattleSceneHandler : MonoBehaviour
     public GameObject E1;
     public GameObject E2;
     
+    private int Turn;
+    private bool isBattling;
+    
+    public AbilityButtonHandler AB_Handler;
+    
+    public HealthBarHandler HB_Handler;
+    
     
     public void Awake()
     {
@@ -36,23 +43,46 @@ public class BattleSceneHandler : MonoBehaviour
     
     public void Start()
     {
+        Turn = 1;
+        isBattling = true;
         
         BattleLogicHandler.Init();
         
-        //Health Bar Handler is init indepdently
-        HealthBarHandler HB_Handler = GameObject.Find("HealthBarHandlerGameObject").GetComponent<HealthBarHandler>();
-        
-        //AbilityButtonhandler is init indepently
-        AbilityButtonHandler AB_Handler = GameObject.Find("AbilityButtonHandlerGameObject").GetComponent<AbilityButtonHandler>();
-        
-        //Temp to test out if Ability/Targeting works
-        AB_Handler.StartCastingMode();
+        //Reset everyone's cast
+        AB_Handler.ResetEveryoneCast();
         
         //Load Background
         
         //Go Through all Items in PlayerParty and add buffs to BattleLogicHandler
         
-        //Go Through all Enemies and update their MovesUI to display their current movepool
+        StartCoroutine(TurnOrder());
+        
+    }
+    
+    IEnumerator TurnOrder()
+    {
+        
+        while (isBattling)
+        {
+            //Check enemy moves, create new moves if needed
+            
+            //Trigger start of turn items
+            
+            //Player turn
+            AB_Handler.StartCastingMode();
+            while (!AB_Handler.EveryoneHasCasted())
+            {
+                yield return null;
+            }
+            
+            AB_Handler.ResetEveryoneCast();
+            
+            
+                
+            Turn+=1;
+        }
+        
+        
         
     }
 }
