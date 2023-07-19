@@ -128,8 +128,6 @@ public class AbilityButtonHandler : MonoBehaviour
         PlayerParty.getPartyMember(1).GetComponent<PlayableCharacter>().setHasCasted(false);
         PlayerParty.getPartyMember(2).GetComponent<PlayableCharacter>().setHasCasted(false);
         PlayerParty.getPartyMember(3).GetComponent<PlayableCharacter>().setHasCasted(false);
-        
-        
     }
     
     //Update ability buttons to always display current Characters Abilities

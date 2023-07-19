@@ -11,8 +11,8 @@ public class SentientDynamiteBehavior : PlayableCharacter
     {
         this.Alive = true;
         this.HasCasted = false;
-        this.CurrentHealth = 30;
-        this.MaxHealth = 100;
+        this.CurrentHealth = 80;
+        this.MaxHealth = 80;
         this.CurrentArmor = 0;
         this.ArmorRetain = 0;
         this.DamageOutputModifier = 0;
@@ -20,6 +20,8 @@ public class SentientDynamiteBehavior : PlayableCharacter
         this.DefenseStat = 10;
         this.Mana = 80;
         this.ManaRegeneration = 0;
+        
+        this.CharacterIcon = Resources.Load<Sprite>("PlayableCharacterImages/SentientDynamiteIcon");
         
         this.AbilityPool = new List<Ability>();
         this.AbilityPool.Add(new AttackAbility(this));

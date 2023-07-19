@@ -11,7 +11,7 @@ public class SpikeyRockBehavior : PlayableCharacter
     {
         this.Alive = true;
         this.HasCasted = false;
-        this.CurrentHealth = 30;
+        this.CurrentHealth = 100;
         this.MaxHealth = 100;
         this.CurrentArmor = 0;
         this.ArmorRetain = 0;
@@ -20,6 +20,8 @@ public class SpikeyRockBehavior : PlayableCharacter
         this.DefenseStat = 10;
         this.Mana = 40;
         this.ManaRegeneration = 0;
+        
+        this.CharacterIcon = Resources.Load<Sprite>("PlayableCharacterImages/SpikeyRockIcon");
         
         this.AbilityPool = new List<Ability>();
         this.AbilityPool.Add(new AttackAbility(this));

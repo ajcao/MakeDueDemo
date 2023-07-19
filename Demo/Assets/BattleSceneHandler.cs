@@ -17,6 +17,8 @@ public class BattleSceneHandler : MonoBehaviour
     
     public AbilityButtonHandler AB_Handler;
     
+    public EnemyMoveHandler EM_Handler;
+    
     public HealthBarHandler HB_Handler;
     
     
@@ -35,9 +37,8 @@ public class BattleSceneHandler : MonoBehaviour
         
         EnemyEncounter.createNewEncounter(2);
         EnemyEncounter.setEncounterMember((Instantiate(E1, new Vector2(6,0), Quaternion.identity) as GameObject),0);
-        EnemyEncounter.setEncounterMember((Instantiate(E1, new Vector2(9,0), Quaternion.identity) as GameObject),1);
+        EnemyEncounter.setEncounterMember((Instantiate(E2, new Vector2(9,0), Quaternion.identity) as GameObject),1);
                 
-        
         //--------------------------------------------------------------------------------------------------------------
     }
     
@@ -65,15 +66,21 @@ public class BattleSceneHandler : MonoBehaviour
         while (isBattling)
         {
             //Check enemy moves, create new moves if needed
+            EM_Handler.DisplayMoves();
             
             //Trigger start of turn items
             
             //Player turn
+            Debug.Log("PlayerTurn");
             AB_Handler.StartCastingMode();
             while (!AB_Handler.EveryoneHasCasted())
             {
                 yield return null;
             }
+            Debug.Log("EnemyTurn");
+            yield return new WaitForSeconds(2);
+            
+            EM_Handler.BeginEnemyTurn();
             
             AB_Handler.ResetEveryoneCast();
             

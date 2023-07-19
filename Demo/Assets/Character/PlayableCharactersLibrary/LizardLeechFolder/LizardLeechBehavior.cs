@@ -11,7 +11,7 @@ public class LizardLeechBehavior : PlayableCharacter
     {
         this.Alive = true;
         this.HasCasted = false;
-        this.CurrentHealth = 30;
+        this.CurrentHealth = 60;
         this.MaxHealth = 60;
         this.CurrentArmor = 0;
         this.ArmorRetain = 0;
@@ -20,6 +20,8 @@ public class LizardLeechBehavior : PlayableCharacter
         this.DefenseStat = 10;
         this.Mana = 80;
         this.ManaRegeneration = 0;
+        
+        CharacterIcon = Resources.Load<Sprite>("PlayableCharacterImages/LizardleechIcon");
         
         this.AbilityPool = new List<Ability>();
         this.AbilityPool.Add(new AttackAbility(this));

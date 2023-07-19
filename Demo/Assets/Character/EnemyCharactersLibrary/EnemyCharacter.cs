@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using EnemyMoveUtil;
 
 
 namespace CharacterUtil
@@ -10,7 +11,7 @@ namespace CharacterUtil
 public abstract class EnemyCharacter : Character
 {
 	//Move pool for display variable
-	//protected Moves[] moves?
+	protected Queue<EnemyMove> Moves;
 	
 	protected bool canPoiseRegenerate;
 	protected int Poise;
@@ -25,6 +26,24 @@ public abstract class EnemyCharacter : Character
 	public void setPoise(int p)
 	{
 		this.Poise = p;
+	}
+	
+	public abstract void GenerateMoves();
+
+	
+	public Queue<EnemyMove> getCurrentMoves()
+	{
+		return Moves;
+	}
+	
+	public void EnemyCastMoves()
+	{
+		EnemyMove EM = Moves.Dequeue();
+		foreach (Character C in EM.getTargetArray())
+		{
+			EM.onCast(C);
+		}
+		EM.DeleteMove();
 	}
 	
 	public void doNothing()

@@ -21,6 +21,8 @@ public abstract class Character : MonoBehaviour
 	
 	protected int DamageOutputModifier;
 	
+	protected Sprite CharacterIcon;
+	
 	public bool isAlive()
 	{
 		return this.Alive;
@@ -84,6 +86,11 @@ public abstract class Character : MonoBehaviour
 	public void onDeath()
 	{
 		this.Alive = false;
+	}
+	
+	public Sprite getCharacterIcon()
+	{
+		return CharacterIcon;
 	}
 	
 }

@@ -11,7 +11,7 @@ public class ORBBehavior : PlayableCharacter
     {
         this.Alive = true;
         this.HasCasted = false;
-        this.CurrentHealth = 10;
+        this.CurrentHealth = 30;
         this.MaxHealth = 30;
         this.CurrentArmor = 0;
         this.ArmorRetain = 0;
@@ -20,6 +20,8 @@ public class ORBBehavior : PlayableCharacter
         this.DefenseStat = 50;
         this.Mana = 40;
         this.ManaRegeneration = 0;
+        
+        this.CharacterIcon = Resources.Load<Sprite>("PlayableCharacterImages/ORBIcon");
         
         this.AbilityPool = new List<Ability>();
         this.AbilityPool.Add(new AttackAbility(this));

@@ -17,7 +17,7 @@ public class HealthBarHandler : MonoBehaviour
         for (int i = 0; i < PlayerParty.getPartySize(); i++)
         {
             GameObject C = PlayerParty.getPartyMember(i);
-            GameObject HealthBar = Instantiate(HealthPrefab, C.transform.position + new Vector3(0,3,0), Quaternion.identity, C.transform) as GameObject;
+            GameObject HealthBar = Instantiate(HealthPrefab, C.transform.position + new Vector3(0f,-1.5f,0f), Quaternion.identity, C.transform) as GameObject;
             HealthBar.GetComponent<HealthBarScript>().Init(C.GetComponent<Character>());
         }
         
@@ -25,7 +25,7 @@ public class HealthBarHandler : MonoBehaviour
         for (int i = 0; i < EnemyEncounter.getEncounterSize(); i++)
         {
             GameObject C = EnemyEncounter.getEncounterMember(i);
-            GameObject HealthBar = Instantiate(HealthPrefab, C.transform.position + new Vector3(0,3,0), Quaternion.identity, C.transform) as GameObject;
+            GameObject HealthBar = Instantiate(HealthPrefab, C.transform.position + new Vector3(0f,-1.5f,0f), Quaternion.identity, C.transform) as GameObject;
             HealthBar.GetComponent<HealthBarScript>().Init(C.GetComponent<Character>());
         }
         
