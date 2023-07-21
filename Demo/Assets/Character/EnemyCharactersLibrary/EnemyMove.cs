@@ -9,7 +9,7 @@ namespace EnemyMoveUtil
     
 public abstract class EnemyMove
 {
-        //Ability Owner
+    //Ability Owner
     public EnemyCharacter EC;
     
     //Enemies are capable of casting abilities on multiple targets
@@ -19,7 +19,7 @@ public abstract class EnemyMove
     
     
     
-    public abstract void onCast(Character C);
+    public abstract void onCast();
     
     public abstract string MoveIndicatorText();
     

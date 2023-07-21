@@ -14,8 +14,8 @@ public enum TriggerEventEnum
 	onPlayerAttackEnum,
 	onPlayerAbilityEnum,
 	onEnemyAttackEnum,
-	onDeathEnum
-	
+	onDeathEnum,
+	noTriggerEnum
 }
 
 public abstract class TriggerEvent

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TriggerEventUtil;
 using CharacterUtil;
+using BuffUtil;
 
 public static class BattleLogicHandler
 {
@@ -29,9 +30,19 @@ public static class BattleLogicHandler
         }
 	}
 	
+	public static Dictionary<TriggerEventEnum, List<Buff>> getBuffsList()
+	{
+		return BuffsList;
+	}
+	
 	public static void Damage(Character C, int d)
 	{
 		C.setCurrentHealth(Mathf.Max(C.getCurrentHealth() - d, 0));
+	}
+	
+	public static void Armor(Character C, int d)
+	{
+		C.setCurrentArmor(C.getCurrentArmor() + d);
 	}
 	
 	public static void Restore(Character C, int r)
@@ -45,6 +56,11 @@ public static class BattleLogicHandler
 		Damage(E,d);
 		BattleLog.Push(TE);
 		TriggerBuffsinBuffsList(TriggerEventEnum.onPlayerAttackEnum, TE);
+	}
+	
+	public static void OnBuffApply(Buff B)
+	{
+		B.onApplication();
 	}
 	
 	public static void PlayerDefend(PlayableCharacter DefP, PlayableCharacter RecP, int d)

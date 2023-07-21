@@ -6,6 +6,7 @@ TagManager:
   tags:
   - EnemyCharacter
   - PlayableCharacter
+  - EnemyMoveTag
   layers:
   - Default
   - TransparentFX

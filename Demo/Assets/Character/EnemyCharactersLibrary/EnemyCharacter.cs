@@ -39,10 +39,7 @@ public abstract class EnemyCharacter : Character
 	public void EnemyCastMoves()
 	{
 		EnemyMove EM = Moves.Dequeue();
-		foreach (Character C in EM.getTargetArray())
-		{
-			EM.onCast(C);
-		}
+		EM.onCast();
 		EM.DeleteMove();
 	}
 	

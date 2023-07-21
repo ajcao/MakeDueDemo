@@ -4,6 +4,7 @@ using UnityEngine;
 using CharacterUtil;
 using EnemyMoveUtil;
 using EnemyTargetingLibraryUtil;
+using BuffUtil;
 
 public class GenericEnemy2Behavior : EnemyCharacter
 {
@@ -23,11 +24,12 @@ public class GenericEnemy2Behavior : EnemyCharacter
     
     public override void GenerateMoves()
     {
-        Character[] Target = EnemyTargetingLibrary.TargetNRandomHeroes(1);
-        Moves.Enqueue(new EnemyAttackMove(this, 5, Target));
+        Character[] Target = {(Character) this};
+        Moves.Enqueue(new EnemyDefendMove(this, 5, Target));
         
-        Target = EnemyTargetingLibrary.TargetNRandomHeroes(1);
-        Moves.Enqueue(new EnemyAttackMove(this, 5, Target));
+        AttackUpBuff ABuff = new AttackUpBuff(this, this, 2, null);
+        Buff[] BList = {(Buff) ABuff};
+        Moves.Enqueue(new EnemyApplyBuffMove(this, BList, Target));
         
         Target = EnemyTargetingLibrary.TargetNRandomHeroes(1);
         Moves.Enqueue(new EnemyAttackMove(this, 30, Target));

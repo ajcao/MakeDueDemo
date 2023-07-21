@@ -8,17 +8,17 @@ using EnemyTargetingLibraryUtil;
 namespace EnemyMoveUtil
 {
     
-public class EnemyAttackMove : EnemyMove
+public class EnemyDefendMove : EnemyMove
 {
-    int damageAmount;
+    int defendAmount;
     
-    public EnemyAttackMove(EnemyCharacter inputC, int d, Character[] CArray)
+    public EnemyDefendMove(EnemyCharacter inputC, int d, Character[] CArray)
     {
         EC = inputC;
         TargetArray = CArray;
         Special = false;
-        damageAmount = d;
-        AbilityIcon = Resources.Load<Sprite>("AbilityImages/AttackIcon");
+        defendAmount = d;
+        AbilityIcon = Resources.Load<Sprite>("AbilityImages/DefendIcon");
         
     }
     
@@ -26,13 +26,13 @@ public class EnemyAttackMove : EnemyMove
     {
         foreach (Character C in TargetArray)
         {
-            BattleLogicHandler.Damage(C, damageAmount + EC.getDamageOutputModifier());
+            BattleLogicHandler.Armor(C, defendAmount);
         }
     }
     
     public override string MoveIndicatorText()
     {
-        return "" + (damageAmount + EC.getDamageOutputModifier());
+        return "" + (defendAmount);
     }
 }
 

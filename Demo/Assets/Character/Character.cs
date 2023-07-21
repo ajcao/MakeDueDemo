@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using BuffUtil;
 
 namespace CharacterUtil
 {
@@ -23,9 +24,19 @@ public abstract class Character : MonoBehaviour
 	
 	protected Sprite CharacterIcon;
 	
+	protected List<Buff> BuffList = new List<Buff>();
+	//Used to decided when to redraw buff list
+	public bool BuffListDirty = false;
+
+	
 	public bool isAlive()
 	{
 		return this.Alive;
+	}
+	
+	public List<Buff> getBuffList()
+	{
+		return BuffList;
 	}
 	
 	public int getCurrentHealth()

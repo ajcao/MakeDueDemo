@@ -3,16 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using TriggerEventUtil;
 using CharacterUtil;
+using UnityEngine.UI;
 
+namespace BuffUtil
+{
+	
 public abstract class Buff
 {
-	TriggerEventEnum Trigger;
-	Character? BuffTarget;
-	Character OriginalBuffer;
-    int? Intensity;
-	int? Duration;
+	protected TriggerEventEnum Trigger;
+	protected Character BuffTarget;
+	protected Character OriginalBuffer;
+    protected int? Intensity;
+	protected int? Duration;
+	protected Sprite BuffIcon;
 	
-	public TriggerEventEnum? getTrigger()
+	public bool Visible;
+	
+	public TriggerEventEnum getTrigger()
 	{
 		return this.Trigger;
 	}
@@ -49,8 +56,25 @@ public abstract class Buff
 		}
 	}
 	
+	public Sprite getIcon()
+	{
+		return BuffIcon;
+	}
+	
+	public void setDirty()
+	{
+		if (this.Visible == true)
+		{
+			BuffTarget.BuffListDirty = true;
+		}
+	}
+	
 	protected abstract bool CheckForConditions();
-	public abstract void onApplication(TriggerEvent E);
+	
+	public abstract void onApplication();
+	public abstract void onStacking(Buff B);
 	public abstract void onExpire();
 	public abstract void onEffect(TriggerEvent E);
+}
+
 }
