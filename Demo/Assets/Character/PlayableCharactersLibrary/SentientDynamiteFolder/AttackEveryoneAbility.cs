@@ -13,8 +13,6 @@ public class AttackEveryoneAbility : Ability
     {
         this.AssignCharacter(inputC);
         targetingType = TargetingTypeEnum.EnemyTarget;
-        manaCost = 0;
-        maxCooldown = 0;
         currentCooldown = 0;
         
         this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/GenericAbilityAoeAttack") as Sprite;

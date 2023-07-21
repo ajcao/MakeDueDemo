@@ -37,7 +37,9 @@ public static class BattleLogicHandler
 	
 	public static void Damage(Character C, int d)
 	{
-		C.setCurrentHealth(Mathf.Max(C.getCurrentHealth() - d, 0));
+		int armor = C.getCurrentArmor();
+		C.setCurrentArmor(Mathf.Max(armor - d, 0));
+		C.setCurrentHealth(Mathf.Max(C.getCurrentHealth() - Mathf.Max(d - armor, 0), 0));
 	}
 	
 	public static void Armor(Character C, int d)
@@ -74,6 +76,23 @@ public static class BattleLogicHandler
 		TriggerEvent TE = new onDeathTrigger(C);
 		BattleLog.Push(TE);
 		TriggerBuffsinBuffsList(TriggerEventEnum.onDeathEnum, TE);
+	}
+	
+	public static void PlayerPreTurn()
+	{
+		foreach (GameObject G in PlayerParty.getParty())
+		{
+			PlayableCharacter C = G.GetComponent<PlayableCharacter>();
+			C.setCurrentArmor(Mathf.Min(C.getCurrentArmor(), C.getArmorRetain()));
+		}
+	}
+	public static void EnemyPreTurn()
+	{
+		foreach (GameObject G in EnemyEncounter.getEncounter())
+		{
+			EnemyCharacter C = G.GetComponent<EnemyCharacter>();
+			C.setCurrentArmor(Mathf.Min(C.getCurrentArmor(), C.getArmorRetain()));
+		}
 	}
 	
 	private static void TriggerBuffsinBuffsList(TriggerEventEnum e, TriggerEvent TE)

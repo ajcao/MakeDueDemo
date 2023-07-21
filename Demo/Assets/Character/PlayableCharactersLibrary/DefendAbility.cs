@@ -13,8 +13,6 @@ public class DefendAbility : Ability
     {
         this.AssignCharacter(inputC);
         targetingType = TargetingTypeEnum.PlayerTarget;
-        manaCost = 0;
-        maxCooldown = 0;
         currentCooldown = 0;
         
         this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/DefendIcon");

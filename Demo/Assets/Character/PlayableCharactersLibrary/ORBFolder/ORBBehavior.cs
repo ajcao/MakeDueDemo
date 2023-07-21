@@ -18,8 +18,8 @@ public class ORBBehavior : PlayableCharacter
         this.DamageOutputModifier = 0;
         this.AttackStat = 10;
         this.DefenseStat = 50;
-        this.Mana = 40;
-        this.ManaRegeneration = 0;
+        this.Resolve = 80;
+        this.MaxResolve = 0;
         
         this.CharacterIcon = Resources.Load<Sprite>("PlayableCharacterImages/ORBIcon");
         

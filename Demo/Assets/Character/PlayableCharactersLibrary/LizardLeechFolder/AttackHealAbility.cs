@@ -12,8 +12,6 @@ public class AttackHealAbility : Ability
     {
         this.AssignCharacter(inputC);
         this.targetingType = TargetingTypeEnum.EnemyTarget;
-        this.manaCost = 0;
-        this.maxCooldown = 0;
         this.currentCooldown = 0;
         
         this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/GenericAbilityLIfestealAttack") as Sprite;

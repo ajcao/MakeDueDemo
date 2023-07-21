@@ -14,21 +14,25 @@ public abstract class PlayableCharacter : Character
 	protected int AttackStat;
 	protected int DefenseStat;
 	
-	protected int Mana;
-	protected int ManaRegeneration;
+	protected int Resolve;
+	protected int MaxResolve;
+	
+	//List of all characters who protected this characters
+	//Charactres in this list will build resolve
+	protected PlayableCharacter[] ProtectionList;
 	
 	protected bool HasCasted;
 	
 	public List<Ability> AbilityPool;
 	
-	public int getMana()
+	public int getResolve()
 	{
-		return this.Mana;
+		return this.Resolve;
 	}
 	
-	public void setMana(int m)
+	public void setMana(int r)
 	{
-		this.Mana = m;
+		this.Resolve = r;
 	}
 	
 	public int getAttackStat()
@@ -56,6 +60,8 @@ public abstract class PlayableCharacter : Character
 	{
 		return AbilityPool;
 	}
+	
+
 	
 			
 }

@@ -68,7 +68,8 @@ public class BattleSceneHandler : MonoBehaviour
             //Check enemy moves, create new moves if needed
             EM_Handler.DisplayMoves();
             
-            //Trigger start of turn items
+            //Trigger start of turn events (items included)
+            BattleLogicHandler.PlayerPreTurn();
             
             //Player turn
             Debug.Log("PlayerTurn");
@@ -80,9 +81,12 @@ public class BattleSceneHandler : MonoBehaviour
             Debug.Log("EnemyTurn");
             yield return new WaitForSeconds(2);
             
+            BattleLogicHandler.EnemyPreTurn();
+            
             EM_Handler.BeginEnemyTurn();
             
             AB_Handler.ResetEveryoneCast();
+
             
             
                 

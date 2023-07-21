@@ -23,7 +23,6 @@ public abstract class Ability
     public PlayableCharacter PC;
     
     protected TargetingTypeEnum targetingType;
-    protected int manaCost;
     protected int maxCooldown;
     protected int currentCooldown;
     protected Sprite AbilityIcon;
@@ -45,16 +44,7 @@ public abstract class Ability
         return targetingType;
     }
     
-    public int getManaCost()
-    {
-        return manaCost;
-    }
-    
-    public void setManaCost(int m)
-    {
-        manaCost = m;
-    }
-    
+
     public int getMaxCooldown()
     {
         return maxCooldown;
