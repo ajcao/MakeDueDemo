@@ -52,10 +52,19 @@ public static class BattleLogicHandler
 		C.setCurrentHealth(Mathf.Min(C.getCurrentHealth() + r, C.getMaxHealth()));
 	}
 	
+	public static void EnemyAttack(EnemyCharacter E, PlayableCharacter P, int d)
+	{
+		int armor = P.getCurrentArmor();
+		P.GiveResolve(Mathf.Min(armor, d));
+		P.setResolve(P.getResolve() + Mathf.Max(d-armor,0));
+		Damage(P,d);
+	}
+	
 	public static void PlayerAttack(PlayableCharacter P, EnemyCharacter E, int d)
 	{
 		TriggerEvent TE = new onPlayerAttackTrigger(P,E,d);
 		Damage(E,d);
+		E.setStamina(Mathf.Max(E.getStamina() - d));
 		BattleLog.Push(TE);
 		TriggerBuffsinBuffsList(TriggerEventEnum.onPlayerAttackEnum, TE);
 	}
@@ -69,6 +78,7 @@ public static class BattleLogicHandler
 	{
 		//Create new Trigger Event for this
 		RecP.setCurrentArmor(RecP.getCurrentArmor() + d);
+		RecP.setProtectionList(DefP);
 	}
 	
 	public static void CharacterDies(Character C)

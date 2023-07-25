@@ -17,22 +17,27 @@ public class GenericEnemy2Behavior : EnemyCharacter
         this.CurrentArmor = 0;
         this.ArmorRetain = 0;
         this.DamageOutputModifier = 0;
-        this.Poise = 200;
-        this.PoiseRegeneration = -1;
-        Moves = new Queue<EnemyMove>();
+        this.canStaminaRegenerate = true;
+        this.IsStunned = false;
+        this.Stamina = 30;
+        this.MaxStamina = this.Stamina;
+        this.StaminaRegeneration = this.MaxStamina;
+        Moves = new Stack<EnemyMove>();
     }
     
     public override void GenerateMoves()
     {
-        Character[] Target = {(Character) this};
-        Moves.Enqueue(new EnemyDefendMove(this, 5, Target));
+        Character[] Target = EnemyTargetingLibrary.TargetNRandomHeroes(1);
+        Moves.Push(new EnemyAttackMove(this, 30, Target));
+
+        //Target = new Character[] {(Character) this};
+        //AttackUpBuff ABuff = new AttackUpBuff(this, this, 2, null);
+        //Buff[] BList = {(Buff) ABuff};
+        //Moves.Push(new EnemyApplyBuffMove(this, BList, Target));
         
-        AttackUpBuff ABuff = new AttackUpBuff(this, this, 2, null);
-        Buff[] BList = {(Buff) ABuff};
-        Moves.Enqueue(new EnemyApplyBuffMove(this, BList, Target));
+        Target = new Character[] {(Character) this};
+        Moves.Push(new EnemyDefendMove(this, 5, Target));
         
-        Target = EnemyTargetingLibrary.TargetNRandomHeroes(1);
-        Moves.Enqueue(new EnemyAttackMove(this, 30, Target));
         
     }
 

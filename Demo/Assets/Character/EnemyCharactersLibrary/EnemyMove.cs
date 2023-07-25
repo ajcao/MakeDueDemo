@@ -23,6 +23,9 @@ public abstract class EnemyMove
     
     public abstract string MoveIndicatorText();
     
+    public abstract void MoveTargetIndicatorText(GameObject Canvas, Character[] Target);
+    
+    
     
     //Speical moves are not lost during stunned turns
     public bool Special;
@@ -47,6 +50,11 @@ public abstract class EnemyMove
     public Character[] getTargetArray()
     {
         return TargetArray;
+    }
+    
+    public bool IsSpecial()
+    {
+        return Special;
     }
     
     public void DeleteMove()

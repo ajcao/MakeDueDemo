@@ -19,6 +19,20 @@ public static class PlayerParty
         return Party[i];
     }
     
+    public static int getPartyIndex(GameObject C)
+    {
+        int i = 0;
+        foreach (GameObject G in Party)
+        {
+            if (G == C)
+            {
+                return i;
+            }
+            i++;
+        }
+        return -1;
+    }
+    
     public static int getPartySize()
     {
         return PartySize;

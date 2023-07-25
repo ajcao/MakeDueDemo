@@ -34,6 +34,11 @@ public class EnemyDefendMove : EnemyMove
     {
         return "" + (defendAmount);
     }
+    
+    public override void MoveTargetIndicatorText(GameObject Canvas, Character[] Target)
+    {
+        EnemyTargetingLibrary.TargetNGenericIndicator(Canvas, Target);
+    }
 }
 
 }

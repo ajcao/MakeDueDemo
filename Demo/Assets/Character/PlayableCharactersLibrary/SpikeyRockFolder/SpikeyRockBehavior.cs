@@ -18,8 +18,8 @@ public class SpikeyRockBehavior : PlayableCharacter
         this.DamageOutputModifier = 0;
         this.AttackStat = 20;
         this.DefenseStat = 10;
-        this.Resolve = 80;
-        this.MaxResolve = 0;
+        this.Resolve = 0;
+        this.MaxResolve = 40;
         
         this.CharacterIcon = Resources.Load<Sprite>("PlayableCharacterImages/SpikeyRockIcon");
         

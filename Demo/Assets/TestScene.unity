@@ -351,6 +351,51 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AbilityButtonPrefab: {fileID: 2192393338879863574, guid: e1be898fe43019045a9a1140f7ff604d, type: 3}
   SelectCharacterButtonPrefab: {fileID: 3089514651080908730, guid: 426e820de53e9e0449e504756ba47f98, type: 3}
+--- !u!1 &917017994
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 917017995}
+  - component: {fileID: 917017996}
+  m_Layer: 0
+  m_Name: DefenseResolveHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &917017995
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 917017994}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.1173134, y: 0.5507376, z: -0.081802554}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &917017996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 917017994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92d0248295ab1214b855eccab81255a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DefenseResolvePrefab: {fileID: 8260641676416510935, guid: 847f52e0ae7f4734ea9e3e73b50a48ef, type: 3}
 --- !u!1 &1047814582
 GameObject:
   m_ObjectHideFlags: 0

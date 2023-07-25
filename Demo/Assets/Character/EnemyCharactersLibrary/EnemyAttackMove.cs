@@ -26,13 +26,18 @@ public class EnemyAttackMove : EnemyMove
     {
         foreach (Character C in TargetArray)
         {
-            BattleLogicHandler.Damage(C, damageAmount + EC.getDamageOutputModifier());
+            BattleLogicHandler.EnemyAttack(this.EC, C.GetComponent<PlayableCharacter>(), damageAmount + EC.getDamageOutputModifier());
         }
     }
     
     public override string MoveIndicatorText()
     {
         return "" + (damageAmount + EC.getDamageOutputModifier());
+    }
+    
+    public override void MoveTargetIndicatorText(GameObject Canvas, Character[] Target)
+    {
+        EnemyTargetingLibrary.TargetNGenericIndicator(Canvas, Target);
     }
 }
 

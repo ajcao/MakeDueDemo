@@ -18,8 +18,8 @@ public class LizardLeechBehavior : PlayableCharacter
         this.DamageOutputModifier = 0;
         this.AttackStat = 10;
         this.DefenseStat = 10;
-        this.Resolve = 80;
-        this.MaxResolve = 0;
+        this.Resolve = 0;
+        this.MaxResolve = 30;
         
         CharacterIcon = Resources.Load<Sprite>("PlayableCharacterImages/LizardleechIcon");
         

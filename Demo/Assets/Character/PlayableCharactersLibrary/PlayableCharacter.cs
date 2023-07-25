@@ -19,7 +19,7 @@ public abstract class PlayableCharacter : Character
 	
 	//List of all characters who protected this characters
 	//Charactres in this list will build resolve
-	protected PlayableCharacter[] ProtectionList;
+	protected bool[] ProtectionList = new bool[]{false, false, false, false};
 	
 	protected bool HasCasted;
 	
@@ -30,9 +30,34 @@ public abstract class PlayableCharacter : Character
 		return this.Resolve;
 	}
 	
-	public void setMana(int r)
+	public void setResolve(int d)
 	{
-		this.Resolve = r;
+		Resolve = Mathf.Min(d, MaxResolve);
+	}
+	
+	public int getMaxResolve()
+	{
+		return MaxResolve;
+	}
+	
+	public bool[] getProtectionList()
+	{
+		return ProtectionList;
+	}
+	
+	public void setProtectionList(PlayableCharacter C)
+	{
+		int i = PlayerParty.getPartyIndex(C.gameObject);
+		ProtectionList[i] = true;
+	}
+	
+	public void resetProtectionList()
+	{
+		ProtectionList[0] = false;
+		ProtectionList[1] = false;
+		ProtectionList[2] = false;
+		ProtectionList[3] = false;
+		
 	}
 	
 	public int getAttackStat()
@@ -53,6 +78,27 @@ public abstract class PlayableCharacter : Character
 	public bool getHasCasted()
 	{
 		return HasCasted;
+	}
+	
+	public void GiveResolve(int d)
+	{
+		for (int i = 0; i < ProtectionList.Length; i++)
+		{
+			if (ProtectionList[i])
+			{
+				PlayableCharacter P = PlayerParty.getPartyMember(i).GetComponent<PlayableCharacter>();
+				P.setResolve(P.getResolve() + d);
+			}
+		}
+	}
+	
+	public void RefreshCast()
+	{
+		if (this.Resolve >= this.MaxResolve)
+		{
+			HasCasted = false;
+			this.Resolve = 0;
+		}
 	}
 	
 	

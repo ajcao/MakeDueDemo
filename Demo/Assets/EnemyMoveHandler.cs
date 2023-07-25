@@ -24,25 +24,33 @@ public class EnemyMoveHandler : MonoBehaviour
                 int i = 1;
                 foreach (EnemyMove EM in E.getCurrentMoves())
                 {
-                    GameObject EM_Indicator = Instantiate(EnemyMoveIndicatorPrefab, E.transform.position + new Vector3(0.0f,i*1.5f,0.0f), Quaternion.identity, E.transform) as GameObject;
+                    GameObject EM_Indicator = Instantiate(EnemyMoveIndicatorPrefab, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity, E.transform) as GameObject;
                     EM.AssignIndicator(EM_Indicator);
                     EM_Indicator.GetComponent<EnemyMoveIndicatorScript>().Init(EM);
                     
                     i+=1;
                 }
             }
-            //Else rearrange the old moves
-            else
+            DrawMoves(E);
+        }
+    }
+    
+    public void DrawMoves(EnemyCharacter E)
+    {
+        int i = 1;
+        foreach (EnemyMove EM in E.getCurrentMoves())
+        {
+            GameObject EM_Indicator;
+            if (EM.getMoveIndicator() == null)
             {
-                int i = 1;
-                foreach (EnemyMove EM in E.getCurrentMoves())
-                {
-                    GameObject EM_Indicator = EM.getMoveIndicator();
-                    EM_Indicator.transform.position = E.transform.position + new Vector3(0.0f,i*1.5f,0.0f);
-                    
-                    i+=1;
-                }
+                EM_Indicator = Instantiate(EnemyMoveIndicatorPrefab, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity, E.transform) as GameObject;
+                EM.AssignIndicator(EM_Indicator);
+                EM_Indicator.GetComponent<EnemyMoveIndicatorScript>().Init(EM);
             }
+            EM_Indicator = EM.getMoveIndicator();
+            EM_Indicator.transform.position = E.transform.position + new Vector3(0.0f,i*1.5f,0.0f);
+            
+            i+=1;
         }
     }
     
@@ -52,6 +60,30 @@ public class EnemyMoveHandler : MonoBehaviour
         {
             EnemyCharacter E = G.GetComponent<EnemyCharacter>();
             E.EnemyCastMoves();
+            
+        }
+    }
+    
+    public void ResetEnemyCast()
+    {
+        foreach (GameObject G in EnemyEncounter.getEncounter())
+        {
+            EnemyCharacter E = G.GetComponent<EnemyCharacter>();
+            Debug.Log(E);
+            Debug.Log(E.canStaminaRegenerate);
+            Debug.Log(E.IsStunned);
+            
+            if (E.canStaminaRegenerate == true)
+            {
+                E.setStamina(Mathf.Min(E.getStamina() + E.getStaminaRegeneration(), E.getMaxStamina()));
+            }
+            E.canStaminaRegenerate = true;
+            
+            if (E.IsStunned == true)
+            {
+                E.IsStunned = false;
+                E.setStamina(E.getMaxStamina());
+            }
             
         }
     }

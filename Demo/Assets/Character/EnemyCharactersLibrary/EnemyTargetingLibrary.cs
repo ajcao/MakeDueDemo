@@ -40,7 +40,7 @@ public static class EnemyTargetingLibrary
             CImage.sprite = C.getCharacterIcon();
             ImageObject.transform.SetParent(targetCanvas.transform);
             ImageObject.GetComponent<RectTransform>().sizeDelta = new Vector2(0.5f, 0.5f);
-            ImageObject.GetComponent<RectTransform>().transform.position = new Vector3((-1.0f+0.5f*i),-0.4f,0.0f) + targetCanvas.transform.position;
+            ImageObject.GetComponent<RectTransform>().transform.position = new Vector3((-0.5f+0.5f*i),-0.6f,0.0f) + targetCanvas.transform.position;
         }
     }
 

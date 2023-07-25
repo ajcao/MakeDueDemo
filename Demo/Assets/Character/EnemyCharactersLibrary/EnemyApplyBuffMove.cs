@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using CharacterUtil;
 using BuffUtil;
+using EnemyTargetingLibraryUtil;
 
 namespace EnemyMoveUtil
 {
@@ -31,6 +32,11 @@ public class EnemyApplyBuffMove : EnemyMove
     public override string MoveIndicatorText()
     {
         return "+" + BuffList[0].getIntensity();
+    }
+    
+    public override void MoveTargetIndicatorText(GameObject Canvas, Character[] Target)
+    {
+        EnemyTargetingLibrary.TargetNGenericIndicator(Canvas, Target);
     }
 }
 

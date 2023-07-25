@@ -11,36 +11,79 @@ namespace CharacterUtil
 public abstract class EnemyCharacter : Character
 {
 	//Move pool for display variable
-	protected Queue<EnemyMove> Moves;
+	protected Stack<EnemyMove> Moves;
 	
-	protected bool canPoiseRegenerate;
-	protected int Poise;
-	//-1 is full regeneration
-	protected int PoiseRegeneration;
+	public bool canStaminaRegenerate;
+	public bool IsStunned;
+	protected int Stamina;
+	protected int MaxStamina;
+	protected int StaminaRegeneration;
 	
-	public int getPoise()
+	public int getStamina()
 	{
-		return this.Poise;
+		return this.Stamina;
 	}
 	
-	public void setPoise(int p)
+	public void setStamina(int s)
 	{
-		this.Poise = p;
+		if (!this.IsStunned)
+		{
+			//If stamina is lowering, cancel ability to regenerate stamina
+			if (s < this.Stamina)
+			{
+				canStaminaRegenerate = false;
+			}
+			this.Stamina = Mathf.Max(s,0);
+			if (this.Stamina <= 0)
+			{
+				this.GetStunned();
+			}
+		}
+	}
+	
+	public int getMaxStamina()
+	{
+		return this.MaxStamina;
+	}
+	
+	public void setMaxStamina(int s)
+	{
+		this.MaxStamina = s;
+	}
+	
+	public int getStaminaRegeneration()
+	{
+		return this.StaminaRegeneration;
 	}
 	
 	public abstract void GenerateMoves();
 
 	
-	public Queue<EnemyMove> getCurrentMoves()
+	public Stack<EnemyMove> getCurrentMoves()
 	{
 		return Moves;
 	}
 	
 	public void EnemyCastMoves()
 	{
-		EnemyMove EM = Moves.Dequeue();
+		EnemyMove EM = Moves.Pop();
 		EM.onCast();
 		EM.DeleteMove();
+	}
+	
+	public void GetStunned()
+	{
+		EnemyMove EM = Moves.Peek();
+		//Pop the move onto the stack without removing
+		if (!EM.IsSpecial())
+		{
+			EM = Moves.Pop();
+			EM.DeleteMove();
+		}			
+		Moves.Push(new EnemyStunnedMove());
+		this.IsStunned = true;
+		GameObject.Find("EnemyMoveHandlerGameObject").GetComponent<EnemyMoveHandler>().DrawMoves(this);
+		
 	}
 	
 	public void doNothing()

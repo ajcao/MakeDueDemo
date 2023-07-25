@@ -14,9 +14,7 @@ public class EnemyMoveIndicatorScript : MonoBehaviour
     {
         EM = InputEM;
         this.gameObject.transform.Find("EnemyMoveSprite").gameObject.GetComponent<Image>().sprite = EM.getIcon();
-        
-        GameObject TargetCanvas = this.gameObject.transform.Find("TargetCanvas").gameObject;
-        EnemyTargetingLibrary.TargetNGenericIndicator(TargetCanvas, EM.getTargetArray());
+        EM.MoveTargetIndicatorText(this.gameObject, EM.getTargetArray());
     }
     
     public void Clean()

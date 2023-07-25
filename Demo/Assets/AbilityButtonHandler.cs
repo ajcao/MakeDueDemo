@@ -31,7 +31,7 @@ public class AbilityButtonHandler : MonoBehaviour
             PlayableCharacter CBehavior = C.GetComponent<PlayableCharacter>();
             
             GameObject SelectCharacterButton = Instantiate(SelectCharacterButtonPrefab, this.gameObject.transform, false) as GameObject;
-            SelectCharacterButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(-500, -100-(50*i));
+            SelectCharacterButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(-500, -120-(40*i));
             SelectCharacterButton.GetComponent<SelectCharacterButtonScript>().Init(CBehavior, this);
             
             //May replace this later so Character Selection has unique icon
@@ -103,6 +103,8 @@ public class AbilityButtonHandler : MonoBehaviour
             }
             yield return null;
         }
+        currentAbility.getPlayableCharacter().RefreshCast();
+        
         currentCharacter = null;
         currentTarget = null;
         currentAbility = null;
@@ -125,9 +127,16 @@ public class AbilityButtonHandler : MonoBehaviour
     public void ResetEveryoneCast()
     {
         PlayerParty.getPartyMember(0).GetComponent<PlayableCharacter>().setHasCasted(false);
+        PlayerParty.getPartyMember(0).GetComponent<PlayableCharacter>().resetProtectionList();
+        
         PlayerParty.getPartyMember(1).GetComponent<PlayableCharacter>().setHasCasted(false);
+        PlayerParty.getPartyMember(1).GetComponent<PlayableCharacter>().resetProtectionList();
+        
         PlayerParty.getPartyMember(2).GetComponent<PlayableCharacter>().setHasCasted(false);
+        PlayerParty.getPartyMember(2).GetComponent<PlayableCharacter>().resetProtectionList();
+        
         PlayerParty.getPartyMember(3).GetComponent<PlayableCharacter>().setHasCasted(false);
+        PlayerParty.getPartyMember(3).GetComponent<PlayableCharacter>().resetProtectionList();
     }
     
     //Update ability buttons to always display current Characters Abilities

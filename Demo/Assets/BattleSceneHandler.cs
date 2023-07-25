@@ -85,7 +85,11 @@ public class BattleSceneHandler : MonoBehaviour
             
             EM_Handler.BeginEnemyTurn();
             
+            EM_Handler.ResetEnemyCast();
+            
             AB_Handler.ResetEveryoneCast();
+            
+            
 
             
             
