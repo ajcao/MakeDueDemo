@@ -17,6 +17,18 @@ public abstract class Buff
 	protected int? Duration;
 	protected Sprite BuffIcon;
 	
+	protected GameObject BuffIndicator = null;
+	
+	public void AssignBuffIndicator(GameObject Indict)
+	{
+		this.BuffIndicator = Indict;
+	}
+	
+	public GameObject GetBuffIndicator()
+	{
+		return BuffIndicator;
+	}
+	
 	public bool Visible;
 	
 	public TriggerEventEnum getTrigger()
@@ -34,6 +46,11 @@ public abstract class Buff
 		return this.OriginalBuffer;
 	}
 	
+	public void setOriginalBuffer(Character C)
+	{
+		this.OriginalBuffer = C;
+	}
+	
 	public int? getIntensity()
 	{
 		return this.Intensity;
@@ -46,10 +63,10 @@ public abstract class Buff
 	
 	public void decrementDuration()
 	{
-		if (this.Duration.HasValue)
+		if ( this.Duration.HasValue )
 		{
 			this.Duration-=1;
-			if (this.Duration.Value == 0)
+			if ( this.Duration.Value == 0 )
 			{
 				this.onExpire();
 			}
@@ -61,20 +78,56 @@ public abstract class Buff
 		return BuffIcon;
 	}
 	
-	public void setDirty()
+	protected bool PerformIntensityStacking(Character Buffer, Character Target, int I)
 	{
-		if (this.Visible == true)
+		foreach (Buff B in Target.getBuffList())
 		{
-			BuffTarget.BuffListDirty = true;
-		}
+			if (B.GetType() == this.GetType() && B.getDuration() == this.getDuration())
+            {
+				B.setOriginalBuffer(Buffer);
+                B.StackIntensity(I);
+                return true;
+            }
+        }
+		return false;
 	}
 	
-	protected abstract bool CheckForConditions();
+	protected bool PerformDurationExtension(Character Buffer, Character Target, int D)
+	{
+		foreach (Buff B in Target.getBuffList())
+		{
+			if (B.GetType() == this.GetType())
+            {
+				B.setOriginalBuffer(Buffer);
+                B.StackIntensity(D);
+                return true;
+            }
+        }
+		return false;
+		
+	}
+	
+	public void StackIntensity(int I)
+	{
+		this.Intensity += I;
+	}
+	
+	public void ExtendDuration(int D)
+	{
+		this.Duration += D;
+	}
+	
+	public void DeleteBuff()
+	{
+		//Since Buffs and BuffIndicator are closely linked
+        //Properly set null references as "garbage" collection
+        GameObject.Destroy(BuffIndicator);
+        BuffIndicator = null;
+	}
 	
 	public abstract void onApplication();
-	public abstract void onStacking(Buff B);
 	public abstract void onExpire();
-	public abstract void onEffect(TriggerEvent E);
+	public abstract void onTriggerEffect(TriggerEvent E);
 }
 
 }

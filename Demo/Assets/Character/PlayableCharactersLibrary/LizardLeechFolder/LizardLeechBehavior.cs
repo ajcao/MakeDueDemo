@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using CharacterUtil;
 using AbilityUtil;
+using BuffUtil;
 
 public class LizardLeechBehavior : PlayableCharacter
 {
@@ -27,8 +28,8 @@ public class LizardLeechBehavior : PlayableCharacter
         this.AbilityPool.Add(new AttackAbility(this));
         this.AbilityPool.Add(new DefendAbility(this));
         this.AbilityPool.Add(new AttackHealAbility(this));
-
-
+        this.AbilityPool.Add(new EnemyGivesHPAbilty(this));
+        
     }
 
 }

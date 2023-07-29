@@ -7,9 +7,9 @@ using CharacterUtil;
 namespace BuffUtil
 {
     
-public class AttackUpBuff : Buff
+public class NullBuff : Buff
 {
-    public AttackUpBuff(Character CTarget, Character CBuffer, int Inten, int? Dur) 
+    public NullBuff(Character CTarget, Character CBuffer, int? Inten, int? Dur) 
     {
         this.Trigger = TriggerEventEnum.noTriggerEnum;
         this.BuffTarget = CTarget;
@@ -18,29 +18,17 @@ public class AttackUpBuff : Buff
         this.Duration = Dur;
         this.Visible = true;
         
-        BuffIcon = Resources.Load<Sprite>("AbilityImages/AttackIcon");
+        BuffIcon = Resources.Load<Sprite>("AbilityImages/NullIcon");
     }
-
     
     public override void onApplication()
     {
-        int Inten = this.Intensity.Value;
-        BuffTarget.setDamageOutputModifier(BuffTarget.getDamageOutputModifier() + Inten);
-        if (this.PerformIntensityStacking(OriginalBuffer, BuffTarget, Inten))
-        {
-            this.DeleteBuff();
-        }
-        else
-        {
-            BuffTarget.getBuffList().Add(this);
-            BattleLogicHandler.getBuffsList()[this.Trigger].Add(this);
-        }
+        BuffTarget.getBuffList().Add(this);
+        BattleLogicHandler.getBuffsList()[this.Trigger].Add(this);
     }
     
     public override void onExpire()
     {
-        int Inten = this.Intensity.Value;
-        BuffTarget.setDamageOutputModifier(BuffTarget.getDamageOutputModifier() - Inten);
         BuffTarget.getBuffList().Remove(this);
         BattleLogicHandler.getBuffsList()[this.Trigger].Remove(this);
         
@@ -54,3 +42,4 @@ public class AttackUpBuff : Buff
 }
 
 }
+

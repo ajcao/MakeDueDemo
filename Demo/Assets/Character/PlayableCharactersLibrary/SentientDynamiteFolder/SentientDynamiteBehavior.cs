@@ -27,6 +27,7 @@ public class SentientDynamiteBehavior : PlayableCharacter
         this.AbilityPool.Add(new AttackAbility(this));
         this.AbilityPool.Add(new DefendAbility(this));
         this.AbilityPool.Add(new AttackEveryoneAbility(this));
+        this.AbilityPool.Add(new AttackAbility(this));
     }
 
 }

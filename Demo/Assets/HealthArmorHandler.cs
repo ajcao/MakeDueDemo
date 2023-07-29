@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using CharacterUtil;
 
-public class HealthBarHandler : MonoBehaviour
+public class HealthArmorHandler : MonoBehaviour
 {
-    public GameObject HealthPrefab;
+    public GameObject HealthArmorPrefab;
     
     
     //Currently HealthBar operates independently of BattleSceneHandler
@@ -17,16 +17,16 @@ public class HealthBarHandler : MonoBehaviour
         for (int i = 0; i < PlayerParty.getPartySize(); i++)
         {
             GameObject C = PlayerParty.getPartyMember(i);
-            GameObject HealthBar = Instantiate(HealthPrefab, C.transform.position + new Vector3(0f,-1.5f,0f), Quaternion.identity, C.transform) as GameObject;
-            HealthBar.GetComponent<HealthBarScript>().Init(C.GetComponent<Character>());
+            GameObject HealthArmorBar = Instantiate(HealthArmorPrefab, C.transform.position + new Vector3(0f,-1.5f,0f), Quaternion.identity, C.transform) as GameObject;
+            HealthArmorBar.GetComponent<HealthArmorScript>().Init(C.GetComponent<Character>());
         }
         
         //Enemy HealthBar
         for (int i = 0; i < EnemyEncounter.getEncounterSize(); i++)
         {
             GameObject C = EnemyEncounter.getEncounterMember(i);
-            GameObject HealthBar = Instantiate(HealthPrefab, C.transform.position + new Vector3(0f,-1.5f,0f), Quaternion.identity, C.transform) as GameObject;
-            HealthBar.GetComponent<HealthBarScript>().Init(C.GetComponent<Character>());
+            GameObject HealthArmorBar = Instantiate(HealthArmorPrefab, C.transform.position + new Vector3(0f,-1.5f,0f), Quaternion.identity, C.transform) as GameObject;
+            HealthArmorBar.GetComponent<HealthArmorScript>().Init(C.GetComponent<Character>());
         }
         
 

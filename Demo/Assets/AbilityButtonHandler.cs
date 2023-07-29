@@ -7,10 +7,9 @@ using AbilityUtil;
 
 public class AbilityButtonHandler : MonoBehaviour
 {
-    public GameObject AbilityButtonPrefab;
-    
     public GameObject SelectCharacterButtonPrefab;
     
+    public GameObject AbilityButtonPrefab;
     //Variables that handle Abilities being casted and on who
     
     private PlayableCharacter currentCharacter;
@@ -19,7 +18,9 @@ public class AbilityButtonHandler : MonoBehaviour
     
     private Character currentTarget;
     
-    private GameObject[] AbilityButtonList;
+    public SelectCharacterButtonScript[] SelectCharacterButtonList;
+    
+    public AbilityButtonScript[] AbilityButtonList;
     
     
     public void Start()
@@ -30,23 +31,18 @@ public class AbilityButtonHandler : MonoBehaviour
             GameObject C = PlayerParty.getPartyMember(i);
             PlayableCharacter CBehavior = C.GetComponent<PlayableCharacter>();
             
-            GameObject SelectCharacterButton = Instantiate(SelectCharacterButtonPrefab, this.gameObject.transform, false) as GameObject;
-            SelectCharacterButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(-500, -120-(40*i));
-            SelectCharacterButton.GetComponent<SelectCharacterButtonScript>().Init(CBehavior, this);
+            SelectCharacterButtonList[i].GetComponent<SelectCharacterButtonScript>().Init(CBehavior, this);
             
-            //May replace this later so Character Selection has unique icon
-            SelectCharacterButton.GetComponent<Image>().sprite = C.GetComponent<SpriteRenderer>().sprite;
+            SelectCharacterButtonList[i].GetComponent<Image>().sprite = CBehavior.getCharacterIcon();
         }
         
-        //Temporarily Setting Max Spell Slots to 3.
+        //Temporarily Setting Max Spell Slots to 4
         //May need to handle cases for Characters with Variable Num of Spelll Slots
-        AbilityButtonList = new GameObject[3];
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 4; i++)
         {
-            GameObject AbilityButton = Instantiate(AbilityButtonPrefab, this.gameObject.transform, false) as GameObject;
-            AbilityButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(-300+(300*i), -150);
-            AbilityButton.GetComponent<AbilityButtonScript>().Init(this);
-            AbilityButtonList[i] = AbilityButton;
+            //GameObject AbilityButton = Instantiate(AbilityButtonPrefab, this.gameObject.transform, false) as GameObject;
+            //AbilityButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(-300+(300*i), -150);
+            AbilityButtonList[i].GetComponent<AbilityButtonScript>().Init(this);
         }
             
             
@@ -148,7 +144,7 @@ public class AbilityButtonHandler : MonoBehaviour
         {
             for (int i = 0; i < AbilityButtonList.Length; i++)
             {
-                GameObject AbilityButton = AbilityButtonList[i];
+                GameObject AbilityButton = AbilityButtonList[i].gameObject;
                 AbilityButton.SetActive(true);
                 Ability A = currentCharacter.getAbilityPool()[i];
                 AbilityButton.GetComponent<AbilityButtonScript>().DefineAbility(A);
@@ -187,7 +183,7 @@ public class AbilityButtonHandler : MonoBehaviour
         {
             for (int i = 0; i < AbilityButtonList.Length; i++)
             {
-                GameObject AbilityButton = AbilityButtonList[i];
+                GameObject AbilityButton = AbilityButtonList[i].gameObject;
                 AbilityButton.SetActive(false);
             }
             

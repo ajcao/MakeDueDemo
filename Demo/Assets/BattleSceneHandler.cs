@@ -19,7 +19,7 @@ public class BattleSceneHandler : MonoBehaviour
     
     public EnemyMoveHandler EM_Handler;
     
-    public HealthBarHandler HB_Handler;
+    public HealthArmorHandler HA_Handler;
     
     
     public void Awake()

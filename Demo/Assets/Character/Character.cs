@@ -39,6 +39,7 @@ public abstract class Character : MonoBehaviour
 		return BuffList;
 	}
 	
+	
 	public int getCurrentHealth()
 	{
 		return this.CurrentHealth;
@@ -47,6 +48,12 @@ public abstract class Character : MonoBehaviour
 	public void setCurrentHealth(int h)
 	{
 		this.CurrentHealth = h;
+		
+		if (this.CurrentHealth >= this.MaxHealth)
+		{
+			this.CurrentHealth = this.MaxHealth;
+		}
+		
 		if (this.CurrentHealth <= 0)
 		{
 			BattleLogicHandler.CharacterDies(this);

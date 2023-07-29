@@ -35,7 +35,9 @@ public class DefenseResolveScript : MonoBehaviour
             }
             else
             {
-                CList[i].GetComponent<Image>().color = Color.white;
+                Color c = Color.white;
+                c.a = 0.5f;
+                CList[i].GetComponent<Image>().color = c;
             }
         }
     }

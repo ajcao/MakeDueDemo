@@ -7,25 +7,23 @@ using CharacterUtil;
 namespace BuffUtil
 {
     
-public class AttackUpBuff : Buff
+public class GiveHPWhenAttackedDebuff : Buff
 {
-    public AttackUpBuff(Character CTarget, Character CBuffer, int Inten, int? Dur) 
+    public GiveHPWhenAttackedDebuff(Character CTarget, Character CBuffer, int Inten, int? Dur) 
     {
-        this.Trigger = TriggerEventEnum.noTriggerEnum;
+        this.Trigger = TriggerEventEnum.onPlayerAttackEnum;
         this.BuffTarget = CTarget;
         this.OriginalBuffer = CBuffer;
         this.Intensity = Inten;
         this.Duration = Dur;
         this.Visible = true;
         
-        BuffIcon = Resources.Load<Sprite>("AbilityImages/AttackIcon");
+        BuffIcon = Resources.Load<Sprite>("AbilityImages/ApplyLifeStealImage");
     }
-
     
     public override void onApplication()
     {
         int Inten = this.Intensity.Value;
-        BuffTarget.setDamageOutputModifier(BuffTarget.getDamageOutputModifier() + Inten);
         if (this.PerformIntensityStacking(OriginalBuffer, BuffTarget, Inten))
         {
             this.DeleteBuff();
@@ -39,8 +37,6 @@ public class AttackUpBuff : Buff
     
     public override void onExpire()
     {
-        int Inten = this.Intensity.Value;
-        BuffTarget.setDamageOutputModifier(BuffTarget.getDamageOutputModifier() - Inten);
         BuffTarget.getBuffList().Remove(this);
         BattleLogicHandler.getBuffsList()[this.Trigger].Remove(this);
         
@@ -49,7 +45,11 @@ public class AttackUpBuff : Buff
     
     public override void onTriggerEffect(TriggerEvent E)
     {
-        return;
+        onPlayerAttackTrigger T = (onPlayerAttackTrigger) E;
+        if (T.ReceivingEnemy == BuffTarget)
+        {
+            T.AttackingPlayer.setCurrentHealth(T.AttackingPlayer.getCurrentHealth() + this.Intensity.Value);
+        }
     }
 }
 

@@ -61,7 +61,7 @@ public abstract class EnemyMove
     {
         //Since EnemyMoves and EnemyMoveIndicator are closely linked
         //Properly set null references as "garbage" collection
-        MoveIndicator.GetComponent<EnemyMoveIndicatorScript>().Clean();
+        GameObject.Destroy(MoveIndicator);
         MoveIndicator = null;
     }
     

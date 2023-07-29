@@ -30,10 +30,8 @@ public class GenericEnemy2Behavior : EnemyCharacter
         Character[] Target = EnemyTargetingLibrary.TargetNRandomHeroes(1);
         Moves.Push(new EnemyAttackMove(this, 30, Target));
 
-        //Target = new Character[] {(Character) this};
-        //AttackUpBuff ABuff = new AttackUpBuff(this, this, 2, null);
-        //Buff[] BList = {(Buff) ABuff};
-        //Moves.Push(new EnemyApplyBuffMove(this, BList, Target));
+        Target = new Character[] {(Character) this};
+        Moves.Push(new EnemyApplyBuffMove(this, Target, "AttackUpBuff", 2, null));
         
         Target = new Character[] {(Character) this};
         Moves.Push(new EnemyDefendMove(this, 5, Target));

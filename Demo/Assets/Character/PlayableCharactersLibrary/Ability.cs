@@ -12,8 +12,6 @@ public enum TargetingTypeEnum
 {
 	EnemyTarget,
     PlayerTarget,
-    NoTarget,
-    Passive
 }
     
     

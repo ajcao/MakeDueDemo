@@ -111,7 +111,7 @@ public static class BattleLogicHandler
 		{
 			foreach (Buff B in BuffsList[e])
 			{
-				B.onEffect(TE);
+				B.onTriggerEffect(TE);
 			}
 		}
 	}

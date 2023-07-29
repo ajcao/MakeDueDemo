@@ -26,7 +26,8 @@ public class ORBBehavior : PlayableCharacter
         this.AbilityPool = new List<Ability>();
         this.AbilityPool.Add(new AttackAbility(this));
         this.AbilityPool.Add(new DefendAbility(this));
-        this.AbilityPool.Add(new HealAbility(this));        
+        this.AbilityPool.Add(new HealAbility(this));
+        this.AbilityPool.Add(new AttackAbility(this));
     }
 
 }

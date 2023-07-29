@@ -27,6 +27,7 @@ public class SpikeyRockBehavior : PlayableCharacter
         this.AbilityPool.Add(new AttackAbility(this));
         this.AbilityPool.Add(new DefendAbility(this));
         this.AbilityPool.Add(new DoubleAttackAbility(this));
+        this.AbilityPool.Add(new AttackAbility(this));
 
 
     }

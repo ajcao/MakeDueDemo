@@ -6,7 +6,6 @@ using CharacterUtil;
 namespace AbilityUtil
 {
   
-
   
 public class AttackAbility : Ability
 {
@@ -24,10 +23,6 @@ public class AttackAbility : Ability
         BattleLogicHandler.PlayerAttack(PC, (EnemyCharacter) E, PC.getAttackStat() + PC.getDamageOutputModifier());
     }
 }
-
-
-
-
 
 
 }
