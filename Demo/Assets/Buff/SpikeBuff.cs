@@ -7,25 +7,23 @@ using CharacterUtil;
 namespace BuffUtil
 {
     
-public class AttackUpBuff : Buff
+public class SpikeBuff : Buff
 {
-    public AttackUpBuff(Character CTarget, Character CBuffer, int Inten, int? Dur) 
+    public SpikeBuff(Character CTarget, Character CBuffer, int Inten, int? Dur) 
     {
-        this.Trigger = TriggerEventEnum.noTriggerEnum;
+        this.Trigger = TriggerEventEnum.onEnemyAttackEnum;
         this.BuffTarget = CTarget;
         this.OriginalBuffer = CBuffer;
         this.Intensity = Inten;
         this.Duration = Dur;
         this.Visible = true;
         
-        BuffIcon = Resources.Load<Sprite>("AbilityImages/AttackIcon");
+        BuffIcon = Resources.Load<Sprite>("AbilityImages/GainSpike");
     }
-
     
     public override void onApplication()
     {
         int Inten = this.Intensity.Value;
-        BuffTarget.setDamageOutputModifier(BuffTarget.getDamageOutputModifier() + Inten);
         if (this.PerformIntensityStacking(OriginalBuffer, BuffTarget, Inten))
         {
             this.PrepareBuffForDeletion();
@@ -39,13 +37,16 @@ public class AttackUpBuff : Buff
     
     public override void onExpire()
     {
-        int Inten = this.Intensity.Value;
-        BuffTarget.setDamageOutputModifier(BuffTarget.getDamageOutputModifier() - Inten);
+        return;
     }
     
     public override void onTriggerEffect(TriggerEvent E)
     {
-        return;
+        onEnemyAttackTrigger T = (onEnemyAttackTrigger) E;
+        if (T.ReceivingPlayer == BuffTarget)
+        {
+            BattleLogicHandler.Damage(T.AttackingEnemy, this.Intensity.Value);
+        }
     }
 }
 

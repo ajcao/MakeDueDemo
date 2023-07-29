@@ -89,6 +89,8 @@ public class BattleSceneHandler : MonoBehaviour
             
             AB_Handler.ResetEveryoneCast();
             
+            BattleLogicHandler.EndCombatRound();
+            
             
 
             

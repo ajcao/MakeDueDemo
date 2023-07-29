@@ -26,7 +26,7 @@ public class GiveHPWhenAttackedDebuff : Buff
         int Inten = this.Intensity.Value;
         if (this.PerformIntensityStacking(OriginalBuffer, BuffTarget, Inten))
         {
-            this.DeleteBuff();
+            this.PrepareBuffForDeletion();
         }
         else
         {
@@ -37,10 +37,7 @@ public class GiveHPWhenAttackedDebuff : Buff
     
     public override void onExpire()
     {
-        BuffTarget.getBuffList().Remove(this);
-        BattleLogicHandler.getBuffsList()[this.Trigger].Remove(this);
-        
-        this.DeleteBuff();
+        return;
     }
     
     public override void onTriggerEffect(TriggerEvent E)

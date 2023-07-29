@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using CharacterUtil;
 using AbilityUtil;
+using BuffUtil;
 
 public class SentientDynamiteBehavior : PlayableCharacter
 {
@@ -27,7 +28,7 @@ public class SentientDynamiteBehavior : PlayableCharacter
         this.AbilityPool.Add(new AttackAbility(this));
         this.AbilityPool.Add(new DefendAbility(this));
         this.AbilityPool.Add(new AttackEveryoneAbility(this));
-        this.AbilityPool.Add(new AttackAbility(this));
+        this.AbilityPool.Add(new BurstAoeAbility(this));
     }
 
 }

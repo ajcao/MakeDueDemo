@@ -29,10 +29,7 @@ public class NullBuff : Buff
     
     public override void onExpire()
     {
-        BuffTarget.getBuffList().Remove(this);
-        BattleLogicHandler.getBuffsList()[this.Trigger].Remove(this);
-        
-        this.DeleteBuff();
+        return;
     }
     
     public override void onTriggerEffect(TriggerEvent E)

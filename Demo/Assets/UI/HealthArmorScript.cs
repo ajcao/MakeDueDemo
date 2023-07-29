@@ -28,8 +28,6 @@ public class HealthArmorScript : MonoBehaviour
         
         if (IsResolveBar)
             SecondBar.color = Color.blue;
-        else
-            SecondBar.color = Color.green;
     }
     
     

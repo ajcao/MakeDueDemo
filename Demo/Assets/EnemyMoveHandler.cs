@@ -69,9 +69,6 @@ public class EnemyMoveHandler : MonoBehaviour
         foreach (GameObject G in EnemyEncounter.getEncounter())
         {
             EnemyCharacter E = G.GetComponent<EnemyCharacter>();
-            Debug.Log(E);
-            Debug.Log(E.canStaminaRegenerate);
-            Debug.Log(E.IsStunned);
             
             if (E.canStaminaRegenerate == true)
             {

@@ -64,6 +64,6 @@ public class BuffIconHandler : MonoBehaviour
     
     private Vector3 GetNextBuffLocation(int p)
     {
-        return new Vector3(-1.25f + Mathf.Repeat(p * 0.5f,3.0f), -2.1f + -0.5f*(p / 6), 0f);
+        return new Vector3(-1.05f + Mathf.Repeat(p * 0.7f,2.8f), -2.2f + -0.7f*(p / 4), 0f);
     }
 }

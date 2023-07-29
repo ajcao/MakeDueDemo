@@ -54,10 +54,13 @@ public static class BattleLogicHandler
 	
 	public static void EnemyAttack(EnemyCharacter E, PlayableCharacter P, int d)
 	{
+		TriggerEvent TE = new onEnemyAttackTrigger(E, P, d);
 		int armor = P.getCurrentArmor();
 		P.GiveResolve(Mathf.Min(armor, d));
 		P.setResolve(P.getResolve() + Mathf.Max(d-armor,0));
 		Damage(P,d);
+		BattleLog.Push(TE);
+		TriggerBuffsinBuffsList(TriggerEventEnum.onEnemyAttackEnum, TE);
 	}
 	
 	public static void PlayerAttack(PlayableCharacter P, EnemyCharacter E, int d)
@@ -102,6 +105,45 @@ public static class BattleLogicHandler
 		{
 			EnemyCharacter C = G.GetComponent<EnemyCharacter>();
 			C.setCurrentArmor(Mathf.Min(C.getCurrentArmor(), C.getArmorRetain()));
+		}
+	}
+	
+	public static void EndCombatRound()
+	{
+		foreach (GameObject G in PlayerParty.getParty())
+		{
+			List<Buff> BList = G.GetComponent<Character>().getBuffList();
+			foreach (Buff B in BList)
+			{
+				B.decrementDuration();
+			}
+			BattleLogicHandler.RemoveDeletedBuffsFromList(BList);
+		}
+		
+		foreach (GameObject G in EnemyEncounter.getEncounter())
+		{
+			List<Buff> BList = G.GetComponent<Character>().getBuffList();
+			foreach (Buff B in BList)
+			{
+				B.decrementDuration();
+			}
+			BattleLogicHandler.RemoveDeletedBuffsFromList(BList);
+		}
+		
+	}
+	
+	private static void RemoveDeletedBuffsFromList(List<Buff> BList)
+	{
+		for (int i = 0; i < BList.Count; i++)
+		{
+			Buff B = BList[i];
+			if (B.ToBeDeleted)
+			{
+				BList.Remove(B);
+				BattleLogicHandler.getBuffsList()[B.getTrigger()].Remove(B);
+				BattleLogicHandler.RemoveDeletedBuffsFromList(BList);
+				return;
+			}
 		}
 	}
 	

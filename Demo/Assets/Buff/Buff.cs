@@ -16,6 +16,7 @@ public abstract class Buff
     protected int? Intensity;
 	protected int? Duration;
 	protected Sprite BuffIcon;
+	public bool ToBeDeleted = false;
 	
 	protected GameObject BuffIndicator = null;
 	
@@ -69,6 +70,7 @@ public abstract class Buff
 			if ( this.Duration.Value == 0 )
 			{
 				this.onExpire();
+				this.PrepareBuffForDeletion();
 			}
 		}
 	}
@@ -117,8 +119,10 @@ public abstract class Buff
 		this.Duration += D;
 	}
 	
-	public void DeleteBuff()
+	public void PrepareBuffForDeletion()
 	{
+		this.ToBeDeleted = true;
+		
 		//Since Buffs and BuffIndicator are closely linked
         //Properly set null references as "garbage" collection
         GameObject.Destroy(BuffIndicator);
