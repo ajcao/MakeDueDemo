@@ -13,7 +13,8 @@ public class AttackEveryoneAbility : Ability
     {
         this.AssignCharacter(inputC);
         targetingType = TargetingTypeEnum.EnemyTarget;
-        currentCooldown = 0;
+        this.currentCooldown = 0;
+        this.maxCooldown = 2;
         
         this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/GenericAbilityAoeAttack") as Sprite;
     }
@@ -29,7 +30,9 @@ public class AttackEveryoneAbility : Ability
     
     public override string GetTooltipString()
     {
-        return "Deal " + (PC.getAttackStat() + PC.getDamageOutputModifier()) + " damage to all enemies";
+        string s1 = "Deal " + (PC.getAttackStat() + PC.getDamageOutputModifier()) + " damage to all enemies";
+        string s2 = "Cooldown: " + currentCooldown + "/" + maxCooldown;
+        return s1 + "\n" + s2;
     }
 }
 

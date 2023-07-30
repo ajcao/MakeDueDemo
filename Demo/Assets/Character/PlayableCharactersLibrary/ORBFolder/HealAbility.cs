@@ -13,6 +13,7 @@ public class HealAbility : Ability
         this.AssignCharacter(inputC);
         this.targetingType = TargetingTypeEnum.PlayerTarget;
         this.currentCooldown = 0;
+        this.maxCooldown = 4;
         
         this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/GenericAbilityHeal") as Sprite;
     }
@@ -24,7 +25,9 @@ public class HealAbility : Ability
     
     public override string GetTooltipString()
     {
-        return "Restore " + 20 + " health";
+        string s1 = "Restore " + 20 + " health";
+        string s2 = "Cooldown: " + currentCooldown + "/" + maxCooldown;
+        return s1 + "\n" + s2;
     }
     
 }

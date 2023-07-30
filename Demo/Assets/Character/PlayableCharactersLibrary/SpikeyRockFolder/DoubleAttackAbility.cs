@@ -13,6 +13,7 @@ public class DoubleAttackAbility : Ability
         this.AssignCharacter(inputC);
         this.targetingType = TargetingTypeEnum.EnemyTarget;
         this.currentCooldown = 0;
+        this.maxCooldown = 4;
         
         this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/GenericAbilityAttackTwice") as Sprite;
     }
@@ -25,7 +26,9 @@ public class DoubleAttackAbility : Ability
     
     public override string GetTooltipString()
     {
-        return "Deal " + (PC.getAttackStat() + PC.getDamageOutputModifier()) + " damage twice";
+        string s1 = "Deal " + (PC.getAttackStat() + PC.getDamageOutputModifier()) + " damage twice";
+        string s2 = "Cooldown: " + currentCooldown + "/" + maxCooldown;
+        return s1 + "\n" + s2;
     }
     
 }

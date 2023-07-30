@@ -14,6 +14,7 @@ public class EnemyGivesHPAbilty : Ability
         this.AssignCharacter(inputC);
         this.targetingType = TargetingTypeEnum.EnemyTarget;
         this.currentCooldown = 0;
+        this.maxCooldown = 2;
         
         this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/ApplyLifeStealImage") as Sprite;
     }
@@ -26,7 +27,9 @@ public class EnemyGivesHPAbilty : Ability
     
     public override string GetTooltipString()
     {
-        return "Debuff enemy. When enemy is attacked, heal player for 5 hp";
+        string s1 = "Debuff enemy. When enemy is attacked, heal player for 5 hp";
+        string s2 = "Cooldown: " + currentCooldown + "/" + maxCooldown;
+        return s1 + "\n" + s2;
     }
     
 }

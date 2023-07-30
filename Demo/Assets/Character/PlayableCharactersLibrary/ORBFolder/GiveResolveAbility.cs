@@ -13,6 +13,7 @@ public class GiveResolveAbility : Ability
         this.AssignCharacter(inputC);
         this.targetingType = TargetingTypeEnum.PlayerTarget;
         this.currentCooldown = 0;
+        this.maxCooldown = 2;
         
         this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/GenericGiveResolve") as Sprite;
     }
@@ -25,7 +26,9 @@ public class GiveResolveAbility : Ability
     
     public override string GetTooltipString()
     {
-        return "Gain " + 40 + " resolve";
+        string s1 = "Gain " + 40 + " resolve";
+        string s2 = "Cooldown: " + currentCooldown + "/" + maxCooldown;
+        return s1 + "\n" + s2;
     }
     
 }

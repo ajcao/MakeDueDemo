@@ -49,9 +49,6 @@ public class BattleSceneHandler : MonoBehaviour
         
         BattleLogicHandler.Init();
         
-        //Reset everyone's cast
-        AB_Handler.ResetEveryoneCast();
-        
         //Load Background
         
         //Go Through all Items in PlayerParty and add buffs to BattleLogicHandler
@@ -74,7 +71,7 @@ public class BattleSceneHandler : MonoBehaviour
             //Player turn
             Debug.Log("PlayerTurn");
             AB_Handler.StartCastingMode();
-            while (!AB_Handler.EveryoneHasCasted())
+            while (AB_Handler.CanSomeoneCast())
             {
                 yield return null;
             }
@@ -85,9 +82,9 @@ public class BattleSceneHandler : MonoBehaviour
             
             EM_Handler.BeginEnemyTurn();
             
-            EM_Handler.ResetEnemyCast();
+            EM_Handler.ResetEnemyStamina();
             
-            AB_Handler.ResetEveryoneCast();
+            AB_Handler.ResetPlayerTurn();
             
             BattleLogicHandler.EndCombatRound();
             

@@ -20,16 +20,8 @@ public class SelectCharacterButtonScript : MonoBehaviour
         AB.SetCurrentCharacter(C);
     }
     
-    public void Update()
+    public PlayableCharacter GetAssignedCharacter()
     {
-        if (C != null && C.getHasCasted() == true)
-        {
-              this.GetComponent<Image>().color = Color.gray;
-        }
-        else if (C != null)
-        {
-              this.GetComponent<Image>().color = Color.white;
-        }
-        
+        return C;
     }
 }

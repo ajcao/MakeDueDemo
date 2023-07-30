@@ -26,6 +26,7 @@ public abstract class EnemyCharacter : Character
 	
 	public void setStamina(int s)
 	{
+		//When Stunned, stamina does not matter anymore
 		if (!this.IsStunned)
 		{
 			//If stamina is lowering, cancel ability to regenerate stamina

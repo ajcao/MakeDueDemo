@@ -14,6 +14,7 @@ public class AttackAbility : Ability
         this.AssignCharacter(inputC);
         targetingType = TargetingTypeEnum.EnemyTarget;
         currentCooldown = 0;
+        maxCooldown = 0;
         
         this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/AttackIcon");
     }

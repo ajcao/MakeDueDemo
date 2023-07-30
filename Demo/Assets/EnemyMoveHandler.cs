@@ -64,7 +64,7 @@ public class EnemyMoveHandler : MonoBehaviour
         }
     }
     
-    public void ResetEnemyCast()
+    public void ResetEnemyStamina()
     {
         foreach (GameObject G in EnemyEncounter.getEncounter())
         {

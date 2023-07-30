@@ -14,6 +14,7 @@ public class GiveSelfSpikeAbility : Ability
         this.AssignCharacter(inputC);
         this.targetingType = TargetingTypeEnum.PlayerTarget;
         this.currentCooldown = 0;
+        this.maxCooldown = 3;
         
         this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/GainSpike") as Sprite;
     }
@@ -26,7 +27,9 @@ public class GiveSelfSpikeAbility : Ability
     
     public override string GetTooltipString()
     {
-        return "Gain buff that deals 10 damage to Enemy Attackers";
+        string s1 = "Gain buff that deals 10 damage to Enemy Attackers";        
+        string s2 = "Cooldown: " + currentCooldown + "/" + maxCooldown;
+        return s1 + "\n" + s2;
     }
     
 }

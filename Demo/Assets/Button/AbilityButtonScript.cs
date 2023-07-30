@@ -7,14 +7,8 @@ using TooltipUtil;
 
 public class AbilityButtonScript : MonoBehaviour, TooltipStringInterface
 {    
-    private AbilityButtonHandler AB;
+    public AbilityButtonHandler AB;
     private Ability AssignedAbility;
-    
-    
-    public void Init(AbilityButtonHandler inputAB)
-    {
-        AB = inputAB;
-    }
     
     public void DefineAbility(Ability A)
     {

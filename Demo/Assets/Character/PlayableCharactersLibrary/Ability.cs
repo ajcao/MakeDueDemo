@@ -73,11 +73,12 @@ public abstract class Ability
     public void postCast()
     {
         currentCooldown = maxCooldown;
+        PC.setHasCasted(true);
     }
     
     public bool canCast()
     {
-        return true;
+        return (currentCooldown == 0);
     }
     
 }

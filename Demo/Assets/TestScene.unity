@@ -307,6 +307,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AbilityButton4Button
       objectReference: {fileID: 0}
+    - target: {fileID: 7166587532004783728, guid: e1be898fe43019045a9a1140f7ff604d, type: 3}
+      propertyPath: AB
+      value: 
+      objectReference: {fileID: 374263448}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1be898fe43019045a9a1140f7ff604d, type: 3}
 --- !u!1001 &355919114
@@ -404,6 +408,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AbilityButton3Button
       objectReference: {fileID: 0}
+    - target: {fileID: 7166587532004783728, guid: e1be898fe43019045a9a1140f7ff604d, type: 3}
+      propertyPath: AB
+      value: 
+      objectReference: {fileID: 374263448}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1be898fe43019045a9a1140f7ff604d, type: 3}
 --- !u!1 &368847711
@@ -873,6 +881,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7166587532004783728, guid: e1be898fe43019045a9a1140f7ff604d, type: 3}
+      propertyPath: AB
+      value: 
+      objectReference: {fileID: 374263448}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1be898fe43019045a9a1140f7ff604d, type: 3}
 --- !u!1001 &852589344
@@ -1566,6 +1578,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AbilityButton2Button
       objectReference: {fileID: 0}
+    - target: {fileID: 7166587532004783728, guid: e1be898fe43019045a9a1140f7ff604d, type: 3}
+      propertyPath: AB
+      value: 
+      objectReference: {fileID: 374263448}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1be898fe43019045a9a1140f7ff604d, type: 3}
 --- !u!1 &1617483547

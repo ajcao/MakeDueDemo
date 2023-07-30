@@ -22,6 +22,7 @@ public abstract class PlayableCharacter : Character
 	protected bool[] ProtectionList = new bool[]{false, false, false, false};
 	
 	protected bool HasCasted;
+	protected bool ResolveProc = false;
 	
 	public List<Ability> AbilityPool;
 	
@@ -101,13 +102,56 @@ public abstract class PlayableCharacter : Character
 		}
 	}
 	
-	public void RefreshCast()
+	public void CheckResolve()
 	{
 		if (this.Resolve >= this.MaxResolve)
 		{
-			HasCasted = false;
 			this.Resolve = 0;
+			this.ResolveProc = true;
 		}
+	}
+	
+	public void ProcResolve()
+	{
+		if (this.ResolveProc)
+		{
+			this.ResolveProc = false;
+			this.RefreshCasting();
+		}
+	}
+	
+	public bool IsAbletoCast()
+	{
+		//Player must be alive
+		if (!this.isAlive())
+		{
+			return false;
+		}
+		
+		//Player must not have casted
+		if (this.getHasCasted())
+		{
+			return false;
+		}
+		
+		foreach (Ability A in AbilityPool)
+		{
+			if (A.canCast())
+			{
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	public void RefreshCasting()
+	{
+		foreach (Ability A in AbilityPool)
+		{
+			A.reduceCooldown();
+		}
+		this.setHasCasted(false);
 	}
 	
 	
