@@ -35,6 +35,11 @@ public class GiveHPWhenAttackedDebuff : Buff
         }
     }
     
+    public override string GetTooltipString()
+    {
+        return "Players heal " + this.Intensity.Value + " hp when attacking this enemy";
+    }
+    
     public override void onExpire()
     {
         return;

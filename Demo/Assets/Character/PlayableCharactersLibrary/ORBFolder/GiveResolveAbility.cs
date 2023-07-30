@@ -23,6 +23,11 @@ public class GiveResolveAbility : Ability
         P.setResolve(P.getResolve() + 40);
     }
     
+    public override string GetTooltipString()
+    {
+        return "Gain " + 40 + " resolve";
+    }
+    
 }
 
 

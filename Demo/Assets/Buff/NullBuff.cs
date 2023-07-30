@@ -26,6 +26,11 @@ public class NullBuff : Buff
         BuffTarget.getBuffList().Add(this);
         BattleLogicHandler.getBuffsList()[this.Trigger].Add(this);
     }
+        
+    public override string GetTooltipString()
+    {
+        return "Null buff";
+    }
     
     public override void onExpire()
     {

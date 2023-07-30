@@ -23,6 +23,11 @@ public class AttackHealAbility : Ability
         BattleLogicHandler.Restore(PC, PC.getAttackStat() + PC.getDamageOutputModifier());
     }
     
+    public override string GetTooltipString()
+    {
+        return "Deal " + (PC.getAttackStat() + PC.getDamageOutputModifier()) + " damage. Heal for damage amount";
+    }
+    
 }
 
 

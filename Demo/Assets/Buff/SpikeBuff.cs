@@ -35,6 +35,11 @@ public class SpikeBuff : Buff
         }
     }
     
+    public override string GetTooltipString()
+    {
+        return "Deal " + this.Intensity.Value + " dmg to Attackers";
+    }
+    
     public override void onExpire()
     {
         return;

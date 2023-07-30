@@ -22,6 +22,11 @@ public class AttackAbility : Ability
     {
         BattleLogicHandler.PlayerAttack(PC, (EnemyCharacter) E, PC.getAttackStat() + PC.getDamageOutputModifier());
     }
+    
+    public override string GetTooltipString()
+    {
+        return "Deal " + (PC.getAttackStat() + PC.getDamageOutputModifier()) + " damage";
+    }
 }
 
 

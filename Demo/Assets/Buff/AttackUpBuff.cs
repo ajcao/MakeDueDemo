@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TriggerEventUtil;
 using CharacterUtil;
+using TooltipUtil;
 
 namespace BuffUtil
 {
@@ -41,6 +42,11 @@ public class AttackUpBuff : Buff
     {
         int Inten = this.Intensity.Value;
         BuffTarget.setDamageOutputModifier(BuffTarget.getDamageOutputModifier() - Inten);
+    }
+    
+    public override string GetTooltipString()
+    {
+        return "Increase damage by " + this.Intensity.Value;
     }
     
     public override void onTriggerEffect(TriggerEvent E)

@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using CharacterUtil;
 using AbilityUtil;
+using TooltipUtil;
 
-public class AbilityButtonScript : MonoBehaviour
+public class AbilityButtonScript : MonoBehaviour, TooltipStringInterface
 {    
     private AbilityButtonHandler AB;
     private Ability AssignedAbility;
@@ -34,5 +35,8 @@ public class AbilityButtonScript : MonoBehaviour
         
     }
 
-    
+    public string GetTooltipString()
+    {
+        return AssignedAbility.GetTooltipString();
+    }
 }

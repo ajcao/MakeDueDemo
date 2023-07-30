@@ -22,6 +22,11 @@ public class DefendAbility : Ability
     {
         BattleLogicHandler.PlayerDefend(PC, (PlayableCharacter) P, PC.getDefenseStat());
     }
+    
+    public override string GetTooltipString()
+    {
+        return "Gain " + PC.getDefenseStat() + " armor";
+    }
 }
 
 

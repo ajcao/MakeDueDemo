@@ -24,6 +24,11 @@ public class EnemyGivesHPAbilty : Ability
         B.onApplication();
     }
     
+    public override string GetTooltipString()
+    {
+        return "Debuff enemy. When enemy is attacked, heal player for 5 hp";
+    }
+    
 }
 
 

@@ -26,6 +26,11 @@ public class AttackEveryoneAbility : Ability
             BattleLogicHandler.PlayerAttack(PC, E, PC.getAttackStat() + PC.getDamageOutputModifier());
         }
     }
+    
+    public override string GetTooltipString()
+    {
+        return "Deal " + (PC.getAttackStat() + PC.getDamageOutputModifier()) + " damage to all enemies";
+    }
 }
 
 

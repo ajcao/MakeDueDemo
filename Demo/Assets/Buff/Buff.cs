@@ -4,6 +4,7 @@ using UnityEngine;
 using TriggerEventUtil;
 using CharacterUtil;
 using UnityEngine.UI;
+using TooltipUtil;
 
 namespace BuffUtil
 {
@@ -129,6 +130,7 @@ public abstract class Buff
         BuffIndicator = null;
 	}
 	
+    public abstract string GetTooltipString();
 	public abstract void onApplication();
 	public abstract void onExpire();
 	public abstract void onTriggerEffect(TriggerEvent E);

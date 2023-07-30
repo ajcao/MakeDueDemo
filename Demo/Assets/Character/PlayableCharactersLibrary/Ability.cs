@@ -68,6 +68,8 @@ public abstract class Ability
     
     public abstract void onCast(Character C);
     
+    public abstract string GetTooltipString();
+    
     public void postCast()
     {
         currentCooldown = maxCooldown;

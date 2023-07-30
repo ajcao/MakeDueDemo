@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using BuffUtil;
 using TMPro;
+using TooltipUtil;
 
-public class BuffIconScript : MonoBehaviour
+public class BuffIconScript : MonoBehaviour, TooltipStringInterface
 {
     Buff B;
     public TextMeshPro Intensity;
@@ -28,5 +29,10 @@ public class BuffIconScript : MonoBehaviour
             Duration.text = "" + B.getDuration().Value;
         else
             Duration.text = "";
+    }
+    
+    public string GetTooltipString()
+    {
+        return B.GetTooltipString();
     }
 }

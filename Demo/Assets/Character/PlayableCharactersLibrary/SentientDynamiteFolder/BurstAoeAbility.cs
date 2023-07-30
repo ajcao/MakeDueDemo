@@ -28,6 +28,11 @@ public class BurstAoeAbility : Ability
         Debug.Log(E2);
         BattleLogicHandler.PlayerAttack(PC, E2, 10 + PC.getDamageOutputModifier());
     }
+    
+    public override string GetTooltipString()
+    {
+        return "Deal 20 damage. Deal 10 additional damage to random enemy";
+    }
 }
 
 

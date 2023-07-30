@@ -24,6 +24,11 @@ public class GiveSelfSpikeAbility : Ability
         B.onApplication();
     }
     
+    public override string GetTooltipString()
+    {
+        return "Gain buff that deals 10 damage to Enemy Attackers";
+    }
+    
 }
 
 
