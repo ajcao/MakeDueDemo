@@ -19,7 +19,7 @@ public abstract class PlayableCharacter : Character
 	
 	//List of all characters who protected this characters
 	//Charactres in this list will build resolve
-	protected bool[] ProtectionList = new bool[]{false, false, false, false};
+	protected (GameObject G, bool b)[] ProtectionList;
 	
 	protected bool HasCasted;
 	protected bool ResolveProc = false;
@@ -41,24 +41,33 @@ public abstract class PlayableCharacter : Character
 		return MaxResolve;
 	}
 	
-	public bool[] getProtectionList()
+	public (GameObject C, bool b)[] getProtectionList()
 	{
 		return ProtectionList;
 	}
 	
+	public void InitProtectionList()
+	{
+		ProtectionList = new (GameObject G, bool b)[]{(PlayerParty.getPartyMember(0),false), (PlayerParty.getPartyMember(1),false), (PlayerParty.getPartyMember(2),false), (PlayerParty.getPartyMember(3),false)};
+	}
+	
 	public void setProtectionList(PlayableCharacter C)
 	{
-		int i = PlayerParty.getPartyIndex(C.gameObject);
-		ProtectionList[i] = true;
+		for (int i = 0; i < ProtectionList.Length; i++)
+		{
+			if (ProtectionList[i].G.GetComponent<PlayableCharacter>() == C)
+			{
+				ProtectionList[i].b = true;
+			}
+		}
 	}
 	
 	public void resetProtectionList()
 	{
-		ProtectionList[0] = false;
-		ProtectionList[1] = false;
-		ProtectionList[2] = false;
-		ProtectionList[3] = false;
-		
+		for (int i = 0; i < ProtectionList.Length; i++)
+		{
+			ProtectionList[i].b = false;
+		}
 	}
 	
 	public int getAttackStat()
@@ -84,9 +93,9 @@ public abstract class PlayableCharacter : Character
 	public void GiveResolve(int d)
 	{
 		int count = 0;
-		foreach (bool b in ProtectionList)
+		foreach (var v in ProtectionList)
 		{
-			if (b)
+			if (v.b)
 			{
 				count++;
 			}
@@ -94,10 +103,10 @@ public abstract class PlayableCharacter : Character
 		
 		for (int i = 0; i < ProtectionList.Length; i++)
 		{
-			if (ProtectionList[i])
+			if (ProtectionList[i].b)
 			{
-				PlayableCharacter P = PlayerParty.getPartyMember(i).GetComponent<PlayableCharacter>();
-				P.setResolve(P.getResolve() + (d/count));
+				PlayableCharacter C = ProtectionList[i].G.GetComponent<PlayableCharacter>();
+				C.setResolve(C.getResolve() + (d / count));
 			}
 		}
 	}

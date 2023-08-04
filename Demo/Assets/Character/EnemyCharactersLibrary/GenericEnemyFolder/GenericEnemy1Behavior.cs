@@ -11,14 +11,14 @@ public class GenericEnemy1Behavior : EnemyCharacter
     void Awake()
     {
         this.Alive = true;
-        this.CurrentHealth = 700;
-        this.MaxHealth = 700;
-        this.CurrentArmor = 10;
+        this.CurrentHealth = 500;
+        this.MaxHealth = 500;
+        this.CurrentArmor = 0;
         this.ArmorRetain = 0;
         this.DamageOutputModifier = 0;
         this.canStaminaRegenerate = true;
         this.IsStunned = false;
-        this.Stamina = 70;
+        this.Stamina = 100;
         this.MaxStamina = this.Stamina;
         this.StaminaRegeneration = this.MaxStamina;
         Moves = new Stack<EnemyMove>();

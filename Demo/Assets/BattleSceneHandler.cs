@@ -21,23 +21,40 @@ public class BattleSceneHandler : MonoBehaviour
     
     public HealthArmorHandler HA_Handler;
     
+    public delegate void EndGameDelegate();
+    public static EndGameDelegate EndGame;
+    
+    public void EndGameMethod()
+    {
+        StopAllCoroutines();
+        isBattling = false;
+        if (PlayerParty.IsPartyDead())
+        {
+            Debug.Log("YOU LOSE!");
+        }
+        else
+        {
+            Debug.Log("YOU WIN!");
+        }
+    }
     
     public void Awake()
     {
+        //Add method to delegate
+        EndGame = EndGameMethod;
         
         //TEMP CODE TO CREATE PLAYER PARTY------------------------------------------------------------------------------
         //WILL BE HANDLED BY SYSTEM TO CREATE PARTY
-        //Later Add Don't Destroy on Load
+        //Later "Add Don't Destroy on Load"
         
         
-        PlayerParty.setPartyMember((Instantiate(P1, new Vector2(-8,0), Quaternion.identity) as GameObject), 0);
-        PlayerParty.setPartyMember((Instantiate(P2, new Vector2(-5,0), Quaternion.identity) as GameObject), 1);
-        PlayerParty.setPartyMember((Instantiate(P3, new Vector2(-2,0), Quaternion.identity) as GameObject), 2);
-        PlayerParty.setPartyMember((Instantiate(P4, new Vector2(1,0), Quaternion.identity) as GameObject), 3);
+        PlayerParty.AddPartyMember((Instantiate(P1, new Vector2(-8,0), Quaternion.identity) as GameObject));
+        PlayerParty.AddPartyMember((Instantiate(P2, new Vector2(-5,0), Quaternion.identity) as GameObject));
+        PlayerParty.AddPartyMember((Instantiate(P3, new Vector2(-2,0), Quaternion.identity) as GameObject));
+        PlayerParty.AddPartyMember((Instantiate(P4, new Vector2(1,0), Quaternion.identity) as GameObject));
         
-        EnemyEncounter.createNewEncounter(2);
-        EnemyEncounter.setEncounterMember((Instantiate(E1, new Vector2(6,0), Quaternion.identity) as GameObject),0);
-        EnemyEncounter.setEncounterMember((Instantiate(E2, new Vector2(9,0), Quaternion.identity) as GameObject),1);
+        EnemyEncounter.AddEncounterMember((Instantiate(E1, new Vector2(6,0), Quaternion.identity) as GameObject));
+        EnemyEncounter.AddEncounterMember((Instantiate(E2, new Vector2(9,0), Quaternion.identity) as GameObject));
                 
         //--------------------------------------------------------------------------------------------------------------
     }
@@ -75,12 +92,18 @@ public class BattleSceneHandler : MonoBehaviour
             {
                 yield return null;
             }
+            
+            BattleLogicHandler.CheckForEncounterDeath();
+            
+            yield return new WaitForSeconds(1);
             Debug.Log("EnemyTurn");
             yield return new WaitForSeconds(2);
             
             BattleLogicHandler.EnemyPreTurn();
             
             EM_Handler.BeginEnemyTurn();
+            
+            BattleLogicHandler.CheckForEncounterDeath();
             
             EM_Handler.ResetEnemyStamina();
             
@@ -95,7 +118,6 @@ public class BattleSceneHandler : MonoBehaviour
                 
             Turn+=1;
         }
-        
         
         
     }

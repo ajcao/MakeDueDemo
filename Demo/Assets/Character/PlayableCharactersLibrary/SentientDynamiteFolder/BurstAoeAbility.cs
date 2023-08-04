@@ -20,14 +20,16 @@ public class BurstAoeAbility : Ability
     }
     
     public override void onCast(Character E1)
-    {
+    {        
+        //Fix to avoid using size
+        //Relies on fixing Player Party and Enemy Encounter
         BattleLogicHandler.PlayerAttack(PC, (EnemyCharacter) E1, 20 + PC.getDamageOutputModifier());
-        GameObject[] EncounterList = EnemyEncounter.getEncounter();
-        int r = Random.Range(0,EncounterList.Length);
-        Debug.Log(r);
-        EnemyCharacter E2 = EncounterList[r].GetComponent<EnemyCharacter>();
-        Debug.Log(E2);
-        BattleLogicHandler.PlayerAttack(PC, E2, 10 + PC.getDamageOutputModifier());
+        if (EnemyEncounter.getEncounterSize() > 0)
+        {
+            int r = Random.Range(0,EnemyEncounter.getEncounterSize());
+            EnemyCharacter E2 = EnemyEncounter.getEncounterMember(r).GetComponent<EnemyCharacter>();
+            BattleLogicHandler.PlayerAttack(PC, E2, 10 + PC.getDamageOutputModifier());
+        }
     }
     
     public override string GetTooltipString()

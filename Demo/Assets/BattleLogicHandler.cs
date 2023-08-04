@@ -63,9 +63,18 @@ public static class BattleLogicHandler
 		TriggerBuffsinBuffsList(TriggerEventEnum.onEnemyAttackEnum, TE);
 	}
 	
-	public static void PlayerAttack(PlayableCharacter P, EnemyCharacter E, int d)
+	public static void PlayerAttack(PlayableCharacter P, EnemyCharacter E, int inputD)
 	{
-		TriggerEvent TE = new onPlayerAttackTrigger(P,E,d);
+		TriggerEvent TE = new onPlayerAttackTrigger(P,E,inputD);
+		int d;
+		if (E.IsStunned)
+		{
+			d = inputD * 2;
+		}
+		else
+		{
+			d = inputD;
+		}
 		Damage(E,d);
 		E.setStamina(Mathf.Max(E.getStamina() - d));
 		BattleLog.Push(TE);
@@ -89,6 +98,42 @@ public static class BattleLogicHandler
 		TriggerEvent TE = new onDeathTrigger(C);
 		BattleLog.Push(TE);
 		TriggerBuffsinBuffsList(TriggerEventEnum.onDeathEnum, TE);
+		
+		//Marks buffs for deletion
+		foreach (Buff B in C.getBuffList())
+		{
+			B.PrepareBuffForDeletion();
+		}
+		BattleLogicHandler.RemoveDeletedBuffsFromList(C.getBuffList());
+		
+		//Remove Character from Party/Encounter
+		if ((C.GetType()).IsSubclassOf(typeof(PlayableCharacter)))
+		{
+			PlayerParty.RemovePartyMember(C.gameObject);
+		}
+		else
+		{
+			EnemyEncounter.RemoveEncounterMember(C.gameObject);
+		}
+		
+		//Move character offscreen
+		C.gameObject.transform.position = new Vector3(0, -500, 0);
+		
+		//Check for Player Party death. If so, end game immeditely
+		//Game does not end for immeditely for Enemy Encounters since
+		//helpful buffs should still trigger before game ends
+		if (PlayerParty.IsPartyDead())
+		{
+			BattleSceneHandler.EndGame?.Invoke();
+		}
+	}
+	
+	public static void CheckForEncounterDeath()
+	{
+		if (EnemyEncounter.IsEncounterDead())
+		{
+			BattleSceneHandler.EndGame?.Invoke();
+		}
 	}
 	
 	public static void PlayerPreTurn()
@@ -108,6 +153,7 @@ public static class BattleLogicHandler
 		}
 	}
 	
+	//Decrease buff duration
 	public static void EndCombatRound()
 	{
 		foreach (GameObject G in PlayerParty.getParty())

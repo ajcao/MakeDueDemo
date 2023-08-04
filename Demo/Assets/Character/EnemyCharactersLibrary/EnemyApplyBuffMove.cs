@@ -25,13 +25,10 @@ public class EnemyApplyBuffMove : EnemyMove
         AbilityIcon = Resources.Load<Sprite>("AbilityImages/GenericBuff");
     }
 
-    public override void onCast()
+    public override void onCast(Character C)
     {
-        foreach (Character C in TargetArray)
-        {
-            Buff B = BuffLibrary.GetBuffFromName(BuffName, EC, C, Intensity, Duration);
-            BattleLogicHandler.OnBuffApply(B);
-        }
+        Buff B = BuffLibrary.GetBuffFromName(BuffName, EC, C, Intensity, Duration);
+        BattleLogicHandler.OnBuffApply(B);
     }
     
     public override string MoveIndicatorText()

@@ -9,8 +9,9 @@ namespace EnemyTargetingLibraryUtil
     
 public static class EnemyTargetingLibrary
 {
-    public static Character[] TargetNRandomHeroes(int N)
+    public static Character[] TargetNRandomHeroes(int inputN)
     {
+        int N = Mathf.Min(inputN, PlayerParty.getPartySize());
         List<Character> randomList = new List<Character>();
         Character[] Targets = new Character[N];
         foreach (GameObject G in PlayerParty.getParty())

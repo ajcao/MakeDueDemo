@@ -19,7 +19,16 @@ public abstract class EnemyMove
     
     
     
-    public abstract void onCast();
+    public abstract void onCast(Character C);
+    
+    public void onCastWrapper()
+    {
+        foreach (Character C in this.TargetArray)
+        {
+            if (C.isAlive())
+                this.onCast(C);
+        }
+    }
     
     public abstract string MoveIndicatorText();
     

@@ -29,5 +29,6 @@ public class EnemyMoveIndicatorScript : MonoBehaviour
         TextMeshPro text = this.gameObject.transform.Find("EnemyMoveText").gameObject.GetComponent<TextMeshPro>();
         text.text = EM.MoveIndicatorText();
         
+        
     }
 }

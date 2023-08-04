@@ -4,14 +4,21 @@ using UnityEngine;
 using CharacterUtil;
 
 public static class PlayerParty
-{    
-    public static int PartySize = 4;
-    
-    public static GameObject[] Party = new GameObject[PartySize];
+{
+    //TODO: More list for different cases
+    //Total List; Has everyone listed
+    //Alive/Target list: Lists who is alive/can be targeted
+    //How to handle removal?
+    public static List<GameObject> Party =  new List<GameObject>();
 
-    public static void setPartyMember(GameObject InputP, int i)
+    public static void AddPartyMember(GameObject InputP)
     {
-        Party[i] = InputP;
+        Party.Add(InputP);
+    }
+    
+    public static void RemovePartyMember(GameObject InputP)
+    {
+        Party.Remove(InputP);
     }
     
     public static GameObject getPartyMember(int i)
@@ -35,11 +42,17 @@ public static class PlayerParty
     
     public static int getPartySize()
     {
-        return PartySize;
+        return Party.Count;
     }
     
-    public static GameObject[] getParty()
+    public static List<GameObject> getParty()
     {
         return Party;
+    }
+    
+    //A party is dead when Party List is empty (since characters are removed on death)
+    public static bool IsPartyDead()
+    {
+        return (Party.Count == 0);
     }
 }

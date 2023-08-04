@@ -16,10 +16,10 @@ public class SpikeyRockBehavior : PlayableCharacter
         this.CurrentArmor = 0;
         this.ArmorRetain = 0;
         this.DamageOutputModifier = 0;
-        this.AttackStat = 20;
-        this.DefenseStat = 10;
+        this.AttackStat = 25;
+        this.DefenseStat = 25;
         this.Resolve = 0;
-        this.MaxResolve = 40;
+        this.MaxResolve = 50;
         
         this.CharacterIcon = Resources.Load<Sprite>("PlayableCharacterImages/SpikeyRockIcon");
         
@@ -30,6 +30,11 @@ public class SpikeyRockBehavior : PlayableCharacter
         this.AbilityPool.Add(new GiveSelfSpikeAbility(this));
 
 
+    }
+    
+    public void Start()
+    {
+        this.InitProtectionList();
     }
 
 }

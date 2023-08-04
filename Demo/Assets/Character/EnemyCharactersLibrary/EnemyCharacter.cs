@@ -68,7 +68,7 @@ public abstract class EnemyCharacter : Character
 	public void EnemyCastMoves()
 	{
 		EnemyMove EM = Moves.Pop();
-		EM.onCast();
+		EM.onCastWrapper();
 		EM.DeleteMove();
 	}
 	

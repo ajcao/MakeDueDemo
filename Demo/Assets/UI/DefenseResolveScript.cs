@@ -26,10 +26,10 @@ public class DefenseResolveScript : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
-        bool[] PList = AssignedC.getProtectionList();
+        (GameObject C, bool b)[] PList = AssignedC.getProtectionList();
         for (int i = 0; i < PList.Length; i++)
         {
-            if (PList[i])
+            if (PList[i].b)
             {
                 CList[i].GetComponent<Image>().color = Color.yellow;
             }

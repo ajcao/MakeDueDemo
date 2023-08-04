@@ -55,12 +55,16 @@ public class EnemyMoveHandler : MonoBehaviour
     }
     
     public void BeginEnemyTurn()
-    {
-        foreach (GameObject G in EnemyEncounter.getEncounter())
+    {    
+        //Fix to avoid using size
+        //Relies on fixing Player Party and Enemy Encounter
+        for (int i = 0; i < EnemyEncounter.getEncounterSize(); i++)
         {
-            EnemyCharacter E = G.GetComponent<EnemyCharacter>();
-            E.EnemyCastMoves();
-            
+            if (i < EnemyEncounter.getEncounterSize())
+            {
+                EnemyCharacter E = EnemyEncounter.getEncounter()[i].GetComponent<EnemyCharacter>();
+                E.EnemyCastMoves();
+            }
         }
     }
     

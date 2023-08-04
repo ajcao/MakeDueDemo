@@ -19,7 +19,7 @@ public class GenericEnemy2Behavior : EnemyCharacter
         this.DamageOutputModifier = 0;
         this.canStaminaRegenerate = true;
         this.IsStunned = false;
-        this.Stamina = 30;
+        this.Stamina = 50;
         this.MaxStamina = this.Stamina;
         this.StaminaRegeneration = this.MaxStamina;
         Moves = new Stack<EnemyMove>();
@@ -31,10 +31,10 @@ public class GenericEnemy2Behavior : EnemyCharacter
         Moves.Push(new EnemyAttackMove(this, 30, Target));
 
         Target = new Character[] {(Character) this};
-        Moves.Push(new EnemyApplyBuffMove(this, Target, "AttackUpBuff", 2, null));
+        Moves.Push(new EnemyApplyBuffMove(this, Target, "AttackUpBuff", 5, null));
         
         Target = new Character[] {(Character) this};
-        Moves.Push(new EnemyDefendMove(this, 5, Target));
+        Moves.Push(new EnemyDefendMove(this, 20, Target));
         
         
     }

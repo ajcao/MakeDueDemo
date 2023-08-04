@@ -56,8 +56,8 @@ public abstract class Character : MonoBehaviour
 		
 		if (this.CurrentHealth <= 0)
 		{
-			BattleLogicHandler.CharacterDies(this);
 			this.onDeath();
+			BattleLogicHandler.CharacterDies(this);
 		}
 	}
 	

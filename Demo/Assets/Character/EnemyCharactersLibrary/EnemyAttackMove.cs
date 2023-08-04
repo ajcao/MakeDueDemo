@@ -22,12 +22,9 @@ public class EnemyAttackMove : EnemyMove
         
     }
     
-    public override void onCast()
+    public override void onCast(Character C)
     {
-        foreach (Character C in TargetArray)
-        {
-            BattleLogicHandler.EnemyAttack(this.EC, C.GetComponent<PlayableCharacter>(), damageAmount + EC.getDamageOutputModifier());
-        }
+        BattleLogicHandler.EnemyAttack(this.EC, C.GetComponent<PlayableCharacter>(), damageAmount + EC.getDamageOutputModifier());
     }
     
     public override string MoveIndicatorText()

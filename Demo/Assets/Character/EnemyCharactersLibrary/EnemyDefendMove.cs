@@ -22,12 +22,9 @@ public class EnemyDefendMove : EnemyMove
         
     }
     
-    public override void onCast()
+    public override void onCast(Character C)
     {
-        foreach (Character C in TargetArray)
-        {
-            BattleLogicHandler.Armor(C, defendAmount);
-        }
+        BattleLogicHandler.Armor(C, defendAmount);
     }
     
     public override string MoveIndicatorText()

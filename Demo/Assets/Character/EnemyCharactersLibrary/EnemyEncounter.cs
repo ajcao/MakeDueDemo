@@ -5,16 +5,20 @@ using CharacterUtil;
 
 public static class EnemyEncounter
 {    
-    public static GameObject[] Encounter;
+    //TODO: More list for different cases
+    //Total List; Has everyone listed
+    //Alive/Target list: Lists who is alive/can be targeted
+    //How to handle removal?
+    public static List<GameObject> Encounter = new List<GameObject>();
     
-    public static void createNewEncounter(int i)
+    public static void AddEncounterMember(GameObject InputE)
     {
-        Encounter = new GameObject[i];
+        Encounter.Add(InputE);
     }
     
-    public static void setEncounterMember(GameObject InputE, int i)
+    public static void RemoveEncounterMember(GameObject InputE)
     {
-        Encounter[i] = InputE;
+        Encounter.Remove(InputE);
     }
     
     public static GameObject getEncounterMember(int i)
@@ -24,11 +28,16 @@ public static class EnemyEncounter
     
     public static int getEncounterSize()
     {
-        return Encounter.Length;
+        return Encounter.Count;
     }
     
-    public static GameObject[] getEncounter()
+    public static List<GameObject> getEncounter()
     {
         return Encounter;
+    }
+    
+    public static bool IsEncounterDead()
+    {
+        return (Encounter.Count == 0);
     }
 }

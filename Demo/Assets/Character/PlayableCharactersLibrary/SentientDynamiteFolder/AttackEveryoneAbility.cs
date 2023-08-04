@@ -21,10 +21,15 @@ public class AttackEveryoneAbility : Ability
     
     public override void onCast(Character P)
     {
-        foreach (GameObject C in EnemyEncounter.getEncounter())
+        //Fix to avoid using size
+        //Relies on fixing Player Party and Enemy Encounter
+        for (int i = 0; i < EnemyEncounter.getEncounterSize(); i++)
         {
-            EnemyCharacter E = C.GetComponent<EnemyCharacter>();
-            BattleLogicHandler.PlayerAttack(PC, E, PC.getAttackStat() + PC.getDamageOutputModifier());
+            if (i < EnemyEncounter.getEncounterSize())
+            {
+                EnemyCharacter E = EnemyEncounter.getEncounter()[i].GetComponent<EnemyCharacter>();
+                BattleLogicHandler.PlayerAttack(PC, E, PC.getAttackStat() + PC.getDamageOutputModifier());
+            }
         }
     }
     

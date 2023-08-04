@@ -105,7 +105,7 @@ public class AbilityButtonHandler : MonoBehaviour
         currentTarget = null;
         currentAbility = null;
         
-        if (CanSomeoneCast() == true)
+        if (CanSomeoneCast() == true && !EnemyEncounter.IsEncounterDead())
         {
             StartCoroutine(CharacterCasting());
         }
@@ -113,10 +113,15 @@ public class AbilityButtonHandler : MonoBehaviour
     
     public bool CanSomeoneCast()
     {
-        bool P1Cast = PlayerParty.getPartyMember(0).GetComponent<PlayableCharacter>().IsAbletoCast();
-        for (int i = 0; i < PlayerParty.getPartySize(); i++)
+        //If all enemies are dead, there is no more need to cast
+        if (EnemyEncounter.IsEncounterDead())
         {
-            if (PlayerParty.getPartyMember(i).GetComponent<PlayableCharacter>().IsAbletoCast())
+            return false;
+        }
+        
+        foreach (GameObject G in PlayerParty.getParty())
+        {
+            if (G.GetComponent<PlayableCharacter>().IsAbletoCast())
                 return true;
         }
         return false;
@@ -124,17 +129,11 @@ public class AbilityButtonHandler : MonoBehaviour
     
     public void ResetPlayerTurn()
     {
-        PlayerParty.getPartyMember(0).GetComponent<PlayableCharacter>().RefreshCasting();
-        PlayerParty.getPartyMember(0).GetComponent<PlayableCharacter>().resetProtectionList();
-        
-        PlayerParty.getPartyMember(1).GetComponent<PlayableCharacter>().RefreshCasting();
-        PlayerParty.getPartyMember(1).GetComponent<PlayableCharacter>().resetProtectionList();
-        
-        PlayerParty.getPartyMember(2).GetComponent<PlayableCharacter>().RefreshCasting();
-        PlayerParty.getPartyMember(2).GetComponent<PlayableCharacter>().resetProtectionList();
-        
-        PlayerParty.getPartyMember(3).GetComponent<PlayableCharacter>().RefreshCasting();
-        PlayerParty.getPartyMember(3).GetComponent<PlayableCharacter>().resetProtectionList();
+        foreach (GameObject G in PlayerParty.getParty())
+        {
+            G.GetComponent<PlayableCharacter>().RefreshCasting();
+            G.GetComponent<PlayableCharacter>().resetProtectionList();
+        }
     }
     
     //Update ability buttons to always display current Characters Abilities

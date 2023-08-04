@@ -14,11 +14,12 @@ public class EnemyStunnedMove : EnemyMove
     {
         Special = false;
         AbilityIcon = Resources.Load<Sprite>("AbilityImages/StunIcon");
+        TargetArray = new Character[0];
         
     }
     
     //Do nothing
-    public override void onCast()
+    public override void onCast(Character C)
     {
         return;
     }
