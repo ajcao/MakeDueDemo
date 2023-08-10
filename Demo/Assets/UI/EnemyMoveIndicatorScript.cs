@@ -10,6 +10,7 @@ public class EnemyMoveIndicatorScript : MonoBehaviour
 {
     EnemyMove EM;
     
+    
     public void Init(EnemyMove InputEM)
     {
         EM = InputEM;

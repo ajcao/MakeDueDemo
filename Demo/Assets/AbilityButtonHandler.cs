@@ -35,6 +35,11 @@ public class AbilityButtonHandler : MonoBehaviour
             
             SelectCharacterButtonList[i].GetComponent<Image>().sprite = CBehavior.getCharacterIcon();
         }
+        
+        foreach (AbilityButtonScript A in AbilityButtonList)
+        {
+            A.Init(this);
+        }
             
             
     }
@@ -141,7 +146,7 @@ public class AbilityButtonHandler : MonoBehaviour
     //Does not handle color of SelectCharacter button
     //Should likely move this to each respective button script
     public void Update()
-    { 
+    {
         //Makes character selector button grey or not
         foreach (SelectCharacterButtonScript SC in SelectCharacterButtonList)
         {

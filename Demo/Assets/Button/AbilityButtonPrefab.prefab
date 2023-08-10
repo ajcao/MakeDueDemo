@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 8769755046568373435}
   - component: {fileID: 5404904419078830280}
   - component: {fileID: 1342449140996616442}
-  - component: {fileID: 7166587532004783728}
   - component: {fileID: 1033855061704694209}
   - component: {fileID: 2654263614549659399}
+  - component: {fileID: 8591168372946677845}
   m_Layer: 0
   m_Name: AbilityButtonPrefab
   m_TagString: Untagged
@@ -125,7 +125,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7166587532004783728}
+      - m_Target: {fileID: 8591168372946677845}
         m_TargetAssemblyTypeName: AbilityButtonScript, Assembly-CSharp
         m_MethodName: onButtonClick
         m_Mode: 1
@@ -137,18 +137,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &7166587532004783728
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2192393338879863574}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 957fb1eefc4a227418152eb9ceb4c69e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1033855061704694209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,6 +175,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &8591168372946677845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2192393338879863574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a587fbbbfce05744eb0369fd99afc698, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AB: {fileID: 0}
 --- !u!1 &5325326458749917823
 GameObject:
   m_ObjectHideFlags: 0

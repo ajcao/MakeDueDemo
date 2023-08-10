@@ -13,7 +13,7 @@ public class EnemyMoveHandler : MonoBehaviour
     //Function also handles creating new moves too
     public void DisplayMoves()
     {
-        foreach (GameObject G in EnemyEncounter.getEncounter())
+        foreach (GameObject G in EnemyEncounter.GetLivingEncounterMembers())
         {
             EnemyCharacter E = G.GetComponent<EnemyCharacter>();
             //If the enemy has no moves, get new moves
@@ -21,15 +21,6 @@ public class EnemyMoveHandler : MonoBehaviour
             if (E.getCurrentMoves().Count == 0)
             {
                 E.GenerateMoves();
-                int i = 1;
-                foreach (EnemyMove EM in E.getCurrentMoves())
-                {
-                    GameObject EM_Indicator = Instantiate(EnemyMoveIndicatorPrefab, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity, E.transform) as GameObject;
-                    EM.AssignIndicator(EM_Indicator);
-                    EM_Indicator.GetComponent<EnemyMoveIndicatorScript>().Init(EM);
-                    
-                    i+=1;
-                }
             }
             DrawMoves(E);
         }
@@ -58,19 +49,17 @@ public class EnemyMoveHandler : MonoBehaviour
     {    
         //Fix to avoid using size
         //Relies on fixing Player Party and Enemy Encounter
-        for (int i = 0; i < EnemyEncounter.getEncounterSize(); i++)
+        foreach (GameObject G in EnemyEncounter.GetLivingEncounterMembers())
         {
-            if (i < EnemyEncounter.getEncounterSize())
-            {
-                EnemyCharacter E = EnemyEncounter.getEncounter()[i].GetComponent<EnemyCharacter>();
-                E.EnemyCastMoves();
-            }
+            EnemyCharacter E = G.GetComponent<EnemyCharacter>();
+            E.EnemyCastMoves();
         }
     }
     
+    //Maybe assign this to BattleLogicHandler
     public void ResetEnemyStamina()
     {
-        foreach (GameObject G in EnemyEncounter.getEncounter())
+        foreach (GameObject G in EnemyEncounter.GetLivingEncounterMembers())
         {
             EnemyCharacter E = G.GetComponent<EnemyCharacter>();
             

@@ -1,8 +1,10 @@
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 using CharacterUtil;
+using Random=UnityEngine.Random;
 
 namespace EnemyTargetingLibraryUtil
 {
@@ -11,10 +13,10 @@ public static class EnemyTargetingLibrary
 {
     public static Character[] TargetNRandomHeroes(int inputN)
     {
-        int N = Mathf.Min(inputN, PlayerParty.getPartySize());
+        int N = Mathf.Min(inputN, PlayerParty.getLivingPartySize());
         List<Character> randomList = new List<Character>();
         Character[] Targets = new Character[N];
-        foreach (GameObject G in PlayerParty.getParty())
+        foreach (GameObject G in PlayerParty.GetLivingPartyMembers())
         {
             randomList.Add((Character) G.GetComponent<PlayableCharacter>());
         }
@@ -28,6 +30,7 @@ public static class EnemyTargetingLibrary
             i++;
         }
         
+        Array.Sort(Targets, EnemyTargetingLibrary.ComparePlayerIndex);
         return Targets;
     }
     
@@ -44,8 +47,15 @@ public static class EnemyTargetingLibrary
             ImageObject.GetComponent<RectTransform>().transform.position = new Vector3((-0.5f+0.5f*i),-0.6f,0.0f) + targetCanvas.transform.position;
         }
     }
-
-
+    
+    public static int ComparePlayerIndex(Character C1, Character C2)
+    {
+        if (PlayerParty.getPartyIndex(C1.gameObject) > PlayerParty.getPartyIndex(C2.gameObject))
+        {
+            return 1;
+        }
+        return -1;
+    }
 }
 
 }

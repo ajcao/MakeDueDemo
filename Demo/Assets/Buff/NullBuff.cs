@@ -23,8 +23,7 @@ public class NullBuff : Buff
     
     public override void onApplication()
     {
-        BuffTarget.getBuffList().Add(this);
-        BattleLogicHandler.getBuffsList()[this.Trigger].Add(this);
+        BuffHandler.AddBuff(this, BuffTarget);
     }
         
     public override string GetTooltipString()

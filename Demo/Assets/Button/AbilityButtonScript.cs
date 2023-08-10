@@ -10,6 +10,11 @@ public class AbilityButtonScript : MonoBehaviour, TooltipStringInterface
     public AbilityButtonHandler AB;
     private Ability AssignedAbility;
     
+    public void Init(AbilityButtonHandler InputAB)
+    {
+        AB = InputAB;
+    }
+    
     public void DefineAbility(Ability A)
     {
         AssignedAbility = A;        

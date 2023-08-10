@@ -11,9 +11,6 @@ public static class BattleLogicHandler
 	//Battle log of all TriggerEvents that has happened
 	public static Stack<TriggerEvent> BattleLog;
 	
-	//Represents all
-	//Hashtable mapping TriggerEventEnum -> Buff Dynamic Array
-	private static Dictionary<TriggerEventEnum, List<Buff>> BuffsList;
 
 	
 	public static void Init()
@@ -21,19 +18,10 @@ public static class BattleLogicHandler
 		//Init Battle Log
 		BattleLog = new Stack<TriggerEvent>();
 		
-		//Init BuffsList
-		BuffsList = new Dictionary<TriggerEventEnum, List<Buff>>();
-		
-		foreach (TriggerEventEnum e in Enum.GetValues(typeof(TriggerEventEnum)))
-        {
-            BuffsList[e] = new List<Buff>();
-        }
+		//Init Buff Handler
+		BuffHandler.Init();
 	}
 	
-	public static Dictionary<TriggerEventEnum, List<Buff>> getBuffsList()
-	{
-		return BuffsList;
-	}
 	
 	public static void Damage(Character C, int d)
 	{
@@ -60,7 +48,7 @@ public static class BattleLogicHandler
 		P.setResolve(P.getResolve() + Mathf.Max(d-armor,0));
 		Damage(P,d);
 		BattleLog.Push(TE);
-		TriggerBuffsinBuffsList(TriggerEventEnum.onEnemyAttackEnum, TE);
+		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onEnemyAttackEnum, TE);
 	}
 	
 	public static void PlayerAttack(PlayableCharacter P, EnemyCharacter E, int inputD)
@@ -78,7 +66,7 @@ public static class BattleLogicHandler
 		Damage(E,d);
 		E.setStamina(Mathf.Max(E.getStamina() - d));
 		BattleLog.Push(TE);
-		TriggerBuffsinBuffsList(TriggerEventEnum.onPlayerAttackEnum, TE);
+		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onPlayerAttackEnum, TE);
 	}
 	
 	public static void OnBuffApply(Buff B)
@@ -97,26 +85,11 @@ public static class BattleLogicHandler
 	{
 		TriggerEvent TE = new onDeathTrigger(C);
 		BattleLog.Push(TE);
-		TriggerBuffsinBuffsList(TriggerEventEnum.onDeathEnum, TE);
+		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onDeathEnum, TE);
 		
-		//Marks buffs for deletion
-		foreach (Buff B in C.getBuffList())
-		{
-			B.PrepareBuffForDeletion();
-		}
-		BattleLogicHandler.RemoveDeletedBuffsFromList(C.getBuffList());
+		BuffHandler.RemoveBuffsFromDeadCharacter(C);
 		
-		//Remove Character from Party/Encounter
-		if ((C.GetType()).IsSubclassOf(typeof(PlayableCharacter)))
-		{
-			PlayerParty.RemovePartyMember(C.gameObject);
-		}
-		else
-		{
-			EnemyEncounter.RemoveEncounterMember(C.gameObject);
-		}
-		
-		//Move character offscreen
+		//Move character offscreen (should BattleLogicHandler handle this?)
 		C.gameObject.transform.position = new Vector3(0, -500, 0);
 		
 		//Check for Player Party death. If so, end game immeditely
@@ -138,7 +111,7 @@ public static class BattleLogicHandler
 	
 	public static void PlayerPreTurn()
 	{
-		foreach (GameObject G in PlayerParty.getParty())
+		foreach (GameObject G in PlayerParty.GetLivingPartyMembers())
 		{
 			PlayableCharacter C = G.GetComponent<PlayableCharacter>();
 			C.setCurrentArmor(Mathf.Min(C.getCurrentArmor(), C.getArmorRetain()));
@@ -146,7 +119,7 @@ public static class BattleLogicHandler
 	}
 	public static void EnemyPreTurn()
 	{
-		foreach (GameObject G in EnemyEncounter.getEncounter())
+		foreach (GameObject G in EnemyEncounter.GetLivingEncounterMembers())
 		{
 			EnemyCharacter C = G.GetComponent<EnemyCharacter>();
 			C.setCurrentArmor(Mathf.Min(C.getCurrentArmor(), C.getArmorRetain()));
@@ -156,51 +129,8 @@ public static class BattleLogicHandler
 	//Decrease buff duration
 	public static void EndCombatRound()
 	{
-		foreach (GameObject G in PlayerParty.getParty())
-		{
-			List<Buff> BList = G.GetComponent<Character>().getBuffList();
-			foreach (Buff B in BList)
-			{
-				B.decrementDuration();
-			}
-			BattleLogicHandler.RemoveDeletedBuffsFromList(BList);
-		}
-		
-		foreach (GameObject G in EnemyEncounter.getEncounter())
-		{
-			List<Buff> BList = G.GetComponent<Character>().getBuffList();
-			foreach (Buff B in BList)
-			{
-				B.decrementDuration();
-			}
-			BattleLogicHandler.RemoveDeletedBuffsFromList(BList);
-		}
+		BuffHandler.DecrementBuffDuration();
 		
 	}
 	
-	private static void RemoveDeletedBuffsFromList(List<Buff> BList)
-	{
-		for (int i = 0; i < BList.Count; i++)
-		{
-			Buff B = BList[i];
-			if (B.ToBeDeleted)
-			{
-				BList.Remove(B);
-				BattleLogicHandler.getBuffsList()[B.getTrigger()].Remove(B);
-				BattleLogicHandler.RemoveDeletedBuffsFromList(BList);
-				return;
-			}
-		}
-	}
-	
-	private static void TriggerBuffsinBuffsList(TriggerEventEnum e, TriggerEvent TE)
-	{
-		if (BuffsList[e] != null)
-		{
-			foreach (Buff B in BuffsList[e])
-			{
-				B.onTriggerEffect(TE);
-			}
-		}
-	}
 }

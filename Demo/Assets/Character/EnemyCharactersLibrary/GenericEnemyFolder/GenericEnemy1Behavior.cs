@@ -26,7 +26,7 @@ public class GenericEnemy1Behavior : EnemyCharacter
     
     public override void GenerateMoves()
     {
-        Character[] Target = EnemyTargetingLibrary.TargetNRandomHeroes(2);
+        Character[] Target = EnemyTargetingLibrary.TargetNRandomHeroes(4);
         Moves.Push(new EnemyAttackMove(this, 15, Target));
     }
 }

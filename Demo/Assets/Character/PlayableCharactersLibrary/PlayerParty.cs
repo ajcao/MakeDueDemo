@@ -9,21 +9,57 @@ public static class PlayerParty
     //Total List; Has everyone listed
     //Alive/Target list: Lists who is alive/can be targeted
     //How to handle removal?
-    public static List<GameObject> Party =  new List<GameObject>();
+    
+    public static int MaxPartySize = 4;
+    public static GameObject[] Party = new GameObject[MaxPartySize];
 
     public static void AddPartyMember(GameObject InputP)
     {
-        Party.Add(InputP);
+        //Adds Member to first empty slot
+        for (int i = 0; i < MaxPartySize; i++)
+        {
+            if (Party[i] == null)
+            {
+                Party[i] = InputP;
+                return;
+            }
+        }
     }
     
-    public static void RemovePartyMember(GameObject InputP)
+    public static List<GameObject> GetLivingPartyMembers()
     {
-        Party.Remove(InputP);
+        List<GameObject> AliveList = new List<GameObject>();
+        foreach (GameObject G in Party)
+        {
+            if (G.GetComponent<PlayableCharacter>().isAlive())
+            {
+                AliveList.Add(G);
+            }
+        }
+        return AliveList;
     }
     
     public static GameObject getPartyMember(int i)
     {
         return Party[i];
+    }
+    
+    public static int getPartySize()
+    {
+        return MaxPartySize;
+    }
+    
+    public static int getLivingPartySize()
+    {
+        int i = 0;
+        foreach (GameObject G in Party)
+        {
+            if (G.GetComponent<PlayableCharacter>().isAlive())
+            {
+                i++;
+            }
+        }
+        return i;
     }
     
     public static int getPartyIndex(GameObject C)
@@ -40,12 +76,7 @@ public static class PlayerParty
         return -1;
     }
     
-    public static int getPartySize()
-    {
-        return Party.Count;
-    }
-    
-    public static List<GameObject> getParty()
+    public static GameObject[] getParty()
     {
         return Party;
     }
@@ -53,6 +84,13 @@ public static class PlayerParty
     //A party is dead when Party List is empty (since characters are removed on death)
     public static bool IsPartyDead()
     {
-        return (Party.Count == 0);
+        foreach (GameObject G in Party)
+        {
+            if (G.GetComponent<PlayableCharacter>().isAlive())
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }

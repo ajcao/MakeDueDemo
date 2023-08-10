@@ -30,8 +30,7 @@ public class GiveHPWhenAttackedDebuff : Buff
         }
         else
         {
-            BuffTarget.getBuffList().Add(this);
-            BattleLogicHandler.getBuffsList()[this.Trigger].Add(this);
+            BuffHandler.AddBuff(this, BuffTarget);
         }
     }
     

@@ -25,7 +25,7 @@ public abstract class EnemyMove
     {
         foreach (Character C in this.TargetArray)
         {
-            if (C.isAlive())
+            if (EC.isAlive() && C.isAlive())
                 this.onCast(C);
         }
     }
