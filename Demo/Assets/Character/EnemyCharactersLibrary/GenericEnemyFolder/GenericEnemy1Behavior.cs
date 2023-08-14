@@ -22,11 +22,13 @@ public class GenericEnemy1Behavior : EnemyCharacter
         this.MaxStamina = this.Stamina;
         this.StaminaRegeneration = this.MaxStamina;
         Moves = new Stack<EnemyMove>();
+        
+        this.CharacterIcon = Resources.Load<Sprite>("EnemyCharacterImages/GenericEnemy1Icon");
     }
     
     public override void GenerateMoves()
     {
-        Character[] Target = EnemyTargetingLibrary.TargetNRandomHeroes(4);
+        Character[] Target = EnemyTargetingLibrary.TargetNRandomHeroes(3);
         Moves.Push(new EnemyAttackMove(this, 15, Target));
     }
 }

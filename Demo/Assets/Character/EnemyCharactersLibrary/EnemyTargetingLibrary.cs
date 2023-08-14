@@ -34,20 +34,6 @@ public static class EnemyTargetingLibrary
         return Targets;
     }
     
-    public static void TargetNGenericIndicator(GameObject targetCanvas, Character[] CList)
-    {
-        for (int i = 0; i < CList.Length; i++)
-        {
-            Character C = CList[i];
-            GameObject ImageObject = new GameObject("Targeting" + C.ToString());
-            Image CImage = ImageObject.AddComponent<Image>();
-            CImage.sprite = C.getCharacterIcon();
-            ImageObject.transform.SetParent(targetCanvas.transform);
-            ImageObject.GetComponent<RectTransform>().sizeDelta = new Vector2(0.5f, 0.5f);
-            ImageObject.GetComponent<RectTransform>().transform.position = new Vector3((-0.5f+0.5f*i),-0.6f,0.0f) + targetCanvas.transform.position;
-        }
-    }
-    
     public static int ComparePlayerIndex(Character C1, Character C2)
     {
         if (PlayerParty.getPartyIndex(C1.gameObject) > PlayerParty.getPartyIndex(C2.gameObject))

@@ -31,11 +31,6 @@ public class EnemyAttackMove : EnemyMove
     {
         return "" + (damageAmount + EC.getDamageOutputModifier());
     }
-    
-    public override void MoveTargetIndicatorText(GameObject Canvas, Character[] Target)
-    {
-        EnemyTargetingLibrary.TargetNGenericIndicator(Canvas, Target);
-    }
 }
 
 }

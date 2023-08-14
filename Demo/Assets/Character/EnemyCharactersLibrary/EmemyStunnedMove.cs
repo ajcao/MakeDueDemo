@@ -29,11 +29,6 @@ public class EnemyStunnedMove : EnemyMove
         return "";
     }
     
-    public override void MoveTargetIndicatorText(GameObject Canvas, Character[] Target)
-    {
-        return;
-    }
-    
 }
 
 }

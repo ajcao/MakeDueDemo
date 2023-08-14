@@ -23,6 +23,8 @@ public class GenericEnemy2Behavior : EnemyCharacter
         this.MaxStamina = this.Stamina;
         this.StaminaRegeneration = this.MaxStamina;
         Moves = new Stack<EnemyMove>();
+        
+        this.CharacterIcon = Resources.Load<Sprite>("EnemyCharacterImages/GenericEnemy2Icon");
     }
     
     public override void GenerateMoves()

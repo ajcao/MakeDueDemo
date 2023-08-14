@@ -35,11 +35,6 @@ public class EnemyApplyBuffMove : EnemyMove
     {
         return "+" + this.Intensity;
     }
-    
-    public override void MoveTargetIndicatorText(GameObject Canvas, Character[] Target)
-    {
-        EnemyTargetingLibrary.TargetNGenericIndicator(Canvas, Target);
-    }
 }
 
 }

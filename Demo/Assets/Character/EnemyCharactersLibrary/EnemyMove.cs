@@ -32,8 +32,6 @@ public abstract class EnemyMove
     
     public abstract string MoveIndicatorText();
     
-    public abstract void MoveTargetIndicatorText(GameObject Canvas, Character[] Target);
-    
     
     
     //Speical moves are not lost during stunned turns

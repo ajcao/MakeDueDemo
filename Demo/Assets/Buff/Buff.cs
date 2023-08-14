@@ -38,7 +38,7 @@ public abstract class Buff
 		return this.Trigger;
 	}
 	
-	public Character? getBuffTarget()
+	public Character getBuffTarget()
 	{
 		return this.BuffTarget;
 	}
