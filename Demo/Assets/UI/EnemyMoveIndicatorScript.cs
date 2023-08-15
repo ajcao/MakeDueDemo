@@ -23,7 +23,17 @@ public class EnemyMoveIndicatorScript : MonoBehaviour
     public void Init(EnemyMove InputEM)
     {
         EM = InputEM;
-        this.gameObject.transform.Find("EnemyMoveSprite").gameObject.GetComponent<SpriteRenderer>().sprite = EM.getIcon();
+        
+        SpriteRenderer S = this.gameObject.transform.Find("EnemyMoveSprite").gameObject.GetComponent<SpriteRenderer>();
+        S.sprite = EM.getIcon();
+        if (EM.IsSpecial())
+        {
+            S.gameObject.GetComponent<SpriteRenderer>().color = Color.yellow;
+        }
+        else
+        {
+            S.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+        }
         
         Empty = Resources.Load<Sprite>("EnemyCharacterImages/Blank");
     }

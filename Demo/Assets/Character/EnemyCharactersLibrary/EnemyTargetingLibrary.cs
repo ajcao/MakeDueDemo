@@ -34,6 +34,29 @@ public static class EnemyTargetingLibrary
         return Targets;
     }
     
+    public static int[] GetNRandomMoves(int N)
+    {
+        int[] IntArray = new int[N];
+        
+        List<int> randomList = new List<int>();
+        for (int j = 0; j < N; j++)
+        {
+            randomList.Add(j);
+        }
+        
+        int i = 0;
+        while (randomList.Count > 0 && i < N)
+        {
+            int r = Random.Range(0, randomList.Count);
+            int v = randomList[r];
+            IntArray[i] = v;
+            randomList.Remove(v);
+            i++;
+        }
+        
+        return IntArray;
+    }
+    
     public static int ComparePlayerIndex(Character C1, Character C2)
     {
         if (PlayerParty.getPartyIndex(C1.gameObject) > PlayerParty.getPartyIndex(C2.gameObject))

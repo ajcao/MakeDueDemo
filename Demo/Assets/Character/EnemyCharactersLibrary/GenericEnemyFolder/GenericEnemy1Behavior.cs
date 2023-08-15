@@ -18,7 +18,7 @@ public class GenericEnemy1Behavior : EnemyCharacter
         this.DamageOutputModifier = 0;
         this.canStaminaRegenerate = true;
         this.IsStunned = false;
-        this.Stamina = 100;
+        this.Stamina = 200;
         this.MaxStamina = this.Stamina;
         this.StaminaRegeneration = this.MaxStamina;
         Moves = new Stack<EnemyMove>();
@@ -28,8 +28,21 @@ public class GenericEnemy1Behavior : EnemyCharacter
     
     public override void GenerateMoves()
     {
-        Character[] Target = EnemyTargetingLibrary.TargetNRandomHeroes(3);
-        Moves.Push(new EnemyAttackMove(this, 15, Target));
+        Character[] Target;
+        
+        if (BattleSceneHandler.GetTurn() == 1)
+        {
+            Target = new Character[] {(Character) this};
+            
+            EnemyApplyBuffMove E = new EnemyApplyBuffMove(this, Target, "GainArmorBuff", 60, null);
+            E.SetSpecial();
+            Moves.Push(E);
+        }
+        else
+        {
+            Target = EnemyTargetingLibrary.TargetNRandomHeroes(3);
+            Moves.Push(new EnemyAttackMove(this, 15, Target));
+        }
     }
 }
 

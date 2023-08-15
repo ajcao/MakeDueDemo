@@ -64,6 +64,11 @@ public abstract class EnemyMove
         return Special;
     }
     
+    public void SetSpecial()
+    {
+        Special = true;
+    }
+    
     public void DeleteMove()
     {
         //Since EnemyMoves and EnemyMoveIndicator are closely linked

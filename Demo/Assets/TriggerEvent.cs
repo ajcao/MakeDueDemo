@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using CharacterUtil;
+using BuffUtil;
 
 namespace TriggerEventUtil
 {
@@ -15,6 +16,8 @@ public enum TriggerEventEnum
 	onPlayerAbilityEnum,
 	onEnemyAttackEnum,
 	onDeathEnum,
+	onBuffExpireEnum,
+	onBuffHolderDeathEnum,
 	noTriggerEnum
 }
 
@@ -80,6 +83,30 @@ public class onEnemyAttackTrigger : TriggerEvent
 		AttackingEnemy = E;
 		ReceivingPlayer = P;
 		DamageAmount = d;
+	}
+}
+
+public class onBuffExpireTrigger : TriggerEvent
+{
+	public Character BuffHolder;
+	public Buff ExpiredBuff;
+	
+	public onBuffExpireTrigger(Character C, Buff B)
+	{
+		BuffHolder = C;
+		ExpiredBuff = B;
+	}
+}
+
+public class onBuffHolderDeathTrigger : TriggerEvent
+{
+	public Character BuffHolder;
+	public Buff ExpiredBuff;
+	
+	public onBuffHolderDeathTrigger(Character C, Buff B)
+	{
+		BuffHolder = C;
+		ExpiredBuff = B;
 	}
 }
 

@@ -19,7 +19,7 @@ public class GenericEnemy2Behavior : EnemyCharacter
         this.DamageOutputModifier = 0;
         this.canStaminaRegenerate = true;
         this.IsStunned = false;
-        this.Stamina = 50;
+        this.Stamina = 100;
         this.MaxStamina = this.Stamina;
         this.StaminaRegeneration = this.MaxStamina;
         Moves = new Stack<EnemyMove>();
@@ -29,16 +29,30 @@ public class GenericEnemy2Behavior : EnemyCharacter
     
     public override void GenerateMoves()
     {
-        Character[] Target = EnemyTargetingLibrary.TargetNRandomHeroes(1);
-        Moves.Push(new EnemyAttackMove(this, 30, Target));
-
-        Target = new Character[] {(Character) this};
-        Moves.Push(new EnemyApplyBuffMove(this, Target, "AttackUpBuff", 5, null));
+        Character[] Target;
         
-        Target = new Character[] {(Character) this};
-        Moves.Push(new EnemyDefendMove(this, 20, Target));
+        int[] RandomMoveInt = EnemyTargetingLibrary.GetNRandomMoves(3);
         
-        
+        foreach (int i in RandomMoveInt)
+        {
+            if (i == 0)
+            {
+                Target = EnemyTargetingLibrary.TargetNRandomHeroes(1);
+                Moves.Push(new EnemyAttackMove(this, 30, Target));
+            }
+            
+            if (i == 1)
+            {
+                Target = new Character[] {(Character) this};
+                Moves.Push(new EnemyApplyBuffMove(this, Target, "AttackUpBuff", 10, null));
+            }
+            
+            if (i == 2)
+            {
+                Target = new Character[] {(Character) this};
+                Moves.Push(new EnemyDefendMove(this, 40, Target));
+            }
+        }
     }
 
 }

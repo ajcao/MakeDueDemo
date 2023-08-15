@@ -20,6 +20,11 @@ public static class BuffLibrary
             return new GiveHPWhenAttackedDebuff(CTarget, CBuffer, Inten.Value, Dur);
         }
         
+        if (name == "GainArmorBuff")
+        {
+            return new GainArmorBuff(CTarget, CBuffer, Inten.Value, Dur);
+        }
+        
         return new NullBuff(CTarget, CBuffer, Inten, Dur);
     }
 }

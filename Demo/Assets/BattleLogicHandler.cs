@@ -109,6 +109,12 @@ public static class BattleLogicHandler
 		}
 	}
 	
+	public static void BeginRound(int t)
+	{
+		//Start the turn
+		TriggerEvent TE = new onTurnStartTrigger(t);
+		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onTurnStartEnum, TE);
+	}
 	public static void PlayerPreTurn()
 	{
 		foreach (GameObject G in PlayerParty.GetLivingPartyMembers())

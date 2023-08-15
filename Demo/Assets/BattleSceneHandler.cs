@@ -12,7 +12,7 @@ public class BattleSceneHandler : MonoBehaviour
     public GameObject E1;
     public GameObject E2;
     
-    private int Turn;
+    public static int Turn;
     private bool isBattling;
     
     public AbilityButtonHandler AB_Handler;
@@ -23,6 +23,11 @@ public class BattleSceneHandler : MonoBehaviour
     
     public delegate void EndGameDelegate();
     public static EndGameDelegate EndGame;
+    
+    public static int GetTurn()
+    {
+        return Turn;
+    }
     
     public void EndGameMethod()
     {
@@ -79,6 +84,9 @@ public class BattleSceneHandler : MonoBehaviour
         
         while (isBattling)
         {
+            //Start the Turn
+            BattleLogicHandler.BeginRound(Turn);
+            
             //Check enemy moves, create new moves if needed
             EM_Handler.DisplayMoves();
             
