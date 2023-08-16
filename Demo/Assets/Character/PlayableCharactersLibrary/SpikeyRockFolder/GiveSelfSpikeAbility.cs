@@ -22,7 +22,7 @@ public class GiveSelfSpikeAbility : Ability
     public override void onCast(Character E)
     {
         Buff B = new SpikeBuff(this.getPlayableCharacter(), this.getPlayableCharacter(), 10, null);
-        B.onApplication();
+        BattleLogicHandler.OnBuffApply(B);
     }
     
     public override string GetTooltipString()

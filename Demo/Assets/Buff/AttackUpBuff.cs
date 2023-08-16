@@ -18,6 +18,7 @@ public class AttackUpBuff : Buff
         this.Intensity = Inten;
         this.Duration = Dur;
         this.Visible = true;
+        this.Stackable = true;
         
         BuffIcon = Resources.Load<Sprite>("AbilityImages/AttackIcon");
     }
@@ -27,14 +28,6 @@ public class AttackUpBuff : Buff
     {
         int Inten = this.Intensity.Value;
         BuffTarget.setDamageOutputModifier(BuffTarget.getDamageOutputModifier() + Inten);
-        if (this.PerformIntensityStacking(OriginalBuffer, BuffTarget, Inten))
-        {
-            this.PrepareBuffForDeletion();
-        }
-        else
-        {
-            BuffHandler.AddBuff(this, BuffTarget);
-        }
     }
     
     public override void onExpire()

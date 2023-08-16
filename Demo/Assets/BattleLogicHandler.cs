@@ -71,7 +71,7 @@ public static class BattleLogicHandler
 	
 	public static void OnBuffApply(Buff B)
 	{
-		B.onApplication();
+		B.onApplicationWrapper();
 	}
 	
 	public static void PlayerDefend(PlayableCharacter DefP, PlayableCharacter RecP, int d)

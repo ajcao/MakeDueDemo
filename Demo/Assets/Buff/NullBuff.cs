@@ -23,7 +23,7 @@ public class NullBuff : Buff
     
     public override void onApplication()
     {
-        BuffHandler.AddBuff(this, BuffTarget);
+        return;
     }
         
     public override string GetTooltipString()

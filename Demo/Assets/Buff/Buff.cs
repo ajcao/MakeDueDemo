@@ -18,6 +18,7 @@ public abstract class Buff
 	protected int? Duration;
 	protected Sprite BuffIcon;
 	public bool ToBeDeleted = false;
+	public bool Stackable;
 	
 	protected GameObject BuffIndicator = null;
 	
@@ -81,33 +82,44 @@ public abstract class Buff
 		return BuffIcon;
 	}
 	
-	protected bool PerformIntensityStacking(Character Buffer, Character Target, int I)
+	//Returns true is stacking was successful
+	protected bool PerformStacking(Character Buffer, Character Target)
 	{
-		foreach (Buff B in Target.getBuffList())
+		if (!this.Stackable)
 		{
-			if (B.GetType() == this.GetType() && B.getDuration() == this.getDuration())
-            {
-				B.setOriginalBuffer(Buffer);
-                B.StackIntensity(I);
-                return true;
-            }
-        }
-		return false;
-	}
-	
-	protected bool PerformDurationExtension(Character Buffer, Character Target, int D)
-	{
-		foreach (Buff B in Target.getBuffList())
-		{
-			if (B.GetType() == this.GetType())
-            {
-				B.setOriginalBuffer(Buffer);
-                B.StackIntensity(D);
-                return true;
-            }
-        }
-		return false;
+			return false;
+		}
 		
+		//Perform Intensity stacking on Infinite Duration buffs
+		if (!this.getDuration().HasValue)
+		{
+			foreach (Buff B in Target.getBuffList())
+			{
+				if (B.GetType() == this.GetType() && B.getDuration() == this.getDuration())
+				{
+					B.setOriginalBuffer(Buffer);
+					B.StackIntensity(this.getIntensity().Value);
+					return true;
+				}
+			}
+		}
+		
+		//Perform Duration stacking on non-Intensity buffs
+		if (!this.getIntensity().HasValue)
+		{
+			foreach (Buff B in Target.getBuffList())
+			{
+				if (B.GetType() == this.GetType() && B.getIntensity() == this.getIntensity())
+				{
+					B.setOriginalBuffer(Buffer);
+					B.ExtendDuration(this.getDuration().Value);
+					return true;
+				}
+			}
+		}
+		
+		
+		return false;
 	}
 	
 	public void StackIntensity(int I)
@@ -131,6 +143,16 @@ public abstract class Buff
 	}
 	
     public abstract string GetTooltipString();
+	
+	public void onApplicationWrapper()
+	{
+		this.onApplication();
+		//If no stacking is done, add buff to BuffHandler
+		if (!this.PerformStacking(OriginalBuffer, BuffTarget))
+        {
+            BuffHandler.AddBuff(this, BuffTarget);
+        }
+	}
 	public abstract void onApplication();
 	public abstract void onExpire();
 	public abstract void onTriggerEffect(TriggerEvent E);

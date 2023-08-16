@@ -17,21 +17,14 @@ public class GiveHPWhenAttackedDebuff : Buff
         this.Intensity = Inten;
         this.Duration = Dur;
         this.Visible = true;
+        this.Stackable = true;
         
         BuffIcon = Resources.Load<Sprite>("AbilityImages/ApplyLifeStealImage");
     }
     
     public override void onApplication()
     {
-        int Inten = this.Intensity.Value;
-        if (this.PerformIntensityStacking(OriginalBuffer, BuffTarget, Inten))
-        {
-            this.PrepareBuffForDeletion();
-        }
-        else
-        {
-            BuffHandler.AddBuff(this, BuffTarget);
-        }
+        return;
     }
     
     public override string GetTooltipString()

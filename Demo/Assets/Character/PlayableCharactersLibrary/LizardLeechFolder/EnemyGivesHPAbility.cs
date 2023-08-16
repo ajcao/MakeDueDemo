@@ -22,7 +22,7 @@ public class EnemyGivesHPAbilty : Ability
     public override void onCast(Character E)
     {
         Buff B = new GiveHPWhenAttackedDebuff(E, this.getPlayableCharacter(), 5, 3);
-        B.onApplication();
+        BattleLogicHandler.OnBuffApply(B);
     }
     
     public override string GetTooltipString()
