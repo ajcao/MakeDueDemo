@@ -22,6 +22,9 @@ public class AbilityButtonHandler : MonoBehaviour
     
     public AbilityButtonScript[] AbilityButtonList;
     
+    public Texture2D TargetCrosshairEnemy;
+    public Texture2D TargetCrosshairPlayer;
+    
     
     public void Start()
     {
@@ -145,6 +148,20 @@ public class AbilityButtonHandler : MonoBehaviour
     //Should likely move this to each respective button script
     public void Update()
     {
+        //Change cursor
+        if (currentAbility == null)
+        {
+            Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);  
+        }
+        else if (currentAbility.getTargetingType() == TargetingTypeEnum.EnemyTarget)
+        {
+            Cursor.SetCursor(TargetCrosshairEnemy, Vector2.zero, CursorMode.Auto);
+        }
+        else if (currentAbility.getTargetingType() == TargetingTypeEnum.PlayerTarget)
+        {
+            Cursor.SetCursor(TargetCrosshairPlayer, Vector2.zero, CursorMode.Auto);
+        }
+        
         //Makes character selector button grey or not
         foreach (SelectCharacterButtonScript SC in SelectCharacterButtonList)
         {
