@@ -32,8 +32,6 @@ public class AbilityButtonHandler : MonoBehaviour
             PlayableCharacter CBehavior = C.GetComponent<PlayableCharacter>();
             
             SelectCharacterButtonList[i].GetComponent<SelectCharacterButtonScript>().Init(CBehavior, this);
-            
-            SelectCharacterButtonList[i].GetComponent<Image>().sprite = CBehavior.getCharacterIcon();
         }
         
         foreach (AbilityButtonScript A in AbilityButtonList)

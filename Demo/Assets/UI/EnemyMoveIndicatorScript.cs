@@ -6,8 +6,9 @@ using EnemyTargetingLibraryUtil;
 using TMPro;
 using UnityEngine.UI;
 using CharacterUtil;
+using UnityEngine.EventSystems;
 
-public class EnemyMoveIndicatorScript : MonoBehaviour
+public class EnemyMoveIndicatorScript : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     EnemyMove EM;
     
@@ -18,6 +19,8 @@ public class EnemyMoveIndicatorScript : MonoBehaviour
     public TextMeshPro text;
     
     private Sprite Empty;
+    
+    public bool Condensed;
     
     
     public void Init(EnemyMove InputEM)
@@ -37,6 +40,45 @@ public class EnemyMoveIndicatorScript : MonoBehaviour
         
         Empty = Resources.Load<Sprite>("EnemyCharacterImages/Blank");
     }
+    
+    //Used to condensed moves
+    public void OnPointerClick(PointerEventData pointerEventData)
+    {
+        bool newState = !Condensed;
+        foreach (EnemyMove E in EM.EC.getCurrentMoves())
+        {
+            EnemyMoveIndicatorScript EScript = E.getMoveIndicator().GetComponent<EnemyMoveIndicatorScript>();
+            EScript.Condensed = newState;
+        }
+        Condensed = newState;
+        GameObject.Find("EnemyMoveHandlerGameObject").GetComponent<EnemyMoveHandler>().DrawMoves(this.EM.EC);
+    }
+    
+    //Used to highlight targets
+    public void OnPointerEnter(PointerEventData eventData)
+	{
+        foreach (Character C in EM.getTargetArray())
+        {
+            if ((C.GetType()).IsSubclassOf(typeof(PlayableCharacter)))
+            {
+                C.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+            }
+            
+            if ((C.GetType()).IsSubclassOf(typeof(EnemyCharacter)))
+            {
+                C.gameObject.GetComponent<SpriteRenderer>().color = Color.blue;
+            }
+            
+        }
+	}
+    
+    public void OnPointerExit(PointerEventData eventData)
+	{
+        foreach (Character C in EM.getTargetArray())
+        {
+            C.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+        }
+	}
     
     public void Clean()
     {

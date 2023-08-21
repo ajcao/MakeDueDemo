@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using CharacterUtil;
+using UnityEngine.EventSystems;
 
-public class DefenseResolveScript : MonoBehaviour
+public class DefenseResolveScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     PlayableCharacter AssignedC;
-    GameObject[] CList = new GameObject[4];
+    public SpriteRenderer[] CharacterList;
+    
+    private Coroutine HighlightCharactersRoutine;
     
     
     // Start is called before the first frame update
@@ -15,10 +18,9 @@ public class DefenseResolveScript : MonoBehaviour
     {
         AssignedC = C;
         int i = 0;
-        foreach (Transform Child in transform)
+        foreach (SpriteRenderer SR in CharacterList)
         {
-            CList[i] = Child.gameObject;
-            Child.GetComponent<Image>().sprite = PlayerParty.getPartyMember(i).GetComponent<PlayableCharacter>().getCharacterIcon();
+            SR.sprite = PlayerParty.getPartyMember(i).GetComponent<PlayableCharacter>().getCharacterIcon();
             i++;
         }
     }
@@ -31,14 +33,51 @@ public class DefenseResolveScript : MonoBehaviour
         {
             if (PList[i].b)
             {
-                CList[i].GetComponent<Image>().color = Color.yellow;
+                CharacterList[i].color = Color.yellow;
             }
             else
             {
                 Color c = Color.white;
                 c.a = 0.5f;
-                CList[i].GetComponent<Image>().color = c;
+                CharacterList[i].color = c;
             }
         }
     }
+    
+    //Used to highlight targets
+    public void OnPointerEnter(PointerEventData eventData)
+	{
+		HighlightCharactersRoutine = StartCoroutine(HighlightCharacters());
+	}
+    
+    IEnumerator HighlightCharacters()
+    {
+        while (true)
+        {
+            (GameObject C, bool b)[] PList = AssignedC.getProtectionList();
+            foreach ((GameObject C, bool b) in PList)
+            {
+                if (b)
+                {
+                    C.GetComponent<SpriteRenderer>().color = Color.blue;
+                }
+                else
+                {
+                    C.GetComponent<SpriteRenderer>().color = Color.white;
+                }
+            }
+            yield return null;
+        }
+    }
+    
+    public void OnPointerExit(PointerEventData eventData)
+	{
+		StopCoroutine(HighlightCharactersRoutine);
+        
+        (GameObject C, bool b)[] PList = AssignedC.getProtectionList();
+        foreach ((GameObject C, bool b) in PList)
+        {
+            C.GetComponent<SpriteRenderer>().color = Color.white;
+        }
+	}
 }

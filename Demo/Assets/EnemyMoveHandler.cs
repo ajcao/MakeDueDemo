@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using CharacterUtil;
 using EnemyMoveUtil;
+using UnityEngine.Rendering;
 
 public class EnemyMoveHandler : MonoBehaviour
 {
@@ -28,7 +29,7 @@ public class EnemyMoveHandler : MonoBehaviour
     
     public void DrawMoves(EnemyCharacter E)
     {
-        int i = 1;
+        int i = 0;
         foreach (EnemyMove EM in E.getCurrentMoves())
         {
             GameObject EM_Indicator;
@@ -39,7 +40,29 @@ public class EnemyMoveHandler : MonoBehaviour
                 EM_Indicator.GetComponent<EnemyMoveIndicatorScript>().Init(EM);
             }
             EM_Indicator = EM.getMoveIndicator();
-            EM_Indicator.transform.position = E.transform.position + new Vector3(0.0f,i*1.5f,0.0f);
+            //If the move is condensed
+            if (EM_Indicator.GetComponent<EnemyMoveIndicatorScript>().Condensed == true)
+            {                
+                EM_Indicator.transform.position = E.transform.position + new Vector3(0.0f,1.5f+i*0.2f,0.0f);
+                //Have the first hitbox be normal size
+                if (i == 0)
+                {
+                    EM_Indicator.GetComponent<BoxCollider2D>().size = new Vector2(1.47f, 1.04f);
+                    EM_Indicator.GetComponent<BoxCollider2D>().offset = new Vector2(0f, 0f);                   
+                }
+                else
+                {
+                    EM_Indicator.GetComponent<BoxCollider2D>().size = new Vector2(1.47f, 0.21f);
+                    EM_Indicator.GetComponent<BoxCollider2D>().offset = new Vector2(0f, 0.4f);
+                }
+            }
+            else
+            {
+                EM_Indicator.transform.position = E.transform.position + new Vector3(0.0f,1.5f+i*1.5f,0.0f);
+                EM_Indicator.GetComponent<BoxCollider2D>().size = new Vector2(1.47f, 1.04f);
+                EM_Indicator.GetComponent<BoxCollider2D>().offset = new Vector2(0f, 0f);
+            }
+            EM_Indicator.GetComponent<SortingGroup>().sortingOrder = -1*i;
             
             i+=1;
         }

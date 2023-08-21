@@ -23,9 +23,13 @@ public class TooltipScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     IEnumerator TooltipDelay()
     {
         yield return new WaitForSeconds(0.5f);
-        if (this.gameObject.TryGetComponent(out TooltipStringInterface textInterface))
-        {
-            TooltipHandler.GetToolTipString(textInterface.GetTooltipString());
-        }
+		while (true)
+		{
+			if (this.gameObject.TryGetComponent(out TooltipStringInterface textInterface))
+			{
+				TooltipHandler.GetToolTipString(textInterface.GetTooltipString());
+			}
+			yield return null;
+		}
     }
 }

@@ -92,21 +92,12 @@ public abstract class PlayableCharacter : Character
 	
 	public void GiveResolve(int d)
 	{
-		int count = 0;
-		foreach (var v in ProtectionList)
-		{
-			if (v.b)
-			{
-				count++;
-			}
-		}
-		
 		for (int i = 0; i < ProtectionList.Length; i++)
 		{
 			if (ProtectionList[i].b)
 			{
 				PlayableCharacter C = ProtectionList[i].G.GetComponent<PlayableCharacter>();
-				C.setResolve(C.getResolve() + (d / count));
+				C.setResolve(C.getResolve() + d);
 			}
 		}
 	}
