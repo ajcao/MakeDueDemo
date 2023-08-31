@@ -50,7 +50,7 @@ public class GenericEnemy2Behavior : EnemyCharacter
             if (i == 2)
             {
                 Target = new Character[] {(Character) this};
-                Moves.Push(new EnemyDefendMove(this, 40, Target));
+                Moves.Push(new EnemyDefendMove(this, 30, Target));
             }
         }
     }

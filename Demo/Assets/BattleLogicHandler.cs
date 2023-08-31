@@ -40,33 +40,41 @@ public static class BattleLogicHandler
 		C.setCurrentHealth(Mathf.Min(C.getCurrentHealth() + r, C.getMaxHealth()));
 	}
 	
-	public static void EnemyAttack(EnemyCharacter E, PlayableCharacter P, int d)
+	public static void AbilityCast(PlayableCharacter P, Character C)
 	{
+		TriggerEvent TE = new onPlayerAbilityTrigger(P, C);
+		int dummy = 0;
+		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onPlayerAbilityEnum, TE, ref dummy);
+	}
+	
+	public static void PostAbilityCast(PlayableCharacter P, Character C)
+	{
+		TriggerEvent TE = new onPostPlayerAbilityTrigger(P, C);
+		int dummy = 0;
+		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onPostPlayerAbilityEnum, TE, ref dummy);
+		
+	}
+	
+	public static void EnemyAttack(EnemyCharacter E, PlayableCharacter P, int inputD)
+	{
+		int d = inputD;
 		TriggerEvent TE = new onEnemyAttackTrigger(E, P, d);
+		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onEnemyAttackEnum, TE, ref d);
 		int armor = P.getCurrentArmor();
 		P.GiveResolve(Mathf.Min(armor, d));
 		P.setResolve(P.getResolve() + Mathf.Max(d-armor,0));
 		Damage(P,d);
 		BattleLog.Push(TE);
-		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onEnemyAttackEnum, TE);
 	}
 	
 	public static void PlayerAttack(PlayableCharacter P, EnemyCharacter E, int inputD)
 	{
 		TriggerEvent TE = new onPlayerAttackTrigger(P,E,inputD);
-		int d;
-		if (E.IsStunned)
-		{
-			d = inputD * 2;
-		}
-		else
-		{
-			d = inputD;
-		}
+		int d = inputD;
+		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onPlayerAttackEnum, TE, ref d);
 		Damage(E,d);
 		E.setStamina(Mathf.Max(E.getStamina() - d));
 		BattleLog.Push(TE);
-		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onPlayerAttackEnum, TE);
 	}
 	
 	public static void OnBuffApply(Buff B)
@@ -85,7 +93,8 @@ public static class BattleLogicHandler
 	{
 		TriggerEvent TE = new onDeathTrigger(C);
 		BattleLog.Push(TE);
-		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onDeathEnum, TE);
+		int dummy = 0;
+		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onDeathEnum, TE, ref dummy);
 		
 		BuffHandler.RemoveBuffsFromDeadCharacter(C);
 		
@@ -112,8 +121,9 @@ public static class BattleLogicHandler
 	public static void BeginRound(int t)
 	{
 		//Start the turn
+		int dummy = 0;
 		TriggerEvent TE = new onTurnStartTrigger(t);
-		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onTurnStartEnum, TE);
+		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onTurnStartEnum, TE, ref dummy);
 	}
 	public static void PlayerPreTurn()
 	{

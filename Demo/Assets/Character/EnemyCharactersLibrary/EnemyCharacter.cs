@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using EnemyMoveUtil;
+using BuffUtil;
 
 
 namespace CharacterUtil
@@ -29,7 +30,7 @@ public abstract class EnemyCharacter : Character
 		//When Stunned, stamina does not matter anymore
 		if (!this.IsStunned)
 		{
-			//If stamina is lowering, cancel ability to regenerate stamina
+			//If stamina is lowering, cancel regenerating stamina at end of turn
 			if (s < this.Stamina)
 			{
 				canStaminaRegenerate = false;
@@ -83,6 +84,9 @@ public abstract class EnemyCharacter : Character
 		}			
 		Moves.Push(new EnemyStunnedMove());
 		this.IsStunned = true;
+		StunnedBuff B = new StunnedBuff(this, this, null, 1);
+        BattleLogicHandler.OnBuffApply(B);
+		
 		GameObject.Find("EnemyMoveHandlerGameObject").GetComponent<EnemyMoveHandler>().DrawMoves(this);
 		
 	}

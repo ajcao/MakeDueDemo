@@ -22,7 +22,6 @@ public abstract class PlayableCharacter : Character
 	protected (GameObject G, bool b)[] ProtectionList;
 	
 	protected bool HasCasted;
-	protected bool ResolveProc = false;
 	
 	public List<Ability> AbilityPool;
 	
@@ -99,24 +98,6 @@ public abstract class PlayableCharacter : Character
 				PlayableCharacter C = ProtectionList[i].G.GetComponent<PlayableCharacter>();
 				C.setResolve(C.getResolve() + d);
 			}
-		}
-	}
-	
-	public void CheckResolve()
-	{
-		if (this.Resolve >= this.MaxResolve)
-		{
-			this.Resolve = 0;
-			this.ResolveProc = true;
-		}
-	}
-	
-	public void ProcResolve()
-	{
-		if (this.ResolveProc)
-		{
-			this.ResolveProc = false;
-			this.RefreshCasting();
 		}
 	}
 	

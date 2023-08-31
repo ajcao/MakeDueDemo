@@ -90,22 +90,19 @@ public class AbilityButtonHandler : MonoBehaviour
                 //Cond 3: Collider has the correct tag (either EnemyCharacter, PlayableCharacter or both?)
                 if (click.collider != null && currentAbility.getTargetingType() == TargetingTypeEnum.EnemyTarget && click.collider.gameObject.tag == "EnemyCharacter")
                 {
-                    currentAbility.getPlayableCharacter().CheckResolve();
                     currentTarget = click.collider.gameObject.GetComponent<EnemyCharacter>();
                     currentAbility.onCast((Character) currentTarget);
-                    currentAbility.postCast();
+                    currentAbility.postCast((Character) currentTarget);
                 }
                 else if (click.collider != null && currentAbility.getTargetingType() == TargetingTypeEnum.PlayerTarget && click.collider.gameObject.tag == "PlayableCharacter")
                 {
-                    currentAbility.getPlayableCharacter().CheckResolve();
                     currentTarget = click.collider.gameObject.GetComponent<PlayableCharacter>();
                     currentAbility.onCast((Character) currentTarget);
-                    currentAbility.postCast();
+                    currentAbility.postCast((Character) currentTarget);
                 }
             }
             yield return null;
         }
-        currentAbility.getPlayableCharacter().ProcResolve();
         
         currentCharacter = null;
         currentTarget = null;

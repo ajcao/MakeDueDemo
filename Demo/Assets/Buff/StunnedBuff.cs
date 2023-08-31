@@ -7,11 +7,11 @@ using CharacterUtil;
 namespace BuffUtil
 {
     
-public class SpikeBuff : Buff
+public class StunnedBuff : Buff
 {
-    public SpikeBuff(Character CTarget, Character CBuffer, int Inten, int? Dur) 
+    public StunnedBuff(Character CTarget, Character CBuffer, int? Inten, int? Dur) 
     {
-        this.Trigger = TriggerEventEnum.onEnemyAttackEnum;
+        this.Trigger = TriggerEventEnum.onPlayerAttackEnum;
         this.BuffTarget = CTarget;
         this.OriginalBuffer = CBuffer;
         this.Intensity = Inten;
@@ -19,7 +19,7 @@ public class SpikeBuff : Buff
         this.Visible = true;
         this.Stackable = true;
         
-        BuffIcon = Resources.Load<Sprite>("AbilityImages/GainSpike");
+        BuffIcon = Resources.Load<Sprite>("AbilityImages/StunIcon");
     }
     
     public override void onApplication()
@@ -29,7 +29,7 @@ public class SpikeBuff : Buff
     
     public override string GetTooltipString()
     {
-        return "Deal " + this.Intensity.Value + " dmg to Attackers";
+        return "Take Double Damage from Abilities";
     }
     
     public override void onExpire()
@@ -39,10 +39,10 @@ public class SpikeBuff : Buff
     
     public override void onTriggerEffect(TriggerEvent E, ref int v)
     {
-        onEnemyAttackTrigger T = (onEnemyAttackTrigger) E;
-        if (T.ReceivingPlayer == BuffTarget)
+        onPlayerAttackTrigger T = (onPlayerAttackTrigger) E;
+        if (T.ReceivingEnemy == BuffTarget)
         {
-            BattleLogicHandler.Damage(T.AttackingEnemy, this.Intensity.Value);
+            v = v * 2;
         }
     }
 }

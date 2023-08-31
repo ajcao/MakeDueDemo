@@ -25,6 +25,7 @@ public class LizardLeechBehavior : PlayableCharacter
         CharacterIcon = Resources.Load<Sprite>("PlayableCharacterImages/LizardleechIcon");
         
         this.AbilityPool = new List<Ability>();
+        this.AbilityPool.Add(new ActivateResolveAbility(this));
         this.AbilityPool.Add(new AttackAbility(this));
         this.AbilityPool.Add(new DefendAbility(this));
         this.AbilityPool.Add(new AttackHealAbility(this));

@@ -39,7 +39,7 @@ public class GainArmorBuff : Buff
         return "At the start of the round, gain " + this.Intensity.Value + " armor";
     }
     
-    public override void onTriggerEffect(TriggerEvent E)
+    public override void onTriggerEffect(TriggerEvent E, ref int v)
     {
         BattleLogicHandler.Armor(this.BuffTarget, this.Intensity.Value);
     }

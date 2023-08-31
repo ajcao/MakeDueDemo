@@ -53,6 +53,21 @@ public static class BuffHandler
 		}
 	}
 	
+	private static void RemoveDeletedBuffsFromList(List<Buff> BList)
+ 	{
+		for (int i = 0; i < BList.Count; i++)
+ 		{
+			Buff B = BList[i];
+			if (B.ToBeDeleted)
+			{
+				BList.Remove(B);
+				BuffsList[B.getTrigger()].Remove(B);
+				BuffHandler.RemoveDeletedBuffsFromList(BList);
+				return;
+			}
+		}
+ 	}
+	
 	public static void RemoveBuffsFromDeadCharacter(Character C)
 	{
 		List<Buff> BList = C.getBuffList();
@@ -64,29 +79,32 @@ public static class BuffHandler
 		
 	}
 	
-	private static void RemoveDeletedBuffsFromList(List<Buff> BList)
+	public static void RemoveDeletedBuffsFromEveryone()
 	{
-		for (int i = 0; i < BList.Count; i++)
+		foreach (GameObject G in PlayerParty.GetLivingPartyMembers())
 		{
-			Buff B = BList[i];
-			if (B.ToBeDeleted)
-			{
-				BList.Remove(B);
-				BuffsList[B.getTrigger()].Remove(B);
-				BuffHandler.RemoveDeletedBuffsFromList(BList);
-				return;
-			}
+			BuffHandler.RemoveDeletedBuffsFromList(G.GetComponent<Character>().getBuffList());
+		}
+		
+		foreach (GameObject G in EnemyEncounter.GetLivingEncounterMembers())
+		{
+			BuffHandler.RemoveDeletedBuffsFromList(G.GetComponent<Character>().getBuffList());
 		}
 	}
+
 	
-	public static void TriggerBuffsinBuffsList(TriggerEventEnum e, TriggerEvent TE)
+	public static void TriggerBuffsinBuffsList(TriggerEventEnum e, TriggerEvent TE, ref int v)
 	{
 		if (BuffsList[e] != null)
 		{
 			foreach (Buff B in BuffsList[e])
 			{
-				B.onTriggerEffect(TE);
+				if (!B.ToBeDeleted)
+				{
+					B.onTriggerEffect(TE, ref v);
+				}
 			}
 		}
+		BuffHandler.RemoveDeletedBuffsFromEveryone();
 	}
 }

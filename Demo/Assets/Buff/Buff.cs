@@ -77,6 +77,19 @@ public abstract class Buff
 		}
 	}
 	
+	public void decrementIntensity()
+	{
+		if (this.Intensity.HasValue)
+		{
+			this.Intensity-=1;
+			if ( this.Intensity.Value == 0 )
+			{
+				this.onExpire();
+				this.PrepareBuffForDeletion();
+			}
+		}
+	}
+	
 	public Sprite getIcon()
 	{
 		return BuffIcon;
@@ -155,7 +168,7 @@ public abstract class Buff
 	}
 	public abstract void onApplication();
 	public abstract void onExpire();
-	public abstract void onTriggerEffect(TriggerEvent E);
+	public abstract void onTriggerEffect(TriggerEvent E, ref int v);
 }
 
 }

@@ -41,7 +41,7 @@ public class AttackUpBuff : Buff
         return "Increase damage by " + this.Intensity.Value;
     }
     
-    public override void onTriggerEffect(TriggerEvent E)
+    public override void onTriggerEffect(TriggerEvent E, ref int v)
     {
         return;
     }

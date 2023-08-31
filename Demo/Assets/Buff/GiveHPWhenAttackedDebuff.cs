@@ -37,7 +37,7 @@ public class GiveHPWhenAttackedDebuff : Buff
         return;
     }
     
-    public override void onTriggerEffect(TriggerEvent E)
+    public override void onTriggerEffect(TriggerEvent E, ref int v)
     {
         onPlayerAttackTrigger T = (onPlayerAttackTrigger) E;
         if (T.ReceivingEnemy == BuffTarget)

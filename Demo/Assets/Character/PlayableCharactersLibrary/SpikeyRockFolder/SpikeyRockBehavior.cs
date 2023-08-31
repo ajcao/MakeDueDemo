@@ -24,6 +24,7 @@ public class SpikeyRockBehavior : PlayableCharacter
         this.CharacterIcon = Resources.Load<Sprite>("PlayableCharacterImages/SpikeyRockIcon");
         
         this.AbilityPool = new List<Ability>();
+        this.AbilityPool.Add(new ActivateResolveAbility(this));
         this.AbilityPool.Add(new AttackAbility(this));
         this.AbilityPool.Add(new DefendAbility(this));
         this.AbilityPool.Add(new DoubleAttackAbility(this));

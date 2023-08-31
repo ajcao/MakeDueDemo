@@ -14,6 +14,7 @@ public enum TriggerEventEnum
 	onTurnEndEnum,
 	onPlayerAttackEnum,
 	onPlayerAbilityEnum,
+	onPostPlayerAbilityEnum,
 	onEnemyAttackEnum,
 	onDeathEnum,
 	onBuffExpireEnum,
@@ -63,12 +64,24 @@ public class onPlayerAttackTrigger : TriggerEvent
 public class onPlayerAbilityTrigger : TriggerEvent
 {
 	public PlayableCharacter CastingPlayer;
-	public EnemyCharacter? ReceivingEnemy;
+	public Character ReceivingCharacter;
 	
-	public onPlayerAbilityTrigger(PlayableCharacter P, EnemyCharacter E)
+	public onPlayerAbilityTrigger(PlayableCharacter P, Character C)
 	{
 		CastingPlayer = P;
-		ReceivingEnemy = E;
+		ReceivingCharacter = C;
+	}
+}
+
+public class onPostPlayerAbilityTrigger : TriggerEvent
+{
+	public PlayableCharacter CastingPlayer;
+	public Character ReceivingCharacter;
+	
+	public onPostPlayerAbilityTrigger(PlayableCharacter P, Character C)
+	{
+		CastingPlayer = P;
+		ReceivingCharacter = C;
 	}
 }
 

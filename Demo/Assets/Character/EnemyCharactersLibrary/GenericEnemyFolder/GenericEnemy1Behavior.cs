@@ -18,7 +18,7 @@ public class GenericEnemy1Behavior : EnemyCharacter
         this.DamageOutputModifier = 0;
         this.canStaminaRegenerate = true;
         this.IsStunned = false;
-        this.Stamina = 200;
+        this.Stamina = 100;
         this.MaxStamina = this.Stamina;
         this.StaminaRegeneration = this.MaxStamina;
         Moves = new Stack<EnemyMove>();
@@ -34,7 +34,7 @@ public class GenericEnemy1Behavior : EnemyCharacter
         {
             Target = new Character[] {(Character) this};
             
-            EnemyApplyBuffMove E = new EnemyApplyBuffMove(this, Target, "GainArmorBuff", 60, null);
+            EnemyApplyBuffMove E = new EnemyApplyBuffMove(this, Target, "GainArmorBuff", 10, null);
             E.SetSpecial();
             Moves.Push(E);
         }

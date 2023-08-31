@@ -25,6 +25,7 @@ public class ORBBehavior : PlayableCharacter
         this.CharacterIcon = Resources.Load<Sprite>("PlayableCharacterImages/ORBIcon");
         
         this.AbilityPool = new List<Ability>();
+        this.AbilityPool.Add(new ActivateResolveAbility(this));
         this.AbilityPool.Add(new AttackAbility(this));
         this.AbilityPool.Add(new DefendAbility(this));
         this.AbilityPool.Add(new HealAbility(this));

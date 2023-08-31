@@ -36,7 +36,7 @@ public class NullBuff : Buff
         return;
     }
     
-    public override void onTriggerEffect(TriggerEvent E)
+    public override void onTriggerEffect(TriggerEvent E, ref int v)
     {
         return;
     }
