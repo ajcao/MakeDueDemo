@@ -25,14 +25,37 @@ public static class BattleLogicHandler
 	
 	public static void Damage(Character C, int d)
 	{
-		int armor = C.getCurrentArmor();
-		C.setCurrentArmor(Mathf.Max(armor - d, 0));
-		C.setCurrentHealth(Mathf.Max(C.getCurrentHealth() - Mathf.Max(d - armor, 0), 0));
+		int damageToArmor = Mathf.Min(d, C.getCurrentArmor());
+		int damageToHealth = Mathf.Max(0, d - C.getCurrentArmor());
+		
+		BattleLogicHandler.LowerArmor(C, damageToArmor);
+		if ((C.GetType()).IsSubclassOf(typeof(PlayableCharacter)))
+		{
+			PlayableCharacter P = (PlayableCharacter) C;
+			P.GiveResolve(damageToArmor);
+			P.setResolve(P.getResolve() + damageToHealth);
+		}
+		else
+		{
+			BattleLogicHandler.LowerStamina((EnemyCharacter) C, damageToHealth);
+		}
+		GameObject.Find("DamageNumberHandler").GetComponent<DamageNumberHandler>().CreateDamageNumber(C, damageToHealth);
+		C.setCurrentHealth(Mathf.Max(C.getCurrentHealth() - damageToHealth, 0));
 	}
 	
 	public static void Armor(Character C, int d)
 	{
 		C.setCurrentArmor(C.getCurrentArmor() + d);
+	}
+	
+	public static void LowerArmor(Character C, int d)
+	{
+		C.setCurrentArmor(Mathf.Max(C.getCurrentArmor() - d, 0));
+	}
+	
+	public static void LowerStamina(EnemyCharacter E, int d)
+	{
+		E.setStamina(Mathf.Max(E.getStamina() - d, 0));
 	}
 	
 	public static void Restore(Character C, int r)
@@ -60,9 +83,6 @@ public static class BattleLogicHandler
 		int d = inputD;
 		TriggerEvent TE = new onEnemyAttackTrigger(E, P, d);
 		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onEnemyAttackEnum, TE, ref d);
-		int armor = P.getCurrentArmor();
-		P.GiveResolve(Mathf.Min(armor, d));
-		P.setResolve(P.getResolve() + Mathf.Max(d-armor,0));
 		Damage(P,d);
 		BattleLog.Push(TE);
 	}
@@ -73,7 +93,6 @@ public static class BattleLogicHandler
 		int d = inputD;
 		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onPlayerAttackEnum, TE, ref d);
 		Damage(E,d);
-		E.setStamina(Mathf.Max(E.getStamina() - d));
 		BattleLog.Push(TE);
 	}
 	
@@ -125,14 +144,8 @@ public static class BattleLogicHandler
 		TriggerEvent TE = new onTurnStartTrigger(t);
 		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onTurnStartEnum, TE, ref dummy);
 	}
-	public static void PlayerPreTurn()
-	{
-		foreach (GameObject G in PlayerParty.GetLivingPartyMembers())
-		{
-			PlayableCharacter C = G.GetComponent<PlayableCharacter>();
-			C.setCurrentArmor(Mathf.Min(C.getCurrentArmor(), C.getArmorRetain()));
-		}
-	}
+	
+
 	public static void EnemyPreTurn()
 	{
 		foreach (GameObject G in EnemyEncounter.GetLivingEncounterMembers())
@@ -146,6 +159,11 @@ public static class BattleLogicHandler
 	public static void EndCombatRound()
 	{
 		BuffHandler.DecrementBuffDuration();
+		foreach (GameObject G in PlayerParty.GetLivingPartyMembers())
+		{
+			PlayableCharacter C = G.GetComponent<PlayableCharacter>();
+			C.setCurrentArmor(Mathf.Min(C.getCurrentArmor(), C.getArmorRetain()));
+		}
 		
 	}
 	

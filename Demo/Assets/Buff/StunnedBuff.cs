@@ -9,7 +9,7 @@ namespace BuffUtil
     
 public class StunnedBuff : Buff
 {
-    public StunnedBuff(Character CTarget, Character CBuffer, int? Inten, int? Dur) 
+    public StunnedBuff(Character CTarget, Character CBuffer, int? Inten, int Dur) 
     {
         this.Trigger = TriggerEventEnum.onPlayerAttackEnum;
         this.BuffTarget = CTarget;

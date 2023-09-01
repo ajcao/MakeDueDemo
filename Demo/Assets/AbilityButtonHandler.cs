@@ -136,6 +136,7 @@ public class AbilityButtonHandler : MonoBehaviour
         {
             G.GetComponent<PlayableCharacter>().RefreshCasting();
             G.GetComponent<PlayableCharacter>().resetProtectionList();
+            G.GetComponent<PlayableCharacter>().FullHealthResolveBonus(); 
         }
     }
     

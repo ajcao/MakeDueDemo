@@ -20,12 +20,12 @@ public class HealAbility : Ability
     
     public override void onCast(Character E)
     {
-        BattleLogicHandler.Restore((PlayableCharacter) E, 20);
+        BattleLogicHandler.Restore((PlayableCharacter) E, 50);
     }
     
     public override string GetTooltipString()
     {
-        string s1 = "Restore " + 20 + " health";
+        string s1 = "Restore " + 50 + " health";
         string s2 = "Cooldown: " + currentCooldown + "/" + maxCooldown;
         return s1 + "\n" + s2;
     }

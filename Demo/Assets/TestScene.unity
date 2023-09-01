@@ -216,7 +216,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2008512877273571844, guid: e01cca39cd573e14ca29630a143b92e5, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 110
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 2008512877273571844, guid: e01cca39cd573e14ca29630a143b92e5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -651,7 +651,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2008512877273571844, guid: e01cca39cd573e14ca29630a143b92e5, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 50
+      value: 110
       objectReference: {fileID: 0}
     - target: {fileID: 2008512877273571844, guid: e01cca39cd573e14ca29630a143b92e5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1895,9 +1895,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   P1: {fileID: 7831967512756798593, guid: 96173b2996e710b4ca855960ccacc87c, type: 3}
-  P2: {fileID: 4216986254345584924, guid: f38d57aa17694ef44bec8f4585cd1b95, type: 3}
-  P3: {fileID: 7831967512756798593, guid: 196d886c53a4cd547ac62c0dedf9d11a, type: 3}
-  P4: {fileID: 3063199090697513369, guid: fb1701b96ef362a46a84f3e55f714581, type: 3}
+  P2: {fileID: 7831967512756798593, guid: 29a3aedd91ff7d446aeb0ace78446161, type: 3}
+  P3: {fileID: 7831967512756798593, guid: 1466ad0098d586546bad92d382982619, type: 3}
+  P4: {fileID: 4216986254345584924, guid: f38d57aa17694ef44bec8f4585cd1b95, type: 3}
+  P5: {fileID: 7831967512756798593, guid: a6629b8669ded334d9a85d0dc4d04a28, type: 3}
+  P6: {fileID: 7831967512756798593, guid: 1b3881300a6bba347a916718587cc9fe, type: 3}
+  P7: {fileID: 7831967512756798593, guid: 196d886c53a4cd547ac62c0dedf9d11a, type: 3}
+  P8: {fileID: 3063199090697513369, guid: fb1701b96ef362a46a84f3e55f714581, type: 3}
   E1: {fileID: 2465709451207476951, guid: baa9ecdb38a83774b90ac134940092f3, type: 3}
   E2: {fileID: 6710686837782463586, guid: a31d07b3bd9a6c648b2e53d611ab94f4, type: 3}
   AB_Handler: {fileID: 374263448}

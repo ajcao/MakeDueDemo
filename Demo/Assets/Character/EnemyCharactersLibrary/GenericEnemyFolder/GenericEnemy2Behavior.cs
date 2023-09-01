@@ -12,8 +12,8 @@ public class GenericEnemy2Behavior : EnemyCharacter
     void Awake()
     {
         this.Alive = true;
-        this.CurrentHealth = 400;
-        this.MaxHealth = 400;
+        this.CurrentHealth = 300;
+        this.MaxHealth = 300;
         this.CurrentArmor = 0;
         this.ArmorRetain = 0;
         this.DamageOutputModifier = 0;
@@ -38,19 +38,19 @@ public class GenericEnemy2Behavior : EnemyCharacter
             if (i == 0)
             {
                 Target = EnemyTargetingLibrary.TargetNRandomHeroes(1);
-                Moves.Push(new EnemyAttackMove(this, 30, Target));
+                Moves.Push(new EnemyAttackMove(this, 40, Target));
             }
             
             if (i == 1)
             {
                 Target = new Character[] {(Character) this};
-                Moves.Push(new EnemyApplyBuffMove(this, Target, "AttackUpBuff", 10, null));
+                Moves.Push(new EnemyApplyBuffMove(this, Target, "AttackUpBuff", 20, null));
             }
             
             if (i == 2)
             {
                 Target = new Character[] {(Character) this};
-                Moves.Push(new EnemyDefendMove(this, 30, Target));
+                Moves.Push(new EnemyDefendMove(this, 40, Target));
             }
         }
     }

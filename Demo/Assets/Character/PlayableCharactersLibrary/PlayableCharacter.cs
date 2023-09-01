@@ -16,6 +16,7 @@ public abstract class PlayableCharacter : Character
 	
 	protected int Resolve;
 	protected int MaxResolve;
+	protected int ResolveRegeneration;
 	
 	//List of all characters who protected this characters
 	//Charactres in this list will build resolve
@@ -48,6 +49,14 @@ public abstract class PlayableCharacter : Character
 	public void InitProtectionList()
 	{
 		ProtectionList = new (GameObject G, bool b)[]{(PlayerParty.getPartyMember(0),false), (PlayerParty.getPartyMember(1),false), (PlayerParty.getPartyMember(2),false), (PlayerParty.getPartyMember(3),false)};
+	}
+	
+	public void FullHealthResolveBonus()
+	{
+		if (this.CurrentHealth >= this.MaxHealth)
+		{
+			this.setResolve(this.ResolveRegeneration);
+		}
 	}
 	
 	public void setProtectionList(PlayableCharacter C)

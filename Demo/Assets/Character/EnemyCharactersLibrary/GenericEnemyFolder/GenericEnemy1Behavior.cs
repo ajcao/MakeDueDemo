@@ -11,14 +11,14 @@ public class GenericEnemy1Behavior : EnemyCharacter
     void Awake()
     {
         this.Alive = true;
-        this.CurrentHealth = 500;
-        this.MaxHealth = 500;
+        this.CurrentHealth = 150;
+        this.MaxHealth = 150;
         this.CurrentArmor = 0;
         this.ArmorRetain = 0;
         this.DamageOutputModifier = 0;
         this.canStaminaRegenerate = true;
         this.IsStunned = false;
-        this.Stamina = 100;
+        this.Stamina = 200;
         this.MaxStamina = this.Stamina;
         this.StaminaRegeneration = this.MaxStamina;
         Moves = new Stack<EnemyMove>();
@@ -34,14 +34,14 @@ public class GenericEnemy1Behavior : EnemyCharacter
         {
             Target = new Character[] {(Character) this};
             
-            EnemyApplyBuffMove E = new EnemyApplyBuffMove(this, Target, "GainArmorBuff", 10, null);
+            EnemyApplyBuffMove E = new EnemyApplyBuffMove(this, Target, "GainArmorBuff", 20, null);
             E.SetSpecial();
             Moves.Push(E);
         }
         else
         {
             Target = EnemyTargetingLibrary.TargetNRandomHeroes(3);
-            Moves.Push(new EnemyAttackMove(this, 15, Target));
+            Moves.Push(new EnemyAttackMove(this, 20, Target));
         }
     }
 }

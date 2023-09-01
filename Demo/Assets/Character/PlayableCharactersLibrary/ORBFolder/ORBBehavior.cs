@@ -17,10 +17,11 @@ public class ORBBehavior : PlayableCharacter
         this.CurrentArmor = 0;
         this.ArmorRetain = 0;
         this.DamageOutputModifier = 0;
-        this.AttackStat = 5;
+        this.AttackStat = 10;
         this.DefenseStat = 50;
         this.Resolve = 0;
         this.MaxResolve = 60;
+        this.ResolveRegeneration = (int) Mathf.Ceil((float) this.MaxResolve / 2.0f);
         
         this.CharacterIcon = Resources.Load<Sprite>("PlayableCharacterImages/ORBIcon");
         

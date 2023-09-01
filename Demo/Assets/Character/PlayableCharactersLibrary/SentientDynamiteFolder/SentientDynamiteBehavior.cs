@@ -12,15 +12,16 @@ public class SentientDynamiteBehavior : PlayableCharacter
     {
         this.Alive = true;
         this.HasCasted = false;
-        this.CurrentHealth = 80;
-        this.MaxHealth = 80;
+        this.CurrentHealth = 60;
+        this.MaxHealth = 60;
         this.CurrentArmor = 0;
         this.ArmorRetain = 0;
         this.DamageOutputModifier = 0;
-        this.AttackStat = 15;
+        this.AttackStat = 20;
         this.DefenseStat = 20;
         this.Resolve = 0;
-        this.MaxResolve = 45;
+        this.MaxResolve = 50;
+        this.ResolveRegeneration = (int) Mathf.Ceil((float) this.MaxResolve / 2.0f);
         
         this.CharacterIcon = Resources.Load<Sprite>("PlayableCharacterImages/SentientDynamiteIcon");
         

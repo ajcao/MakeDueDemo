@@ -16,18 +16,19 @@ public class SpikeyRockBehavior : PlayableCharacter
         this.CurrentArmor = 0;
         this.ArmorRetain = 0;
         this.DamageOutputModifier = 0;
-        this.AttackStat = 25;
-        this.DefenseStat = 25;
+        this.AttackStat = 20;
+        this.DefenseStat = 20;
         this.Resolve = 0;
         this.MaxResolve = 50;
-        
+        this.ResolveRegeneration = (int) Mathf.Ceil((float) this.MaxResolve / 2.0f);
+
         this.CharacterIcon = Resources.Load<Sprite>("PlayableCharacterImages/SpikeyRockIcon");
         
         this.AbilityPool = new List<Ability>();
         this.AbilityPool.Add(new ActivateResolveAbility(this));
         this.AbilityPool.Add(new AttackAbility(this));
         this.AbilityPool.Add(new DefendAbility(this));
-        this.AbilityPool.Add(new DoubleAttackAbility(this));
+        this.AbilityPool.Add(new AttackDefendAbility(this));
         this.AbilityPool.Add(new GiveSelfSpikeAbility(this));
 
 

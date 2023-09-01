@@ -97,11 +97,11 @@ public static class BuffHandler
 	{
 		if (BuffsList[e] != null)
 		{
-			foreach (Buff B in BuffsList[e])
+			for (int i = 0; i < BuffsList[e].Count; i++)
 			{
-				if (!B.ToBeDeleted)
+				if (!BuffsList[e][i].ToBeDeleted)
 				{
-					B.onTriggerEffect(TE, ref v);
+					BuffsList[e][i].onTriggerEffect(TE, ref v);
 				}
 			}
 		}
