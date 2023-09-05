@@ -23,8 +23,12 @@ public static class BattleLogicHandler
 	}
 	
 	
-	public static void Damage(Character C, int d)
+	public static void Damage(Character C, int inputD)
 	{
+		TriggerEvent TE = new onDealDamageTrigger(C, inputD);
+		int d = inputD;
+		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onDealDamageEnum, TE, ref d);
+		
 		int damageToArmor = Mathf.Min(d, C.getCurrentArmor());
 		int damageToHealth = Mathf.Max(0, d - C.getCurrentArmor());
 		
@@ -32,7 +36,6 @@ public static class BattleLogicHandler
 		if ((C.GetType()).IsSubclassOf(typeof(PlayableCharacter)))
 		{
 			PlayableCharacter P = (PlayableCharacter) C;
-			P.GiveResolve(damageToArmor);
 			P.setResolve(P.getResolve() + damageToHealth);
 		}
 		else
@@ -105,7 +108,12 @@ public static class BattleLogicHandler
 	{
 		//Create new Trigger Event for this
 		RecP.setCurrentArmor(RecP.getCurrentArmor() + d);
-		RecP.setProtectionList(DefP);
+		DefP.setResolve(DefP.getResolve() + d);
+		if (DefP != RecP)
+		{
+			RecP.setResolve(RecP.getResolve() + d);
+		}
+		
 	}
 	
 	public static void CharacterDies(Character C)

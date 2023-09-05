@@ -22,13 +22,25 @@ public class EnemyApplyBuffMove : EnemyMove
         BuffName = BN;
         this.Intensity = I;
         this.Duration = D;
-        AbilityIcon = Resources.Load<Sprite>("AbilityImages/GenericBuff");
+        if ((CArray[0].GetType()).IsSubclassOf(typeof(EnemyCharacter)))
+        {
+            AbilityIcon = Resources.Load<Sprite>("AbilityImages/GenericBuff");
+        }
+        else
+        {
+            AbilityIcon = Resources.Load<Sprite>("AbilityImages/GenericDebuff");
+        }
     }
 
     public override void onCast(Character C)
     {
-        Buff B = BuffLibrary.GetBuffFromName(BuffName, EC, C, Intensity, Duration);
+        Buff B = BuffLibrary.GetBuffFromName(BuffName, C, EC, Intensity, Duration);
         BattleLogicHandler.OnBuffApply(B);
+    }
+
+    public override void AdditionalMoveDeletion()
+    {
+        return;
     }
     
     public override string MoveIndicatorText()

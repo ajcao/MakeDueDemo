@@ -20,7 +20,7 @@ public class MushroomHealAbility : Ability
     
     public override void onCast(Character E)
     {
-        BattleLogicHandler.Restore((PlayableCharacter) E, 40);
+        BattleLogicHandler.Restore((PlayableCharacter) E, 10);
     }
     
     public override string GetTooltipString()

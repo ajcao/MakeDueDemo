@@ -20,7 +20,7 @@ public class RolyPolyBehavior : PlayableCharacter
         this.AttackStat = 20;
         this.DefenseStat = 10;
         this.Resolve = 0;
-        this.MaxResolve = 60;
+        this.MaxResolve = 120;
         this.ResolveRegeneration = (int) Mathf.Ceil((float) this.MaxResolve / 2.0f);
         
         CharacterIcon = Resources.Load<Sprite>("PlayableCharacterImages/RolyPolyIcon");
@@ -33,11 +33,6 @@ public class RolyPolyBehavior : PlayableCharacter
         this.AbilityPool.Add(new RollAbility(this));
 
         
-    }
-    
-    public void Start()
-    {
-        this.InitProtectionList();
     }
 
 }

@@ -29,6 +29,11 @@ public class EnemyStunnedMove : EnemyMove
         return "";
     }
     
+    public override void AdditionalMoveDeletion()
+    {
+        return;
+    }
+    
 }
 
 }

@@ -26,7 +26,7 @@ public class CorrosiveGooAbility : Ability
     
     public override string GetTooltipString()
     {
-        string s1 = "Teak 20 damage to armor only. Then deal " + (PC.getAttackStat() + PC.getDamageOutputModifier()) + " damage.";
+        string s1 = "Remove 20 armor from enemy. Then deal " + (PC.getAttackStat() + PC.getDamageOutputModifier()) + " damage.";
         string s2 = "Cooldown: " + currentCooldown + "/" + maxCooldown;
         return s1 + "\n" + s2;
     }

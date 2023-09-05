@@ -14,7 +14,7 @@ public class ActivateResolveAbility : Ability
     public ActivateResolveAbility(PlayableCharacter inputC)
     {
         this.AssignCharacter(inputC);
-        targetingType = TargetingTypeEnum.PlayerTarget;
+        targetingType = TargetingTypeEnum.NoTarget;
         currentCooldown = 0;
         maxCooldown = 0;
         

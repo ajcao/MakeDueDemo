@@ -20,7 +20,7 @@ public class PalmTreeBehavior : PlayableCharacter
         this.AttackStat = 20;
         this.DefenseStat = 10;
         this.Resolve = 0;
-        this.MaxResolve = 40;
+        this.MaxResolve = 90;
         this.ResolveRegeneration = (int) Mathf.Ceil((float) this.MaxResolve / 2.0f);
         
         CharacterIcon = Resources.Load<Sprite>("PlayableCharacterImages/PalmTreeIcon");
@@ -33,11 +33,6 @@ public class PalmTreeBehavior : PlayableCharacter
         this.AbilityPool.Add(new CoconutStunAbility(this));
 
         
-    }
-    
-    public void Start()
-    {
-        this.InitProtectionList();
     }
 
 }

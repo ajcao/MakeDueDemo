@@ -25,6 +25,11 @@ public static class BuffLibrary
             return new GainArmorBuff(CTarget, CBuffer, Inten.Value, Dur);
         }
         
+        if (name == "VulnurableBuff")
+        {
+            return new VulnurableBuff(CTarget, CBuffer, null, Dur);
+        }
+        
         return new NullBuff(CTarget, CBuffer, Inten, Dur);
     }
 }

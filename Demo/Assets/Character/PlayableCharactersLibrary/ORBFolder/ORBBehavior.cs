@@ -18,9 +18,9 @@ public class ORBBehavior : PlayableCharacter
         this.ArmorRetain = 0;
         this.DamageOutputModifier = 0;
         this.AttackStat = 10;
-        this.DefenseStat = 50;
+        this.DefenseStat = 30;
         this.Resolve = 0;
-        this.MaxResolve = 60;
+        this.MaxResolve = 150;
         this.ResolveRegeneration = (int) Mathf.Ceil((float) this.MaxResolve / 2.0f);
         
         this.CharacterIcon = Resources.Load<Sprite>("PlayableCharacterImages/ORBIcon");
@@ -31,11 +31,6 @@ public class ORBBehavior : PlayableCharacter
         this.AbilityPool.Add(new DefendAbility(this));
         this.AbilityPool.Add(new HealAbility(this));
         this.AbilityPool.Add(new GiveResolveAbility(this));
-    }
-    
-    public void Start()
-    {
-        this.InitProtectionList();
     }
 
 }

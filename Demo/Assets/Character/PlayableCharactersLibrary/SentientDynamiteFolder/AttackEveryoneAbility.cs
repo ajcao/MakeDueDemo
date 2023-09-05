@@ -12,7 +12,7 @@ public class AttackEveryoneAbility : Ability
     public AttackEveryoneAbility(PlayableCharacter inputC)
     {
         this.AssignCharacter(inputC);
-        targetingType = TargetingTypeEnum.EnemyTarget;
+        targetingType = TargetingTypeEnum.NoTarget;
         this.currentCooldown = 0;
         this.maxCooldown = 2;
         

@@ -21,12 +21,12 @@ public class GiveResolveAbility : Ability
     public override void onCast(Character E)
     {
         PlayableCharacter P = (PlayableCharacter) E;
-        P.setResolve(P.getResolve() + 40);
+        P.setResolve(P.getResolve() + 60);
     }
     
     public override string GetTooltipString()
     {
-        string s1 = "Gain " + 40 + " resolve";
+        string s1 = "Gain " + 60 + " resolve";
         string s2 = "Cooldown: " + currentCooldown + "/" + maxCooldown;
         return s1 + "\n" + s2;
     }

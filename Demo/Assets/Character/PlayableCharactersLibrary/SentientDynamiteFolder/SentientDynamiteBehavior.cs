@@ -20,7 +20,7 @@ public class SentientDynamiteBehavior : PlayableCharacter
         this.AttackStat = 20;
         this.DefenseStat = 20;
         this.Resolve = 0;
-        this.MaxResolve = 50;
+        this.MaxResolve = 120;
         this.ResolveRegeneration = (int) Mathf.Ceil((float) this.MaxResolve / 2.0f);
         
         this.CharacterIcon = Resources.Load<Sprite>("PlayableCharacterImages/SentientDynamiteIcon");
@@ -31,11 +31,6 @@ public class SentientDynamiteBehavior : PlayableCharacter
         this.AbilityPool.Add(new DefendAbility(this));
         this.AbilityPool.Add(new AttackEveryoneAbility(this));
         this.AbilityPool.Add(new BurstAoeAbility(this));
-    }
-    
-    public void Start()
-    {
-        this.InitProtectionList();
     }
 
 }

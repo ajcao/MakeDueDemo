@@ -18,11 +18,8 @@ public abstract class PlayableCharacter : Character
 	protected int MaxResolve;
 	protected int ResolveRegeneration;
 	
-	//List of all characters who protected this characters
-	//Charactres in this list will build resolve
-	protected (GameObject G, bool b)[] ProtectionList;
-	
 	protected bool HasCasted;
+	
 	
 	public List<Ability> AbilityPool;
 	
@@ -41,40 +38,11 @@ public abstract class PlayableCharacter : Character
 		return MaxResolve;
 	}
 	
-	public (GameObject C, bool b)[] getProtectionList()
-	{
-		return ProtectionList;
-	}
-	
-	public void InitProtectionList()
-	{
-		ProtectionList = new (GameObject G, bool b)[]{(PlayerParty.getPartyMember(0),false), (PlayerParty.getPartyMember(1),false), (PlayerParty.getPartyMember(2),false), (PlayerParty.getPartyMember(3),false)};
-	}
-	
 	public void FullHealthResolveBonus()
 	{
 		if (this.CurrentHealth >= this.MaxHealth)
 		{
-			this.setResolve(this.ResolveRegeneration);
-		}
-	}
-	
-	public void setProtectionList(PlayableCharacter C)
-	{
-		for (int i = 0; i < ProtectionList.Length; i++)
-		{
-			if (ProtectionList[i].G.GetComponent<PlayableCharacter>() == C)
-			{
-				ProtectionList[i].b = true;
-			}
-		}
-	}
-	
-	public void resetProtectionList()
-	{
-		for (int i = 0; i < ProtectionList.Length; i++)
-		{
-			ProtectionList[i].b = false;
+			this.setResolve(this.Resolve + this.ResolveRegeneration);
 		}
 	}
 	
@@ -96,18 +64,6 @@ public abstract class PlayableCharacter : Character
 	public bool getHasCasted()
 	{
 		return HasCasted;
-	}
-	
-	public void GiveResolve(int d)
-	{
-		for (int i = 0; i < ProtectionList.Length; i++)
-		{
-			if (ProtectionList[i].b)
-			{
-				PlayableCharacter C = ProtectionList[i].G.GetComponent<PlayableCharacter>();
-				C.setResolve(C.getResolve() + d);
-			}
-		}
 	}
 	
 	public bool IsAbletoCast()

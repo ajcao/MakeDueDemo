@@ -27,6 +27,11 @@ public class EnemyDefendMove : EnemyMove
         BattleLogicHandler.Armor(C, defendAmount);
     }
     
+    public override void AdditionalMoveDeletion()
+    {
+        return;
+    }
+    
     public override string MoveIndicatorText()
     {
         return "" + (defendAmount);

@@ -69,12 +69,16 @@ public abstract class EnemyMove
         Special = true;
     }
     
+    public abstract void AdditionalMoveDeletion();
+    
     public void DeleteMove()
     {
         //Since EnemyMoves and EnemyMoveIndicator are closely linked
         //Properly set null references as "garbage" collection
         GameObject.Destroy(MoveIndicator);
         MoveIndicator = null;
+        
+        this.AdditionalMoveDeletion();
     }
     
     

@@ -14,10 +14,28 @@ public class TooltipScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 		TooltipDelayCoroutine = StartCoroutine(TooltipDelay());
 	}
 	
+	public void ResetToolTip()
+	{
+		if (TooltipDelayCoroutine != null)
+		{
+			StopCoroutine(TooltipDelayCoroutine);
+			TooltipHandler.GetToolTipString("");
+		}
+	}
+	
 	public void OnPointerExit(PointerEventData eventData)
 	{
-		StopCoroutine(TooltipDelayCoroutine);
-        TooltipHandler.GetToolTipString("");
+		this.ResetToolTip();
+	}
+	
+	public void OnDestroy()
+	{
+		this.ResetToolTip();
+	}
+	
+	public void OnDisable()
+	{
+		this.ResetToolTip();
 	}
     
     IEnumerator TooltipDelay()

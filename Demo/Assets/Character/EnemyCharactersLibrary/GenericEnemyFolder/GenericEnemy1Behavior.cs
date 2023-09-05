@@ -26,6 +26,8 @@ public class GenericEnemy1Behavior : EnemyCharacter
         this.CharacterIcon = Resources.Load<Sprite>("EnemyCharacterImages/GenericEnemy1Icon");
     }
     
+    private int NoVulnurableMoveTurn = 0;
+    
     public override void GenerateMoves()
     {
         Character[] Target;
@@ -40,9 +42,18 @@ public class GenericEnemy1Behavior : EnemyCharacter
         }
         else
         {
-            Target = EnemyTargetingLibrary.TargetNRandomHeroes(3);
-            Moves.Push(new EnemyAttackMove(this, 20, Target));
+            if (Random.Range(0.0f, 1.0f) <= 0.15f + 0.15f * NoVulnurableMoveTurn)
+            {
+                Target = EnemyTargetingLibrary.TargetNRandomHeroes(1);
+                Moves.Push(new EnemyApplyBuffMove(this, Target, "VulnurableBuff", null, 4));
+                NoVulnurableMoveTurn = 0;
+            }
+            else
+            {
+                Target = EnemyTargetingLibrary.TargetNRandomHeroes(3);
+                Moves.Push(new EnemyAttackMove(this, 20, Target));
+                NoVulnurableMoveTurn+=1;
+            }
         }
     }
 }
-

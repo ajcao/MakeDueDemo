@@ -12,7 +12,7 @@ public class DefensiveCurlAbility : Ability
     public DefensiveCurlAbility(PlayableCharacter inputC)
     {
         this.AssignCharacter(inputC);
-        targetingType = TargetingTypeEnum.PlayerTarget;
+        targetingType = TargetingTypeEnum.NoTarget;
         this.currentCooldown = 0;
         this.maxCooldown = 3;
         
@@ -25,8 +25,9 @@ public class DefensiveCurlAbility : Ability
         //Relies on fixing Player Party and Enemy Encounter
         foreach (GameObject G in PlayerParty.GetLivingPartyMembers())
         {
-            Character C = G.GetComponent<Character>();
+            PlayableCharacter C = G.GetComponent<PlayableCharacter>();
             BattleLogicHandler.Armor(C, 10);
+            C.setResolve(C.getResolve() + 10);
         }
     }
     

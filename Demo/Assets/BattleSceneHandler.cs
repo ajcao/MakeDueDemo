@@ -121,20 +121,20 @@ public class BattleSceneHandler : MonoBehaviour
             //Player turn
             Debug.Log("PlayerTurn");
             AB_Handler.StartCastingMode();
-            while (AB_Handler.CanSomeoneCast())
+            while (AB_Handler.IsInCastingMode())
             {
                 yield return null;
             }
             
             BattleLogicHandler.CheckForEncounterDeath();
             
-            yield return new WaitForSeconds(1);
             Debug.Log("EnemyTurn");
-            yield return new WaitForSeconds(2);
             
             BattleLogicHandler.EnemyPreTurn();
             
             EM_Handler.BeginEnemyTurn();
+            
+            yield return new WaitForSeconds(3.0f);
             
             BattleLogicHandler.CheckForEncounterDeath();
             

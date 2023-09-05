@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using CharacterUtil;
 using EnemyMoveUtil;
+using UnityEngine.UI;
 using UnityEngine.Rendering;
 
 public class EnemyMoveHandler : MonoBehaviour
@@ -10,6 +11,8 @@ public class EnemyMoveHandler : MonoBehaviour
     public bool EnemyHasMoved;
     
     public GameObject EnemyMoveIndicatorPrefab;
+    
+    public NextTurnButtonScript NextTurnButton;
     
     //Function also handles creating new moves too
     public void DisplayMoves()
@@ -72,6 +75,10 @@ public class EnemyMoveHandler : MonoBehaviour
     {    
         //Fix to avoid using size
         //Relies on fixing Player Party and Enemy Encounter
+        Debug.Log(NextTurnButton.gameObject.GetComponent<Image>().sprite);
+        Sprite ButtonImage = Resources.Load<Sprite>("EnemyTurnButton") as Sprite;
+        NextTurnButton.gameObject.GetComponent<Image>().sprite = ButtonImage;
+        Debug.Log(NextTurnButton.gameObject.GetComponent<Image>().sprite);
         foreach (GameObject G in EnemyEncounter.GetLivingEncounterMembers())
         {
             EnemyCharacter E = G.GetComponent<EnemyCharacter>();

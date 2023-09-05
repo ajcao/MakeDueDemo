@@ -19,7 +19,7 @@ public class SpikeyRockBehavior : PlayableCharacter
         this.AttackStat = 20;
         this.DefenseStat = 20;
         this.Resolve = 0;
-        this.MaxResolve = 50;
+        this.MaxResolve = 100;
         this.ResolveRegeneration = (int) Mathf.Ceil((float) this.MaxResolve / 2.0f);
 
         this.CharacterIcon = Resources.Load<Sprite>("PlayableCharacterImages/SpikeyRockIcon");
@@ -32,11 +32,6 @@ public class SpikeyRockBehavior : PlayableCharacter
         this.AbilityPool.Add(new GiveSelfSpikeAbility(this));
 
 
-    }
-    
-    public void Start()
-    {
-        this.InitProtectionList();
     }
 
 }

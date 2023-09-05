@@ -15,6 +15,7 @@ public enum TriggerEventEnum
 	onPlayerAttackEnum,
 	onPlayerAbilityEnum,
 	onPostPlayerAbilityEnum,
+	onDealDamageEnum,
 	onEnemyAttackEnum,
 	onDeathEnum,
 	onBuffExpireEnum,
@@ -95,6 +96,18 @@ public class onEnemyAttackTrigger : TriggerEvent
 	{
 		AttackingEnemy = E;
 		ReceivingPlayer = P;
+		DamageAmount = d;
+	}
+}
+
+public class onDealDamageTrigger : TriggerEvent
+{
+	public Character ReceivingChar; 
+	public int DamageAmount;
+	
+	public onDealDamageTrigger(Character RC, int d)
+	{
+		ReceivingChar = RC;
 		DamageAmount = d;
 	}
 }

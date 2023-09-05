@@ -12,7 +12,7 @@ public class GiveSelfSpikeAbility : Ability
     public GiveSelfSpikeAbility(PlayableCharacter inputC)
     {
         this.AssignCharacter(inputC);
-        this.targetingType = TargetingTypeEnum.PlayerTarget;
+        targetingType = TargetingTypeEnum.NoTarget;
         this.currentCooldown = 0;
         this.maxCooldown = 2;
         

@@ -26,12 +26,12 @@ public class GainArmorBuff : Buff
     
     public override void onApplication()
     {
-        return;
+        BattleLogicHandler.Armor(this.BuffTarget, this.Intensity.Value);
     }
     
     public override void onExpire()
     {
-        BattleLogicHandler.Armor(this.BuffTarget, this.Intensity.Value);
+        return;
     }
     
     public override string GetTooltipString()
@@ -41,7 +41,6 @@ public class GainArmorBuff : Buff
     
     public override void onTriggerEffect(TriggerEvent E, ref int v)
     {
-        Debug.Log("Gaining " + this.Intensity.Value + " armor");
         BattleLogicHandler.Armor(this.BuffTarget, this.Intensity.Value);
     }
 }

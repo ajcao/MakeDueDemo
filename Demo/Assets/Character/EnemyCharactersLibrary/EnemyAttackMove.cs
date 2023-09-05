@@ -27,6 +27,10 @@ public class EnemyAttackMove : EnemyMove
         BattleLogicHandler.EnemyAttack(this.EC, C.GetComponent<PlayableCharacter>(), damageAmount + EC.getDamageOutputModifier());
     }
     
+    public override void AdditionalMoveDeletion()
+    {
+    }
+    
     public override string MoveIndicatorText()
     {
         return "" + (damageAmount + EC.getDamageOutputModifier());

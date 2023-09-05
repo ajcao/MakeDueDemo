@@ -11,7 +11,7 @@ public class VulnurableBuff : Buff
 {
     public VulnurableBuff(Character CTarget, Character CBuffer, int? Inten, int? Dur) 
     {
-        this.Trigger = TriggerEventEnum.onPlayerAttackEnum;
+        this.Trigger = TriggerEventEnum.onDealDamageEnum;
         this.BuffTarget = CTarget;
         this.OriginalBuffer = CBuffer;
         this.Intensity = Inten;
@@ -39,8 +39,8 @@ public class VulnurableBuff : Buff
     
     public override void onTriggerEffect(TriggerEvent E, ref int v)
     {
-        onPlayerAttackTrigger T = (onPlayerAttackTrigger) E;
-        if (T.ReceivingEnemy == BuffTarget)
+        onDealDamageTrigger T = (onDealDamageTrigger) E;
+        if (T.ReceivingChar == BuffTarget)
         {
             v = (int) (v * 1.5);
         }

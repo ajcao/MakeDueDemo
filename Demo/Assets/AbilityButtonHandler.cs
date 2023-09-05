@@ -22,8 +22,13 @@ public class AbilityButtonHandler : MonoBehaviour
     
     public AbilityButtonScript[] AbilityButtonList;
     
+    public NextTurnButtonScript NextTurnButton;
+    
     public Texture2D TargetCrosshairEnemy;
     public Texture2D TargetCrosshairPlayer;
+    
+    protected bool IsCastingMode = false;
+    
     
     
     public void Start()
@@ -41,8 +46,19 @@ public class AbilityButtonHandler : MonoBehaviour
         {
             A.Init(this);
         }
+        
+        NextTurnButton.Init(this);
             
-            
+    }
+    
+    public void SetCastingMode(bool v)
+    {
+        IsCastingMode = v;
+    }
+    
+    public bool IsInCastingMode()
+    {
+        return IsCastingMode;
     }
     
     public void SetCurrentCharacter(PlayableCharacter C)
@@ -70,6 +86,10 @@ public class AbilityButtonHandler : MonoBehaviour
     //Enables the player to interact with the buttons
     public void StartCastingMode()
     {
+        IsCastingMode = true;
+        Sprite ButtonImage = Resources.Load<Sprite>("NextTurnButtonImage") as Sprite;
+        NextTurnButton.gameObject.GetComponent<Image>().sprite = ButtonImage;
+        NextTurnButton.gameObject.GetComponent<Button>().interactable = false;
         StartCoroutine(CharacterCasting());
     }
 
@@ -78,27 +98,38 @@ public class AbilityButtonHandler : MonoBehaviour
         while (currentTarget == null)
         {
             //User must have ability selected (via ability button handler) when they click a target
-            if ((currentAbility != null) & Input.GetMouseButtonDown(0))
+            //Alternatively the players may have used an abillity that requires no target
+            if ( (currentAbility != null) && (currentAbility.getTargetingType() == TargetingTypeEnum.NoTarget || Input.GetMouseButtonDown(0)) )
             {
-                
-                //Define target to be hit by ability by creating raycast line aimed at the mousecursor
-                //Using this method, no character needs a button component
-                RaycastHit2D click = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition),Vector2.zero,Mathf.Infinity);
-                
-                //Cond 1: User clicked on something with a collider 
-                //Cond 2: Abilities has this specific targeting type
-                //Cond 3: Collider has the correct tag (either EnemyCharacter, PlayableCharacter or both?)
-                if (click.collider != null && currentAbility.getTargetingType() == TargetingTypeEnum.EnemyTarget && click.collider.gameObject.tag == "EnemyCharacter")
+                if (currentAbility.getTargetingType() == TargetingTypeEnum.NoTarget)
                 {
-                    currentTarget = click.collider.gameObject.GetComponent<EnemyCharacter>();
-                    currentAbility.onCast((Character) currentTarget);
-                    currentAbility.postCast((Character) currentTarget);
+                    currentTarget = (Character) currentCharacter;
+                    currentAbility.onCast(currentTarget);
+                    currentAbility.postCast(currentTarget);
                 }
-                else if (click.collider != null && currentAbility.getTargetingType() == TargetingTypeEnum.PlayerTarget && click.collider.gameObject.tag == "PlayableCharacter")
+                
+                
+                else //Case where user clicked on something
                 {
-                    currentTarget = click.collider.gameObject.GetComponent<PlayableCharacter>();
-                    currentAbility.onCast((Character) currentTarget);
-                    currentAbility.postCast((Character) currentTarget);
+                    //Define target to be hit by ability by creating raycast line aimed at the mousecursor
+                    //Using this method, no character needs a button component
+                    RaycastHit2D click = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition),Vector2.zero,Mathf.Infinity);
+                    
+                    //Cond 1: User clicked on something with a collider 
+                    //Cond 2: Abilities has this specific targeting type
+                    //Cond 3: Collider has the correct tag (either EnemyCharacter, PlayableCharacter or both?)
+                    if (click.collider != null && currentAbility.getTargetingType() == TargetingTypeEnum.EnemyTarget && click.collider.gameObject.tag == "EnemyCharacter")
+                    {
+                        currentTarget = click.collider.gameObject.GetComponent<EnemyCharacter>();
+                        currentAbility.onCast((Character) currentTarget);
+                        currentAbility.postCast((Character) currentTarget);
+                    }
+                    else if (click.collider != null && currentAbility.getTargetingType() == TargetingTypeEnum.PlayerTarget && click.collider.gameObject.tag == "PlayableCharacter")
+                    {
+                        currentTarget = click.collider.gameObject.GetComponent<PlayableCharacter>();
+                        currentAbility.onCast((Character) currentTarget);
+                        currentAbility.postCast((Character) currentTarget);
+                    }
                 }
             }
             yield return null;
@@ -111,6 +142,10 @@ public class AbilityButtonHandler : MonoBehaviour
         if (CanSomeoneCast() == true && !EnemyEncounter.IsEncounterDead())
         {
             StartCoroutine(CharacterCasting());
+        }
+        else
+        {
+            NextTurnButton.gameObject.GetComponent<Button>().interactable = true;
         }
     }
     
@@ -135,8 +170,8 @@ public class AbilityButtonHandler : MonoBehaviour
         foreach (GameObject G in PlayerParty.getParty())
         {
             G.GetComponent<PlayableCharacter>().RefreshCasting();
-            G.GetComponent<PlayableCharacter>().resetProtectionList();
-            G.GetComponent<PlayableCharacter>().FullHealthResolveBonus(); 
+            G.GetComponent<PlayableCharacter>().FullHealthResolveBonus();
+            
         }
     }
     
@@ -172,6 +207,12 @@ public class AbilityButtonHandler : MonoBehaviour
             {
                 SC.gameObject.GetComponent<Image>().color = Color.white;
             }
+            
+            if (SC.GetAssignedCharacter() == currentCharacter)
+            {
+                SC.gameObject.GetComponent<Image>().color = Color.yellow;
+            }
+            
         }
         
         //Highlighes current abilities

@@ -20,13 +20,12 @@ public class CoconutStunAbility : Ability
     
     public override void onCast(Character E)
     {
-        BattleLogicHandler.PlayerAttack(PC, (EnemyCharacter) E, 10 + PC.getDamageOutputModifier());
-        BattleLogicHandler.LowerStamina((EnemyCharacter) E, 50);
+        BattleLogicHandler.LowerStamina((EnemyCharacter) E, 80);
     }
     
     public override string GetTooltipString()
     {
-        string s1 = "Deal " + (10 + PC.getDamageOutputModifier()) + " damage, followed by 50 stamina damage";
+        string s1 = "Deal 80 stamina damage";
         string s2 = "Cooldown: " + currentCooldown + "/" + maxCooldown;
         return s1 + "\n" + s2;
     }
