@@ -36,7 +36,7 @@ public static class BattleLogicHandler
 		if ((C.GetType()).IsSubclassOf(typeof(PlayableCharacter)))
 		{
 			PlayableCharacter P = (PlayableCharacter) C;
-			P.setResolve(P.getResolve() + damageToHealth);
+			P.setResolve(P.getResolve() + damageToArmor);
 		}
 		else
 		{
@@ -109,10 +109,6 @@ public static class BattleLogicHandler
 		//Create new Trigger Event for this
 		RecP.setCurrentArmor(RecP.getCurrentArmor() + d);
 		DefP.setResolve(DefP.getResolve() + d);
-		if (DefP != RecP)
-		{
-			RecP.setResolve(RecP.getResolve() + d);
-		}
 		
 	}
 	

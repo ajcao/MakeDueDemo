@@ -47,6 +47,11 @@ public class EnemyApplyBuffMove : EnemyMove
     {
         return "+" + this.Intensity;
     }
+    
+    public override string getAnimation()
+    {
+        return "Jump";
+    }
 }
 
 }

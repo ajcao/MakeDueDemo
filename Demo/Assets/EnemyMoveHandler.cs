@@ -8,11 +8,13 @@ using UnityEngine.Rendering;
 
 public class EnemyMoveHandler : MonoBehaviour
 {
-    public bool EnemyHasMoved;
+    public bool EnemyisMoving;
     
     public GameObject EnemyMoveIndicatorPrefab;
     
     public NextTurnButtonScript NextTurnButton;
+    
+    public BattleAnimationHandler BattleAnimation;
     
     //Function also handles creating new moves too
     public void DisplayMoves()
@@ -72,18 +74,30 @@ public class EnemyMoveHandler : MonoBehaviour
     }
     
     public void BeginEnemyTurn()
-    {    
+    {
+        EnemyisMoving = true;
+        StartCoroutine(EnemyTurn());
+    }
+    
+    IEnumerator EnemyTurn()
+    {
         //Fix to avoid using size
         //Relies on fixing Player Party and Enemy Encounter
-        Debug.Log(NextTurnButton.gameObject.GetComponent<Image>().sprite);
         Sprite ButtonImage = Resources.Load<Sprite>("EnemyTurnButton") as Sprite;
         NextTurnButton.gameObject.GetComponent<Image>().sprite = ButtonImage;
-        Debug.Log(NextTurnButton.gameObject.GetComponent<Image>().sprite);
         foreach (GameObject G in EnemyEncounter.GetLivingEncounterMembers())
         {
             EnemyCharacter E = G.GetComponent<EnemyCharacter>();
+            BattleAnimation.StartAnimation(G, E.getCurrentMoves().Peek().getAnimation());
             E.EnemyCastMoves();
+            while (BattleAnimation.isAnimationPlaying())
+            {
+                yield return null;
+            }
+            this.DrawMoves(E);
         }
+        EnemyisMoving = false;
+        
     }
     
     //Maybe assign this to BattleLogicHandler

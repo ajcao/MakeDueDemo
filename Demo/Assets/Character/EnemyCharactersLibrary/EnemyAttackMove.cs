@@ -35,6 +35,11 @@ public class EnemyAttackMove : EnemyMove
     {
         return "" + (damageAmount + EC.getDamageOutputModifier());
     }
+    
+    public override string getAnimation()
+    {
+        return "EnemyAttack";
+    }
 }
 
 }

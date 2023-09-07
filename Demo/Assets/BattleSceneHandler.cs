@@ -132,9 +132,12 @@ public class BattleSceneHandler : MonoBehaviour
             
             BattleLogicHandler.EnemyPreTurn();
             
-            EM_Handler.BeginEnemyTurn();
             
-            yield return new WaitForSeconds(3.0f);
+            EM_Handler.BeginEnemyTurn();
+            while (EM_Handler.EnemyisMoving)
+            {
+                yield return null;
+            }
             
             BattleLogicHandler.CheckForEncounterDeath();
             

@@ -30,6 +30,7 @@ public class GenericEnemy1Behavior : EnemyCharacter
     
     public override void GenerateMoves()
     {
+        Debug.Log("Generating moves");
         Character[] Target;
         
         if (BattleSceneHandler.GetTurn() == 1)

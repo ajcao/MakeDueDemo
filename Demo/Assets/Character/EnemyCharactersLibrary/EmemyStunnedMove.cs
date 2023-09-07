@@ -34,6 +34,11 @@ public class EnemyStunnedMove : EnemyMove
         return;
     }
     
+    public override string getAnimation()
+    {
+        return null;
+    }
+    
 }
 
 }

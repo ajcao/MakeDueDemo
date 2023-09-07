@@ -26,7 +26,7 @@ public class GainArmorBuff : Buff
     
     public override void onApplication()
     {
-        BattleLogicHandler.Armor(this.BuffTarget, this.Intensity.Value);
+        return;
     }
     
     public override void onExpire()

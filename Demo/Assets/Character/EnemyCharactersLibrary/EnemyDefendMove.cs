@@ -36,6 +36,11 @@ public class EnemyDefendMove : EnemyMove
     {
         return "" + (defendAmount);
     }
+    
+    public override string getAnimation()
+    {
+        return "Jump";
+    }
 }
 
 }

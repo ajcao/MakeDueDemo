@@ -26,8 +26,7 @@ public class DefensiveCurlAbility : Ability
         foreach (GameObject G in PlayerParty.GetLivingPartyMembers())
         {
             PlayableCharacter C = G.GetComponent<PlayableCharacter>();
-            BattleLogicHandler.Armor(C, 10);
-            C.setResolve(C.getResolve() + 10);
+            BattleLogicHandler.PlayerDefend(this.PC, C, 10);
         }
     }
     

@@ -81,6 +81,8 @@ public abstract class EnemyMove
         this.AdditionalMoveDeletion();
     }
     
+    public abstract string getAnimation();
+    
     
 
 }

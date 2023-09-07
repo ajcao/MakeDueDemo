@@ -21,6 +21,7 @@ public class ArmorMilkAbility : Ability
     
     public override void onCast(Character P)
     {
+        BattleLogicHandler.Armor(P, 20);
         Buff B = new GainArmorBuff(P, this.getPlayableCharacter(), 20, 3);
         BattleLogicHandler.OnBuffApply(B);
     }
