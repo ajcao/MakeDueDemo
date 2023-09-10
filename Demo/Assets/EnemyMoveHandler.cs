@@ -28,7 +28,15 @@ public class EnemyMoveHandler : MonoBehaviour
             {
                 E.GenerateMoves();
             }
-            DrawMoves(E);
+        }
+    }
+    
+    public void Update()
+    {
+        foreach (GameObject G in EnemyEncounter.GetLivingEncounterMembers())
+        {
+            EnemyCharacter E = G.GetComponent<EnemyCharacter>();
+            this.DrawMoves(E);
         }
     }
     
@@ -94,7 +102,10 @@ public class EnemyMoveHandler : MonoBehaviour
             {
                 yield return null;
             }
-            this.DrawMoves(E);
+            //Pop move after casting
+            //This is done in case moves changes to stun during cast    
+            EnemyMove EM = E.getCurrentMoves().Pop();
+            EM.DeleteMove();
         }
         EnemyisMoving = false;
         

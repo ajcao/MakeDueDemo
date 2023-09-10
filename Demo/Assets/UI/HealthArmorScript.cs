@@ -84,7 +84,7 @@ public class HealthArmorScript : MonoBehaviour
             {
                 Flashing = StartCoroutine(FlashingBar());
             }
-            else if (!E.canStaminaRegenerate && (Flashing != null))
+            else if ((!E.canStaminaRegenerate || (E.getStamina() == E.getMaxStamina())) && (Flashing != null))
             {
                 SecondBar.color = new Color(0.0f, 0.118f, 0.118f);
                 StopCoroutine(Flashing);

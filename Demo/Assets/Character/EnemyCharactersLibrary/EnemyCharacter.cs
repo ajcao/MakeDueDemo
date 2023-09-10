@@ -68,9 +68,8 @@ public abstract class EnemyCharacter : Character
 	
 	public void EnemyCastMoves()
 	{
-		EnemyMove EM = Moves.Pop();
+		EnemyMove EM = Moves.Peek();
 		EM.onCastWrapper();
-		EM.DeleteMove();
 	}
 	
 	public void GetStunned()
