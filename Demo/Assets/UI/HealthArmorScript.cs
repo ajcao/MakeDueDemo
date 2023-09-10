@@ -16,6 +16,8 @@ public class HealthArmorScript : MonoBehaviour
     
     public Character C;
     
+    private Coroutine Flashing;
+    
     //Determines what second bar is
     private bool IsResolveBar;
     
@@ -28,6 +30,8 @@ public class HealthArmorScript : MonoBehaviour
         
         if (IsResolveBar)
             SecondBar.color = Color.blue;
+        else
+            SecondBar.color = new Color(0.0f, 0.118f, 0.118f);
     }
     
     
@@ -55,6 +59,18 @@ public class HealthArmorScript : MonoBehaviour
             PlayableCharacter P = (PlayableCharacter) C;
             SecondBarText.text = "" + P.getResolve() + "/" + P.getMaxResolve();
             SecondBar.transform.localScale = new Vector3( (P.getResolve() / (float) P.getMaxResolve()), 1.0f, 1.0f);
+            
+            //Flash if player has max resolve
+            if ((P.getResolve() == P.getMaxResolve()) && (Flashing == null))
+            {
+                Flashing = StartCoroutine(FlashingBar());
+            }
+            else if ((P.getResolve() != P.getMaxResolve()) && (Flashing != null))
+            {
+                SecondBar.color = Color.blue;
+                StopCoroutine(Flashing);
+                Flashing = null;
+            }
         }
         //Else display player resolve bar
         else
@@ -62,8 +78,40 @@ public class HealthArmorScript : MonoBehaviour
             EnemyCharacter E = (EnemyCharacter) C;
             SecondBarText.text = "" + E.getStamina() + "/" + E.getMaxStamina();
             SecondBar.transform.localScale = new Vector3( (E.getStamina() / (float) E.getMaxStamina()), 1.0f, 1.0f);
+            
+            //Flash if enemy can regenerate stamina
+            if (E.canStaminaRegenerate && (E.getStamina() != E.getMaxStamina()) && (Flashing == null))
+            {
+                Flashing = StartCoroutine(FlashingBar());
+            }
+            else if (!E.canStaminaRegenerate && (Flashing != null))
+            {
+                SecondBar.color = new Color(0.0f, 0.118f, 0.118f);
+                StopCoroutine(Flashing);
+                Flashing = null;
+            }
         }
         
+    }
+    
+    IEnumerator FlashingBar()
+    {
+        while (true)
+        {
+            for (int i = 0; i < 60; i++)
+            {
+                SecondBar.color += new Color(0.01f, 0.01f, 0.0f);
+                yield return new WaitForSeconds(0.01f);
+            }
+            yield return new WaitForSeconds(0.1f);
+            
+            for (int i = 0; i < 60; i++)
+            {
+                SecondBar.color -= new Color(0.01f, 0.01f, 0.0f);
+                yield return new WaitForSeconds(0.01f);
+            }
+            yield return new WaitForSeconds(0.1f);
+        }
     }
 
 }
