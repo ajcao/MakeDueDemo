@@ -1,4 +1,5 @@
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using CharacterUtil;
@@ -51,21 +52,21 @@ public class onRoundStartTrigger : TriggerEvent
 
 public class onPreTurnTrigger : TriggerEvent
 {
-	public Character Char;
+	public Type CharacterType;
 	
-	public onPreTurnTrigger(Character inputC)
+	public onPreTurnTrigger(Type inputCT)
 	{
-		Char = inputC;
+		CharacterType = inputCT;
 	}
 }
 
 public class onPostTurnTrigger : TriggerEvent
 {
-	public Character Char;
+	public Type CharacterType;
 	
-	public onPostTurnTrigger(Character inputC)
+	public onPostTurnTrigger(Type inputCT)
 	{
-		Char = inputC;
+		CharacterType = inputCT;
 	}
 }
 

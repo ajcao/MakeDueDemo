@@ -208,9 +208,8 @@ public static class BattleLogicHandler
 			PlayableCharacter P = G.GetComponent<PlayableCharacter>();
 			P.setCurrentArmor(Mathf.Min(P.getCurrentArmor(), P.getArmorRetain()));
 		}
-		Character C = PlayerParty.GetLivingPartyMembers()[0].GetComponent<Character>();
 		int dummy = 0;
-		TriggerEvent TE = new onPreTurnTrigger(C);
+		TriggerEvent TE = new onPreTurnTrigger(typeof(PlayableCharacter));
 		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onPreTurnEnum, TE, ref dummy);
 		
 	}
@@ -223,9 +222,9 @@ public static class BattleLogicHandler
 			EnemyCharacter E = G.GetComponent<EnemyCharacter>();
 			E.setCurrentArmor(Mathf.Min(E.getCurrentArmor(), E.getArmorRetain()));
 		}
-		Character C = EnemyEncounter.GetLivingEncounterMembers()[0].GetComponent<Character>();;
+		Character C = EnemyEncounter.GetLivingEncounterMembers()[0].GetComponent<EnemyCharacter>();;
 		int dummy = 0;
-		TriggerEvent TE = new onPreTurnTrigger(C);
+		TriggerEvent TE = new onPreTurnTrigger(typeof(EnemyCharacter));
 		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onPreTurnEnum, TE, ref dummy);
 	}
 	
