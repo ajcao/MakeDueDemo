@@ -11,7 +11,7 @@ public class GiveHPWhenAttackedDebuff : Buff
 {
     public GiveHPWhenAttackedDebuff(Character CTarget, Character CBuffer, int Inten, int? Dur) 
     {
-        this.Trigger = TriggerEventEnum.onPlayerAttackEnum;
+        this.Trigger = TriggerEventEnum.onDealAttackDamagePostEnum;
         this.BuffTarget = CTarget;
         this.OriginalBuffer = CBuffer;
         this.Intensity = Inten;
@@ -39,10 +39,10 @@ public class GiveHPWhenAttackedDebuff : Buff
     
     public override void onTriggerEffect(TriggerEvent E, ref int v)
     {
-        onPlayerAttackTrigger T = (onPlayerAttackTrigger) E;
-        if (T.ReceivingEnemy == BuffTarget)
+        onDealAttackDamagePostTrigger T = (onDealAttackDamagePostTrigger) E;
+        if (T.ReceivingChar == BuffTarget)
         {
-            T.AttackingPlayer.setCurrentHealth(T.AttackingPlayer.getCurrentHealth() + this.Intensity.Value);
+            BattleLogicHandler.GainHealth(T.AttackingChar, this.Intensity.Value);
         }
     }
 }

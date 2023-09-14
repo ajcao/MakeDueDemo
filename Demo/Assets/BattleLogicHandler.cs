@@ -23,30 +23,85 @@ public static class BattleLogicHandler
 	}
 	
 	
-	public static void Damage(Character C, int inputD)
+	public static void AttackDamage(Character AC, Character RC, int inputD)
 	{
-		TriggerEvent TE = new onDealDamageTrigger(C, inputD);
 		int d = inputD;
-		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onDealDamageEnum, TE, ref d);
 		
-		int damageToArmor = Mathf.Min(d, C.getCurrentArmor());
-		int damageToHealth = Mathf.Max(0, d - C.getCurrentArmor());
+		TriggerEvent TE = new onDealDamageAddTrigger(RC, d);
+		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onDealDamageAddEnum, TE, ref d);
 		
-		BattleLogicHandler.LowerArmor(C, damageToArmor);
-		if ((C.GetType()).IsSubclassOf(typeof(PlayableCharacter)))
+		TE = new onDealDamageMultiTrigger(RC, d);
+		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onDealDamageMultiEnum, TE, ref d);
+		
+		TE = new onDealDamageSpecialTrigger(RC, d);
+		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onDealDamageSpecialEnum, TE, ref d);
+		
+		int damageToArmor = Mathf.Min(d, RC.getCurrentArmor());
+		int damageToHealth = Mathf.Max(0, d - RC.getCurrentArmor());
+		
+		BattleLogicHandler.LowerArmor(RC, damageToArmor);
+		if ((RC.GetType()).IsSubclassOf(typeof(PlayableCharacter)))
 		{
-			PlayableCharacter P = (PlayableCharacter) C;
-			P.setResolve(P.getResolve() + damageToArmor);
+			BattleLogicHandler.GainResolve((PlayableCharacter) RC, damageToArmor);
 		}
 		else
 		{
-			BattleLogicHandler.LowerStamina((EnemyCharacter) C, damageToHealth);
+			BattleLogicHandler.LowerStamina((EnemyCharacter) RC, damageToHealth);
 		}
-		GameObject.Find("DamageNumberHandler").GetComponent<DamageNumberHandler>().CreateDamageNumber(C, damageToHealth);
-		C.setCurrentHealth(Mathf.Max(C.getCurrentHealth() - damageToHealth, 0));
+		
+		
+		//Displays damage
+		GameObject.Find("DamageNumberHandler").GetComponent<DamageNumberHandler>().CreateDamageNumber(RC, damageToHealth);
+		RC.setCurrentHealth(RC.getCurrentHealth() - damageToHealth);
+		if (RC.getCurrentHealth() <= 0)
+		{
+			//Adds death trigger, to be processed after buffs proc
+			TE = new onDeathTrigger(RC);
+			BuffHandler.AddTriggerToHigherPrioirty((onDeathTrigger) TE);
+		}
+		
+		TE = new onDealAttackDamagePostTrigger(AC, RC, d);
+		if (BuffHandler.inBuffTriggerProcess)
+		{
+			BuffHandler.AddTriggerToTotalProc(TriggerEventEnum.onDealAttackDamagePostEnum, TE);
+		}
+		else
+		{
+			BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onDealAttackDamagePostEnum, TE, ref d);
+		}
 	}
 	
-	public static void Armor(Character C, int d)
+	public static void BuffDamage(Character RC, int inputD)
+	{
+		int d = inputD;
+		TriggerEvent TE;
+		
+		int damageToArmor = Mathf.Min(d, RC.getCurrentArmor());
+		int damageToHealth = Mathf.Max(0, d - RC.getCurrentArmor());
+		
+		BattleLogicHandler.LowerArmor(RC, damageToArmor);
+		if ((RC.GetType()).IsSubclassOf(typeof(PlayableCharacter)))
+		{
+			BattleLogicHandler.GainResolve((PlayableCharacter) RC, damageToArmor);
+		}
+		else
+		{
+			BattleLogicHandler.LowerStamina((EnemyCharacter) RC, damageToHealth);
+		}
+		
+		
+		//Displays damage
+		GameObject.Find("DamageNumberHandler").GetComponent<DamageNumberHandler>().CreateDamageNumber(RC, damageToHealth);
+		RC.setCurrentHealth(RC.getCurrentHealth() - damageToHealth);
+		if (RC.getCurrentHealth() <= 0)
+		{
+			//Adds death trigger, to be processed after buffs proc
+			TE = new onDeathTrigger(RC);
+			BuffHandler.AddTriggerToHigherPrioirty((onDeathTrigger) TE);
+		}
+	}
+	
+	public static void GainArmor(Character C, int d)
 	{
 		C.setCurrentArmor(C.getCurrentArmor() + d);
 	}
@@ -61,9 +116,14 @@ public static class BattleLogicHandler
 		E.setStamina(Mathf.Max(E.getStamina() - d, 0));
 	}
 	
-	public static void Restore(Character C, int r)
+	public static void GainHealth(Character C, int r)
 	{
 		C.setCurrentHealth(Mathf.Min(C.getCurrentHealth() + r, C.getMaxHealth()));
+	}
+	
+	public static void GainResolve(PlayableCharacter P, int r)
+	{
+		P.setResolve(Mathf.Min(P.getResolve() + r, P.getMaxResolve()));
 	}
 	
 	public static void AbilityCast(PlayableCharacter P, Character C)
@@ -75,27 +135,29 @@ public static class BattleLogicHandler
 	
 	public static void PostAbilityCast(PlayableCharacter P, Character C)
 	{
-		TriggerEvent TE = new onPostPlayerAbilityTrigger(P, C);
+		TriggerEvent TE = new onPlayerAbilityPostTrigger(P, C);
 		int dummy = 0;
-		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onPostPlayerAbilityEnum, TE, ref dummy);
+		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onPlayerAbilityPostEnum, TE, ref dummy);
 		
 	}
 	
 	public static void EnemyAttack(EnemyCharacter E, PlayableCharacter P, int inputD)
 	{
 		int d = inputD;
-		TriggerEvent TE = new onEnemyAttackTrigger(E, P, d);
+		TriggerEvent TE = new onEnemyAttackTrigger(E, P);
 		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onEnemyAttackEnum, TE, ref d);
-		Damage(P,d);
+		
+		AttackDamage(E, P,d);
 		BattleLog.Push(TE);
 	}
 	
 	public static void PlayerAttack(PlayableCharacter P, EnemyCharacter E, int inputD)
 	{
-		TriggerEvent TE = new onPlayerAttackTrigger(P,E,inputD);
 		int d = inputD;
+		TriggerEvent TE = new onPlayerAttackTrigger(P,E);
 		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onPlayerAttackEnum, TE, ref d);
-		Damage(E,d);
+		
+		AttackDamage(P, E,d);
 		BattleLog.Push(TE);
 	}
 	
@@ -104,21 +166,11 @@ public static class BattleLogicHandler
 		B.onApplicationWrapper();
 	}
 	
-	public static void PlayerDefend(PlayableCharacter DefP, PlayableCharacter RecP, int d)
-	{
-		//Create new Trigger Event for this
-		RecP.setCurrentArmor(RecP.getCurrentArmor() + d);
-		DefP.setResolve(DefP.getResolve() + d);
-		
-	}
-	
+	//Trigger is handled by damage script and buff handler
+	//Since death can only be safely determined after all buffs trigger
 	public static void CharacterDies(Character C)
 	{
-		TriggerEvent TE = new onDeathTrigger(C);
-		BattleLog.Push(TE);
-		int dummy = 0;
-		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onDeathEnum, TE, ref dummy);
-		
+		C.onDeath();
 		BuffHandler.RemoveBuffsFromDeadCharacter(C);
 		
 		//Move character offscreen (should BattleLogicHandler handle this?)
@@ -143,10 +195,24 @@ public static class BattleLogicHandler
 	
 	public static void BeginRound(int t)
 	{
-		//Start the turn
+		//Start the beginning of the round
 		int dummy = 0;
-		TriggerEvent TE = new onTurnStartTrigger(t);
-		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onTurnStartEnum, TE, ref dummy);
+		TriggerEvent TE = new onRoundStartTrigger(t);
+		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onRoundStartEnum, TE, ref dummy);
+	}
+	
+	public static void PlayerPreTurn()
+	{
+		foreach (GameObject G in PlayerParty.GetLivingPartyMembers())
+		{
+			PlayableCharacter P = G.GetComponent<PlayableCharacter>();
+			P.setCurrentArmor(Mathf.Min(P.getCurrentArmor(), P.getArmorRetain()));
+		}
+		Character C = PlayerParty.GetLivingPartyMembers()[0].GetComponent<Character>();
+		int dummy = 0;
+		TriggerEvent TE = new onPreTurnTrigger(C);
+		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onPreTurnEnum, TE, ref dummy);
+		
 	}
 	
 
@@ -154,21 +220,46 @@ public static class BattleLogicHandler
 	{
 		foreach (GameObject G in EnemyEncounter.GetLivingEncounterMembers())
 		{
-			EnemyCharacter C = G.GetComponent<EnemyCharacter>();
-			C.setCurrentArmor(Mathf.Min(C.getCurrentArmor(), C.getArmorRetain()));
+			EnemyCharacter E = G.GetComponent<EnemyCharacter>();
+			E.setCurrentArmor(Mathf.Min(E.getCurrentArmor(), E.getArmorRetain()));
 		}
+		Character C = EnemyEncounter.GetLivingEncounterMembers()[0].GetComponent<Character>();;
+		int dummy = 0;
+		TriggerEvent TE = new onPreTurnTrigger(C);
+		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onPreTurnEnum, TE, ref dummy);
 	}
 	
 	//Decrease buff duration
-	public static void EndCombatRound()
+	//Reset Stamina
+	//Reset Resolve
+	public static void EndCombatRound(int R)
 	{
 		BuffHandler.DecrementBuffDuration();
-		foreach (GameObject G in PlayerParty.GetLivingPartyMembers())
-		{
-			PlayableCharacter C = G.GetComponent<PlayableCharacter>();
-			C.setCurrentArmor(Mathf.Min(C.getCurrentArmor(), C.getArmorRetain()));
-		}
 		
+        foreach (GameObject G in PlayerParty.GetLivingPartyMembers())
+        {
+            G.GetComponent<PlayableCharacter>().RefreshCasting();
+            G.GetComponent<PlayableCharacter>().FullHealthResolveBonus();
+            
+        }
+		
+		foreach (GameObject G in EnemyEncounter.GetLivingEncounterMembers())
+        {
+            EnemyCharacter E = G.GetComponent<EnemyCharacter>();
+            
+            if (E.canStaminaRegenerate == true)
+            {
+                E.setStamina(Mathf.Min(E.getStamina() + E.getStaminaRegeneration(), E.getMaxStamina()));
+            }
+            E.canStaminaRegenerate = true;
+            
+            if (E.IsStunned == true)
+            {
+                E.IsStunned = false;
+                E.setStamina(E.getMaxStamina());
+            }
+            
+        }
 	}
 	
 }

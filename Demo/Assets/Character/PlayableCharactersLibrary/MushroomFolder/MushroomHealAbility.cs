@@ -18,9 +18,9 @@ public class MushroomHealAbility : Ability
         this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/MushroomHeal") as Sprite;
     }
     
-    public override void onCast(Character E)
+    public override void onCast(Character C)
     {
-        BattleLogicHandler.Restore((PlayableCharacter) E, 10);
+        BattleLogicHandler.GainHealth((PlayableCharacter) C, 10);
     }
     
     public override string GetTooltipString()

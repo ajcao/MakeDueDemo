@@ -30,7 +30,14 @@ public class TooltipHandler : MonoBehaviour
         }
         else //tooltip exist
         {
-            TooltipBox.gameObject.transform.position = Input.mousePosition;
+            if (Input.mousePosition.x < (Screen.width / 2))
+            {
+                TooltipBox.gameObject.transform.position = Input.mousePosition + new Vector3(200,0,0);
+            }
+            else
+            {
+                TooltipBox.gameObject.transform.position = Input.mousePosition - new Vector3(200,0,0);
+            }
         }
     }
 }

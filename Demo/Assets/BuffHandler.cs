@@ -11,6 +11,14 @@ public static class BuffHandler
     //Represents all
 	//Hashtable mapping TriggerEventEnum -> Buff Dynamic Array
 	private static Dictionary<TriggerEventEnum, List<Buff>> BuffsList;
+	
+	private static Queue<(TriggerEventEnum, TriggerEvent)> currentBuffProcList;
+	
+	private static Queue<(TriggerEventEnum, TriggerEvent)> TotalProcList;
+	
+	private static Queue<onDeathTrigger> HighPriorityProcList;
+	
+	public static bool inBuffTriggerProcess = false;
     
     public static void Init()
     {
@@ -21,6 +29,10 @@ public static class BuffHandler
         {
             BuffsList[e] = new List<Buff>();
         }
+		
+		currentBuffProcList = new Queue<(TriggerEventEnum, TriggerEvent)>();
+		TotalProcList = new Queue<(TriggerEventEnum, TriggerEvent)>();	
+		HighPriorityProcList = new Queue<onDeathTrigger>();
         
     }
 	
@@ -91,13 +103,32 @@ public static class BuffHandler
 			BuffHandler.RemoveDeletedBuffsFromList(G.GetComponent<Character>().getBuffList());
 		}
 	}
+	
+	public static void AddTriggerToHigherPrioirty(onDeathTrigger TE)
+	{
+		HighPriorityProcList.Enqueue(TE);
+	}
+	
+	public static void AddTriggerToTotalProc(TriggerEventEnum e, TriggerEvent TE)
+	{
+		TotalProcList.Enqueue((e, TE));
+	}
+
+	public static bool isTriggerWaiting()
+	{
+		return ( (TotalProcList.Count > 0) | (HighPriorityProcList.Count > 0) );
+	}
 
 	
 	public static void TriggerBuffsinBuffsList(TriggerEventEnum e, TriggerEvent TE, ref int v)
 	{
+		inBuffTriggerProcess = true;
+		
 		if (BuffsList[e] != null)
 		{
-			for (int i = 0; i < BuffsList[e].Count; i++)
+			//Only process currents buffs. Any more buffs added are not processed
+			int BuffCount = BuffsList[e].Count;
+			for (int i = 0; i < BuffCount; i++)
 			{
 				if (!BuffsList[e][i].ToBeDeleted)
 				{
@@ -105,6 +136,63 @@ public static class BuffHandler
 				}
 			}
 		}
+		
+		//While some buffs are still in the proc list
+		while (BuffHandler.isTriggerWaiting())
+		{
+			//Move all triggers in waiting to the current trigger list
+			while (TotalProcList.Count > 0)
+			{
+				currentBuffProcList.Enqueue(TotalProcList.Dequeue());
+			}
+			
+			//Proc high priority triggrs for deaths
+			//Check for actual death in case a dud shows up
+			while (HighPriorityProcList.Count > 0)
+			{
+				onDeathTrigger DT = HighPriorityProcList.Dequeue();
+				//Determine if character is truely dead
+				//if so proc death trigger
+				if (DT.DyingCharacter.getCurrentHealth() <= 0)
+				{
+					BattleLogicHandler.CharacterDies(DT.DyingCharacter);
+					if (BuffsList[TriggerEventEnum.onDeathEnum] != null)
+					{
+						int BuffCount = BuffsList[TriggerEventEnum.onDeathEnum].Count;
+						int dummy = 0;
+						for (int i = 0; i < BuffCount; i++)
+						{
+							if (!BuffsList[TriggerEventEnum.onDeathEnum][i].ToBeDeleted)
+							{
+								BuffsList[TriggerEventEnum.onDeathEnum][i].onTriggerEffect(DT, ref dummy);
+							}
+						}
+					}
+				}
+			}
+			
+			//Proc normal buffs in waiting
+			while (currentBuffProcList.Count > 0)
+			{
+				(TriggerEventEnum currentEnum, TriggerEvent currentTE) = currentBuffProcList.Dequeue();
+				if (BuffsList[currentEnum] != null)
+				{
+					int BuffCount = BuffsList[currentEnum].Count;
+					int dummy = 0;
+					for (int i = 0; i < BuffCount; i++)
+					{
+						if (!BuffsList[currentEnum][i].ToBeDeleted)
+						{
+							BuffsList[currentEnum][i].onTriggerEffect(currentTE, ref dummy);
+						}
+					}
+				}
+			}
+		}
+		
+		//Remove any buffs that have a counter
 		BuffHandler.RemoveDeletedBuffsFromEveryone();
+		
+		inBuffTriggerProcess = false;
 	}
 }

@@ -1234,7 +1234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8592a29b08710ad4f848e928c5524a84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyHasMoved: 0
+  EnemyisMoving: 0
   EnemyMoveIndicatorPrefab: {fileID: 787224342149600993, guid: eebe3344effe0a748854f52fe3b25b7c, type: 3}
   NextTurnButton: {fileID: 1116373767}
   BattleAnimation: {fileID: 999435455}

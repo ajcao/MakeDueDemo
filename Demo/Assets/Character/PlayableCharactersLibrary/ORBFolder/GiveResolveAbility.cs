@@ -18,10 +18,10 @@ public class GiveResolveAbility : Ability
         this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/GenericGiveResolve") as Sprite;
     }
     
-    public override void onCast(Character E)
+    public override void onCast(Character C)
     {
-        PlayableCharacter P = (PlayableCharacter) E;
-        P.setResolve(P.getResolve() + 60);
+        PlayableCharacter P = (PlayableCharacter) C;
+        BattleLogicHandler.GainResolve(P, 60);
     }
     
     public override string GetTooltipString()

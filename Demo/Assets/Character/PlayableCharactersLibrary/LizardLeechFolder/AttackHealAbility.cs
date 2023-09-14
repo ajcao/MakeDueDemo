@@ -21,7 +21,7 @@ public class AttackHealAbility : Ability
     public override void onCast(Character E)
     {
         BattleLogicHandler.PlayerAttack(PC, (EnemyCharacter) E, PC.getAttackStat() + PC.getDamageOutputModifier());
-        BattleLogicHandler.Restore(PC, PC.getAttackStat() + PC.getDamageOutputModifier());
+        BattleLogicHandler.GainHealth(PC, PC.getAttackStat() + PC.getDamageOutputModifier());
     }
     
     public override string GetTooltipString()

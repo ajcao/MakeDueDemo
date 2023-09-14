@@ -38,6 +38,7 @@ public static class EnemyEncounter
         return AliveList;
     }
     
+    //Will probably need to rework
     public static void ReplaceEncounterMember(GameObject InputE)
     {
         for (int i = 0; i < MaxEncounterSize; i++)

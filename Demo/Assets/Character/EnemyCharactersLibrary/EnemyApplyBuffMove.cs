@@ -17,7 +17,6 @@ public class EnemyApplyBuffMove : EnemyMove
     public EnemyApplyBuffMove (EnemyCharacter InputC, Character[] CArray, string BN, int? I, int? D)
     {
         TargetArray = CArray;
-        Special = false;
         EC = InputC;
         BuffName = BN;
         this.Intensity = I;

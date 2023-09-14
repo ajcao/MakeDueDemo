@@ -29,14 +29,6 @@ public class EnemyMoveIndicatorScript : MonoBehaviour, IPointerClickHandler, IPo
         
         SpriteRenderer S = this.gameObject.transform.Find("EnemyMoveSprite").gameObject.GetComponent<SpriteRenderer>();
         S.sprite = EM.getIcon();
-        if (EM.IsSpecial())
-        {
-            S.gameObject.GetComponent<SpriteRenderer>().color = Color.yellow;
-        }
-        else
-        {
-            S.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
-        }
         
         Empty = Resources.Load<Sprite>("EnemyCharacterImages/Blank");
     }

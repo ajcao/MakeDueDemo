@@ -1,4 +1,5 @@
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using TriggerEventUtil;
@@ -9,7 +10,7 @@ using TooltipUtil;
 namespace BuffUtil
 {
 	
-public abstract class Buff
+public abstract class Buff : IEquatable<Buff>
 {
 	protected TriggerEventEnum Trigger;
 	protected Character BuffTarget;
@@ -84,6 +85,7 @@ public abstract class Buff
 			this.Intensity-=1;
 			if ( this.Intensity.Value == 0 )
 			{
+				//Put a buff on expire trigger event here?
 				this.onExpire();
 				this.PrepareBuffForDeletion();
 			}
@@ -169,6 +171,11 @@ public abstract class Buff
 	public abstract void onApplication();
 	public abstract void onExpire();
 	public abstract void onTriggerEffect(TriggerEvent E, ref int v);
+	
+	public bool Equals(Buff B)
+	{
+		return ( (this.GetType() == B.GetType()) && (this.getIntensity() == B.getIntensity()) && (this.getDuration() == B.getDuration()) && (this.getBuffTarget() == B.getBuffTarget()) );
+	}
 }
 
 }

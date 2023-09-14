@@ -12,7 +12,6 @@ public class EnemyStunnedMove : EnemyMove
 {
     public EnemyStunnedMove()
     {
-        Special = false;
         AbilityIcon = Resources.Load<Sprite>("AbilityImages/StunIcon");
         TargetArray = new Character[0];
         

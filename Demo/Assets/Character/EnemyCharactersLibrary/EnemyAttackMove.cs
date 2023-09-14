@@ -16,7 +16,6 @@ public class EnemyAttackMove : EnemyMove
     {
         EC = inputC;
         TargetArray = CArray;
-        Special = false;
         damageAmount = d;
         AbilityIcon = Resources.Load<Sprite>("AbilityImages/AttackIcon");
         

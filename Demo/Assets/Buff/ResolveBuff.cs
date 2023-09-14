@@ -11,7 +11,7 @@ public class ResolveBuff : Buff
 {
     public ResolveBuff(Character CTarget, Character CBuffer, int Inten, int? Dur) 
     {
-        this.Trigger = TriggerEventEnum.onPostPlayerAbilityEnum;
+        this.Trigger = TriggerEventEnum.onPlayerAbilityPostEnum;
         this.BuffTarget = CTarget;
         this.OriginalBuffer = CBuffer;
         this.Intensity = Inten;
@@ -39,11 +39,16 @@ public class ResolveBuff : Buff
     
     public override void onTriggerEffect(TriggerEvent E, ref int v)
     {
-        onPostPlayerAbilityTrigger T = (onPostPlayerAbilityTrigger) E;
+        onPlayerAbilityPostTrigger T = (onPlayerAbilityPostTrigger) E;
         if (T.CastingPlayer == (PlayableCharacter) BuffTarget)
         {
             T.CastingPlayer.RefreshCasting();
             this.decrementIntensity();
+            if (this.Intensity.Value <= 0)
+            {
+                this.ToBeDeleted = true;
+            }
+            
         }
     }
 }

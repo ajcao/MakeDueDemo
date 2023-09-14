@@ -76,13 +76,8 @@ public abstract class EnemyCharacter : Character
 	{
 		if (Moves.Count > 0)
 		{
-			EnemyMove EM = Moves.Peek();
-			//Pop the move onto the stack without removing
-			if (!EM.IsSpecial())
-			{
-				EM = Moves.Pop();
-				EM.DeleteMove();
-			}	
+			EnemyMove EM = Moves.Pop();
+			EM.DeleteMove();
 		}		
 		Moves.Push(new EnemyStunnedMove());
 		this.IsStunned = true;

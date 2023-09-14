@@ -110,27 +110,5 @@ public class EnemyMoveHandler : MonoBehaviour
         EnemyisMoving = false;
         
     }
-    
-    //Maybe assign this to BattleLogicHandler
-    public void ResetEnemyStamina()
-    {
-        foreach (GameObject G in EnemyEncounter.GetLivingEncounterMembers())
-        {
-            EnemyCharacter E = G.GetComponent<EnemyCharacter>();
-            
-            if (E.canStaminaRegenerate == true)
-            {
-                E.setStamina(Mathf.Min(E.getStamina() + E.getStaminaRegeneration(), E.getMaxStamina()));
-            }
-            E.canStaminaRegenerate = true;
-            
-            if (E.IsStunned == true)
-            {
-                E.IsStunned = false;
-                E.setStamina(E.getMaxStamina());
-            }
-            
-        }
-    }
 
 }

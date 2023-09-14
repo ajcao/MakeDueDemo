@@ -16,7 +16,7 @@ public class BattleSceneHandler : MonoBehaviour
     public GameObject E1;
     public GameObject E2;
     
-    public static int Turn;
+    public static int Round;
     private bool isBattling;
     
     public AbilityButtonHandler AB_Handler;
@@ -28,9 +28,9 @@ public class BattleSceneHandler : MonoBehaviour
     public delegate void EndGameDelegate();
     public static EndGameDelegate EndGame;
     
-    public static int GetTurn()
+    public static int GetRound()
     {
-        return Turn;
+        return Round;
     }
     
     public void EndGameMethod()
@@ -81,20 +81,20 @@ public class BattleSceneHandler : MonoBehaviour
         
         
         
-        PlayerParty.AddPartyMember((Instantiate(CurrentCharacterArray[0], new Vector2(-8,0), Quaternion.identity) as GameObject));
-        PlayerParty.AddPartyMember((Instantiate(CurrentCharacterArray[1], new Vector2(-5,0), Quaternion.identity) as GameObject));
-        PlayerParty.AddPartyMember((Instantiate(CurrentCharacterArray[2], new Vector2(-2,0), Quaternion.identity) as GameObject));
-        PlayerParty.AddPartyMember((Instantiate(CurrentCharacterArray[3], new Vector2(1,0), Quaternion.identity) as GameObject));
+        PlayerParty.AddPartyMember((Instantiate(CurrentCharacterArray[0], new Vector2(-7.5f,0.0f), Quaternion.identity) as GameObject));
+        PlayerParty.AddPartyMember((Instantiate(CurrentCharacterArray[1], new Vector2(-5.0f,0.0f), Quaternion.identity) as GameObject));
+        PlayerParty.AddPartyMember((Instantiate(CurrentCharacterArray[2], new Vector2(-2.5f,0.0f), Quaternion.identity) as GameObject));
+        PlayerParty.AddPartyMember((Instantiate(CurrentCharacterArray[3], new Vector2(0.0f,0.0f), Quaternion.identity) as GameObject));
         
-        EnemyEncounter.AddEncounterMember((Instantiate(E1, new Vector2(6,0), Quaternion.identity) as GameObject));
-        EnemyEncounter.AddEncounterMember((Instantiate(E2, new Vector2(9,0), Quaternion.identity) as GameObject));
+        EnemyEncounter.AddEncounterMember((Instantiate(E1, new Vector2(5.0f,0.0f), Quaternion.identity) as GameObject));
+        EnemyEncounter.AddEncounterMember((Instantiate(E2, new Vector2(7.5f,0.0f), Quaternion.identity) as GameObject));
                 
         //--------------------------------------------------------------------------------------------------------------
     }
     
     public void Start()
     {
-        Turn = 1;
+        Round = 1;
         isBattling = true;
         
         BattleLogicHandler.Init();
@@ -113,14 +113,17 @@ public class BattleSceneHandler : MonoBehaviour
         while (isBattling)
         {
             //Start the Turn
-            BattleLogicHandler.BeginRound(Turn);
+            BattleLogicHandler.BeginRound(Round);
             
             //Check enemy moves, create new moves if needed
             EM_Handler.DisplayMoves();
             
             //Player turn
             Debug.Log("PlayerTurn");
+            BattleLogicHandler.PlayerPreTurn();
+            
             AB_Handler.StartCastingMode();
+            
             while (AB_Handler.IsInCastingMode())
             {
                 yield return null;
@@ -128,9 +131,11 @@ public class BattleSceneHandler : MonoBehaviour
             
             BattleLogicHandler.CheckForEncounterDeath();
             
+            
             Debug.Log("EnemyTurn");
             
             BattleLogicHandler.EnemyPreTurn();
+            
             
             
             EM_Handler.BeginEnemyTurn();
@@ -141,18 +146,14 @@ public class BattleSceneHandler : MonoBehaviour
             
             BattleLogicHandler.CheckForEncounterDeath();
             
-            EM_Handler.ResetEnemyStamina();
-            
-            AB_Handler.ResetPlayerTurn();
-            
-            BattleLogicHandler.EndCombatRound();
+            BattleLogicHandler.EndCombatRound(Round);
             
             
 
             
             
                 
-            Turn+=1;
+            Round+=1;
         }
         
         

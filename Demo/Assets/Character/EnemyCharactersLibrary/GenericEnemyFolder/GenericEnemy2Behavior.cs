@@ -25,6 +25,7 @@ public class GenericEnemy2Behavior : EnemyCharacter
         Moves = new Stack<EnemyMove>();
         
         this.CharacterIcon = Resources.Load<Sprite>("EnemyCharacterImages/GenericEnemy2Icon");
+        
     }
     
     public override void GenerateMoves()

@@ -48,17 +48,6 @@ public abstract class Character : MonoBehaviour
 	public void setCurrentHealth(int h)
 	{
 		this.CurrentHealth = h;
-		
-		if (this.CurrentHealth >= this.MaxHealth)
-		{
-			this.CurrentHealth = this.MaxHealth;
-		}
-		
-		if (this.CurrentHealth <= 0)
-		{
-			this.onDeath();
-			BattleLogicHandler.CharacterDies(this);
-		}
 	}
 	
 	public int getMaxHealth()

@@ -12,7 +12,7 @@ public class GainArmorBuff : Buff
 {
     public GainArmorBuff(Character CTarget, Character CBuffer, int Inten, int? Dur) 
     {
-        this.Trigger = TriggerEventEnum.onTurnStartEnum;
+        this.Trigger = TriggerEventEnum.onPreTurnEnum;
         this.BuffTarget = CTarget;
         this.OriginalBuffer = CBuffer;
         this.Intensity = Inten;
@@ -26,7 +26,7 @@ public class GainArmorBuff : Buff
     
     public override void onApplication()
     {
-        return;
+        BattleLogicHandler.GainArmor(this.BuffTarget, this.Intensity.Value);
     }
     
     public override void onExpire()
@@ -36,12 +36,16 @@ public class GainArmorBuff : Buff
     
     public override string GetTooltipString()
     {
-        return "At the start of the round, gain " + this.Intensity.Value + " armor";
+        return "At the start of the turn, gain " + this.Intensity.Value + " armor";
     }
     
     public override void onTriggerEffect(TriggerEvent E, ref int v)
     {
-        BattleLogicHandler.Armor(this.BuffTarget, this.Intensity.Value);
+        onPreTurnTrigger T = (onPreTurnTrigger) E;
+        if (T.Char.GetType() == this.BuffTarget.GetType())
+        {
+            BattleLogicHandler.GainArmor(this.BuffTarget, this.Intensity.Value);
+        }
     }
 }
 

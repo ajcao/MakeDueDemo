@@ -11,7 +11,7 @@ public class SpikeBuff : Buff
 {
     public SpikeBuff(Character CTarget, Character CBuffer, int Inten, int? Dur) 
     {
-        this.Trigger = TriggerEventEnum.onEnemyAttackEnum;
+        this.Trigger = TriggerEventEnum.onDealAttackDamagePostEnum;
         this.BuffTarget = CTarget;
         this.OriginalBuffer = CBuffer;
         this.Intensity = Inten;
@@ -39,10 +39,10 @@ public class SpikeBuff : Buff
     
     public override void onTriggerEffect(TriggerEvent E, ref int v)
     {
-        onEnemyAttackTrigger T = (onEnemyAttackTrigger) E;
-        if (T.ReceivingPlayer == BuffTarget)
+        onDealAttackDamagePostTrigger T = (onDealAttackDamagePostTrigger) E;
+        if (T.ReceivingChar == BuffTarget)
         {
-            BattleLogicHandler.Damage(T.AttackingEnemy, this.Intensity.Value);
+            BattleLogicHandler.BuffDamage(T.AttackingChar, this.Intensity.Value);
         }
     }
 }

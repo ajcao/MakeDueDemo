@@ -34,9 +34,6 @@ public abstract class EnemyMove
     
     
     
-    //Speical moves are not lost during stunned turns
-    public bool Special;
-    
     protected Sprite AbilityIcon;
     
     public void AssignIndicator(GameObject MI)
@@ -57,16 +54,6 @@ public abstract class EnemyMove
     public Character[] getTargetArray()
     {
         return TargetArray;
-    }
-    
-    public bool IsSpecial()
-    {
-        return Special;
-    }
-    
-    public void SetSpecial()
-    {
-        Special = true;
     }
     
     public abstract void AdditionalMoveDeletion();

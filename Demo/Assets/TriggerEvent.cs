@@ -10,16 +10,27 @@ namespace TriggerEventUtil
 	
 public enum TriggerEventEnum
 {
-	onTurnStartEnum,
-	onTurnEndEnum,
+	onRoundStartEnum,
+	onPreTurnEnum,
+	onPostTurnEnum,
+	onRoundEndEnum,
+	
 	onPlayerAttackEnum,
+	onPlayerSkillEnum,
 	onPlayerAbilityEnum,
-	onPostPlayerAbilityEnum,
-	onDealDamageEnum,
+	onPlayerAbilityPostEnum,
+	
+	onDealDamageAddEnum,
+	onDealDamageMultiEnum,
+	onDealDamageSpecialEnum,
+	onDealAttackDamagePostEnum,
+	
 	onEnemyAttackEnum,
-	onDeathEnum,
+	onEnemySkillEnum,
+	
 	onBuffExpireEnum,
 	onBuffHolderDeathEnum,
+	onDeathEnum,
 	noTriggerEnum
 }
 
@@ -28,21 +39,41 @@ public abstract class TriggerEvent
 }
 
 
-public class onTurnStartTrigger : TriggerEvent
+public class onRoundStartTrigger : TriggerEvent
 {
 	public int Turn;
 	
-	public onTurnStartTrigger(int t)
+	public onRoundStartTrigger(int t)
 	{
 		Turn = t;
 	}
 }
 
-public class onTurnEndTrigger : TriggerEvent
+public class onPreTurnTrigger : TriggerEvent
+{
+	public Character Char;
+	
+	public onPreTurnTrigger(Character inputC)
+	{
+		Char = inputC;
+	}
+}
+
+public class onPostTurnTrigger : TriggerEvent
+{
+	public Character Char;
+	
+	public onPostTurnTrigger(Character inputC)
+	{
+		Char = inputC;
+	}
+}
+
+public class onRoundEndTrigger : TriggerEvent
 {
 	public int Turn;
 	
-	public onTurnEndTrigger(int t)
+	public onRoundEndTrigger(int t)
 	{
 		Turn = t;
 	}
@@ -52,13 +83,23 @@ public class onPlayerAttackTrigger : TriggerEvent
 {
 	public PlayableCharacter AttackingPlayer;
 	public EnemyCharacter ReceivingEnemy;
-	public int DamageAmount;
 	
-	public onPlayerAttackTrigger(PlayableCharacter P, EnemyCharacter E, int d)
+	public onPlayerAttackTrigger(PlayableCharacter P, EnemyCharacter E)
 	{
 		AttackingPlayer = P;
 		ReceivingEnemy = E;
-		DamageAmount = d;
+	}
+}
+
+public class onPlayerSkillTrigger : TriggerEvent
+{
+	public PlayableCharacter CastingPlayer;
+	public Character ReceivingCharacter;
+	
+	public onPlayerSkillTrigger(PlayableCharacter P, Character C)
+	{
+		CastingPlayer = P;
+		ReceivingCharacter = C;
 	}
 }
 
@@ -74,15 +115,65 @@ public class onPlayerAbilityTrigger : TriggerEvent
 	}
 }
 
-public class onPostPlayerAbilityTrigger : TriggerEvent
+public class onPlayerAbilityPostTrigger : TriggerEvent
 {
 	public PlayableCharacter CastingPlayer;
 	public Character ReceivingCharacter;
 	
-	public onPostPlayerAbilityTrigger(PlayableCharacter P, Character C)
+	public onPlayerAbilityPostTrigger(PlayableCharacter P, Character C)
 	{
 		CastingPlayer = P;
 		ReceivingCharacter = C;
+	}
+}
+
+public class onDealDamageAddTrigger : TriggerEvent
+{
+	public Character ReceivingChar; 
+	public int DamageAmount;
+	
+	public onDealDamageAddTrigger(Character RC, int d)
+	{
+		ReceivingChar = RC;
+		DamageAmount = d;
+	}
+}
+
+public class onDealDamageMultiTrigger : TriggerEvent
+{
+	public Character ReceivingChar; 
+	public int DamageAmount;
+	
+	public onDealDamageMultiTrigger(Character RC, int d)
+	{
+		ReceivingChar = RC;
+		DamageAmount = d;
+	}
+}
+
+public class onDealDamageSpecialTrigger : TriggerEvent
+{
+	public Character ReceivingChar; 
+	public int DamageAmount;
+	
+	public onDealDamageSpecialTrigger(Character RC, int d)
+	{
+		ReceivingChar = RC;
+		DamageAmount = d;
+	}
+}
+
+public class onDealAttackDamagePostTrigger : TriggerEvent
+{
+	public Character AttackingChar;
+	public Character ReceivingChar; 
+	public int DamageAmount;
+	
+	public onDealAttackDamagePostTrigger(Character AC, Character RC, int d)
+	{
+		AttackingChar = AC;
+		ReceivingChar = RC;
+		DamageAmount = d;
 	}
 }
 
@@ -90,25 +181,23 @@ public class onEnemyAttackTrigger : TriggerEvent
 {
 	public EnemyCharacter AttackingEnemy;
 	public PlayableCharacter ReceivingPlayer; 
-	public int DamageAmount;
 	
-	public onEnemyAttackTrigger(EnemyCharacter E, PlayableCharacter P, int d)
+	public onEnemyAttackTrigger(EnemyCharacter E, PlayableCharacter P)
 	{
 		AttackingEnemy = E;
 		ReceivingPlayer = P;
-		DamageAmount = d;
 	}
 }
 
-public class onDealDamageTrigger : TriggerEvent
+public class onEnemySkillTrigger : TriggerEvent
 {
-	public Character ReceivingChar; 
-	public int DamageAmount;
+	public EnemyCharacter CastingEnemy;
+	public PlayableCharacter ReceivingCharacter; 
 	
-	public onDealDamageTrigger(Character RC, int d)
+	public onEnemySkillTrigger(EnemyCharacter E, PlayableCharacter C)
 	{
-		ReceivingChar = RC;
-		DamageAmount = d;
+		CastingEnemy = E;
+		ReceivingCharacter = C;
 	}
 }
 
@@ -124,17 +213,6 @@ public class onBuffExpireTrigger : TriggerEvent
 	}
 }
 
-public class onBuffHolderDeathTrigger : TriggerEvent
-{
-	public Character BuffHolder;
-	public Buff ExpiredBuff;
-	
-	public onBuffHolderDeathTrigger(Character C, Buff B)
-	{
-		BuffHolder = C;
-		ExpiredBuff = B;
-	}
-}
 
 public class onDeathTrigger : TriggerEvent
 {

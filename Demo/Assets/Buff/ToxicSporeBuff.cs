@@ -11,7 +11,7 @@ public class ToxicSporeBuff : Buff
 {
     public ToxicSporeBuff(Character CTarget, Character CBuffer, int Inten, int? Dur) 
     {
-        this.Trigger = TriggerEventEnum.onPlayerAttackEnum;
+        this.Trigger = TriggerEventEnum.onDealDamageAddEnum;
         this.BuffTarget = CTarget;
         this.OriginalBuffer = CBuffer;
         this.Intensity = Inten;
@@ -39,10 +39,10 @@ public class ToxicSporeBuff : Buff
     
     public override void onTriggerEffect(TriggerEvent E, ref int v)
     {
-        onPlayerAttackTrigger T = (onPlayerAttackTrigger) E;
-        if (T.ReceivingEnemy == BuffTarget)
+        onDealDamageAddTrigger T = (onDealDamageAddTrigger) E;
+        if (T.ReceivingChar == BuffTarget)
         {
-            BattleLogicHandler.Damage(BuffTarget, this.Intensity.Value);
+            v += this.Intensity.Value;
         }
     }
 }

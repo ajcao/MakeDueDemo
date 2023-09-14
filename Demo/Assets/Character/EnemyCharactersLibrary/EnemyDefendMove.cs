@@ -16,7 +16,6 @@ public class EnemyDefendMove : EnemyMove
     {
         EC = inputC;
         TargetArray = CArray;
-        Special = false;
         defendAmount = d;
         AbilityIcon = Resources.Load<Sprite>("AbilityImages/DefendIcon");
         
@@ -24,7 +23,7 @@ public class EnemyDefendMove : EnemyMove
     
     public override void onCast(Character C)
     {
-        BattleLogicHandler.Armor(C, defendAmount);
+        BattleLogicHandler.GainArmor(C, defendAmount);
     }
     
     public override void AdditionalMoveDeletion()

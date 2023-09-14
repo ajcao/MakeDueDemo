@@ -4,6 +4,7 @@ using UnityEngine;
 using CharacterUtil;
 using EnemyMoveUtil;
 using EnemyTargetingLibraryUtil;
+using BuffUtil;
 
 public class GenericEnemy1Behavior : EnemyCharacter
 {
@@ -24,6 +25,8 @@ public class GenericEnemy1Behavior : EnemyCharacter
         Moves = new Stack<EnemyMove>();
         
         this.CharacterIcon = Resources.Load<Sprite>("EnemyCharacterImages/GenericEnemy1Icon");
+        
+        
     }
     
     private int NoVulnurableMoveTurn = 0;
@@ -33,12 +36,12 @@ public class GenericEnemy1Behavior : EnemyCharacter
         Debug.Log("Generating moves");
         Character[] Target;
         
-        if (BattleSceneHandler.GetTurn() == 1)
+        //If the buff was never applied, try to apply
+        if (!this.BuffList.Contains(new GainArmorBuff(this, this, 20, null)))
         {
             Target = new Character[] {(Character) this};
             
             EnemyApplyBuffMove E = new EnemyApplyBuffMove(this, Target, "GainArmorBuff", 20, null);
-            E.SetSpecial();
             Moves.Push(E);
         }
         else

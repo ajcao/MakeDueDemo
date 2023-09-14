@@ -165,16 +165,6 @@ public class AbilityButtonHandler : MonoBehaviour
         return false;
     }
     
-    public void ResetPlayerTurn()
-    {
-        foreach (GameObject G in PlayerParty.getParty())
-        {
-            G.GetComponent<PlayableCharacter>().RefreshCasting();
-            G.GetComponent<PlayableCharacter>().FullHealthResolveBonus();
-            
-        }
-    }
-    
     //Update ability buttons to always display current Characters Abilities
     //Also handles colors of Abillity buttons
     //Does not handle color of SelectCharacter button

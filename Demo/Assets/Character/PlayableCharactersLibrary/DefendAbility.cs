@@ -21,7 +21,7 @@ public class DefendAbility : Ability
     
     public override void onCast(Character P)
     {
-        BattleLogicHandler.PlayerDefend(PC, (PlayableCharacter) P, PC.getDefenseStat());
+        BattleLogicHandler.GainArmor(P, PC.getDefenseStat());
     }
     
     public override string GetTooltipString()

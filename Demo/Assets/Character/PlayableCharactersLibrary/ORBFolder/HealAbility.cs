@@ -18,9 +18,9 @@ public class HealAbility : Ability
         this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/GenericAbilityHeal") as Sprite;
     }
     
-    public override void onCast(Character E)
+    public override void onCast(Character C)
     {
-        BattleLogicHandler.Restore((PlayableCharacter) E, 50);
+        BattleLogicHandler.GainHealth((PlayableCharacter) C, 50);
     }
     
     public override string GetTooltipString()
