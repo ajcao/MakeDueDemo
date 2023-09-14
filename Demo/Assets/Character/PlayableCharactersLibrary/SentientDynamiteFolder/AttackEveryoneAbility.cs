@@ -28,7 +28,10 @@ public class AttackEveryoneAbility : Ability
             if (i < EnemyEncounter.getEncounterSize())
             {
                 EnemyCharacter E = EnemyEncounter.getEncounter()[i].GetComponent<EnemyCharacter>();
-                BattleLogicHandler.PlayerAttack(PC, E, PC.getAttackStat() + PC.getDamageOutputModifier());
+                if (E.isAlive() && PC.isAlive())
+                {
+                    BattleLogicHandler.PlayerAttack(PC, E, PC.getAttackStat() + PC.getDamageOutputModifier());
+                }
             }
         }
     }
