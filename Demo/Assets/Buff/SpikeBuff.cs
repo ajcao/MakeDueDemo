@@ -12,6 +12,7 @@ public class SpikeBuff : Buff
     public SpikeBuff(Character CTarget, Character CBuffer, int Inten, int? Dur) 
     {
         this.Trigger = TriggerEventEnum.onDealAttackDamagePostEnum;
+        this.TriggerSecondary = TriggerEventEnum.noTriggerEnum;
         this.BuffTarget = CTarget;
         this.OriginalBuffer = CBuffer;
         this.Intensity = Inten;

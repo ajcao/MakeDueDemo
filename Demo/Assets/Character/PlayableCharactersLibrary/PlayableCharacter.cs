@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using AbilityUtil;
+using ItemUtil;
 
 namespace CharacterUtil
 {
@@ -22,6 +23,8 @@ public abstract class PlayableCharacter : Character
 	
 	
 	public List<Ability> AbilityPool;
+	
+	public List<GameItem> Inventory = new List<GameItem>();
 	
 	public int getResolve()
 	{
@@ -107,7 +110,16 @@ public abstract class PlayableCharacter : Character
 	}
 	
 
+	public List<GameItem> GetIntentory()
+	{
+		return Inventory;
+	}
 	
+	public void AddToInventory(GameItem I)
+	{
+		this.Inventory.Add(I);
+		I.AssignCharacter(this);
+	}
 			
 }
 

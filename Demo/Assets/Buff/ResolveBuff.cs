@@ -12,6 +12,7 @@ public class ResolveBuff : Buff
     public ResolveBuff(Character CTarget, Character CBuffer, int Inten, int? Dur) 
     {
         this.Trigger = TriggerEventEnum.onPlayerAbilityPostEnum;
+        this.TriggerSecondary = TriggerEventEnum.noTriggerEnum;
         this.BuffTarget = CTarget;
         this.OriginalBuffer = CBuffer;
         this.Intensity = Inten;

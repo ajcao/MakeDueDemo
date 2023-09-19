@@ -27,6 +27,8 @@ public abstract class Character : MonoBehaviour
 	protected List<Buff> BuffList = new List<Buff>();
 	//Used to decided when to redraw buff list
 	public bool BuffListDirty = false;
+	
+	public string CharacterName;
 
 	
 	public bool isAlive()

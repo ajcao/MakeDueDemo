@@ -13,6 +13,7 @@ public class GainArmorBuff : Buff
     public GainArmorBuff(Character CTarget, Character CBuffer, int Inten, int? Dur) 
     {
         this.Trigger = TriggerEventEnum.onPreTurnEnum;
+        this.TriggerSecondary = TriggerEventEnum.noTriggerEnum;
         this.BuffTarget = CTarget;
         this.OriginalBuffer = CBuffer;
         this.Intensity = Inten;

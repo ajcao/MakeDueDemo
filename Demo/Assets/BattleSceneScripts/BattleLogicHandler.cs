@@ -104,6 +104,16 @@ public static class BattleLogicHandler
 	public static void GainArmor(Character C, int d)
 	{
 		C.setCurrentArmor(C.getCurrentArmor() + d);
+		TriggerEvent TE = new onArmorGainTrigger(C, d);
+		if (BuffHandler.inBuffTriggerProcess)
+		{
+			BuffHandler.AddTriggerToTotalProc(TriggerEventEnum.onArmorGainEnum, TE);
+		}
+		else
+		{
+			BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onDealAttackDamagePostEnum, TE, ref d);
+		}
+		
 	}
 	
 	public static void LowerArmor(Character C, int d)
@@ -144,21 +154,22 @@ public static class BattleLogicHandler
 	public static void EnemyAttack(EnemyCharacter E, PlayableCharacter P, int inputD)
 	{
 		int d = inputD;
+		
+		AttackDamage(E, P,d);
+		
 		TriggerEvent TE = new onEnemyAttackTrigger(E, P);
 		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onEnemyAttackEnum, TE, ref d);
 		
-		AttackDamage(E, P,d);
-		BattleLog.Push(TE);
 	}
 	
 	public static void PlayerAttack(PlayableCharacter P, EnemyCharacter E, int inputD)
 	{
 		int d = inputD;
-		TriggerEvent TE = new onPlayerAttackTrigger(P,E);
-		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onPlayerAttackEnum, TE, ref d);
 		
 		AttackDamage(P, E,d);
-		BattleLog.Push(TE);
+		
+		TriggerEvent TE = new onPlayerAttackTrigger(P,E);
+		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onPlayerAttackEnum, TE, ref d);
 	}
 	
 	public static void OnBuffApply(Buff B)

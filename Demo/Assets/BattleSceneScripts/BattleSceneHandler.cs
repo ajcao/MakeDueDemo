@@ -1,17 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using CharacterUtil;
+using ItemUtil;
 
 public class BattleSceneHandler : MonoBehaviour
 {
-    public GameObject P1;
-    public GameObject P2;
-    public GameObject P3;
-    public GameObject P4;
-    public GameObject P5;
-    public GameObject P6;
-    public GameObject P7;
-    public GameObject P8;
     
     public GameObject E1;
     public GameObject E2;
@@ -52,39 +46,11 @@ public class BattleSceneHandler : MonoBehaviour
         //Add method to delegate
         EndGame = EndGameMethod;
         
-        //TEMP CODE TO CREATE PLAYER PARTY------------------------------------------------------------------------------
-        //WILL BE HANDLED BY SYSTEM TO CREATE PARTY
-        //Later "Add Don't Destroy on Load"
-        
-        //Get random characters
-        List<GameObject> TotalCharacterArray = new List<GameObject>();
-        TotalCharacterArray.Add(P1);
-        TotalCharacterArray.Add(P2);
-        TotalCharacterArray.Add(P3);
-        TotalCharacterArray.Add(P4);
-        TotalCharacterArray.Add(P5);
-        TotalCharacterArray.Add(P6);
-        TotalCharacterArray.Add(P7);
-        TotalCharacterArray.Add(P8);
-        
-        GameObject[] CurrentCharacterArray = new GameObject[4];
-        
-        int i = 0;
-        while (TotalCharacterArray.Count > 0 && i < 4)
-        {
-            int r = Random.Range(0, TotalCharacterArray.Count);
-            GameObject P = TotalCharacterArray[r];
-            CurrentCharacterArray[i] = P;
-            TotalCharacterArray.Remove(P);
-            i++;
-        }
-        
-        
-        
-        PlayerParty.AddPartyMember((Instantiate(CurrentCharacterArray[0], new Vector2(-7.5f,0.0f), Quaternion.identity) as GameObject));
-        PlayerParty.AddPartyMember((Instantiate(CurrentCharacterArray[1], new Vector2(-5.0f,0.0f), Quaternion.identity) as GameObject));
-        PlayerParty.AddPartyMember((Instantiate(CurrentCharacterArray[2], new Vector2(-2.5f,0.0f), Quaternion.identity) as GameObject));
-        PlayerParty.AddPartyMember((Instantiate(CurrentCharacterArray[3], new Vector2(0.0f,0.0f), Quaternion.identity) as GameObject));
+        //Temporary??
+        PlayerParty.getPartyMember(0).transform.position = new Vector3(-7.5f,0.0f,0.0f);
+        PlayerParty.getPartyMember(1).transform.position = new Vector3(-5.0f,0.0f,0.0f);
+        PlayerParty.getPartyMember(2).transform.position = new Vector3(-2.5f,0.0f,0.0f);
+        PlayerParty.getPartyMember(3).transform.position = new Vector3(0.0f,0.0f,0.0f);
         
         EnemyEncounter.AddEncounterMember((Instantiate(E1, new Vector2(5.0f,0.0f), Quaternion.identity) as GameObject));
         EnemyEncounter.AddEncounterMember((Instantiate(E2, new Vector2(7.5f,0.0f), Quaternion.identity) as GameObject));
@@ -102,6 +68,14 @@ public class BattleSceneHandler : MonoBehaviour
         //Load Background
         
         //Go Through all Items in PlayerParty and add buffs to BattleLogicHandler
+        foreach (GameObject C in PlayerParty.GetLivingPartyMembers())
+        {
+            PlayableCharacter P = C.GetComponent<PlayableCharacter>();
+            foreach (GameItem I in P.Inventory)
+            {
+                I.OnApply();
+            }
+        }
         
         StartCoroutine(TurnOrder());
         

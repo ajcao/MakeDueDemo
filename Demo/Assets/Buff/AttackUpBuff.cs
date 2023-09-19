@@ -13,6 +13,7 @@ public class AttackUpBuff : Buff
     public AttackUpBuff(Character CTarget, Character CBuffer, int Inten, int? Dur) 
     {
         this.Trigger = TriggerEventEnum.noTriggerEnum;
+        this.TriggerSecondary = TriggerEventEnum.noTriggerEnum;
         this.BuffTarget = CTarget;
         this.OriginalBuffer = CBuffer;
         this.Intensity = Inten;

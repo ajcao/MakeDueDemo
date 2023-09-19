@@ -24,6 +24,7 @@ public class SentientDynamiteBehavior : PlayableCharacter
         this.ResolveRegeneration = (int) Mathf.Ceil((float) this.MaxResolve / 2.0f);
         
         this.CharacterIcon = Resources.Load<Sprite>("PlayableCharacterImages/SentientDynamiteIcon");
+        CharacterName = "Sentient Dynamite";
         
         this.AbilityPool = new List<Ability>();
         this.AbilityPool.Add(new ActivateResolveAbility(this));

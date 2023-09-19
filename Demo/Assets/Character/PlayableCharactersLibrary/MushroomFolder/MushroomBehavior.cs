@@ -24,6 +24,7 @@ public class MushroomBehavior : PlayableCharacter
         this.ResolveRegeneration = (int) Mathf.Ceil((float) this.MaxResolve / 2.0f);
         
         CharacterIcon = Resources.Load<Sprite>("PlayableCharacterImages/MushroomIcon");
+        CharacterName = "Mushroom";
         
         this.AbilityPool = new List<Ability>();
         this.AbilityPool.Add(new ActivateResolveAbility(this));

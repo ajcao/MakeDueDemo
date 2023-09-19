@@ -12,6 +12,7 @@ public class VulnurableBuff : Buff
     public VulnurableBuff(Character CTarget, Character CBuffer, int? Inten, int? Dur) 
     {
         this.Trigger = TriggerEventEnum.onDealDamageMultiEnum;
+        this.TriggerSecondary = TriggerEventEnum.noTriggerEnum;
         this.BuffTarget = CTarget;
         this.OriginalBuffer = CBuffer;
         this.Intensity = Inten;

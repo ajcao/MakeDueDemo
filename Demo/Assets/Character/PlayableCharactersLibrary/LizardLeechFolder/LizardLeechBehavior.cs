@@ -24,6 +24,7 @@ public class LizardLeechBehavior : PlayableCharacter
         this.ResolveRegeneration = (int) Mathf.Ceil((float) this.MaxResolve / 2.0f);
         
         CharacterIcon = Resources.Load<Sprite>("PlayableCharacterImages/LizardleechIcon");
+        CharacterName = "Lizard Leech";
         
         this.AbilityPool = new List<Ability>();
         this.AbilityPool.Add(new ActivateResolveAbility(this));

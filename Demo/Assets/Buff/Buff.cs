@@ -13,6 +13,7 @@ namespace BuffUtil
 public abstract class Buff : IEquatable<Buff>
 {
 	protected TriggerEventEnum Trigger;
+	protected TriggerEventEnum TriggerSecondary;
 	protected Character BuffTarget;
 	protected Character OriginalBuffer;
     protected int? Intensity;
@@ -38,6 +39,11 @@ public abstract class Buff : IEquatable<Buff>
 	public TriggerEventEnum getTrigger()
 	{
 		return this.Trigger;
+	}
+	
+	public TriggerEventEnum getTriggerSecondary()
+	{
+		return this.TriggerSecondary;
 	}
 	
 	public Character getBuffTarget()

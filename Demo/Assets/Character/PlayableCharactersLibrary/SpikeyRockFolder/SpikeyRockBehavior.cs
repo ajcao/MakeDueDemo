@@ -23,6 +23,7 @@ public class SpikeyRockBehavior : PlayableCharacter
         this.ResolveRegeneration = (int) Mathf.Ceil((float) this.MaxResolve / 2.0f);
 
         this.CharacterIcon = Resources.Load<Sprite>("PlayableCharacterImages/SpikeyRockIcon");
+        CharacterName = "Spikey Rock";
         
         this.AbilityPool = new List<Ability>();
         this.AbilityPool.Add(new ActivateResolveAbility(this));

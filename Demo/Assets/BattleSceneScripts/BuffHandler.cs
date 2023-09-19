@@ -40,6 +40,7 @@ public static class BuffHandler
 	{
 		C.getBuffList().Add(B);
 		BuffsList[B.getTrigger()].Add(B);
+		BuffsList[B.getTriggerSecondary()].Add(B);
 	}
 	
 	public static void DecrementBuffDuration()
@@ -74,6 +75,7 @@ public static class BuffHandler
 			{
 				BList.Remove(B);
 				BuffsList[B.getTrigger()].Remove(B);
+				BuffsList[B.getTriggerSecondary()].Remove(B);
 				BuffHandler.RemoveDeletedBuffsFromList(BList);
 				return;
 			}
