@@ -34,6 +34,11 @@ public class ActivateResolveAbility : Ability
         
     }
     
+    public override void postCastWrapper(Character C)
+    {
+        postCast(C);
+    }
+    
     public override void postCast(Character C)
     {
         return;

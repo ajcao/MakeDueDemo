@@ -11,22 +11,22 @@ using BuffUtil;
 namespace ItemUtil
 {
     
-public class ApaxeItem : GameItem
+public class ParryShieldItem : GameItem
 {
-    public ApaxeItem()
+    public ParryShieldItem()
     {
-        this.ItemIcon = Resources.Load<Sprite>("ItemImages/Apaxe");
-        this.ItemName = "Apaxe";
+        this.ItemIcon = Resources.Load<Sprite>("ItemImages/ParryShield");
+        this.ItemName = "Parry Shield";
     }
     
     public override void OnPickup()
     {
-        this.ItemOwner.setAttackStat(this.ItemOwner.getAttackStat() + 20);
+        return;
     }
     
     public override void OnApply()
     {
-        Buff B = new ApaxeItemBuff(this.ItemOwner, this.ItemOwner, 20, null);
+        Buff B = new ParryShieldItemBuff(this.ItemOwner, this.ItemOwner, 10, null);
         BattleLogicHandler.OnBuffApply(B);
     }
 }

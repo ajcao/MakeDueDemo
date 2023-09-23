@@ -21,7 +21,13 @@ public class AttackAbility : Ability
     
     public override void onCast(Character E)
     {
-        BattleLogicHandler.PlayerAttack(PC, (EnemyCharacter) E, PC.getAttackStat() + PC.getDamageOutputModifier());
+        BattleLogicHandler.AttackDamage(PC, (EnemyCharacter) E, PC.getAttackStat() + PC.getDamageOutputModifier());
+    }
+    
+    public override void postCast(Character C)
+    {
+        BattleLogicHandler.PlayerBasicAttack(PC, (EnemyCharacter) C);
+        BattleLogicHandler.PlayerAttack(PC, (EnemyCharacter) C);
     }
     
     public override string GetTooltipString()

@@ -30,6 +30,12 @@ public class DefensiveCurlAbility : Ability
         }
     }
     
+    public override void postCast(Character C)
+    {
+        BattleLogicHandler.PlayerDefend(PC,null);
+        BattleLogicHandler.PlayerSkill(PC,null);
+    }
+    
     public override string GetTooltipString()
     {
         string s1 = "Give everyone 10 armor";

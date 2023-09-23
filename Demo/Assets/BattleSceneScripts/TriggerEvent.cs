@@ -16,8 +16,11 @@ public enum TriggerEventEnum
 	onPostTurnEnum,
 	onRoundEndEnum,
 	
+	onPlayerBasicAttackEnum,
+	onPlayerBasicDefendEnum,
 	onPlayerAttackEnum,
 	onPlayerSkillEnum,
+	onPlayerDefendEnum,
 	onPlayerAbilityEnum,
 	onPlayerAbilityPostEnum,
 	
@@ -35,8 +38,6 @@ public enum TriggerEventEnum
 	onEnemyAttackEnum,
 	onEnemySkillEnum,
 	
-	onBuffExpireEnum,
-	onBuffHolderDeathEnum,
 	onDeathEnum,
 	noTriggerEnum
 }
@@ -86,6 +87,18 @@ public class onRoundEndTrigger : TriggerEvent
 	}
 }
 
+public class onPlayerBasicAttackTrigger : TriggerEvent
+{
+	public PlayableCharacter AttackingPlayer;
+	public EnemyCharacter ReceivingEnemy;
+	
+	public onPlayerBasicAttackTrigger(PlayableCharacter P, EnemyCharacter E)
+	{
+		AttackingPlayer = P;
+		ReceivingEnemy = E;
+	}
+}
+
 public class onPlayerAttackTrigger : TriggerEvent
 {
 	public PlayableCharacter AttackingPlayer;
@@ -107,6 +120,30 @@ public class onPlayerSkillTrigger : TriggerEvent
 	{
 		CastingPlayer = P;
 		ReceivingCharacter = C;
+	}
+}
+
+public class onPlayerDefendTrigger : TriggerEvent
+{
+	public PlayableCharacter CastingPlayer;
+	public PlayableCharacter ReceivingPlayer;
+	
+	public onPlayerDefendTrigger(PlayableCharacter P, PlayableCharacter C)
+	{
+		CastingPlayer = P;
+		ReceivingPlayer = C;
+	}
+}
+
+public class onPlayerBasicDefendTrigger : TriggerEvent
+{
+	public PlayableCharacter CastingPlayer;
+	public PlayableCharacter ReceivingPlayer;
+	
+	public onPlayerBasicDefendTrigger(PlayableCharacter P, PlayableCharacter C)
+	{
+		CastingPlayer = P;
+		ReceivingPlayer = C;
 	}
 }
 

@@ -20,8 +20,14 @@ public class AttackDefendAbility : Ability
     
     public override void onCast(Character E)
     {
-        BattleLogicHandler.PlayerAttack(PC, (EnemyCharacter) E, PC.getAttackStat() + PC.getDamageOutputModifier());
-        BattleLogicHandler.GainArmor(PC, PC.getDefenseStat());
+        BattleLogicHandler.AttackDamage(PC, (EnemyCharacter) E, PC.getAttackStat() + PC.getDamageOutputModifier());
+        BattleLogicHandler.GainArmor(PC, PC.getDefenseStat() + PC.getDefenseOutputModifier());
+    }
+    
+    public override void postCast(Character C)
+    {
+        BattleLogicHandler.PlayerAttack(PC,(EnemyCharacter) C);
+        BattleLogicHandler.PlayerDefend(PC,(PlayableCharacter) PC);
     }
     
     public override string GetTooltipString()

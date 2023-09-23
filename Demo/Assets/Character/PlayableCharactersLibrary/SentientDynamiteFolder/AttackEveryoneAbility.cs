@@ -30,10 +30,15 @@ public class AttackEveryoneAbility : Ability
                 EnemyCharacter E = EnemyEncounter.getEncounter()[i].GetComponent<EnemyCharacter>();
                 if (E.isAlive() && PC.isAlive())
                 {
-                    BattleLogicHandler.PlayerAttack(PC, E, PC.getAttackStat() + PC.getDamageOutputModifier());
+                    BattleLogicHandler.AttackDamage(PC, E, PC.getAttackStat() + PC.getDamageOutputModifier());
                 }
             }
         }
+    }
+    
+    public override void postCast(Character C)
+    {
+        BattleLogicHandler.PlayerAttack(PC, null);
     }
     
     public override string GetTooltipString()

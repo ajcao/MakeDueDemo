@@ -23,6 +23,11 @@ public class HealAbility : Ability
         BattleLogicHandler.GainHealth((PlayableCharacter) C, 50);
     }
     
+    public override void postCast(Character C)
+    {
+        BattleLogicHandler.PlayerSkill(PC, C);
+    }
+    
     public override string GetTooltipString()
     {
         string s1 = "Restore " + 50 + " health";

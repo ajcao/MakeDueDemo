@@ -25,6 +25,11 @@ public class EnemyGivesHPAbilty : Ability
         BattleLogicHandler.OnBuffApply(B);
     }
     
+    public override void postCast(Character C)
+    {
+        BattleLogicHandler.PlayerSkill(PC, C);
+    }
+    
     public override string GetTooltipString()
     {
         string s1 = "Debuff enemy. When enemy is attacked, heal player for 5 hp";

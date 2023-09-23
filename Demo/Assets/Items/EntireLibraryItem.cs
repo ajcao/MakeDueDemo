@@ -16,6 +16,12 @@ public class EntireLibraryItem : MonoBehaviour
         A = new ApaxeItem();
         ReturnList.Add(A);
         
+        A = new ParryShieldItem();
+        ReturnList.Add(A);
+        
+        A = new MindAmuletItem();
+        ReturnList.Add(A);
+        
         
         return ReturnList;
     }

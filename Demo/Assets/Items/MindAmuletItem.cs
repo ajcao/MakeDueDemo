@@ -11,22 +11,22 @@ using BuffUtil;
 namespace ItemUtil
 {
     
-public class ApaxeItem : GameItem
+public class MindAmuletItem : GameItem
 {
-    public ApaxeItem()
+    public MindAmuletItem()
     {
-        this.ItemIcon = Resources.Load<Sprite>("ItemImages/Apaxe");
-        this.ItemName = "Apaxe";
+        this.ItemIcon = Resources.Load<Sprite>("ItemImages/MindAmulet");
+        this.ItemName = "Mind Amulet";
     }
     
     public override void OnPickup()
     {
-        this.ItemOwner.setAttackStat(this.ItemOwner.getAttackStat() + 20);
+        return;
     }
     
     public override void OnApply()
     {
-        Buff B = new ApaxeItemBuff(this.ItemOwner, this.ItemOwner, 20, null);
+        Buff B = new GainResolveBuff(this.ItemOwner, this.ItemOwner, 20, null);
         BattleLogicHandler.OnBuffApply(B);
     }
 }

@@ -17,11 +17,12 @@ public class GenericEnemy2Behavior : EnemyCharacter
         this.CurrentArmor = 0;
         this.ArmorRetain = 0;
         this.DamageOutputModifier = 0;
+        this.DefenseOutputModifier = 0;
         this.canStaminaRegenerate = true;
         this.IsStunned = false;
         this.Stamina = 100;
         this.MaxStamina = this.Stamina;
-        this.StaminaRegeneration = this.MaxStamina;
+        this.StaminaRegeneration = this.MaxStamina / 2;
         Moves = new Stack<EnemyMove>();
         
         this.CharacterIcon = Resources.Load<Sprite>("EnemyCharacterImages/GenericEnemy2Icon");

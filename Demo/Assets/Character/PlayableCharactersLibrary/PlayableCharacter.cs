@@ -54,9 +54,19 @@ public abstract class PlayableCharacter : Character
 		return AttackStat;
 	}
 	
+	public void setAttackStat(int d)
+	{
+		AttackStat += d;
+	}
+	
 	public int getDefenseStat()
 	{
 		return DefenseStat;
+	}
+	
+	public void setDefenseStat(int d)
+	{
+		DefenseStat += d;
 	}
 	
 	public void setHasCasted(bool b)

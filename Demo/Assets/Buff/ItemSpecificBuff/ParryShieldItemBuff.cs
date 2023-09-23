@@ -8,12 +8,12 @@ using TooltipUtil;
 namespace BuffUtil
 {
     
-public class ApaxeItemBuff : Buff
+public class ParryShieldItemBuff : Buff
 {
-    public ApaxeItemBuff(Character CTarget, Character CBuffer, int Inten, int? Dur) 
+    public ParryShieldItemBuff(Character CTarget, Character CBuffer, int Inten, int? Dur) 
     {
-        this.Trigger = TriggerEventEnum.onPlayerBasicAttackEnum;
-        this.TriggerSecondary = TriggerEventEnum.noTriggerEnum;
+        this.Trigger = TriggerEventEnum.onPlayerDefendEnum;
+        this.TriggerSecondary = TriggerEventEnum.onArmorGainEnum;
         this.BuffTarget = CTarget;
         this.OriginalBuffer = CBuffer;
         this.Intensity = Inten;
@@ -21,7 +21,7 @@ public class ApaxeItemBuff : Buff
         this.Visible = true;
         this.Stackable = true;
         
-        BuffIcon = Resources.Load<Sprite>("ItemImages/Apaxe");
+        BuffIcon = Resources.Load<Sprite>("ItemImages/ParryShield");
     }
 
     
@@ -35,30 +35,39 @@ public class ApaxeItemBuff : Buff
     
     public override string GetTooltipString()
     {
-        string s1 = "Increase basic attack damage damage by 20. \n";
-        string s2 = "Everytime you basic attack, inflict " + this.Intensity + " damange on two random enemies";
+        string s1 = "Whenever you gain armor or defend another, \n";
+        string s2 = "Deal " + this.Intensity + " damange to a random enemies";
         return s1 + "\n" + s2;
     }
     
     public override void onTriggerEffect(TriggerEvent E, ref int v)
     {
-        onPlayerBasicAttackTrigger TE = (onPlayerBasicAttackTrigger) E;
-        if (TE.AttackingPlayer == this.BuffTarget)
+        
+        if (E.GetType() == typeof(onPlayerDefendTrigger))
         {
-            if (EnemyEncounter.getEncounterSize() > 0)
-            {
-                int r = Random.Range(0,EnemyEncounter.getEncounterSize());
-                EnemyCharacter E2 = EnemyEncounter.getEncounterMember(r).GetComponent<EnemyCharacter>();
-                BattleLogicHandler.BuffDamage(E2, 20);
-            }
+            onPlayerDefendTrigger TE = (onPlayerDefendTrigger) E;
             
-            if (EnemyEncounter.getEncounterSize() > 0)
+            if (TE.CastingPlayer == this.BuffTarget && TE.ReceivingPlayer != this.BuffTarget)
             {
                 int r = Random.Range(0,EnemyEncounter.getEncounterSize());
                 EnemyCharacter E2 = EnemyEncounter.getEncounterMember(r).GetComponent<EnemyCharacter>();
-                BattleLogicHandler.BuffDamage(E2, 20);
+                BattleLogicHandler.BuffDamage(E2, 10);
             }
         }
+        
+        else //Did character gain armor
+        {
+            onArmorGainTrigger TE = (onArmorGainTrigger) E;
+            
+            if (TE.ReceivingChar == this.BuffTarget)
+            {
+                int r = Random.Range(0,EnemyEncounter.getEncounterSize());
+                EnemyCharacter E2 = EnemyEncounter.getEncounterMember(r).GetComponent<EnemyCharacter>();
+                BattleLogicHandler.BuffDamage(E2, 10);
+            }
+            
+        }
+        
     }
 }
 

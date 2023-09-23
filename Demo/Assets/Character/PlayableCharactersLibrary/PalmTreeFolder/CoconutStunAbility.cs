@@ -23,6 +23,11 @@ public class CoconutStunAbility : Ability
         BattleLogicHandler.LowerStamina((EnemyCharacter) E, 80);
     }
     
+    public override void postCast(Character C)
+    {
+        BattleLogicHandler.PlayerSkill(PC, C);
+    }
+    
     public override string GetTooltipString()
     {
         string s1 = "Deal 80 stamina damage";

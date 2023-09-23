@@ -16,8 +16,6 @@ public abstract class GameItem
     
     protected PlayableCharacter ItemOwner;
     
-    public bool isGlobal;
-    
     public string ItemName;
     
     public Sprite getItemImage()
@@ -28,6 +26,8 @@ public abstract class GameItem
     {
         ItemOwner = C;
     }
+    
+    public abstract void OnPickup();
     
     public abstract void OnApply();
     

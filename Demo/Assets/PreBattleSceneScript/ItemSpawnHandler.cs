@@ -14,6 +14,8 @@ public class ItemSpawnHandler : MonoBehaviour
     
     public GameObject EmptyItemPrefab;
     
+    int maxItems = 3;
+    
     
     // Start is called before the first frame update
     void Awake()
@@ -22,10 +24,10 @@ public class ItemSpawnHandler : MonoBehaviour
         ShopInventory = GameObject.Find("ButtonCanvas/Shop").GetComponent<CanvasInventoryScript>().InventorySlots;
         List<GameItem> AllPotentialItems = ItemLibrary.GetAllItems();
         
-        GameItem[] CurrentItems = new GameItem[1];
+        GameItem[] CurrentItems = new GameItem[maxItems];
         
         int i = 0;
-        while (AllPotentialItems.Count > 0 && i < 1)
+        while (AllPotentialItems.Count > 0 && i < maxItems)
         {
             int r = Random.Range(0, AllPotentialItems.Count);
             GameItem P = AllPotentialItems[r];
@@ -34,7 +36,7 @@ public class ItemSpawnHandler : MonoBehaviour
             i++;
         }
         
-        for (int j = 0; j < 1; j++)
+        for (int j = 0; j < maxItems; j++)
         {
             GameObject newItem = Instantiate(EmptyItemPrefab, ButtonCanvas.transform) as GameObject;
             newItem.GetComponent<Image>().sprite = CurrentItems[j].getItemImage();

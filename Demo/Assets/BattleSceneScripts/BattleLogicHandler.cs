@@ -111,7 +111,7 @@ public static class BattleLogicHandler
 		}
 		else
 		{
-			BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onDealAttackDamagePostEnum, TE, ref d);
+			BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onArmorGainEnum, TE, ref d);
 		}
 		
 	}
@@ -151,25 +151,44 @@ public static class BattleLogicHandler
 		
 	}
 	
-	public static void EnemyAttack(EnemyCharacter E, PlayableCharacter P, int inputD)
+	public static void PlayerBasicAttack(PlayableCharacter P, EnemyCharacter E)
 	{
-		int d = inputD;
+		int dummy = 0;
 		
-		AttackDamage(E, P,d);
-		
-		TriggerEvent TE = new onEnemyAttackTrigger(E, P);
-		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onEnemyAttackEnum, TE, ref d);
-		
+		TriggerEvent TE = new onPlayerBasicAttackTrigger(P,E);
+		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onPlayerBasicAttackEnum, TE, ref dummy);
 	}
 	
-	public static void PlayerAttack(PlayableCharacter P, EnemyCharacter E, int inputD)
+	public static void PlayerAttack(PlayableCharacter P, EnemyCharacter E)
 	{
-		int d = inputD;
-		
-		AttackDamage(P, E,d);
+		int dummy = 0;
 		
 		TriggerEvent TE = new onPlayerAttackTrigger(P,E);
-		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onPlayerAttackEnum, TE, ref d);
+		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onPlayerAttackEnum, TE, ref dummy);
+	}
+	
+	public static void PlayerBasicDefend(PlayableCharacter P, PlayableCharacter E)
+	{
+		int dummy = 0;
+		
+		TriggerEvent TE = new onPlayerBasicDefendTrigger(P,E);
+		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onPlayerBasicDefendEnum, TE, ref dummy);
+	}
+	
+	public static void PlayerDefend(PlayableCharacter P, PlayableCharacter E)
+	{
+		int dummy = 0;
+		
+		TriggerEvent TE = new onPlayerDefendTrigger(P,E);
+		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onPlayerDefendEnum, TE, ref dummy);
+	}
+	
+	public static void PlayerSkill(PlayableCharacter P, Character E)
+	{
+		int dummy = 0;
+		
+		TriggerEvent TE = new onPlayerSkillTrigger(P,E);
+		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onPlayerSkillEnum, TE, ref dummy);
 	}
 	
 	public static void OnBuffApply(Buff B)

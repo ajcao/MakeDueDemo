@@ -16,6 +16,7 @@ public class SpikeyRockBehavior : PlayableCharacter
         this.CurrentArmor = 0;
         this.ArmorRetain = 0;
         this.DamageOutputModifier = 0;
+        this.DefenseOutputModifier = 0;
         this.AttackStat = 20;
         this.DefenseStat = 20;
         this.Resolve = 0;

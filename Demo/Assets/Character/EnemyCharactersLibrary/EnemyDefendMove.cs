@@ -23,7 +23,7 @@ public class EnemyDefendMove : EnemyMove
     
     public override void onCast(Character C)
     {
-        BattleLogicHandler.GainArmor(C, defendAmount);
+        BattleLogicHandler.GainArmor(C, defendAmount + EC.getDefenseOutputModifier());
     }
     
     public override void AdditionalMoveDeletion()
@@ -33,7 +33,7 @@ public class EnemyDefendMove : EnemyMove
     
     public override string MoveIndicatorText()
     {
-        return "" + (defendAmount);
+        return "" + (defendAmount + EC.getDefenseOutputModifier());
     }
     
     public override string getAnimation()

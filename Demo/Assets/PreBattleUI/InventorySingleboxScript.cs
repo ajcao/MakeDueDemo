@@ -6,7 +6,7 @@ using ItemUtil;
 
 public class InventorySingleboxScript : MonoBehaviour, IDropHandler
 {
-    public GameObject ItemInSlot;
+    public GameObject ItemInSlot = null;
     
     public void AssignItemToSlot(GameObject I)
     {
@@ -30,30 +30,17 @@ public class InventorySingleboxScript : MonoBehaviour, IDropHandler
             {
                eventData.pointerDrag.GetComponent<ItemDragDropScript>().ReturnToDefaultPosition(); 
             }
-            
-            //Global item in global item slot
-            if (this.gameObject.GetComponent<Transform>().parent.gameObject.name == "GlobalItems" && eventData.pointerDrag.GetComponent<ItemDragDropScript>().GetAssignedItem().isGlobal)
+            else
             {
+                //Reset previous inventory box
+                eventData.pointerDrag.GetComponent<ItemDragDropScript>().ItemSlot.GetComponent<InventorySingleboxScript>().ItemInSlot = null;
+                
+                
                 eventData.pointerDrag.GetComponent<Transform>().position = this.GetComponent<Transform>().position;
                 eventData.pointerDrag.GetComponent<ItemDragDropScript>().SetDefault();
                 eventData.pointerDrag.GetComponent<ItemDragDropScript>().ItemSlot = this.gameObject;
                 ItemInSlot = eventData.pointerDrag.gameObject;
                 
-            }
-            
-            //Normal intem in character slot
-            else if (this.gameObject.GetComponent<Transform>().parent.gameObject.name != "GlobalItems" && !eventData.pointerDrag.GetComponent<ItemDragDropScript>().GetAssignedItem().isGlobal)
-            {
-                eventData.pointerDrag.GetComponent<Transform>().position = this.GetComponent<Transform>().position;
-                eventData.pointerDrag.GetComponent<ItemDragDropScript>().SetDefault();
-                eventData.pointerDrag.GetComponent<ItemDragDropScript>().ItemSlot = this.gameObject;
-                ItemInSlot = eventData.pointerDrag.gameObject;
-            }
-            
-            //Return to default position
-            else
-            {
-                eventData.pointerDrag.GetComponent<ItemDragDropScript>().ReturnToDefaultPosition();
             }
         }
     }

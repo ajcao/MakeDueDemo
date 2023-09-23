@@ -8,9 +8,9 @@ using TooltipUtil;
 namespace BuffUtil
 {
     
-public class GainArmorBuff : Buff
+public class GainResolveBuff : Buff
 {
-    public GainArmorBuff(Character CTarget, Character CBuffer, int Inten, int? Dur) 
+    public GainResolveBuff(Character CTarget, Character CBuffer, int Inten, int? Dur) 
     {
         this.Trigger = TriggerEventEnum.onPreTurnEnum;
         this.TriggerSecondary = TriggerEventEnum.noTriggerEnum;
@@ -21,7 +21,7 @@ public class GainArmorBuff : Buff
         this.Visible = true;
         this.Stackable = true;
         
-        BuffIcon = Resources.Load<Sprite>("AbilityImages/DefendIcon");
+        BuffIcon = Resources.Load<Sprite>("AbilityImages/GenericGiveResolve");
     }
 
     
@@ -36,7 +36,7 @@ public class GainArmorBuff : Buff
     
     public override string GetTooltipString()
     {
-        return "At the start of the turn, gain " + this.Intensity.Value + " armor";
+        return "At the start of the turn, gain " + this.Intensity.Value + " resolve";
     }
     
     public override void onTriggerEffect(TriggerEvent E, ref int v)
@@ -46,7 +46,7 @@ public class GainArmorBuff : Buff
         Debug.Log(T.CharacterType);
         if (this.BuffTarget.GetType().IsSubclassOf(T.CharacterType))
         {
-            BattleLogicHandler.GainArmor(this.BuffTarget, this.Intensity.Value);
+            BattleLogicHandler.GainResolve((PlayableCharacter) this.BuffTarget, this.Intensity.Value);
         }
     }
 }

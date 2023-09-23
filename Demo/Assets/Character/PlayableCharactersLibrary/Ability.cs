@@ -71,12 +71,14 @@ public abstract class Ability
     
     public abstract string GetTooltipString();
     
-    public virtual void postCast(Character C)
+    public abstract void postCast(Character C);
+    
+    public virtual void postCastWrapper(Character C)
     {
-        Debug.Log("Post cast");
         currentCooldown = maxCooldown;
         PC.setHasCasted(true);
         BattleLogicHandler.PostAbilityCast(this.PC, C);
+        this.postCast(C);
     }
     
     public virtual bool canCast()

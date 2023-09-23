@@ -24,6 +24,11 @@ public class GiveResolveAbility : Ability
         BattleLogicHandler.GainResolve(P, 60);
     }
     
+    public override void postCast(Character C)
+    {
+        BattleLogicHandler.PlayerSkill(PC, C);
+    }
+    
     public override string GetTooltipString()
     {
         string s1 = "Gain " + 60 + " resolve";

@@ -17,6 +17,7 @@ public class MushroomBehavior : PlayableCharacter
         this.CurrentArmor = 0;
         this.ArmorRetain = 0;
         this.DamageOutputModifier = 0;
+        this.DefenseOutputModifier = 0;
         this.AttackStat = 10;
         this.DefenseStat = 10;
         this.Resolve = 0;

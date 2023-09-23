@@ -17,6 +17,7 @@ public class ORBBehavior : PlayableCharacter
         this.CurrentArmor = 0;
         this.ArmorRetain = 0;
         this.DamageOutputModifier = 0;
+        this.DefenseOutputModifier = 0;
         this.AttackStat = 10;
         this.DefenseStat = 30;
         this.Resolve = 0;

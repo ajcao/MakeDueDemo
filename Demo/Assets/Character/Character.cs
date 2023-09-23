@@ -22,6 +22,8 @@ public abstract class Character : MonoBehaviour
 	
 	protected int DamageOutputModifier;
 	
+	protected int DefenseOutputModifier;
+	
 	protected Sprite CharacterIcon;
 	
 	protected List<Buff> BuffList = new List<Buff>();
@@ -90,6 +92,16 @@ public abstract class Character : MonoBehaviour
 	public void setDamageOutputModifier(int d)
 	{
 		this.DamageOutputModifier = d;
+	}
+	
+	public int getDefenseOutputModifier()
+	{
+		return this.DefenseOutputModifier;
+	}
+	
+	public void setDefenseOutputModifier(int d)
+	{
+		this.DefenseOutputModifier = d;
 	}
 	
 	public void onDeath()

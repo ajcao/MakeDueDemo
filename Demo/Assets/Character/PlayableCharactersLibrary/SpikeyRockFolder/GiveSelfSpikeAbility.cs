@@ -26,6 +26,11 @@ public class GiveSelfSpikeAbility : Ability
         
     }
     
+    public override void postCast(Character C)
+    {
+        BattleLogicHandler.PlayerSkill(PC, C);
+    }
+    
     public override string GetTooltipString()
     {
         string s1 = "Gain buff that deals 20 damage to Enemy Attackers";        

@@ -25,6 +25,11 @@ public class ApplyVulnurableAbilty : Ability
         BattleLogicHandler.OnBuffApply(B);
     }
     
+    public override void postCast(Character C)
+    {
+        BattleLogicHandler.PlayerSkill(PC, C);
+    }
+    
     public override string GetTooltipString()
     {
         string s1 = "Apply Vulnurable (take 50% more damage)";

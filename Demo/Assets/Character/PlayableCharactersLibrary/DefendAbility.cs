@@ -21,12 +21,19 @@ public class DefendAbility : Ability
     
     public override void onCast(Character P)
     {
-        BattleLogicHandler.GainArmor(P, PC.getDefenseStat());
+        BattleLogicHandler.GainArmor(P, PC.getDefenseStat() + PC.getDefenseOutputModifier());
+    }
+    
+    public override void postCast(Character C)
+    {
+        BattleLogicHandler.PlayerBasicDefend(PC, (PlayableCharacter) C);
+        BattleLogicHandler.PlayerDefend(PC, (PlayableCharacter) C);
+        BattleLogicHandler.PlayerSkill(PC, C);
     }
     
     public override string GetTooltipString()
     {
-        return "Gain " + PC.getDefenseStat() + " armor";
+        return "Gain " + (PC.getDefenseStat() + PC.getDefenseOutputModifier()) + " armor";
     }
 }
 

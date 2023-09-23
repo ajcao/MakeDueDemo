@@ -21,7 +21,12 @@ public class CorrosiveGooAbility : Ability
     public override void onCast(Character E)
     {
         BattleLogicHandler.LowerArmor(E, 20);
-        BattleLogicHandler.PlayerAttack(PC, (EnemyCharacter) E, PC.getAttackStat() + PC.getDamageOutputModifier());
+        BattleLogicHandler.AttackDamage(PC, (EnemyCharacter) E, PC.getAttackStat() + PC.getDamageOutputModifier());
+    }
+    
+    public override void postCast(Character C)
+    {
+        BattleLogicHandler.PlayerAttack(PC, (EnemyCharacter) C);
     }
     
     public override string GetTooltipString()

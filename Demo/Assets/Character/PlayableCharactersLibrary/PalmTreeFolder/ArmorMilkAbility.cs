@@ -21,13 +21,18 @@ public class ArmorMilkAbility : Ability
     
     public override void onCast(Character P)
     {
-        Buff B = new GainArmorBuff(P, this.getPlayableCharacter(), 20, 3);
+        Buff B = new GainArmorBuff(P, this.getPlayableCharacter(), 20, 4);
         BattleLogicHandler.OnBuffApply(B);
+    }
+    
+    public override void postCast(Character C)
+    {
+        BattleLogicHandler.PlayerSkill(PC,C);
     }
     
     public override string GetTooltipString()
     {
-        string s1 = "Gain a buff that gives 20 armor for 3 turns";
+        string s1 = "Gain a buff that gives 20 armor for 4 turns at the start of the turn";
         string s2 = "Cooldown: " + currentCooldown + "/" + maxCooldown;
         return s1 + "\n" + s2;
     }

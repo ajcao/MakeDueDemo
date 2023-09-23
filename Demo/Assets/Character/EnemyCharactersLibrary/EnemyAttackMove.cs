@@ -23,7 +23,7 @@ public class EnemyAttackMove : EnemyMove
     
     public override void onCast(Character C)
     {
-        BattleLogicHandler.EnemyAttack(this.EC, C.GetComponent<PlayableCharacter>(), damageAmount + EC.getDamageOutputModifier());
+        BattleLogicHandler.AttackDamage(this.EC, C.GetComponent<PlayableCharacter>(), damageAmount + EC.getDamageOutputModifier());
     }
     
     public override void AdditionalMoveDeletion()

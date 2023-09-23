@@ -25,6 +25,11 @@ public class ToxicSporeAbility : Ability
         BattleLogicHandler.OnBuffApply(B);
     }
     
+    public override void postCast(Character C)
+    {
+        BattleLogicHandler.PlayerSkill(PC, C);
+    }
+    
     public override string GetTooltipString()
     {
         string s1 = "Debuff enemy. When enemy is attacked, damage for 30 hp";

@@ -21,7 +21,12 @@ public class RollAbility : Ability
     
     public override void onCast(Character P)
     {
-        BattleLogicHandler.PlayerAttack(PC, (EnemyCharacter) P, 50);
+        BattleLogicHandler.AttackDamage(PC, (EnemyCharacter) P, 50 + PC.getDamageOutputModifier());
+    }
+    
+    public override void postCast(Character C)
+    {
+        BattleLogicHandler.PlayerAttack(PC, (EnemyCharacter) C);
     }
     
     public override string GetTooltipString()

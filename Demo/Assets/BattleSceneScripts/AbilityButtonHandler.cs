@@ -105,7 +105,7 @@ public class AbilityButtonHandler : MonoBehaviour
                 {
                     currentTarget = (Character) currentCharacter;
                     currentAbility.onCast(currentTarget);
-                    currentAbility.postCast(currentTarget);
+                    currentAbility.postCastWrapper(currentTarget);
                 }
                 
                 
@@ -122,13 +122,13 @@ public class AbilityButtonHandler : MonoBehaviour
                     {
                         currentTarget = click.collider.gameObject.GetComponent<EnemyCharacter>();
                         currentAbility.onCast((Character) currentTarget);
-                        currentAbility.postCast((Character) currentTarget);
+                        currentAbility.postCastWrapper((Character) currentTarget);
                     }
                     else if (click.collider != null && currentAbility.getTargetingType() == TargetingTypeEnum.PlayerTarget && click.collider.gameObject.tag == "PlayableCharacter")
                     {
                         currentTarget = click.collider.gameObject.GetComponent<PlayableCharacter>();
                         currentAbility.onCast((Character) currentTarget);
-                        currentAbility.postCast((Character) currentTarget);
+                        currentAbility.postCastWrapper((Character) currentTarget);
                     }
                 }
             }
@@ -178,11 +178,11 @@ public class AbilityButtonHandler : MonoBehaviour
         }
         else if (currentAbility.getTargetingType() == TargetingTypeEnum.EnemyTarget)
         {
-            Cursor.SetCursor(TargetCrosshairEnemy, Vector2.zero, CursorMode.Auto);
+            Cursor.SetCursor(TargetCrosshairEnemy, new Vector2(TargetCrosshairEnemy.width / 2, TargetCrosshairEnemy.height / 2), CursorMode.Auto);
         }
         else if (currentAbility.getTargetingType() == TargetingTypeEnum.PlayerTarget)
         {
-            Cursor.SetCursor(TargetCrosshairPlayer, Vector2.zero, CursorMode.Auto);
+            Cursor.SetCursor(TargetCrosshairPlayer, new Vector2(TargetCrosshairPlayer.width / 2, TargetCrosshairPlayer.height / 2), CursorMode.Auto);
         }
         
         //Makes character selector button grey or not
