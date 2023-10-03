@@ -4,6 +4,9 @@ using UnityEngine;
 using TooltipUtil;
 using UnityEngine.EventSystems;
 
+//To be place on GameObject prefab that should output a tooltip when hovered over
+//EX: buff, abilities, items, etc.
+//Should be placed on each prefab
 public class TooltipScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     

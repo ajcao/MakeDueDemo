@@ -12,7 +12,7 @@ public class GainArmorBuff : Buff
 {
     public GainArmorBuff(Character CTarget, Character CBuffer, int Inten, int? Dur) 
     {
-        this.Trigger = TriggerEventEnum.onPreTurnEnum;
+        this.Trigger = TriggerEventEnum.onPostTurnEnum;
         this.TriggerSecondary = TriggerEventEnum.noTriggerEnum;
         this.BuffTarget = CTarget;
         this.OriginalBuffer = CBuffer;
@@ -41,7 +41,7 @@ public class GainArmorBuff : Buff
     
     public override void onTriggerEffect(TriggerEvent E, ref int v)
     {
-        onPreTurnTrigger T = (onPreTurnTrigger) E;
+        onPostTurnTrigger T = (onPostTurnTrigger) E;
         Debug.Log(this.BuffTarget.GetType());
         Debug.Log(T.CharacterType);
         if (this.BuffTarget.GetType().IsSubclassOf(T.CharacterType))

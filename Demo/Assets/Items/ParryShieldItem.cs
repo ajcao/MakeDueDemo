@@ -29,6 +29,11 @@ public class ParryShieldItem : GameItem
         Buff B = new ParryShieldItemBuff(this.ItemOwner, this.ItemOwner, 10, null);
         BattleLogicHandler.OnBuffApply(B);
     }
+    
+    public override string GetTooltipString()
+    {
+        return "Deal 10 damage whenever you gain armor or block another character";
+    }
 }
 
 }

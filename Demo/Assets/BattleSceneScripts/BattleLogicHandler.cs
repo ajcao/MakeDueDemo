@@ -201,7 +201,6 @@ public static class BattleLogicHandler
 	public static void CharacterDies(Character C)
 	{
 		C.onDeath();
-		BuffHandler.RemoveBuffsFromDeadCharacter(C);
 		
 		//Move character offscreen (should BattleLogicHandler handle this?)
 		C.gameObject.transform.position = new Vector3(0, -500, 0);
@@ -242,6 +241,14 @@ public static class BattleLogicHandler
 		TriggerEvent TE = new onPreTurnTrigger(typeof(PlayableCharacter));
 		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onPreTurnEnum, TE, ref dummy);
 		
+	}	
+	
+	public static void PlayerPostTurn()
+	{
+		int dummy = 0;
+		TriggerEvent TE = new onPostTurnTrigger(typeof(PlayableCharacter));
+		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onPostTurnEnum, TE, ref dummy);
+		
 	}
 	
 
@@ -252,10 +259,17 @@ public static class BattleLogicHandler
 			EnemyCharacter E = G.GetComponent<EnemyCharacter>();
 			E.setCurrentArmor(Mathf.Min(E.getCurrentArmor(), E.getArmorRetain()));
 		}
-		Character C = EnemyEncounter.GetLivingEncounterMembers()[0].GetComponent<EnemyCharacter>();;
 		int dummy = 0;
 		TriggerEvent TE = new onPreTurnTrigger(typeof(EnemyCharacter));
 		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onPreTurnEnum, TE, ref dummy);
+	}
+	
+	public static void EnemyPostTurn()
+	{
+		int dummy = 0;
+		TriggerEvent TE = new onPostTurnTrigger(typeof(EnemyCharacter));
+		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onPostTurnEnum, TE, ref dummy);
+		
 	}
 	
 	//Decrease buff duration

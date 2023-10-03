@@ -15,7 +15,7 @@ public class PreBattleSceneHandler : MonoBehaviour
     
     
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {        
         List<GameObject> TotalCharacterArray = new List<GameObject>();
         TotalCharacterArray.Add(P1);

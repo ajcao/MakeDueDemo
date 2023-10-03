@@ -35,6 +35,8 @@ public abstract class GameItem
     {
         return ItemOwner;
     }
+    
+    public abstract string GetTooltipString();
 }
 
 }

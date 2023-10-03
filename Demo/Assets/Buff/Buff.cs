@@ -22,7 +22,7 @@ public abstract class Buff : IEquatable<Buff>
 	public bool ToBeDeleted = false;
 	public bool Stackable;
 	
-	protected GameObject BuffIndicator = null;
+	public GameObject BuffIndicator = null;
 	
 	public void AssignBuffIndicator(GameObject Indict)
 	{
@@ -78,7 +78,6 @@ public abstract class Buff : IEquatable<Buff>
 			this.Duration-=1;
 			if ( this.Duration.Value == 0 )
 			{
-				this.onExpire();
 				this.PrepareBuffForDeletion();
 			}
 		}
@@ -89,10 +88,9 @@ public abstract class Buff : IEquatable<Buff>
 		if (this.Intensity.HasValue)
 		{
 			this.Intensity-=1;
-			if ( this.Intensity.Value == 0 )
+			if ( this.Intensity.Value <= 0 )
 			{
 				//Put a buff on expire trigger event here?
-				this.onExpire();
 				this.PrepareBuffForDeletion();
 			}
 		}
@@ -155,12 +153,12 @@ public abstract class Buff : IEquatable<Buff>
 	
 	public void PrepareBuffForDeletion()
 	{
-		this.ToBeDeleted = true;
-		
-		//Since Buffs and BuffIndicator are closely linked
-        //Properly set null references as "garbage" collection
-        GameObject.Destroy(BuffIndicator);
-        BuffIndicator = null;
+		//Ensure buff can only be deleted once
+		if (!this.ToBeDeleted)
+		{
+			this.ToBeDeleted = true;
+			this.onExpire();
+		}
 	}
 	
     public abstract string GetTooltipString();

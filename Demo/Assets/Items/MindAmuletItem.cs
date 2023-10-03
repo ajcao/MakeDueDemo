@@ -29,6 +29,11 @@ public class MindAmuletItem : GameItem
         Buff B = new GainResolveBuff(this.ItemOwner, this.ItemOwner, 20, null);
         BattleLogicHandler.OnBuffApply(B);
     }
+    
+    public override string GetTooltipString()
+    {
+        return "Gain 20 resolve at start of every turn";
+    }
 }
 
 }

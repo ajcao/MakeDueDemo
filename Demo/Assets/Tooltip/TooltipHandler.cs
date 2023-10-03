@@ -6,7 +6,9 @@ using TMPro;
 
 namespace TooltipUtil
 {
-    
+
+//Handles moving the tooltip box depending on if it has text or not
+//Should only have one instance in a TooltipHandler Gameobject
 public class TooltipHandler : MonoBehaviour
 {
     public Image TooltipBox;

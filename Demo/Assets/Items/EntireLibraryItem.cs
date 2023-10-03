@@ -22,6 +22,12 @@ public class EntireLibraryItem : MonoBehaviour
         A = new MindAmuletItem();
         ReturnList.Add(A);
         
+        A = new EnergyPillsItem();
+        ReturnList.Add(A);
+        
+        A = new LeftScarabShellItem();
+        ReturnList.Add(A);
+        
         
         return ReturnList;
     }

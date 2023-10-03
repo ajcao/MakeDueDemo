@@ -73,6 +73,9 @@ public static class BuffHandler
 			Buff B = BList[i];
 			if (B.ToBeDeleted)
 			{
+				Debug.Log(B);
+				GameObject.Destroy(B.BuffIndicator);
+				B.BuffIndicator = null;
 				BList.Remove(B);
 				BuffsList[B.getTrigger()].Remove(B);
 				BuffsList[B.getTriggerSecondary()].Remove(B);
@@ -82,14 +85,13 @@ public static class BuffHandler
 		}
  	}
 	
-	public static void RemoveBuffsFromDeadCharacter(Character C)
+	public static void MarkBuffsOnDeadCharacter(Character C)
 	{
 		List<Buff> BList = C.getBuffList();
 		foreach (Buff B in BList)
 		{
 			B.PrepareBuffForDeletion();
 		}
-		BuffHandler.RemoveDeletedBuffsFromList(BList);
 		
 	}
 	
@@ -157,7 +159,10 @@ public static class BuffHandler
 				//if so proc death trigger
 				if (DT.DyingCharacter.getCurrentHealth() <= 0)
 				{
+					//Mark character as dead
 					BattleLogicHandler.CharacterDies(DT.DyingCharacter);
+					
+					//Proc any on death buff effects
 					if (BuffsList[TriggerEventEnum.onDeathEnum] != null)
 					{
 						int BuffCount = BuffsList[TriggerEventEnum.onDeathEnum].Count;
@@ -170,6 +175,10 @@ public static class BuffHandler
 							}
 						}
 					}
+					
+					
+					//Mark all buffs on the character
+					BuffHandler.MarkBuffsOnDeadCharacter(DT.DyingCharacter);
 				}
 			}
 			
@@ -192,7 +201,8 @@ public static class BuffHandler
 			}
 		}
 		
-		//Remove any buffs that have a counter
+		//Remove all buffs
+		Debug.Log("Deleting Buff");
 		BuffHandler.RemoveDeletedBuffsFromEveryone();
 		
 		inBuffTriggerProcess = false;

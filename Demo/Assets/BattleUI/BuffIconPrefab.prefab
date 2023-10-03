@@ -35,8 +35,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.1527, y: -0.2115}
-  m_SizeDelta: {x: 0.3314, y: 0.2133}
+  m_AnchoredPosition: {x: 0.000025004, y: -0.2155}
+  m_SizeDelta: {x: 0.63675, y: 0.2052}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &4647216404424466245
 MeshRenderer:
@@ -163,7 +163,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0.0006811321, w: -0.0005888939}
+  m_margin: {x: 0.0053898245, y: 0, z: 0.0006811321, w: -0.0005888939}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   _SortingLayer: 0
@@ -309,8 +309,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.1384, y: 0.2097}
-  m_SizeDelta: {x: 0.3429, y: 0.2169}
+  m_AnchoredPosition: {x: -0.00425, y: 0.2043}
+  m_SizeDelta: {x: 0.6282, y: 0.2277}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &1808911634046874754
 MeshRenderer:
@@ -437,7 +437,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -0.002853185, w: 0.0005812645}
+  m_margin: {x: -0.0026949346, y: 0, z: -0.002853185, w: 0.0005812645}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   _SortingLayer: 0

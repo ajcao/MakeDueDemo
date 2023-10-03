@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using ItemUtil;
 using UnityEngine.UI;
+using TooltipUtil;
 
-public class ItemDragDropScript : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class ItemDragDropScript : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, TooltipStringInterface
 {
     public Vector3 DefaultPosition;
     
@@ -37,8 +38,6 @@ public class ItemDragDropScript : MonoBehaviour, IBeginDragHandler, IDragHandler
     
     public void OnBeginDrag(PointerEventData eventData)
     {
-        Debug.Log("Begin Drag");
-        Debug.Log(eventData.pointerDrag);
         this.isDragged = true;
         this.GetComponent<Image>().raycastTarget = false;
         this.GetComponent<CanvasGroup>().alpha = 0.5f;
@@ -47,8 +46,6 @@ public class ItemDragDropScript : MonoBehaviour, IBeginDragHandler, IDragHandler
     
     public void OnDrag(PointerEventData eventData)
     {
-        Debug.Log("Dragging");
-        Debug.Log(eventData.pointerDrag);
         this.gameObject.transform.position = Input.mousePosition;
         
         //Disable tooltips if one popes up
@@ -60,8 +57,6 @@ public class ItemDragDropScript : MonoBehaviour, IBeginDragHandler, IDragHandler
     
     public void OnEndDrag(PointerEventData eventData)
     {
-        Debug.Log("End Drag");
-        Debug.Log(eventData.pointerDrag);
         isDragged = false;
         this.GetComponent<Image>().raycastTarget = true;
         this.GetComponent<CanvasGroup>().alpha = 1f;
@@ -71,9 +66,14 @@ public class ItemDragDropScript : MonoBehaviour, IBeginDragHandler, IDragHandler
     //If the item was not dropped in a box as a last resort reset position if needed
     public void LateUpdate()
     {
-        if ((this.transform.position != DefaultPosition) && (isDragged == false))
+        if ((this.transform.position != ItemSlot.transform.position) && (isDragged == false))
         {
-            this.ReturnToDefaultPosition();
+            this.transform.position = ItemSlot.transform.position;
         }
+    }
+    
+    public string GetTooltipString()
+    {
+        return CurrentItem.GetTooltipString();
     }
 }

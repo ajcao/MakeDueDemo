@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6541139985992762303}
   - component: {fileID: 1741551461460010211}
   - component: {fileID: -7023063926328616481}
+  - component: {fileID: -8512177130649039491}
   m_Layer: 0
   m_Name: ItemDragDropPrefab
   m_TagString: Untagged
@@ -104,3 +105,15 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &-8512177130649039491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6620693123610800176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13ffb22296fb7c642bc8b08da3569a3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -105,6 +105,8 @@ public class BattleSceneHandler : MonoBehaviour
             
             BattleLogicHandler.CheckForEncounterDeath();
             
+            BattleLogicHandler.PlayerPostTurn();
+            
             
             Debug.Log("EnemyTurn");
             
@@ -119,6 +121,8 @@ public class BattleSceneHandler : MonoBehaviour
             }
             
             BattleLogicHandler.CheckForEncounterDeath();
+            
+            BattleLogicHandler.EnemyPostTurn();
             
             BattleLogicHandler.EndCombatRound(Round);
             
