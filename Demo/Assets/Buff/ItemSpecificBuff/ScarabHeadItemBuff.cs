@@ -8,11 +8,11 @@ using TooltipUtil;
 namespace BuffUtil
 {
     
-public class GainArmorBuff : Buff
+public class ScarabHeadItemBuff : Buff
 {
-    public GainArmorBuff(Character CTarget, Character CBuffer, int Inten, int? Dur) 
+    public ScarabHeadItemBuff(Character CTarget, Character CBuffer, int Inten, int? Dur) 
     {
-        this.Trigger = TriggerEventEnum.onPostTurnEnum;
+        this.Trigger = TriggerEventEnum.onPreTurnEnum;
         this.TriggerSecondary = TriggerEventEnum.noTriggerEnum;
         this.BuffTarget = CTarget;
         this.OriginalBuffer = CBuffer;
@@ -21,7 +21,7 @@ public class GainArmorBuff : Buff
         this.Visible = true;
         this.Stackable = true;
         
-        BuffIcon = Resources.Load<Sprite>("AbilityImages/Defend2Icon");
+        BuffIcon = Resources.Load<Sprite>("ItemImages/ScarabHead");
     }
 
     
@@ -31,22 +31,31 @@ public class GainArmorBuff : Buff
     
     public override void onExpire()
     {
-        return;
     }
     
     public override string GetTooltipString()
     {
-        return "At the start of the turn, gain " + this.Intensity.Value + " armor";
+        string s1 = "Gain 40 armor for Round 9-12. \n";
+        return s1;
     }
     
     public override void onTriggerEffect(TriggerEvent E, ref int v)
     {
-        onPostTurnTrigger T = (onPostTurnTrigger) E;
-        Debug.Log(this.BuffTarget.GetType());
-        Debug.Log(T.CharacterType);
+        onPreTurnTrigger T = (onPreTurnTrigger) E;
+        int roundNum = BattleSceneHandler.GetRound();
+        this.Intensity = roundNum;
+        Debug.Log(roundNum);
+        //Ensure it is the player's turn
         if (this.BuffTarget.GetType().IsSubclassOf(T.CharacterType))
         {
-            BattleLogicHandler.GainArmor(this.BuffTarget, this.Intensity.Value);
+            if ((9 <= roundNum) && (roundNum <= 12))
+            {
+                BattleLogicHandler.GainArmor(this.BuffTarget, 40);
+            }
+            else if (roundNum > 12)
+            {
+				this.PrepareBuffForDeletion();
+            }
         }
     }
 }

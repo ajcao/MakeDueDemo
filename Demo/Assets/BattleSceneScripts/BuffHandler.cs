@@ -126,6 +126,17 @@ public static class BuffHandler
 	
 	public static void TriggerBuffsinBuffsList(TriggerEventEnum e, TriggerEvent TE, ref int v)
 	{
+		
+		//First checks if Trigger is already in process
+		//if so, instead of triggering now,
+		//add buff trigger to stack
+		if (inBuffTriggerProcess)
+		{
+			AddTriggerToTotalProc(e, TE);
+			return;
+		}
+		
+		//Otherwise, proc the trigger instantly
 		inBuffTriggerProcess = true;
 		
 		if (BuffsList[e] != null)

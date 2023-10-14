@@ -8,11 +8,11 @@ using TooltipUtil;
 namespace BuffUtil
 {
     
-public class GainArmorBuff : Buff
+public class DefenseUpBuff : Buff
 {
-    public GainArmorBuff(Character CTarget, Character CBuffer, int Inten, int? Dur) 
+    public DefenseUpBuff(Character CTarget, Character CBuffer, int Inten, int? Dur) 
     {
-        this.Trigger = TriggerEventEnum.onPostTurnEnum;
+        this.Trigger = TriggerEventEnum.noTriggerEnum;
         this.TriggerSecondary = TriggerEventEnum.noTriggerEnum;
         this.BuffTarget = CTarget;
         this.OriginalBuffer = CBuffer;
@@ -21,33 +21,30 @@ public class GainArmorBuff : Buff
         this.Visible = true;
         this.Stackable = true;
         
-        BuffIcon = Resources.Load<Sprite>("AbilityImages/Defend2Icon");
+        BuffIcon = Resources.Load<Sprite>("AbilityImages/DefendIcon");
     }
 
     
     public override void onApplication()
     {
+        int Inten = this.Intensity.Value;
+        BuffTarget.setDefenseOutputModifier(BuffTarget.getDefenseOutputModifier() + Inten);
     }
     
     public override void onExpire()
     {
-        return;
+        int Inten = this.Intensity.Value;
+        BuffTarget.setDefenseOutputModifier(BuffTarget.getDefenseOutputModifier() - Inten);
     }
     
     public override string GetTooltipString()
     {
-        return "At the start of the turn, gain " + this.Intensity.Value + " armor";
+        return "Increase defense by " + this.Intensity.Value;
     }
     
     public override void onTriggerEffect(TriggerEvent E, ref int v)
     {
-        onPostTurnTrigger T = (onPostTurnTrigger) E;
-        Debug.Log(this.BuffTarget.GetType());
-        Debug.Log(T.CharacterType);
-        if (this.BuffTarget.GetType().IsSubclassOf(T.CharacterType))
-        {
-            BattleLogicHandler.GainArmor(this.BuffTarget, this.Intensity.Value);
-        }
+        return;
     }
 }
 

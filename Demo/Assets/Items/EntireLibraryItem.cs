@@ -28,6 +28,21 @@ public class EntireLibraryItem : MonoBehaviour
         A = new LeftScarabShellItem();
         ReturnList.Add(A);
         
+        A = new RightScarabShellItem();
+        ReturnList.Add(A);
+        
+        A = new ScarabHeadItem();
+        ReturnList.Add(A);
+        
+        A = new SimpleStoneItem();
+        ReturnList.Add(A);
+        
+        A = new MosquitoHeadItem();
+        ReturnList.Add(A);
+        
+        A = new DemonCubeItem();
+        ReturnList.Add(A);
+        
         
         return ReturnList;
     }

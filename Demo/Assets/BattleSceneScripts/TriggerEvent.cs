@@ -35,6 +35,10 @@ public enum TriggerEventEnum
 	//onArmorGainSpecialEnum,
 	onArmorGainEnum,
 	
+	onHeallthGainSpecialEnum,
+	onHealthGainEnum,
+	
+	
 	onEnemyAttackEnum,
 	onEnemySkillEnum,
 	
@@ -231,6 +235,18 @@ public class onDealAttackDamagePostTrigger : TriggerEvent
 		AttackingChar = AC;
 		ReceivingChar = RC;
 		DamageAmount = d;
+	}
+}
+
+public class onHealthGainSpecialTrigger : TriggerEvent
+{
+	public Character ReceivingChar; 
+	public int HealthAmount;
+	
+	public onHealthGainSpecialTrigger(Character RC, int d)
+	{
+		ReceivingChar = RC;
+		HealthAmount = d;
 	}
 }
 

@@ -14,7 +14,7 @@ public class ItemSpawnHandler : MonoBehaviour
     
     public GameObject EmptyItemPrefab;
     
-    int maxItems = 5;
+    int maxItems = 8;
     
     
     // Start is called before the first frame update

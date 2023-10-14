@@ -8,9 +8,9 @@ using TooltipUtil;
 namespace BuffUtil
 {
     
-public class LeftScarabShellItemBuff : Buff
+public class DemonCubeItemBuff : Buff
 {
-    public LeftScarabShellItemBuff(Character CTarget, Character CBuffer, int Inten, int? Dur) 
+    public DemonCubeItemBuff(Character CTarget, Character CBuffer, int Inten, int? Dur) 
     {
         this.Trigger = TriggerEventEnum.onPreTurnEnum;
         this.TriggerSecondary = TriggerEventEnum.noTriggerEnum;
@@ -21,7 +21,7 @@ public class LeftScarabShellItemBuff : Buff
         this.Visible = true;
         this.Stackable = true;
         
-        BuffIcon = Resources.Load<Sprite>("ItemImages/LeftScarabShell");
+        BuffIcon = Resources.Load<Sprite>("ItemImages/DemonsCube");
     }
 
     
@@ -35,7 +35,7 @@ public class LeftScarabShellItemBuff : Buff
     
     public override string GetTooltipString()
     {
-        string s1 = "Gain 20 armor for Round 1-4. \n";
+        string s1 = "At the end of every 10th turn, deal 200 damage to all enemies";
         return s1;
     }
     
@@ -44,17 +44,21 @@ public class LeftScarabShellItemBuff : Buff
         onPreTurnTrigger T = (onPreTurnTrigger) E;
         int roundNum = BattleSceneHandler.GetRound();
         this.Intensity = roundNum;
-        Debug.Log(roundNum);
+        //Ensures two conditions:
         //Ensure it is the player's turn
-        if (this.BuffTarget.GetType().IsSubclassOf(T.CharacterType))
+        //Turn number is multiple of 10
+        if (this.BuffTarget.GetType().IsSubclassOf(T.CharacterType) && (this.Intensity % 10) == 0)
         {
-            if (roundNum <= 4)
+            for (int i = 0; i < EnemyEncounter.getEncounterSize(); i++)
             {
-                BattleLogicHandler.GainArmor(this.BuffTarget, 20);
-            }
-            else
-            {
-				this.PrepareBuffForDeletion();
+                if (i < EnemyEncounter.getEncounterSize())
+                {
+                    EnemyCharacter Enem = EnemyEncounter.getEncounter()[i].GetComponent<EnemyCharacter>();
+                    if (Enem.isAlive() && this.BuffTarget.isAlive())
+                    {
+                        BattleLogicHandler.BuffDamage(Enem, 200);
+                    }
+                }
             }
         }
     }

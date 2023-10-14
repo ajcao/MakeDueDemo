@@ -42,10 +42,12 @@ public static class BattleLogicHandler
 		BattleLogicHandler.LowerArmor(RC, damageToArmor);
 		if ((RC.GetType()).IsSubclassOf(typeof(PlayableCharacter)))
 		{
+			//Players gain resolve
 			BattleLogicHandler.GainResolve((PlayableCharacter) RC, damageToArmor);
 		}
 		else
 		{
+			//Enemy lose armor
 			BattleLogicHandler.LowerStamina((EnemyCharacter) RC, damageToHealth);
 		}
 		
@@ -61,14 +63,8 @@ public static class BattleLogicHandler
 		}
 		
 		TE = new onDealAttackDamagePostTrigger(AC, RC, d);
-		if (BuffHandler.inBuffTriggerProcess)
-		{
-			BuffHandler.AddTriggerToTotalProc(TriggerEventEnum.onDealAttackDamagePostEnum, TE);
-		}
-		else
-		{
-			BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onDealAttackDamagePostEnum, TE, ref d);
-		}
+		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onDealAttackDamagePostEnum, TE, ref d);
+		
 	}
 	
 	public static void BuffDamage(Character RC, int inputD)
@@ -105,14 +101,7 @@ public static class BattleLogicHandler
 	{
 		C.setCurrentArmor(C.getCurrentArmor() + d);
 		TriggerEvent TE = new onArmorGainTrigger(C, d);
-		if (BuffHandler.inBuffTriggerProcess)
-		{
-			BuffHandler.AddTriggerToTotalProc(TriggerEventEnum.onArmorGainEnum, TE);
-		}
-		else
-		{
-			BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onArmorGainEnum, TE, ref d);
-		}
+		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onArmorGainEnum, TE, ref d);
 		
 	}
 	
@@ -303,6 +292,10 @@ public static class BattleLogicHandler
             }
             
         }
+		
+		int dummy = 0;
+		TriggerEvent TE = new onRoundEndTrigger(R);
+		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onRoundEndEnum, TE, ref dummy);
 	}
 	
 }

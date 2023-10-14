@@ -44,7 +44,7 @@ public class EnemyApplyBuffMove : EnemyMove
     
     public override string MoveIndicatorText()
     {
-        return "+" + this.Intensity;
+        return "Buffing";
     }
     
     public override string getAnimation()
