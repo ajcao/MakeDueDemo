@@ -56,7 +56,7 @@ public abstract class PlayableCharacter : Character
 	
 	public void setAttackStat(int d)
 	{
-		AttackStat += d;
+		AttackStat = d;
 	}
 	
 	public int getDefenseStat()
@@ -66,7 +66,7 @@ public abstract class PlayableCharacter : Character
 	
 	public void setDefenseStat(int d)
 	{
-		DefenseStat += d;
+		DefenseStat = d;
 	}
 	
 	public void setHasCasted(bool b)
@@ -129,6 +129,7 @@ public abstract class PlayableCharacter : Character
 	{
 		this.Inventory.Add(I);
 		I.AssignCharacter(this);
+		I.OnPickup();
 	}
 			
 }

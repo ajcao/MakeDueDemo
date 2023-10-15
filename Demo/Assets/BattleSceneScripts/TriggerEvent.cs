@@ -35,7 +35,7 @@ public enum TriggerEventEnum
 	//onArmorGainSpecialEnum,
 	onArmorGainEnum,
 	
-	onHeallthGainSpecialEnum,
+	onHealthGainSpecialEnum,
 	onHealthGainEnum,
 	
 	

@@ -11,27 +11,28 @@ using BuffUtil;
 namespace ItemUtil
 {
     
-public class ApaxeItem : GameItem
+public class BlessedWineItem : GameItem
 {
-    public ApaxeItem()
+    public BlessedWineItem()
     {
-        this.ItemIcon = Resources.Load<Sprite>("ItemImages/Apaxe");
-        this.ItemName = "Apaxe";
+        this.ItemIcon = Resources.Load<Sprite>("ItemImages/BlessedWine");
+        this.ItemName = "BlessedWine";
     }
     
     public override void OnPickup()
     {
+        return;
     }
     
     public override void OnApply()
     {
-        Buff B = new ApaxeItemBuff(this.ItemOwner, this.ItemOwner, 10, null);
+        Buff B = new BlessedWineItemBuff(this.ItemOwner, this.ItemOwner, 0, null);
         BattleLogicHandler.OnBuffApply(B);
     }
     
     public override string GetTooltipString()
     {
-        return "Increase damage by 10. Whenenver you basic attack, deal 20 damage to two random enemies";
+        return "Every 10th abilities cast, heal to full";
     }
 }
 

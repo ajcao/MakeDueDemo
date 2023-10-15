@@ -40,6 +40,7 @@ public static class BattleLogicHandler
 		int damageToHealth = Mathf.Max(0, d - RC.getCurrentArmor());
 		
 		BattleLogicHandler.LowerArmor(RC, damageToArmor);
+		
 		if ((RC.GetType()).IsSubclassOf(typeof(PlayableCharacter)))
 		{
 			//Players gain resolve
@@ -115,9 +116,14 @@ public static class BattleLogicHandler
 		E.setStamina(Mathf.Max(E.getStamina() - d, 0));
 	}
 	
-	public static void GainHealth(Character C, int r)
+	public static void GainHealth(Character C, int inputD)
 	{
-		C.setCurrentHealth(Mathf.Min(C.getCurrentHealth() + r, C.getMaxHealth()));
+		int d = inputD;
+		
+		TriggerEvent TE = new onHealthGainSpecialTrigger(C, d);
+		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onHealthGainSpecialEnum, TE, ref d);
+		
+		C.setCurrentHealth(Mathf.Min(C.getCurrentHealth() + d, C.getMaxHealth()));
 	}
 	
 	public static void GainResolve(PlayableCharacter P, int r)

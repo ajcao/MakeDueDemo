@@ -43,6 +43,12 @@ public class EntireLibraryItem : MonoBehaviour
         A = new DemonCubeItem();
         ReturnList.Add(A);
         
+        A = new HeavensSpearItem();
+        ReturnList.Add(A);
+        
+        A = new BlessedWineItem();
+        ReturnList.Add(A);
+        
         
         return ReturnList;
     }

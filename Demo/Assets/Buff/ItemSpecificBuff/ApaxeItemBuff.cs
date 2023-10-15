@@ -27,10 +27,14 @@ public class ApaxeItemBuff : Buff
     
     public override void onApplication()
     {
+        int Inten = this.Intensity.Value;
+        BuffTarget.setDamageOutputModifier(BuffTarget.getDamageOutputModifier() + Inten);
     }
     
     public override void onExpire()
     {
+        int Inten = this.Intensity.Value;
+        BuffTarget.setDamageOutputModifier(BuffTarget.getDamageOutputModifier() - Inten);
     }
     
     public override string GetTooltipString()
