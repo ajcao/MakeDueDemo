@@ -41,7 +41,7 @@ public class ActivateResolveAbility : Ability
     
     public override void postCast(Character C)
     {
-        return;
+        BattleLogicHandler.ActiveResolve((PlayableCharacter) C);
     }
     
     public override string GetTooltipString()

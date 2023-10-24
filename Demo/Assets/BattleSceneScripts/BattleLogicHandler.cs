@@ -146,6 +146,14 @@ public static class BattleLogicHandler
 		
 	}
 	
+	public static void ActiveResolve(PlayableCharacter P)
+	{
+		TriggerEvent TE = new onPlayerActivateResolveTrigger(P);
+		int dummy = 0;
+		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onPlayerActivateResolveEnum, TE, ref dummy);
+		
+	}
+	
 	public static void PlayerBasicAttack(PlayableCharacter P, EnemyCharacter E)
 	{
 		int dummy = 0;

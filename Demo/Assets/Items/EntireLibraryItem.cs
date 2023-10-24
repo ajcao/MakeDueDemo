@@ -49,6 +49,14 @@ public class EntireLibraryItem : MonoBehaviour
         A = new BlessedWineItem();
         ReturnList.Add(A);
         
+        A = new MagicMissileCannedItem();
+        ReturnList.Add(A);
+        
+        A = new BluePhilospherStoneItem();
+        ReturnList.Add(A);
+        
+        A = new ScrollOfKnivesItem();
+        ReturnList.Add(A);
         
         return ReturnList;
     }

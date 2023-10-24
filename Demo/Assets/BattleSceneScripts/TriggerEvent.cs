@@ -24,6 +24,8 @@ public enum TriggerEventEnum
 	onPlayerAbilityEnum,
 	onPlayerAbilityPostEnum,
 	
+	onPlayerActivateResolveEnum,
+	
 	onDealDamageAddEnum,
 	onDealDamageMultiEnum,
 	onDealDamageSpecialEnum,
@@ -172,6 +174,16 @@ public class onPlayerAbilityPostTrigger : TriggerEvent
 	{
 		CastingPlayer = P;
 		ReceivingCharacter = C;
+	}
+}
+
+public class onPlayerActivateResolveTrigger : TriggerEvent
+{
+	public PlayableCharacter CastingPlayer;
+	
+	public onPlayerActivateResolveTrigger(PlayableCharacter P)
+	{
+		CastingPlayer = P;
 	}
 }
 
