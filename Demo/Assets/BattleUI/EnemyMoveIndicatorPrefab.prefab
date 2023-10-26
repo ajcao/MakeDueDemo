@@ -58,6 +58,7 @@ MonoBehaviour:
   - {fileID: 5311899396381520090}
   - {fileID: 8795046223750661614}
   - {fileID: 7921096101663515958}
+  Background: {fileID: 6000174734423848973}
   text: {fileID: 4318595533097453801}
   Condensed: 0
 --- !u!61 &-2701430794380765977
@@ -93,7 +94,7 @@ SortingGroup:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 787224342149600993}
-  m_Enabled: 1
+  m_Enabled: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1

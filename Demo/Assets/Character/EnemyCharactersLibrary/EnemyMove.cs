@@ -58,7 +58,7 @@ public abstract class EnemyMove
     
     public abstract void AdditionalMoveDeletion();
     
-    public void DeleteMove()
+    public void DeleteMoveIndicator()
     {
         //Since EnemyMoves and EnemyMoveIndicator are closely linked
         //Properly set null references as "garbage" collection

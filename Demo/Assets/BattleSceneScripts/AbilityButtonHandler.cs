@@ -81,6 +81,16 @@ public class AbilityButtonHandler : MonoBehaviour
         return currentAbility;
     }
     
+    public void ResetCasting()
+    {
+        currentCharacter = null;
+        currentTarget = null;
+        currentAbility = null;
+        
+        StopAllCoroutines();
+        this.SetCastingMode(false);
+    }
+    
     //Starts the gamestate where the game is waiting
     //for all characters to casts.
     //Enables the player to interact with the buttons
@@ -89,7 +99,7 @@ public class AbilityButtonHandler : MonoBehaviour
         IsCastingMode = true;
         Sprite ButtonImage = Resources.Load<Sprite>("NextTurnButtonImage") as Sprite;
         NextTurnButton.gameObject.GetComponent<Image>().sprite = ButtonImage;
-        NextTurnButton.gameObject.GetComponent<Button>().interactable = false;
+        NextTurnButton.gameObject.gameObject.GetComponent<Button>().interactable = true;
         StartCoroutine(CharacterCasting());
     }
 
@@ -142,10 +152,6 @@ public class AbilityButtonHandler : MonoBehaviour
         if (CanSomeoneCast() == true && !EnemyEncounter.IsEncounterDead())
         {
             StartCoroutine(CharacterCasting());
-        }
-        else
-        {
-            NextTurnButton.gameObject.GetComponent<Button>().interactable = true;
         }
     }
     

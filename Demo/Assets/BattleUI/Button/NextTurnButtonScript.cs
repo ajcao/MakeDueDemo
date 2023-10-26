@@ -15,7 +15,7 @@ public class NextTurnButtonScript : MonoBehaviour
 
     public void onButtonClick()
     {
-        AB.SetCastingMode(false);
+        AB.ResetCasting();
         this.gameObject.GetComponent<Button>().interactable = false;
     }
 }

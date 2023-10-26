@@ -50,7 +50,7 @@ public class ScarabHeadItemBuff : Buff
         {
             if ((9 <= roundNum) && (roundNum <= 12))
             {
-                BattleLogicHandler.GainArmor(this.BuffTarget, 40);
+                BattleLogicHandler.BuffGainArmor(this.BuffTarget, 40);
             }
             else if (roundNum > 12)
             {

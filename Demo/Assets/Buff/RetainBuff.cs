@@ -3,16 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using TriggerEventUtil;
 using CharacterUtil;
-using TooltipUtil;
 
 namespace BuffUtil
 {
     
-public class AttackUpBuff : Buff
+public class RetainBuff : Buff
 {
-    public AttackUpBuff(Character CTarget, Character CBuffer, int Inten, int? Dur) 
+    public RetainBuff(Character CTarget, Character CBuffer, int Inten, int? Dur) 
     {
-        this.Trigger = TriggerEventEnum.onDealDamageAddEnum;
+        this.Trigger = TriggerEventEnum.noTriggerEnum;
         this.TriggerSecondary = TriggerEventEnum.noTriggerEnum;
         this.BuffTarget = CTarget;
         this.OriginalBuffer = CBuffer;
@@ -21,30 +20,26 @@ public class AttackUpBuff : Buff
         this.Visible = true;
         this.Stackable = true;
         
-        BuffIcon = Resources.Load<Sprite>("AbilityImages/AttackIcon");
+        BuffIcon = Resources.Load<Sprite>("AbilityImages/Defend3Icon");
     }
-
     
     public override void onApplication()
     {
-    }
-    
-    public override void onExpire()
-    {
+        this.BuffTarget.setArmorRetain(this.BuffTarget.getArmorRetain() + this.Intensity.Value);
     }
     
     public override string GetTooltipString()
     {
-        return "Increase damage by " + this.Intensity.Value;
+        return "Retain " + this.Intensity + " armor at the start of the next round";
+    }
+    
+    public override void onExpire()
+    {
+        this.BuffTarget.setArmorRetain(this.BuffTarget.getArmorRetain() - this.Intensity.Value);
     }
     
     public override void onTriggerEffect(TriggerEvent E, ref int v)
     {
-        onDealDamageAddTrigger T = (onDealDamageAddTrigger) E;
-        if (T.AttackingChar == BuffTarget)
-        {
-            v = (int) (v + this.Intensity.Value);
-        }
     }
 }
 

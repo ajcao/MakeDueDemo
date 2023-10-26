@@ -50,7 +50,7 @@ public class LeftScarabShellItemBuff : Buff
         {
             if (roundNum <= 4)
             {
-                BattleLogicHandler.GainArmor(this.BuffTarget, 20);
+                BattleLogicHandler.BuffGainArmor(this.BuffTarget, 20);
             }
             else
             {

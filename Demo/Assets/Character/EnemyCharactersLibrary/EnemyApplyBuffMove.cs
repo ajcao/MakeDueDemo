@@ -44,7 +44,14 @@ public class EnemyApplyBuffMove : EnemyMove
     
     public override string MoveIndicatorText()
     {
-        return "Buffing";
+        if ((TargetArray[0].GetType()).IsSubclassOf(typeof(EnemyCharacter)))
+        {
+            return "Buffing";
+        }
+        else
+        {
+            return "Debuff";
+        }
     }
     
     public override string getAnimation()

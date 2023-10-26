@@ -27,7 +27,7 @@ public static class BattleLogicHandler
 	{
 		int d = inputD;
 		
-		TriggerEvent TE = new onDealDamageAddTrigger(RC, d);
+		TriggerEvent TE = new onDealDamageAddTrigger(AC, RC, d);
 		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onDealDamageAddEnum, TE, ref d);
 		
 		TE = new onDealDamageMultiTrigger(RC, d);
@@ -98,11 +98,32 @@ public static class BattleLogicHandler
 		}
 	}
 	
-	public static void GainArmor(Character C, int d)
+	public static void BuffGainArmor(Character C, int inputD)
 	{
+		int d = inputD;
+		
 		C.setCurrentArmor(C.getCurrentArmor() + d);
-		TriggerEvent TE = new onArmorGainTrigger(C, d);
-		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onArmorGainEnum, TE, ref d);
+		
+		TriggerEvent TE = new onArmorWasGainedTrigger(C, d);
+		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onArmorWasGainedEnum, TE, ref d);
+
+		
+	}
+	
+	public static void GainArmor(Character CC, Character RC, int inputD)
+	{
+		int d = inputD;
+		
+		TriggerEvent TE = new onArmorGainAddTrigger(CC, RC, d);
+		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onArmorGainAddEnum, TE, ref d);
+		
+		RC.setCurrentArmor(RC.getCurrentArmor() + d);
+		
+		TE = new onArmorGainPostTrigger(RC, d);
+		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onArmorGainPostEnum, TE, ref d);
+		
+		TE = new onArmorWasGainedTrigger(RC, d);
+		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onArmorWasGainedEnum, TE, ref d);
 		
 	}
 	
@@ -252,6 +273,9 @@ public static class BattleLogicHandler
 		TriggerEvent TE = new onPostTurnTrigger(typeof(PlayableCharacter));
 		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onPostTurnEnum, TE, ref dummy);
 		
+		TE = new onSecondPostTurnTrigger(typeof(PlayableCharacter));
+		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onSecondPostTurnEnum, TE, ref dummy);
+		
 	}
 	
 
@@ -272,6 +296,9 @@ public static class BattleLogicHandler
 		int dummy = 0;
 		TriggerEvent TE = new onPostTurnTrigger(typeof(EnemyCharacter));
 		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onPostTurnEnum, TE, ref dummy);
+		
+		TE = new onSecondPostTurnTrigger(typeof(EnemyCharacter));
+		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onSecondPostTurnEnum, TE, ref dummy);
 		
 	}
 	

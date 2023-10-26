@@ -14,6 +14,7 @@ public enum TriggerEventEnum
 	onRoundStartEnum,
 	onPreTurnEnum,
 	onPostTurnEnum,
+	onSecondPostTurnEnum,
 	onRoundEndEnum,
 	
 	onPlayerBasicAttackEnum,
@@ -32,10 +33,12 @@ public enum TriggerEventEnum
 	onDealAttackDamagePostEnum,
 	
 	
-	//onArmorGainAddEnum,
+	onArmorGainAddEnum,
 	//onArmorGainMultiEnum,
 	//onArmorGainSpecialEnum,
-	onArmorGainEnum,
+	onArmorGainPostEnum,
+	
+	onArmorWasGainedEnum,
 	
 	onHealthGainSpecialEnum,
 	onHealthGainEnum,
@@ -78,6 +81,16 @@ public class onPostTurnTrigger : TriggerEvent
 	public Type CharacterType;
 	
 	public onPostTurnTrigger(Type inputCT)
+	{
+		CharacterType = inputCT;
+	}
+}
+
+public class onSecondPostTurnTrigger : TriggerEvent
+{
+	public Type CharacterType;
+	
+	public onSecondPostTurnTrigger(Type inputCT)
 	{
 		CharacterType = inputCT;
 	}
@@ -189,11 +202,13 @@ public class onPlayerActivateResolveTrigger : TriggerEvent
 
 public class onDealDamageAddTrigger : TriggerEvent
 {
+	public Character AttackingChar;
 	public Character ReceivingChar; 
 	public int DamageAmount;
 	
-	public onDealDamageAddTrigger(Character RC, int d)
+	public onDealDamageAddTrigger(Character AC, Character RC, int d)
 	{
+		AttackingChar = AC;
 		ReceivingChar = RC;
 		DamageAmount = d;
 	}
@@ -223,19 +238,6 @@ public class onDealDamageSpecialTrigger : TriggerEvent
 	}
 }
 
-public class onArmorGainTrigger : TriggerEvent
-{
-	public Character ReceivingChar;
-	public int ArmorAmount;
-	
-	public onArmorGainTrigger(Character RC, int a)
-	{
-		ReceivingChar = RC;
-		ArmorAmount = a;
-	}
-	
-}
-
 public class onDealAttackDamagePostTrigger : TriggerEvent
 {
 	public Character AttackingChar;
@@ -248,6 +250,47 @@ public class onDealAttackDamagePostTrigger : TriggerEvent
 		ReceivingChar = RC;
 		DamageAmount = d;
 	}
+}
+
+public class onArmorGainAddTrigger : TriggerEvent
+{
+	public Character CastingChar;
+	public Character ReceivingChar;
+	public int ArmorAmount;
+	
+	public onArmorGainAddTrigger(Character CC, Character RC, int a)
+	{
+		CastingChar = CC;
+		ReceivingChar = RC;
+		ArmorAmount = a;
+	}
+	
+}
+
+public class onArmorGainPostTrigger : TriggerEvent
+{
+	public Character ReceivingChar;
+	public int ArmorAmount;
+	
+	public onArmorGainPostTrigger(Character RC, int a)
+	{
+		ReceivingChar = RC;
+		ArmorAmount = a;
+	}
+	
+}
+
+public class onArmorWasGainedTrigger : TriggerEvent
+{
+	public Character ReceivingChar;
+	public int ArmorAmount;
+	
+	public onArmorWasGainedTrigger(Character RC, int a)
+	{
+		ReceivingChar = RC;
+		ArmorAmount = a;
+	}
+	
 }
 
 public class onHealthGainSpecialTrigger : TriggerEvent

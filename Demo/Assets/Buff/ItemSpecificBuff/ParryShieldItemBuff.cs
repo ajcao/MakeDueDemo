@@ -13,7 +13,7 @@ public class ParryShieldItemBuff : Buff
     public ParryShieldItemBuff(Character CTarget, Character CBuffer, int Inten, int? Dur) 
     {
         this.Trigger = TriggerEventEnum.onPlayerDefendEnum;
-        this.TriggerSecondary = TriggerEventEnum.onArmorGainEnum;
+        this.TriggerSecondary = TriggerEventEnum.onArmorWasGainedEnum;
         this.BuffTarget = CTarget;
         this.OriginalBuffer = CBuffer;
         this.Intensity = Inten;
@@ -57,7 +57,7 @@ public class ParryShieldItemBuff : Buff
         
         else //Did character gain armor
         {
-            onArmorGainTrigger TE = (onArmorGainTrigger) E;
+            onArmorWasGainedTrigger TE = (onArmorWasGainedTrigger) E;
             
             if (TE.ReceivingChar == this.BuffTarget)
             {

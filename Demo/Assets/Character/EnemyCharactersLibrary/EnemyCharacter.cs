@@ -66,25 +66,30 @@ public abstract class EnemyCharacter : Character
 		return Moves;
 	}
 	
-	public void EnemyCastMoves()
-	{
-		EnemyMove EM = Moves.Peek();
-		EM.onCastWrapper();
-	}
-	
 	public void GetStunned()
 	{
+		EnemyMoveHandler EM_Handler = GameObject.Find("EnemyMoveHandlerGameObject").GetComponent<EnemyMoveHandler>();
 		if (Moves.Count > 0)
 		{
 			EnemyMove EM = Moves.Pop();
-			EM.DeleteMove();
+			EM.DeleteMoveIndicator();
 		}		
 		Moves.Push(new EnemyStunnedMove());
 		this.IsStunned = true;
-		StunnedBuff B = new StunnedBuff(this, this, null, 1);
+		//Additioanl debuff is placed on enemy turn
+		//since duration will count down before players next turn
+		StunnedBuff B;
+		if (EM_Handler.EnemyisMoving)
+		{
+			B = new StunnedBuff(this, this, null, 2);
+		}
+		else
+		{
+			B = new StunnedBuff(this, this, null, 1);
+		}
         BattleLogicHandler.OnBuffApply(B);
 		
-		GameObject.Find("EnemyMoveHandlerGameObject").GetComponent<EnemyMoveHandler>().DrawMoves(this);
+		EM_Handler.Update();
 		
 	}
 	

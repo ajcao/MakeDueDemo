@@ -12,7 +12,7 @@ public class BluePhilospherStoneItemBuff : Buff
 {
     public BluePhilospherStoneItemBuff(Character CTarget, Character CBuffer, int? Inten, int? Dur) 
     {
-        this.Trigger = TriggerEventEnum.onPostTurnEnum;
+        this.Trigger = TriggerEventEnum.onSecondPostTurnEnum;
         this.TriggerSecondary = TriggerEventEnum.noTriggerEnum;
         this.BuffTarget = CTarget;
         this.OriginalBuffer = CBuffer;
@@ -41,7 +41,7 @@ public class BluePhilospherStoneItemBuff : Buff
     
     public override void onTriggerEffect(TriggerEvent E, ref int v)
     {
-        onPostTurnTrigger T = (onPostTurnTrigger) E;
+        onSecondPostTurnTrigger T = (onSecondPostTurnTrigger) E;
         Debug.Log(this.BuffTarget.GetType());
         Debug.Log(T.CharacterType);
         if (this.BuffTarget.GetType().IsSubclassOf(T.CharacterType))

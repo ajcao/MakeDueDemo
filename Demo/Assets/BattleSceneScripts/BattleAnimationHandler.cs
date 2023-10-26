@@ -17,6 +17,9 @@ public class BattleAnimationHandler : MonoBehaviour
             case("EnemyAttack"):
                 currentAnimation = StartCoroutine(EnemyAttackAnimation(G));
                 break;
+            case("Flash"):
+                currentAnimation = StartCoroutine(FlashAnimation(G));
+                break;
             default:
                 break;
         }
@@ -67,6 +70,40 @@ public class BattleAnimationHandler : MonoBehaviour
             yield return new WaitForSeconds(0.02f);
         }
         
+        currentAnimation = null;
+    }
+    
+    IEnumerator FlashAnimation(GameObject G)
+    {
+        SpriteRenderer currentSprite = G.GetComponent<SpriteRenderer>();
+        
+        for (int i = 0; i < 40 ; i++)
+        {
+            
+            currentSprite.color -= new Color(0.0f, 0.0f, 0.05f, 0.0f);
+            yield return new WaitForSeconds(0.005f);
+        }
+        
+        for (int i = 0; i < 40 ; i++)
+        {
+            
+            currentSprite.color += new Color(0.0f, 0.0f, 0.05f, 0.0f);
+            yield return new WaitForSeconds(0.005f);
+        }
+        Debug.Log(currentSprite.color);
+        for (int i = 0; i < 40 ; i++)
+        {
+            
+            
+            currentSprite.color -= new Color(0.0f, 0.0f, 0.05f, 0.0f);
+            yield return new WaitForSeconds(0.005f);
+        }
+        for (int i = 0; i < 40 ; i++)
+        {
+            
+            currentSprite.color += new Color(0.0f, 0.0f, 0.05f, 0.0f);
+            yield return new WaitForSeconds(0.005f);
+        }
         currentAnimation = null;
     }
 }

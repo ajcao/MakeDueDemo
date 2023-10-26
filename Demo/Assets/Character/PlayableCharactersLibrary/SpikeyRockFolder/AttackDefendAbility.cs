@@ -21,7 +21,7 @@ public class AttackDefendAbility : Ability
     public override void onCast(Character E)
     {
         BattleLogicHandler.AttackDamage(PC, (EnemyCharacter) E, PC.getAttackStat() + PC.getDamageOutputModifier());
-        BattleLogicHandler.GainArmor(PC, PC.getDefenseStat() + PC.getDefenseOutputModifier());
+        BattleLogicHandler.GainArmor(PC, PC, PC.getDefenseStat() + PC.getDefenseOutputModifier());
     }
     
     public override void postCast(Character C)

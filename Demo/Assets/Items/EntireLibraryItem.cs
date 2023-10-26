@@ -58,6 +58,9 @@ public class EntireLibraryItem : MonoBehaviour
         A = new ScrollOfKnivesItem();
         ReturnList.Add(A);
         
+        A = new ArmorRepairKitItem();
+        ReturnList.Add(A);
+        
         return ReturnList;
     }
 }

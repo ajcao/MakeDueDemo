@@ -75,7 +75,7 @@ public class EnemyMoveHandler : MonoBehaviour
                 EM_Indicator.GetComponent<BoxCollider2D>().size = new Vector2(1.47f, 1.04f);
                 EM_Indicator.GetComponent<BoxCollider2D>().offset = new Vector2(0f, 0f);
             }
-            EM_Indicator.GetComponent<SortingGroup>().sortingOrder = -1*i;
+            EM_Indicator.GetComponent<SortingGroup>().sortingOrder = -5*i;
             
             i+=1;
         }
@@ -96,16 +96,25 @@ public class EnemyMoveHandler : MonoBehaviour
         foreach (GameObject G in EnemyEncounter.GetLivingEncounterMembers())
         {
             EnemyCharacter E = G.GetComponent<EnemyCharacter>();
-            BattleAnimation.StartAnimation(G, E.getCurrentMoves().Peek().getAnimation());
-            E.EnemyCastMoves();
+            
+            Debug.Log("Popping");
+            EnemyMove EM = E.getCurrentMoves().Peek();
+            BattleAnimation.StartAnimation(EM.getMoveIndicator().transform.GetChild(0).gameObject, "Flash");
+            while (BattleAnimation.isAnimationPlaying())
+            {
+                yield return null;
+            }            
+            EM = E.getCurrentMoves().Pop();
+            EM.DeleteMoveIndicator();
+            
+            Debug.Log("Casting");
+            BattleAnimation.StartAnimation(G, EM.getAnimation());
             while (BattleAnimation.isAnimationPlaying())
             {
                 yield return null;
             }
-            //Pop move after casting
-            //This is done in case moves changes to stun during cast    
-            EnemyMove EM = E.getCurrentMoves().Pop();
-            EM.DeleteMove();
+            EM.onCastWrapper();
+            
         }
         EnemyisMoving = false;
         

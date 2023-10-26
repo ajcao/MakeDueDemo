@@ -16,6 +16,8 @@ public class EnemyMoveIndicatorScript : MonoBehaviour, IPointerClickHandler, IPo
     
     public SpriteRenderer[] Target;
     
+    public SpriteRenderer Background;
+    
     public TextMeshPro text;
     
     private Sprite Empty;

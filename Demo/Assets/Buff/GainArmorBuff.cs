@@ -46,7 +46,7 @@ public class GainArmorBuff : Buff
         Debug.Log(T.CharacterType);
         if (this.BuffTarget.GetType().IsSubclassOf(T.CharacterType))
         {
-            BattleLogicHandler.GainArmor(this.BuffTarget, this.Intensity.Value);
+            BattleLogicHandler.BuffGainArmor(this.BuffTarget, this.Intensity.Value);
         }
     }
 }
