@@ -61,6 +61,18 @@ public class EntireLibraryItem : MonoBehaviour
         A = new ArmorRepairKitItem();
         ReturnList.Add(A);
         
+        A = new ShinobiKatanaItem();
+        ReturnList.Add(A);
+        
+        A = new LivingWoodArmorItem();
+        ReturnList.Add(A);
+        
+        A = new MetalRoseItem();
+        ReturnList.Add(A);
+        
+        A = new BrainSlugItem();
+        ReturnList.Add(A);
+        
         return ReturnList;
     }
 }

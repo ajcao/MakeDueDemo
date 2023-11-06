@@ -63,8 +63,11 @@ public static class BattleLogicHandler
 			BuffHandler.AddTriggerToHigherPrioirty((onDeathTrigger) TE);
 		}
 		
+		TE = new onDealArmorDamagePostTrigger(AC, RC, d);
+		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onDealArmorDamagePostEnum, TE, ref damageToArmor);
+		
 		TE = new onDealAttackDamagePostTrigger(AC, RC, d);
-		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onDealAttackDamagePostEnum, TE, ref d);
+		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onDealAttackDamagePostEnum, TE, ref damageToHealth);
 		
 	}
 	

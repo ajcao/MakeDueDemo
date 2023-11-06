@@ -30,6 +30,8 @@ public enum TriggerEventEnum
 	onDealDamageAddEnum,
 	onDealDamageMultiEnum,
 	onDealDamageSpecialEnum,
+	
+	onDealArmorDamagePostEnum,
 	onDealAttackDamagePostEnum,
 	
 	
@@ -235,6 +237,20 @@ public class onDealDamageSpecialTrigger : TriggerEvent
 	{
 		ReceivingChar = RC;
 		DamageAmount = d;
+	}
+}
+
+public class onDealArmorDamagePostTrigger : TriggerEvent
+{
+	public Character AttackingChar;
+	public Character ReceivingChar; 
+	public int ArmorAmount;
+	
+	public onDealArmorDamagePostTrigger(Character AC, Character RC, int d)
+	{
+		AttackingChar = AC;
+		ReceivingChar = RC;
+		ArmorAmount = d;
 	}
 }
 
