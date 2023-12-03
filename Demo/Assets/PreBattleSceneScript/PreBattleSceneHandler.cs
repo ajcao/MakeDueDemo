@@ -29,6 +29,7 @@ public class PreBattleSceneHandler : MonoBehaviour
         
         GameObject[] CurrentCharacterArray = new GameObject[4];
         
+        //Draft random party of 4 characters from poll of 8
         int i = 0;
         while (TotalCharacterArray.Count > 0 && i < 4)
         {
@@ -39,7 +40,7 @@ public class PreBattleSceneHandler : MonoBehaviour
             i++;
         }
         
-        
+        //Draw party on screen
         PlayerParty.AddPartyMember((Instantiate(CurrentCharacterArray[0], new Vector2(-6f,3.0f), Quaternion.identity) as GameObject));
         PlayerParty.AddPartyMember((Instantiate(CurrentCharacterArray[1], new Vector2(-2f,3.0f), Quaternion.identity) as GameObject));
         PlayerParty.AddPartyMember((Instantiate(CurrentCharacterArray[2], new Vector2(2f,3.0f), Quaternion.identity) as GameObject));

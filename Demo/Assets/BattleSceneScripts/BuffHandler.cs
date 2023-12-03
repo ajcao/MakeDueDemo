@@ -43,9 +43,30 @@ public static class BuffHandler
 		BuffsList[B.getTriggerSecondary()].Add(B);
 	}
 	
+	public static bool CharacterHaveBuff(Character C, Buff InputB, bool Exact)
+	{
+		List<Buff> BuffList = C.getBuffList();
+		
+		foreach (Buff B in BuffList)
+		{
+			//Ensure the bufftype is the same
+			if (InputB.GetType() == B.GetType())
+			{
+				//if Exact is true, then the intensity and duration must match
+				if (Exact && (InputB.getIntensity() == B.getIntensity()) && (InputB.getDuration() == B.getDuration()))
+					return true;
+				
+				//if Exact is false, then as long as the buff type matches return true
+				if (!Exact)
+					return true;
+			}
+		}
+		
+		return false;
+	}
 	public static void DecrementBuffDuration()
 	{		
-		foreach (GameObject G in PlayerParty.getParty())
+        foreach (GameObject G in PlayerParty.GetLivingPartyMembers())
 		{
 			List<Buff> BList = G.GetComponent<Character>().getBuffList();
 			foreach (Buff B in BList)
@@ -55,7 +76,7 @@ public static class BuffHandler
 			BuffHandler.RemoveDeletedBuffsFromList(BList);
 		}
 		
-		foreach (GameObject G in EnemyEncounter.getEncounter())
+        foreach (GameObject G in EnemyEncounter.GetLivingEncounterMembers())
 		{
 			List<Buff> BList = G.GetComponent<Character>().getBuffList();
 			foreach (Buff B in BList)
@@ -73,7 +94,6 @@ public static class BuffHandler
 			Buff B = BList[i];
 			if (B.ToBeDeleted)
 			{
-				Debug.Log(B);
 				GameObject.Destroy(B.BuffIndicator);
 				B.BuffIndicator = null;
 				BList.Remove(B);
@@ -137,6 +157,7 @@ public static class BuffHandler
 		}
 		
 		//Otherwise, proc the trigger instantly
+		//Method is now in trigger process
 		inBuffTriggerProcess = true;
 		
 		if (BuffsList[e] != null)
@@ -174,6 +195,7 @@ public static class BuffHandler
 					BattleLogicHandler.CharacterDies(DT.DyingCharacter);
 					
 					//Proc any on death buff effects
+					//Phase Transitions also happens in buff effects here
 					if (BuffsList[TriggerEventEnum.onDeathEnum] != null)
 					{
 						int BuffCount = BuffsList[TriggerEventEnum.onDeathEnum].Count;
@@ -190,6 +212,10 @@ public static class BuffHandler
 					
 					//Mark all buffs on the character
 					BuffHandler.MarkBuffsOnDeadCharacter(DT.DyingCharacter);
+					
+					//Move Characters offscreen
+					DT.DyingCharacter.gameObject.transform.position = new Vector3(0, -500, 0);
+					
 				}
 			}
 			
@@ -213,9 +239,11 @@ public static class BuffHandler
 		}
 		
 		//Remove all buffs
-		Debug.Log("Deleting Buff");
 		BuffHandler.RemoveDeletedBuffsFromEveryone();
 		
+		//End trigger process
 		inBuffTriggerProcess = false;
+		
+		
 	}
 }

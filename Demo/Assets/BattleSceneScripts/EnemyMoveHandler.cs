@@ -16,14 +16,12 @@ public class EnemyMoveHandler : MonoBehaviour
     
     public BattleAnimationHandler BattleAnimation;
     
-    //Function also handles creating new moves too
-    public void DisplayMoves()
+    public void GenerateMoves()
     {
         foreach (GameObject G in EnemyEncounter.GetLivingEncounterMembers())
         {
             EnemyCharacter E = G.GetComponent<EnemyCharacter>();
             //If the enemy has no moves, get new moves
-            //Then display the new moves
             if (E.getCurrentMoves().Count == 0)
             {
                 E.GenerateMoves();
@@ -31,6 +29,7 @@ public class EnemyMoveHandler : MonoBehaviour
         }
     }
     
+    //Handles having the moves have a visual indicator
     public void Update()
     {
         foreach (GameObject G in EnemyEncounter.GetLivingEncounterMembers())
@@ -46,6 +45,11 @@ public class EnemyMoveHandler : MonoBehaviour
         foreach (EnemyMove EM in E.getCurrentMoves())
         {
             GameObject EM_Indicator;
+            
+            //Get height of character sprite
+            SpriteRenderer SR = E.gameObject.GetComponentInChildren<SpriteRenderer>();
+            
+            //If a move exist but no move indicator exists, create a move indicator
             if (EM.getMoveIndicator() == null)
             {
                 EM_Indicator = Instantiate(EnemyMoveIndicatorPrefab, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity, E.transform) as GameObject;
@@ -53,10 +57,12 @@ public class EnemyMoveHandler : MonoBehaviour
                 EM_Indicator.GetComponent<EnemyMoveIndicatorScript>().Init(EM);
             }
             EM_Indicator = EM.getMoveIndicator();
+            
             //If the move is condensed
             if (EM_Indicator.GetComponent<EnemyMoveIndicatorScript>().Condensed == true)
-            {                
-                EM_Indicator.transform.position = E.transform.position + new Vector3(0.0f,1.5f+i*0.2f,0.0f);
+            {
+                
+                EM_Indicator.transform.position = E.transform.position + new Vector3(0.0f,i*0.2f,0.0f) + new Vector3(0.0f, 2.0f*SR.size.y,0.0f);
                 //Have the first hitbox be normal size
                 if (i == 0)
                 {
@@ -69,9 +75,10 @@ public class EnemyMoveHandler : MonoBehaviour
                     EM_Indicator.GetComponent<BoxCollider2D>().offset = new Vector2(0f, 0.4f);
                 }
             }
+            //Show moves as normallly
             else
             {
-                EM_Indicator.transform.position = E.transform.position + new Vector3(0.0f,1.5f+i*1.5f,0.0f);
+                EM_Indicator.transform.position = E.transform.position + new Vector3(0.0f,i*1.2f,0.0f) + new Vector3(0.0f, 2.0f*SR.size.y,0.0f);
                 EM_Indicator.GetComponent<BoxCollider2D>().size = new Vector2(1.47f, 1.04f);
                 EM_Indicator.GetComponent<BoxCollider2D>().offset = new Vector2(0f, 0f);
             }
@@ -89,31 +96,39 @@ public class EnemyMoveHandler : MonoBehaviour
     
     IEnumerator EnemyTurn()
     {
-        //Fix to avoid using size
-        //Relies on fixing Player Party and Enemy Encounter
+        //Change the NextTurn Button to represent Enemy's turn
         Sprite ButtonImage = Resources.Load<Sprite>("EnemyTurnButton") as Sprite;
         NextTurnButton.gameObject.GetComponent<Image>().sprite = ButtonImage;
+        
+        
         foreach (GameObject G in EnemyEncounter.GetLivingEncounterMembers())
         {
             EnemyCharacter E = G.GetComponent<EnemyCharacter>();
-            
-            Debug.Log("Popping");
-            EnemyMove EM = E.getCurrentMoves().Peek();
-            BattleAnimation.StartAnimation(EM.getMoveIndicator().transform.GetChild(0).gameObject, "Flash");
-            while (BattleAnimation.isAnimationPlaying())
+            if (E.isAlive())
             {
-                yield return null;
-            }            
-            EM = E.getCurrentMoves().Pop();
-            EM.DeleteMoveIndicator();
-            
-            Debug.Log("Casting");
-            BattleAnimation.StartAnimation(G, EM.getAnimation());
-            while (BattleAnimation.isAnimationPlaying())
-            {
-                yield return null;
+                
+                //Get the current move to get the animation
+                EnemyMove EM = E.getCurrentMoves().Peek();
+                BattleAnimation.StartAnimation(EM.getMoveIndicator().transform.GetChild(0).gameObject, "Flash");
+                
+                //Pause execution during animation
+                while (BattleAnimation.isAnimationPlaying())
+                {
+                    yield return null;
+                }
+
+                //Remove the current move from the enemy's movepool
+                EM = E.getCurrentMoves().Pop();
+                EM.DeleteMoveIndicator();
+                
+                //Play the move's animation, then cast the move
+                BattleAnimation.StartAnimation(G, EM.getAnimation());
+                while (BattleAnimation.isAnimationPlaying())
+                {
+                    yield return null;
+                }
+                EM.onCastWrapper();
             }
-            EM.onCastWrapper();
             
         }
         EnemyisMoving = false;

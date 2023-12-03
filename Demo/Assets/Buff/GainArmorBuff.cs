@@ -42,8 +42,6 @@ public class GainArmorBuff : Buff
     public override void onTriggerEffect(TriggerEvent E, ref int v)
     {
         onPostTurnTrigger T = (onPostTurnTrigger) E;
-        Debug.Log(this.BuffTarget.GetType());
-        Debug.Log(T.CharacterType);
         if (this.BuffTarget.GetType().IsSubclassOf(T.CharacterType))
         {
             BattleLogicHandler.BuffGainArmor(this.BuffTarget, this.Intensity.Value);

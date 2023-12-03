@@ -20,6 +20,8 @@ public abstract class EnemyCharacter : Character
 	protected int MaxStamina;
 	protected int StaminaRegeneration;
 	
+	public bool CanRevive;
+	
 	public int getStamina()
 	{
 		return this.Stamina;
@@ -68,7 +70,8 @@ public abstract class EnemyCharacter : Character
 	
 	public void GetStunned()
 	{
-		EnemyMoveHandler EM_Handler = GameObject.Find("EnemyMoveHandlerGameObject").GetComponent<EnemyMoveHandler>();
+		//If the enemy already has a move plan, delete it 
+		//and replace the move with the Stunned moved
 		if (Moves.Count > 0)
 		{
 			EnemyMove EM = Moves.Pop();
@@ -76,8 +79,11 @@ public abstract class EnemyCharacter : Character
 		}		
 		Moves.Push(new EnemyStunnedMove());
 		this.IsStunned = true;
+		
+		
 		//Additioanl debuff is placed on enemy turn
 		//since duration will count down before players next turn
+		EnemyMoveHandler EM_Handler = GameObject.Find("EnemyMoveHandlerGameObject").GetComponent<EnemyMoveHandler>();
 		StunnedBuff B;
 		if (EM_Handler.EnemyisMoving)
 		{
@@ -89,13 +95,16 @@ public abstract class EnemyCharacter : Character
 		}
         BattleLogicHandler.OnBuffApply(B);
 		
-		EM_Handler.Update();
-		
 	}
 	
 	public void doNothing()
 	{
 		
+	}
+	
+	public virtual void Respawn()
+	{
+		return;
 	}
 }
 

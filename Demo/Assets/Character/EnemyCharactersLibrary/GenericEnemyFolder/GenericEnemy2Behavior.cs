@@ -33,7 +33,7 @@ public class GenericEnemy2Behavior : EnemyCharacter
     {
         Character[] Target;
         
-        int[] RandomMoveInt = EnemyTargetingLibrary.GetNRandomMoves(3);
+        int[] RandomMoveInt = EnemyTargetingLibrary.CreateEvenDistributionToN(3);
         
         foreach (int i in RandomMoveInt)
         {

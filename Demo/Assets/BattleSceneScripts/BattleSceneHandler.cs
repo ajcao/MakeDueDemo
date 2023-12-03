@@ -43,17 +43,16 @@ public class BattleSceneHandler : MonoBehaviour
     
     public void Awake()
     {
-        //Add method to delegate
+        //Add method to delegate for ending the game
         EndGame = EndGameMethod;
         
-        //Temporary??
-        PlayerParty.getPartyMember(0).transform.position = new Vector3(-7.5f,0.0f,0.0f);
-        PlayerParty.getPartyMember(1).transform.position = new Vector3(-5.0f,0.0f,0.0f);
-        PlayerParty.getPartyMember(2).transform.position = new Vector3(-2.5f,0.0f,0.0f);
-        PlayerParty.getPartyMember(3).transform.position = new Vector3(0.0f,0.0f,0.0f);
+        //Place Player in correct location
+        PlayerParty.getPartyMember(0).transform.position = new Vector3(-9.0f,0.0f,0.0f);
+        PlayerParty.getPartyMember(1).transform.position = new Vector3(-6.5f,0.0f,0.0f);
+        PlayerParty.getPartyMember(2).transform.position = new Vector3(-4.0f,0.0f,0.0f);
+        PlayerParty.getPartyMember(3).transform.position = new Vector3(-1.5f,0.0f,0.0f);
         
-        EnemyEncounter.AddEncounterMember((Instantiate(E1, new Vector2(5.0f,0.0f), Quaternion.identity) as GameObject));
-        EnemyEncounter.AddEncounterMember((Instantiate(E2, new Vector2(7.5f,0.0f), Quaternion.identity) as GameObject));
+        EnemyEncounter.LoadEncounter();
                 
         //--------------------------------------------------------------------------------------------------------------
     }
@@ -77,6 +76,7 @@ public class BattleSceneHandler : MonoBehaviour
             }
         }
         
+        //Begin Combat Encounter
         StartCoroutine(TurnOrder());
         
     }
@@ -89,8 +89,8 @@ public class BattleSceneHandler : MonoBehaviour
             //Start the Turn
             BattleLogicHandler.BeginRound(Round);
             
-            //Check enemy moves, create new moves if needed
-            EM_Handler.DisplayMoves();
+            //Create new moves if needed
+            EM_Handler.GenerateMoves();
             
             //Player turn
             Debug.Log("PlayerTurn");
@@ -103,6 +103,12 @@ public class BattleSceneHandler : MonoBehaviour
                 yield return null;
             }
             
+            //Fix the way game ends. Current issues:
+            //Player has to hit end turn button even if all enemies are death
+            //Enemy plays out remaining attack
+            //Check Players Death first, then enemies
+            Debug.Log("Checking deaths");
+            BattleLogicHandler.CheckForAllPlayersDeaths();
             BattleLogicHandler.CheckForEncounterDeath();
             
             BattleLogicHandler.PlayerPostTurn();
@@ -120,6 +126,9 @@ public class BattleSceneHandler : MonoBehaviour
                 yield return null;
             }
             
+            //Check Players Death first, then enemies
+            Debug.Log("Checking deaths");
+            BattleLogicHandler.CheckForAllPlayersDeaths();
             BattleLogicHandler.CheckForEncounterDeath();
             
             BattleLogicHandler.EnemyPostTurn();

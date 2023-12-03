@@ -12,9 +12,8 @@ public class BuffIconHandler : MonoBehaviour
     void Update()
     {
         //Player Buffs
-        for (int i = 0; i < PlayerParty.getPartySize(); i++)
+        foreach (GameObject C in PlayerParty.GetLivingPartyMembers())
         {
-            GameObject C = PlayerParty.getPartyMember(i);
             List<Buff> BuffList = C.GetComponent<Character>().getBuffList();
             
             //Draws the buffs
@@ -37,9 +36,8 @@ public class BuffIconHandler : MonoBehaviour
         }
         
         //Enemy Buffs
-        for (int i = 0; i < EnemyEncounter.getEncounterSize(); i++)
+        foreach (GameObject C in EnemyEncounter.GetLivingEncounterMembers())
         {
-            GameObject C = EnemyEncounter.getEncounterMember(i);
             List<Buff> BuffList = C.GetComponent<Character>().getBuffList();
             
             //Draws the buffs

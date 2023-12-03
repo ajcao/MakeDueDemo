@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Resources/Scenes/PreBattleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Resources/Scenes/BattleScene.unity
+    path: Assets/Resources/Scenes/GenericEnemyBattleScene.unity
     guid: 484d918153b0fcc43a22a4dee472f56c
+  - enabled: 1
+    path: Assets/Resources/Scenes/GenericPlantBattleScene.unity
+    guid: d81633505d4a60140a15f02087dca4f8
   m_configObjects: {}

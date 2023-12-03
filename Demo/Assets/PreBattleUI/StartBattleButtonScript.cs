@@ -11,7 +11,7 @@ public class StartBattleButtonScript : MonoBehaviour
     
     public void OnButtonClick()
     {
-        Debug.Log("Button Click");
+        //Make each PlayableCharacter as persistent during scene change
         foreach (GameObject PC in PlayerParty.getParty())
         {
             DontDestroyOnLoad(PC);
@@ -31,6 +31,7 @@ public class StartBattleButtonScript : MonoBehaviour
             }
         }
         
-        SceneManager.LoadScene("BattleScene", LoadSceneMode.Single);
+        //Load Scene for Player to select Encounter
+        SceneManager.LoadScene("GenericPlantBattleScene", LoadSceneMode.Single);
     }
 }

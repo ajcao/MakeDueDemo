@@ -10,7 +10,6 @@ public class ItemSpawnHandler : MonoBehaviour
     
     private GameObject[] ShopInventory;
     
-    public EntireLibraryItem ItemLibrary;
     
     public GameObject EmptyItemPrefab;
     
@@ -20,12 +19,17 @@ public class ItemSpawnHandler : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        //Get Item pool
+        List<GameItem> AllPotentialItems = EntireLibraryItem.GetAllItems();
+        
+        //Get shop inventory slots
         GameObject ButtonCanvas = GameObject.Find("ButtonCanvas");
         ShopInventory = GameObject.Find("ButtonCanvas/Shop").GetComponent<CanvasInventoryScript>().InventorySlots;
-        List<GameItem> AllPotentialItems = ItemLibrary.GetAllItems();
         
+        //List for current item stocks in the shop
         GameItem[] CurrentItems = new GameItem[maxItems];
         
+        //Create the list of current items by randomly drawing from Item Pool
         int i = 0;
         while (AllPotentialItems.Count > 0 && i < maxItems)
         {
@@ -36,6 +40,9 @@ public class ItemSpawnHandler : MonoBehaviour
             i++;
         }
         
+        //Using create list of created items
+        //Create a draggable GameObject that represents the current item
+        //Place the draggable GameObject in the shop
         for (int j = 0; j < maxItems; j++)
         {
             GameObject newItem = Instantiate(EmptyItemPrefab, ButtonCanvas.transform) as GameObject;

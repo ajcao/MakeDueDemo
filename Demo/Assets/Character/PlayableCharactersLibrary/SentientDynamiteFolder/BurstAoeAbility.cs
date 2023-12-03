@@ -23,6 +23,8 @@ public class BurstAoeAbility : Ability
     {        
         //Fix to avoid using size
         //Relies on fixing Player Party and Enemy Encounter
+        //Fix this, gets issues with null spot
+        
         int r = Random.Range(0,EnemyEncounter.GetLivingEncounterMembers().Count);
         EnemyCharacter E = EnemyEncounter.getEncounterMember(r).GetComponent<EnemyCharacter>();
         BattleLogicHandler.AttackDamage(PC, E, 10 + PC.getDamageOutputModifier());

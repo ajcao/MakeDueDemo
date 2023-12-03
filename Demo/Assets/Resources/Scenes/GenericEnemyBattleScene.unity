@@ -1053,6 +1053,58 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfa95e850c284a447a2c46fec386ea1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &864064423
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 864064425}
+  - component: {fileID: 864064424}
+  m_Layer: 0
+  m_Name: EnemyEncounterHandlerGameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &864064424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 864064423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb7f333336405654d82093e4e77128c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EncounterSize: 2
+  InitialSpawnPool:
+  - {fileID: 2465709451207476951, guid: baa9ecdb38a83774b90ac134940092f3, type: 3}
+  - {fileID: 6710686837782463586, guid: a31d07b3bd9a6c648b2e53d611ab94f4, type: 3}
+  SpawnLocation:
+  - {x: 5, y: 0}
+  - {x: 9, y: 0}
+  SpawnPool: []
+--- !u!4 &864064425
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 864064423}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.674339, y: 0.22209428, z: -0.09409558}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &864732799
 GameObject:
   m_ObjectHideFlags: 0
@@ -2014,14 +2066,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1ca57d95a03b224790fc83623320c93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  P1: {fileID: 7831967512756798593, guid: 96173b2996e710b4ca855960ccacc87c, type: 3}
-  P2: {fileID: 7831967512756798593, guid: 29a3aedd91ff7d446aeb0ace78446161, type: 3}
-  P3: {fileID: 7831967512756798593, guid: 1466ad0098d586546bad92d382982619, type: 3}
-  P4: {fileID: 4216986254345584924, guid: f38d57aa17694ef44bec8f4585cd1b95, type: 3}
-  P5: {fileID: 7831967512756798593, guid: a6629b8669ded334d9a85d0dc4d04a28, type: 3}
-  P6: {fileID: 7831967512756798593, guid: 1b3881300a6bba347a916718587cc9fe, type: 3}
-  P7: {fileID: 7831967512756798593, guid: 196d886c53a4cd547ac62c0dedf9d11a, type: 3}
-  P8: {fileID: 3063199090697513369, guid: fb1701b96ef362a46a84f3e55f714581, type: 3}
   E1: {fileID: 2465709451207476951, guid: baa9ecdb38a83774b90ac134940092f3, type: 3}
   E2: {fileID: 6710686837782463586, guid: a31d07b3bd9a6c648b2e53d611ab94f4, type: 3}
   AB_Handler: {fileID: 374263448}

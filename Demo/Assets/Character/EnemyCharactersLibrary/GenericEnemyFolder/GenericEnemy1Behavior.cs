@@ -38,7 +38,7 @@ public class GenericEnemy1Behavior : EnemyCharacter
         Character[] Target;
         
         //If the buff was never applied, try to apply
-        if (!this.BuffList.Contains(new GainArmorBuff(this, this, 20, null)))
+        if (!BuffHandler.CharacterHaveBuff(this,new GainArmorBuff(this, this, 20, null), true))
         {
             Target = new Character[] {(Character) this};
             

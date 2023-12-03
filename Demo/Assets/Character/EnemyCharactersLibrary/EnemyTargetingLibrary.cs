@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine;
 using CharacterUtil;
 using Random=UnityEngine.Random;
+using BuffUtil;
 
 namespace EnemyTargetingLibraryUtil
 {
@@ -34,7 +35,13 @@ public static class EnemyTargetingLibrary
         return Targets;
     }
     
-    public static int[] GetNRandomMoves(int N)
+    //Target only characters that don't have a buff
+    public static Character[] TargetNRandomHeroesWithoutBuff(int inputN, Buff B)
+    {
+        return null;
+    }
+    
+    public static int[] CreateEvenDistributionToN(int N)
     {
         int[] IntArray = new int[N];
         

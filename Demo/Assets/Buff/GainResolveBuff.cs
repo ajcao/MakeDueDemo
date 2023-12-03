@@ -42,8 +42,6 @@ public class GainResolveBuff : Buff
     public override void onTriggerEffect(TriggerEvent E, ref int v)
     {
         onPreTurnTrigger T = (onPreTurnTrigger) E;
-        Debug.Log(this.BuffTarget.GetType());
-        Debug.Log(T.CharacterType);
         if (this.BuffTarget.GetType().IsSubclassOf(T.CharacterType))
         {
             BattleLogicHandler.GainResolve((PlayableCharacter) this.BuffTarget, this.Intensity.Value);

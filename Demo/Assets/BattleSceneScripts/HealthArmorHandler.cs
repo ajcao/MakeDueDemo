@@ -14,22 +14,26 @@ public class HealthArmorHandler : MonoBehaviour
     public void Start()
     {
         //Player HealthBar
-        for (int i = 0; i < PlayerParty.getPartySize(); i++)
+        foreach (GameObject C in PlayerParty.GetLivingPartyMembers())
         {
-            GameObject C = PlayerParty.getPartyMember(i);
             GameObject HealthArmorBar = Instantiate(HealthArmorPrefab, C.transform.position + new Vector3(0f,-1.5f,0f), Quaternion.identity, C.transform) as GameObject;
             HealthArmorBar.GetComponent<HealthArmorScript>().Init(C.GetComponent<Character>());
         }
         
         //Enemy HealthBar
-        for (int i = 0; i < EnemyEncounter.getEncounterSize(); i++)
+        foreach (GameObject C in EnemyEncounter.GetLivingEncounterMembers())
         {
-            GameObject C = EnemyEncounter.getEncounterMember(i);
             GameObject HealthArmorBar = Instantiate(HealthArmorPrefab, C.transform.position + new Vector3(0f,-1.5f,0f), Quaternion.identity, C.transform) as GameObject;
             HealthArmorBar.GetComponent<HealthArmorScript>().Init(C.GetComponent<Character>());
         }
         
 
+    }
+    
+    public void AddHealthIndicator(GameObject C)
+    {
+        GameObject HealthArmorBar = Instantiate(HealthArmorPrefab, C.transform.position + new Vector3(0f,-1.5f,0f), Quaternion.identity, C.transform) as GameObject;
+        HealthArmorBar.GetComponent<HealthArmorScript>().Init(C.GetComponent<Character>());
     }
 
     

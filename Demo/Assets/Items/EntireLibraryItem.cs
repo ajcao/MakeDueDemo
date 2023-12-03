@@ -5,9 +5,10 @@ using UnityEngine;
 namespace ItemUtil
 {
     
-public class EntireLibraryItem : MonoBehaviour
-{    
-    public List<GameItem> GetAllItems()
+public static class EntireLibraryItem
+{
+    
+    public static List<GameItem> GetAllItems()
     {
         List<GameItem> ReturnList = new List<GameItem>();
         

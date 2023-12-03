@@ -225,25 +225,23 @@ public static class BattleLogicHandler
 	
 	//Trigger is handled by damage script and buff handler
 	//Since death can only be safely determined after all buffs trigger
+	//This function only marks character for death
 	public static void CharacterDies(Character C)
 	{
 		C.onDeath();
-		
-		//Move character offscreen (should BattleLogicHandler handle this?)
-		C.gameObject.transform.position = new Vector3(0, -500, 0);
-		
-		//Check for Player Party death. If so, end game immeditely
-		//Game does not end for immeditely for Enemy Encounters since
-		//helpful buffs should still trigger before game ends
-		if (PlayerParty.IsPartyDead())
-		{
-			BattleSceneHandler.EndGame?.Invoke();
-		}
 	}
 	
 	public static void CheckForEncounterDeath()
 	{
 		if (EnemyEncounter.IsEncounterDead())
+		{
+			BattleSceneHandler.EndGame?.Invoke();
+		}
+	}
+	
+	public static void CheckForAllPlayersDeaths()
+	{
+		if (PlayerParty.IsPartyDead())
 		{
 			BattleSceneHandler.EndGame?.Invoke();
 		}
@@ -308,6 +306,7 @@ public static class BattleLogicHandler
 	//Decrease buff duration
 	//Reset Stamina
 	//Reset Resolve
+	//Force respawn of multiple phases enemies
 	public static void EndCombatRound(int R)
 	{
 		BuffHandler.DecrementBuffDuration();
@@ -340,6 +339,16 @@ public static class BattleLogicHandler
 		int dummy = 0;
 		TriggerEvent TE = new onRoundEndTrigger(R);
 		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onRoundEndEnum, TE, ref dummy);
+		
+		for (int i = 0; i < EnemyEncounter.getEncounterSize(); i++)
+		{
+			GameObject G = EnemyEncounter.getEncounterMember(i);
+			if (G != null)
+			{
+				EnemyCharacter E = G.GetComponent<EnemyCharacter>();
+				E.Respawn();
+			}
+		}
 	}
 	
 }

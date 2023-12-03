@@ -10,7 +10,7 @@ using TooltipUtil;
 namespace BuffUtil
 {
 	
-public abstract class Buff : IEquatable<Buff>
+public abstract class Buff
 {
 	protected TriggerEventEnum Trigger;
 	protected TriggerEventEnum TriggerSecondary;
@@ -176,10 +176,6 @@ public abstract class Buff : IEquatable<Buff>
 	public abstract void onExpire();
 	public abstract void onTriggerEffect(TriggerEvent E, ref int v);
 	
-	public bool Equals(Buff B)
-	{
-		return ( (this.GetType() == B.GetType()) && (this.getIntensity() == B.getIntensity()) && (this.getDuration() == B.getDuration()) && (this.getBuffTarget() == B.getBuffTarget()) );
-	}
 }
 
 }

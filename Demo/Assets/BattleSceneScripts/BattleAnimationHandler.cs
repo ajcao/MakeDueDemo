@@ -9,6 +9,7 @@ public class BattleAnimationHandler : MonoBehaviour
     
     public void StartAnimation(GameObject G, string A)
     {
+        Debug.Log("Starting animation");
         switch (A)
         {
             case("Jump"):
@@ -23,6 +24,7 @@ public class BattleAnimationHandler : MonoBehaviour
             default:
                 break;
         }
+        
     }
     
     public bool isAnimationPlaying()
@@ -90,7 +92,6 @@ public class BattleAnimationHandler : MonoBehaviour
             currentSprite.color += new Color(0.0f, 0.0f, 0.05f, 0.0f);
             yield return new WaitForSeconds(0.005f);
         }
-        Debug.Log(currentSprite.color);
         for (int i = 0; i < 40 ; i++)
         {
             

@@ -14,6 +14,8 @@ public class SelectCharacterButtonScript : MonoBehaviour, IPointerEnterHandler
     {
         AB = inputAB;
         C = inputC;
+        
+        this.gameObject.transform.position = Camera.main.WorldToScreenPoint(C.gameObject.transform.position + new Vector3(0, 1, 0));
     }
     
     public void OnPointerEnter(PointerEventData eventData)
@@ -26,15 +28,4 @@ public class SelectCharacterButtonScript : MonoBehaviour, IPointerEnterHandler
         return C;
     }
     
-    public void Update()
-    {
-        if (C.isAlive())
-        {
-            this.gameObject.transform.position = Camera.main.WorldToScreenPoint(C.gameObject.transform.position + new Vector3(0, 2, 0));
-        }
-        else
-        {
-            this.gameObject.transform.position = new Vector3(0, -300, 0);
-        }
-    }
 }

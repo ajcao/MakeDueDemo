@@ -29,7 +29,7 @@ public class EnemyMoveIndicatorScript : MonoBehaviour, IPointerClickHandler, IPo
     {
         EM = InputEM;
         
-        SpriteRenderer S = this.gameObject.transform.Find("EnemyMoveSprite").gameObject.GetComponent<SpriteRenderer>();
+        SpriteRenderer S = this.gameObject.transform.Find("EnemyMoveSprite").gameObject.GetComponentInChildren<SpriteRenderer>();
         S.sprite = EM.getIcon();
         
         Empty = Resources.Load<Sprite>("EnemyCharacterImages/Blank");
@@ -55,12 +55,12 @@ public class EnemyMoveIndicatorScript : MonoBehaviour, IPointerClickHandler, IPo
         {
             if ((C.GetType()).IsSubclassOf(typeof(PlayableCharacter)))
             {
-                C.gameObject.GetComponent<SpriteRenderer>().material.color = Color.red;
+                C.gameObject.GetComponentInChildren<SpriteRenderer>().material.color = Color.red;
             }
             
             if ((C.GetType()).IsSubclassOf(typeof(EnemyCharacter)))
             {
-                C.gameObject.GetComponent<SpriteRenderer>().material.color = Color.blue;
+                C.gameObject.GetComponentInChildren<SpriteRenderer>().material.color = Color.blue;
             }
             
         }
@@ -70,7 +70,7 @@ public class EnemyMoveIndicatorScript : MonoBehaviour, IPointerClickHandler, IPo
 	{
         foreach (Character C in EM.getTargetArray())
         {
-            C.gameObject.GetComponent<SpriteRenderer>().material.color = Color.white;
+            C.gameObject.GetComponentInChildren<SpriteRenderer>().material.color = Color.white;
         }
 	}
     
