@@ -20,6 +20,7 @@ public class EnemyReviveMove : EnemyMove
         EC = InputC;
         RespawnPoolAndLocationSlots = Slots;
         AbilityIcon = Resources.Load<Sprite>("AbilityImages/EnemyRevive");
+        CanCastOnDead = true;
     }
 
     //Actual targets are the RespawnPoolSlots and EncounterLocationSlots

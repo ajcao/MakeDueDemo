@@ -12,15 +12,15 @@ public class GenericPlantBehavior : EnemyCharacter
     void Awake()
     {
         this.Alive = true;
-        this.CurrentHealth = 200;
-        this.MaxHealth = 200;
+        this.CurrentHealth = 300;
+        this.MaxHealth = 300;
         this.CurrentArmor = 0;
         this.ArmorRetain = 0;
         this.DamageOutputModifier = 0;
         this.DefenseOutputModifier = 0;
         this.canStaminaRegenerate = true;
         this.IsStunned = false;
-        this.Stamina = 20;
+        this.Stamina = 150;
         this.MaxStamina = this.Stamina;
         this.StaminaRegeneration = this.MaxStamina / 2;
         Moves = new Stack<EnemyMove>();
@@ -30,36 +30,66 @@ public class GenericPlantBehavior : EnemyCharacter
         
     }
     
-    private int NoVulnurableMoveTurn = 0;
+    private bool HasSummoned = false;
     
     public override void GenerateMoves()
     {
         Debug.Log("Generating moves");
         Character[] Target;
         
-        //If the buff was never applied, try to apply
-        if (!BuffHandler.CharacterHaveBuff(this,new GainArmorBuff(this, this, 20, null), true))
+        //On the first turn summon all saplings
+        if (!HasSummoned)
         {
             Target = new Character[] {(Character) this};
-            
-            EnemyApplyBuffMove E = new EnemyApplyBuffMove(this, Target, "GainArmorBuff", 20, null);
-            Moves.Push(E);
+            (int,int)[] array = new (int,int)[] {(0,0),(0,1)};
+            Moves.Push(new EnemyReviveMove(this, Target, array));
+            HasSummoned = true;
+            return;
         }
-        else
+        
+        GameObject[] Encounter = EnemyEncounter.getEncounter();
+        EnemyCharacter E;
+        
+        //If the first slot is dead or nonexistant revive it
+        E = Encounter[1].GetComponent<EnemyCharacter>();
+        if (!E.isAlive())
         {
-            if (Random.Range(0.0f, 1.0f) <= 0.15f + 0.15f * NoVulnurableMoveTurn)
+            Target = new Character[] {(Character) E};
+            (int,int)[] array = new (int,int)[] {(0,1)};
+            Moves.Push(new EnemyReviveMove(this, Target, array));
+            return;
+        }
+        
+        //If the second slot is dead or nonexistant revive it
+        E = Encounter[0].GetComponent<EnemyCharacter>();
+        if (!E.isAlive())
+        {
+            Target = new Character[] {(Character) E};
+            (int,int)[] array = new (int,int)[] {(0,0)};
+            Moves.Push(new EnemyReviveMove(this, Target, array));
+            return;
+        }
+        
+        //Otherwise have random of three moves
+        int[] RandomMoveInt = EnemyTargetingLibrary.CreateEvenDistributionToN(5);
+        
+        foreach (int i in RandomMoveInt)
+        {
+            if (i == 0)
             {
                 Target = EnemyTargetingLibrary.TargetNRandomHeroes(1);
-                Moves.Push(new EnemyApplyBuffMove(this, Target, "VulnurableBuff", null, 4));
-                NoVulnurableMoveTurn = 0;
+                Moves.Push(new EnemyAttackMove(this, 40, Target));
             }
             else
+            
+            if (i == 2)
             {
-                //Everytime vulnura
-                Target = EnemyTargetingLibrary.TargetNRandomHeroes(3);
-                Moves.Push(new EnemyAttackMove(this, 20, Target));
-                NoVulnurableMoveTurn+=1;
+                Target = new Character[] {(Character) this};
+                Moves.Push(new EnemyDefendMove(this, 20, Target));
             }
         }
+        
+        
+        
     }
 }

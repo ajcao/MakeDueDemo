@@ -22,9 +22,8 @@ public static class EnemyEncounter
         for (int i = 0; i < MaxEncounterSize; i++)
         {
             GameObject E = EE_Handler.InitialSpawnPool[i];
-            Vector2 V = EE_Handler.SpawnLocation[i];
             if (E != null)
-                Encounter[i] = EE_Handler.CreateEnemy(i);
+                Encounter[i] = EE_Handler.CreateEnemy(i,i, true);
         }
     }
     
@@ -50,7 +49,7 @@ public static class EnemyEncounter
             //Destroy the original value
             Object.Destroy(Encounter[RespawnLocation]);     
         }
-        Encounter[RespawnLocation] = EE_Handler.CreateEnemy(RespawnPool);
+        Encounter[RespawnLocation] = EE_Handler.CreateEnemy(RespawnPool,RespawnLocation, false);
         
         HealthArmorHandler HA_Handler = GameObject.Find("HealthArmorHandlerGameObject").GetComponent<HealthArmorHandler>();
         HA_Handler.AddHealthIndicator(Encounter[RespawnLocation]);

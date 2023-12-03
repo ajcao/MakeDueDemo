@@ -17,15 +17,18 @@ public abstract class EnemyMove
     
     protected GameObject MoveIndicator;
     
+    public bool CanCastOnDead = false;
+    
     
     
     public abstract void onCast(Character C);
     
     public void onCastWrapper()
     {
+        
         foreach (Character C in this.TargetArray)
         {
-            if (EC.isAlive() && C.isAlive())
+            if (EC.isAlive() && (C.isAlive() || this.CanCastOnDead))
                 this.onCast(C);
         }
     }

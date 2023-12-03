@@ -12,15 +12,15 @@ public class GenericSaplingBehavior : EnemyCharacter
     void Awake()
     {
         this.Alive = true;
-        this.CurrentHealth = 300;
-        this.MaxHealth = 300;
+        this.CurrentHealth = 40;
+        this.MaxHealth = 40;
         this.CurrentArmor = 0;
         this.ArmorRetain = 0;
         this.DamageOutputModifier = 0;
         this.DefenseOutputModifier = 0;
         this.canStaminaRegenerate = true;
         this.IsStunned = false;
-        this.Stamina = 100;
+        this.Stamina = 20;
         this.MaxStamina = this.Stamina;
         this.StaminaRegeneration = this.MaxStamina / 2;
         Moves = new Stack<EnemyMove>();
@@ -33,26 +33,22 @@ public class GenericSaplingBehavior : EnemyCharacter
     {
         Character[] Target;
         
-        int[] RandomMoveInt = EnemyTargetingLibrary.CreateEvenDistributionToN(3);
+        int[] RandomMoveInt = EnemyTargetingLibrary.CreateEvenDistributionToN(6);
         
-        foreach (int i in RandomMoveInt)
+        for (int j = 0; j < 2; j++)
         {
-            if (i == 0)
+            int i = RandomMoveInt[j];
+            
+            if (i < 4)
             {
                 Target = EnemyTargetingLibrary.TargetNRandomHeroes(1);
-                Moves.Push(new EnemyAttackMove(this, 40, Target));
+                Moves.Push(new EnemyAttackMove(this, 20, Target));
             }
             
-            if (i == 1)
+            if (i >= 4)
             {
-                Target = new Character[] {(Character) this};
-                Moves.Push(new EnemyApplyBuffMove(this, Target, "AttackUpBuff", 20, null));
-            }
-            
-            if (i == 2)
-            {
-                Target = new Character[] {(Character) this};
-                Moves.Push(new EnemyDefendMove(this, 40, Target));
+                Target = EnemyTargetingLibrary.TargetNRandomHeroes(2);
+                Moves.Push(new EnemyAttackMove(this, 10, Target));
             }
         }
     }

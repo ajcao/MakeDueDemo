@@ -44,7 +44,6 @@ public class RightScarabShellItemBuff : Buff
         onPreTurnTrigger T = (onPreTurnTrigger) E;
         int roundNum = BattleSceneHandler.GetRound();
         this.Intensity = roundNum;
-        Debug.Log(roundNum);
         //Ensure it is the player's turn
         if (this.BuffTarget.GetType().IsSubclassOf(T.CharacterType))
         {

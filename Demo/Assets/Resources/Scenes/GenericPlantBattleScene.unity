@@ -1085,13 +1085,14 @@ MonoBehaviour:
   EncounterSize: 3
   InitialSpawnPool:
   - {fileID: 0}
-  - {fileID: 6710686837782463586, guid: a31d07b3bd9a6c648b2e53d611ab94f4, type: 3}
+  - {fileID: 0}
   - {fileID: 2465709451207476951, guid: 6eacb16268b463c488d666f098b3931b, type: 3}
   SpawnLocation:
   - {x: 3, y: 0}
-  - {x: 5, y: 0}
-  - {x: 8, y: 0}
-  SpawnPool: []
+  - {x: 5.5, y: 0}
+  - {x: 9, y: 0}
+  SpawnPool:
+  - {fileID: 6710686837782463586, guid: 8ec747eb07c8df94db84f08f402002e8, type: 3}
 --- !u!4 &864064425
 Transform:
   m_ObjectHideFlags: 0
