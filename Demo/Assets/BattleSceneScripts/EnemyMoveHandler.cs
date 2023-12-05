@@ -100,7 +100,6 @@ public class EnemyMoveHandler : MonoBehaviour
         Sprite ButtonImage = Resources.Load<Sprite>("EnemyTurnButton") as Sprite;
         NextTurnButton.gameObject.GetComponent<Image>().sprite = ButtonImage;
         
-        
         foreach (GameObject G in EnemyEncounter.GetLivingEncounterMembers())
         {
             EnemyCharacter E = G.GetComponent<EnemyCharacter>();
@@ -130,6 +129,32 @@ public class EnemyMoveHandler : MonoBehaviour
                 EM.onCastWrapper();
             }
             
+        }
+        
+        //After normal moves
+        //Enemy Phase Transition Moves occur
+        GameObject[] CurrentEncounter =  EnemyEncounter.getEncounter();
+        for (int i = 0; i < EnemyEncounter.getEncounterSize(); i++)
+        {
+            if (CurrentEncounter[i] != null)
+            {
+                EnemyCharacter E = CurrentEncounter[i].GetComponent<EnemyCharacter>();
+                if (!E.isAlive() && E.CanRevive)
+                {
+
+                    //Remove the current Move to Next Phase move the enemy's movepool
+                    EnemyMove EM = E.getCurrentMoves().Pop();
+                    
+                    //Play the move's animation, then cast the move
+                    BattleAnimation.StartAnimation(E.gameObject, EM.getAnimation());
+                    while (BattleAnimation.isAnimationPlaying())
+                    {
+                        yield return null;
+                    }
+                    //Do not use onCastWrapper as that checks for death
+                    EM.onCast(null);
+                }
+            }
         }
         EnemyisMoving = false;
         

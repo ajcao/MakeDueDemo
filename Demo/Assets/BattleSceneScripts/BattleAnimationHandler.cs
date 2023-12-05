@@ -21,6 +21,9 @@ public class BattleAnimationHandler : MonoBehaviour
             case("Flash"):
                 currentAnimation = StartCoroutine(FlashAnimation(G));
                 break;
+            case("Shake"):
+                currentAnimation = StartCoroutine(ShakeAnimation(G));
+                break;
             default:
                 break;
         }
@@ -77,7 +80,7 @@ public class BattleAnimationHandler : MonoBehaviour
     
     IEnumerator FlashAnimation(GameObject G)
     {
-        SpriteRenderer currentSprite = G.GetComponent<SpriteRenderer>();
+        SpriteRenderer currentSprite = G.GetComponentInChildren<SpriteRenderer>();
         
         for (int i = 0; i < 40 ; i++)
         {
@@ -105,6 +108,66 @@ public class BattleAnimationHandler : MonoBehaviour
             currentSprite.color += new Color(0.0f, 0.0f, 0.05f, 0.0f);
             yield return new WaitForSeconds(0.005f);
         }
+        currentAnimation = null;
+    }
+    
+    IEnumerator ShakeAnimation(GameObject G)
+    {
+        for (int i = 0; i < 4 ; i++)
+        {
+            if (G == null)
+            {
+                break;
+            }
+            
+            G.transform.position -= new Vector3(0.04f, 0, 0);
+            yield return new WaitForSeconds(0.01f);
+        }
+        
+        for (int i = 0; i < 8 ; i++)
+        {
+            if (G == null)
+            {
+                break;
+            }
+            
+            G.transform.position += new Vector3(0.04f, 0, 0);
+            yield return new WaitForSeconds(0.01f);
+        }
+        
+        for (int i = 0; i < 8 ; i++)
+        {
+            if (G == null)
+            {
+                break;
+            }
+            
+            G.transform.position -= new Vector3(0.04f, 0, 0);
+            yield return new WaitForSeconds(0.01f);
+        }
+        
+        for (int i = 0; i < 8 ; i++)
+        {
+            if (G == null)
+            {
+                break;
+            }
+            
+            G.transform.position += new Vector3(0.04f, 0, 0);
+            yield return new WaitForSeconds(0.01f);
+        }
+        
+        for (int i = 0; i < 4 ; i++)
+        {
+            if (G == null)
+            {
+                break;
+            }
+            
+            G.transform.position += new Vector3(0.04f, 0, 0);
+            yield return new WaitForSeconds(0.01f);
+        }
+        
         currentAnimation = null;
     }
 }

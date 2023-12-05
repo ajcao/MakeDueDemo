@@ -20,7 +20,7 @@ public abstract class EnemyCharacter : Character
 	protected int MaxStamina;
 	protected int StaminaRegeneration;
 	
-	public bool CanRevive;
+	public bool CanRevive = false;
 	
 	public int getStamina()
 	{
@@ -102,7 +102,7 @@ public abstract class EnemyCharacter : Character
 		
 	}
 	
-	public virtual void Respawn()
+	public virtual void PrepareNextPhase()
 	{
 		return;
 	}

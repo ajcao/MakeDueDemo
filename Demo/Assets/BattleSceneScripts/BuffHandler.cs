@@ -5,6 +5,7 @@ using UnityEngine;
 using TriggerEventUtil;
 using CharacterUtil;
 using BuffUtil;
+using EnemyMoveUtil;
 
 public static class BuffHandler
 {
@@ -209,12 +210,38 @@ public static class BuffHandler
 						}
 					}
 					
+					//Rewrite how death is handled
+					//BattleLogicHandler should handle calling trigger of buffs
+					//BuffHandler should really only be a storage. It should not determine when to trigger buffs
+					
+					//Death is handled here
+					//Sphagetti Code
 					
 					//Mark all buffs on the character
 					BuffHandler.MarkBuffsOnDeadCharacter(DT.DyingCharacter);
 					
 					//Move Characters offscreen
-					DT.DyingCharacter.gameObject.transform.position = new Vector3(0, -500, 0);
+					if ((DT.DyingCharacter.GetType()).IsSubclassOf(typeof(EnemyCharacter)))
+					{
+						EnemyCharacter E = (EnemyCharacter) DT.DyingCharacter;
+						if (!E.CanRevive)
+							DT.DyingCharacter.gameObject.transform.position = new Vector3(0, -500, 0);
+						else
+						{
+							//Delete movepool of Enemy while it waits to go to next phase
+							Stack<EnemyMove> Moves = E.getCurrentMoves();
+							while (Moves.Count > 0)
+							{
+								EnemyMove EM = E.getCurrentMoves().Pop();
+								EM.DeleteMoveIndicator();
+							}
+							E.PrepareNextPhase();
+						}
+					}
+					else
+					{
+						DT.DyingCharacter.gameObject.transform.position = new Vector3(0, -500, 0);
+					}
 					
 				}
 			}

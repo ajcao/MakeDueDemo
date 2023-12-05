@@ -13,13 +13,15 @@ public class EnemyReviveMove : EnemyMove
     private (int,int)[] RespawnPoolAndLocationSlots;
     
     //CArray is only used for visual targeting
-    //Expects Slots1 = Slots2
     public EnemyReviveMove (EnemyCharacter InputC, Character[] CArray, (int,int)[] Slots)
     {
         TargetArray = CArray;
         EC = InputC;
         RespawnPoolAndLocationSlots = Slots;
-        AbilityIcon = Resources.Load<Sprite>("AbilityImages/EnemyRevive");
+        if (EC == (EnemyCharacter) TargetArray[0])
+            AbilityIcon = Resources.Load<Sprite>("AbilityImages/EnemySummon");
+        else
+            AbilityIcon = Resources.Load<Sprite>("AbilityImages/EnemyRevive");
         CanCastOnDead = true;
     }
 
@@ -44,7 +46,12 @@ public class EnemyReviveMove : EnemyMove
     
     public override string getAnimation()
     {
-        return "Jump";
+        if (EC == (EnemyCharacter) TargetArray[0])
+        {
+            return "Shake";
+        }
+        else
+            return "Jump";
     }
 }
 

@@ -32,6 +32,6 @@ public class StartBattleButtonScript : MonoBehaviour
         }
         
         //Load Scene for Player to select Encounter
-        SceneManager.LoadScene("GenericPlantBattleScene", LoadSceneMode.Single);
+        SceneManager.LoadScene("GenericMonsterBattleScene", LoadSceneMode.Single);
     }
 }

@@ -55,7 +55,7 @@ public static class BattleLogicHandler
 		
 		//Displays damage
 		GameObject.Find("DamageNumberHandler").GetComponent<DamageNumberHandler>().CreateDamageNumber(RC, damageToHealth);
-		RC.setCurrentHealth(RC.getCurrentHealth() - damageToHealth);
+		RC.setCurrentHealth(Mathf.Max(0, RC.getCurrentHealth() - damageToHealth));
 		if (RC.getCurrentHealth() <= 0)
 		{
 			//Adds death trigger, to be processed after buffs proc
@@ -92,7 +92,7 @@ public static class BattleLogicHandler
 		
 		//Displays damage
 		GameObject.Find("DamageNumberHandler").GetComponent<DamageNumberHandler>().CreateDamageNumber(RC, damageToHealth);
-		RC.setCurrentHealth(RC.getCurrentHealth() - damageToHealth);
+		RC.setCurrentHealth(Mathf.Max(0, RC.getCurrentHealth() - damageToHealth));
 		if (RC.getCurrentHealth() <= 0)
 		{
 			//Adds death trigger, to be processed after buffs proc
@@ -339,16 +339,6 @@ public static class BattleLogicHandler
 		int dummy = 0;
 		TriggerEvent TE = new onRoundEndTrigger(R);
 		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onRoundEndEnum, TE, ref dummy);
-		
-		for (int i = 0; i < EnemyEncounter.getEncounterSize(); i++)
-		{
-			GameObject G = EnemyEncounter.getEncounterMember(i);
-			if (G != null)
-			{
-				EnemyCharacter E = G.GetComponent<EnemyCharacter>();
-				E.Respawn();
-			}
-		}
 	}
 	
 }
