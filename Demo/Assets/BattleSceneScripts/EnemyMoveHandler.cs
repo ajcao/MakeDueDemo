@@ -103,7 +103,7 @@ public class EnemyMoveHandler : MonoBehaviour
         foreach (GameObject G in EnemyEncounter.GetLivingEncounterMembers())
         {
             EnemyCharacter E = G.GetComponent<EnemyCharacter>();
-            if (E.isAlive())
+            if (E.isAlive() && E.getCurrentMoves().Count > 0)
             {
                 
                 //Get the current move to get the animation
@@ -139,7 +139,7 @@ public class EnemyMoveHandler : MonoBehaviour
             if (CurrentEncounter[i] != null)
             {
                 EnemyCharacter E = CurrentEncounter[i].GetComponent<EnemyCharacter>();
-                if (!E.isAlive() && E.CanRevive)
+                if (!E.isAlive() && E.MultiplePhase)
                 {
 
                     //Remove the current Move to Next Phase move the enemy's movepool

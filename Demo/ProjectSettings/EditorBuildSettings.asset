@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Resources/Scenes/GenericMonsterBattleScene.unity
     guid: cbf4e96756f16364c9255e26b5c475fb
+  - enabled: 1
+    path: Assets/Resources/Scenes/RatEnemyEncounter.unity
+    guid: e1e602b6d3202ef45aebd9a367726ce6
   m_configObjects: {}

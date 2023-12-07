@@ -82,7 +82,7 @@ public static class EnemyEncounter
             }
             
             EnemyCharacter E = G.GetComponent<EnemyCharacter>();
-            if ((E.isAlive() || E.CanRevive))
+            if ((E.isAlive() || E.MultiplePhase))
             {
                 return false;
             }

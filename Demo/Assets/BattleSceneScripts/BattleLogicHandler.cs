@@ -41,17 +41,6 @@ public static class BattleLogicHandler
 		
 		BattleLogicHandler.LowerArmor(RC, damageToArmor);
 		
-		if ((RC.GetType()).IsSubclassOf(typeof(PlayableCharacter)))
-		{
-			//Players gain resolve
-			BattleLogicHandler.GainResolve((PlayableCharacter) RC, damageToArmor);
-		}
-		else
-		{
-			//Enemy lose armor
-			BattleLogicHandler.LowerStamina((EnemyCharacter) RC, damageToHealth);
-		}
-		
 		
 		//Displays damage
 		GameObject.Find("DamageNumberHandler").GetComponent<DamageNumberHandler>().CreateDamageNumber(RC, damageToHealth);
@@ -63,12 +52,32 @@ public static class BattleLogicHandler
 			BuffHandler.AddTriggerToHigherPrioirty((onDeathTrigger) TE);
 		}
 		
-		TE = new onDealArmorDamagePostTrigger(AC, RC, d);
+		TE = new onDealAttackDamagePostTrigger(AC, RC, d);
+		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onDealAttackDamagePostEnum, TE, ref damageToArmor);
+		
+		TE = new onDealArmorDamagePostTrigger(AC, RC, damageToArmor);
 		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onDealArmorDamagePostEnum, TE, ref damageToArmor);
 		
-		TE = new onDealAttackDamagePostTrigger(AC, RC, d);
-		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onDealAttackDamagePostEnum, TE, ref damageToHealth);
+		TE = new onDealHealthDamagePostTrigger(AC, RC, damageToHealth);
+		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onDealHealthDamagePostEnum, TE, ref damageToHealth);
 		
+		if (damageToHealth > 0)
+		{
+			int dummy = 0;
+			TE = new onHealthDamageWasTakenTrigger(RC, damageToHealth);
+			BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onHealthDamageWasTakenEnum, TE, ref dummy);
+		}
+		
+		if ((RC.GetType()).IsSubclassOf(typeof(PlayableCharacter)))
+		{
+			//Players gain resolve
+			BattleLogicHandler.GainResolve((PlayableCharacter) RC, damageToArmor);
+		}
+		else
+		{
+			//Enemy lose armor
+			BattleLogicHandler.LowerStamina((EnemyCharacter) RC, damageToHealth);
+		}
 	}
 	
 	public static void BuffDamage(Character RC, int inputD)
@@ -98,6 +107,13 @@ public static class BattleLogicHandler
 			//Adds death trigger, to be processed after buffs proc
 			TE = new onDeathTrigger(RC);
 			BuffHandler.AddTriggerToHigherPrioirty((onDeathTrigger) TE);
+		}
+		
+		if (damageToHealth > 0)
+		{
+			int dummy = 0;
+			TE = new onHealthDamageWasTakenTrigger(RC, damageToHealth);
+			BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onHealthDamageWasTakenEnum, TE, ref dummy);
 		}
 	}
 	
@@ -138,6 +154,14 @@ public static class BattleLogicHandler
 	public static void LowerStamina(EnemyCharacter E, int d)
 	{
 		E.setStamina(Mathf.Max(E.getStamina() - d, 0));
+		
+		if (d > 0)
+		{
+			int dummy = 0;
+			TriggerEvent TE = new onStaminaWasLostTrigger(E, d);
+			BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onStaminaWasLostEnum, TE, ref dummy);
+		}
+		
 	}
 	
 	public static void GainHealth(Character C, int inputD)

@@ -76,6 +76,12 @@ public class BattleSceneHandler : MonoBehaviour
             }
         }
         
+        foreach (GameObject C in EnemyEncounter.GetLivingEncounterMembers())
+        {
+            EnemyCharacter E = C.GetComponent<EnemyCharacter>();
+            E.InitialBuffs();
+        }
+        
         //Begin Combat Encounter
         StartCoroutine(TurnOrder());
         

@@ -31,9 +31,13 @@ public enum TriggerEventEnum
 	onDealDamageMultiEnum,
 	onDealDamageSpecialEnum,
 	
-	onDealArmorDamagePostEnum,
-	onDealAttackDamagePostEnum,
+	onHealthDamageWasTakenEnum,
 	
+	onDealAttackDamagePostEnum,
+	onDealArmorDamagePostEnum,
+	onDealHealthDamagePostEnum,
+	
+	onStaminaWasLostEnum,
 	
 	onArmorGainAddEnum,
 	//onArmorGainMultiEnum,
@@ -240,18 +244,18 @@ public class onDealDamageSpecialTrigger : TriggerEvent
 	}
 }
 
-public class onDealArmorDamagePostTrigger : TriggerEvent
+public class onHealthDamageWasTakenTrigger : TriggerEvent
 {
-	public Character AttackingChar;
-	public Character ReceivingChar; 
-	public int ArmorAmount;
+	public Character ReceivingChar;
+	public int DamageAmount;
 	
-	public onDealArmorDamagePostTrigger(Character AC, Character RC, int d)
+	public onHealthDamageWasTakenTrigger(Character RC, int a)
 	{
-		AttackingChar = AC;
+		Debug.Log("waking up");
 		ReceivingChar = RC;
-		ArmorAmount = d;
+		DamageAmount = a;
 	}
+	
 }
 
 public class onDealAttackDamagePostTrigger : TriggerEvent
@@ -266,6 +270,48 @@ public class onDealAttackDamagePostTrigger : TriggerEvent
 		ReceivingChar = RC;
 		DamageAmount = d;
 	}
+}
+
+
+public class onDealArmorDamagePostTrigger : TriggerEvent
+{
+	public Character AttackingChar;
+	public Character ReceivingChar; 
+	public int ArmorAmount;
+	
+	public onDealArmorDamagePostTrigger(Character AC, Character RC, int d)
+	{
+		AttackingChar = AC;
+		ReceivingChar = RC;
+		ArmorAmount = d;
+	}
+}
+
+public class onDealHealthDamagePostTrigger : TriggerEvent
+{
+	public Character AttackingChar;
+	public Character ReceivingChar; 
+	public int DamageAmount;
+	
+	public onDealHealthDamagePostTrigger(Character AC, Character RC, int d)
+	{
+		AttackingChar = AC;
+		ReceivingChar = RC;
+		DamageAmount = d;
+	}
+}
+
+public class onStaminaWasLostTrigger : TriggerEvent
+{
+	public EnemyCharacter ReceivingChar;
+	public int StaminaAmount;
+	
+	public onStaminaWasLostTrigger(EnemyCharacter RC, int a)
+	{
+		ReceivingChar = RC;
+		StaminaAmount = a;
+	}
+	
 }
 
 public class onArmorGainAddTrigger : TriggerEvent

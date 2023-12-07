@@ -19,6 +19,8 @@ public static class BuffHandler
 	
 	private static Queue<onDeathTrigger> HighPriorityProcList;
 	
+	private static Queue<(Character, Buff)> DelayedAddBuffList;
+	
 	public static bool inBuffTriggerProcess = false;
     
     public static void Init()
@@ -34,11 +36,19 @@ public static class BuffHandler
 		currentBuffProcList = new Queue<(TriggerEventEnum, TriggerEvent)>();
 		TotalProcList = new Queue<(TriggerEventEnum, TriggerEvent)>();	
 		HighPriorityProcList = new Queue<onDeathTrigger>();
+		DelayedAddBuffList = new Queue<(Character, Buff)>();
         
     }
 	
 	public static void AddBuff(Buff B, Character C)
 	{
+		//First checks if Trigger is already in process
+		//if so, instead of adding buff now, add to a list for processing
+		if (inBuffTriggerProcess)
+		{
+			DelayedAddBuffList.Enqueue((C, B));
+			return;
+		}
 		C.getBuffList().Add(B);
 		BuffsList[B.getTrigger()].Add(B);
 		BuffsList[B.getTriggerSecondary()].Add(B);
@@ -70,9 +80,11 @@ public static class BuffHandler
         foreach (GameObject G in PlayerParty.GetLivingPartyMembers())
 		{
 			List<Buff> BList = G.GetComponent<Character>().getBuffList();
-			foreach (Buff B in BList)
+
+			int BuffCount = BList.Count;
+			for (int i = 0; i < BuffCount; i++)
 			{
-				B.decrementDuration();
+				BList[i].decrementDuration();
 			}
 			BuffHandler.RemoveDeletedBuffsFromList(BList);
 		}
@@ -80,9 +92,10 @@ public static class BuffHandler
         foreach (GameObject G in EnemyEncounter.GetLivingEncounterMembers())
 		{
 			List<Buff> BList = G.GetComponent<Character>().getBuffList();
-			foreach (Buff B in BList)
+			int BuffCount = BList.Count;
+			for (int i = 0; i < BuffCount; i++)
 			{
-				B.decrementDuration();
+				BList[i].decrementDuration();
 			}
 			BuffHandler.RemoveDeletedBuffsFromList(BList);
 		}
@@ -224,7 +237,7 @@ public static class BuffHandler
 					if ((DT.DyingCharacter.GetType()).IsSubclassOf(typeof(EnemyCharacter)))
 					{
 						EnemyCharacter E = (EnemyCharacter) DT.DyingCharacter;
-						if (!E.CanRevive)
+						if (!E.MultiplePhase)
 							DT.DyingCharacter.gameObject.transform.position = new Vector3(0, -500, 0);
 						else
 						{
@@ -270,6 +283,15 @@ public static class BuffHandler
 		
 		//End trigger process
 		inBuffTriggerProcess = false;
+		
+		//Add Delayed buffs
+		while (DelayedAddBuffList.Count > 0)
+		{
+			(Character C, Buff B) = DelayedAddBuffList.Dequeue();
+			C.getBuffList().Add(B);
+			BuffsList[B.getTrigger()].Add(B);
+			BuffsList[B.getTriggerSecondary()].Add(B);
+		}
 		
 		
 	}

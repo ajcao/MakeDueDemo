@@ -20,7 +20,9 @@ public abstract class EnemyCharacter : Character
 	protected int MaxStamina;
 	protected int StaminaRegeneration;
 	
-	public bool CanRevive = false;
+	public bool MultiplePhase = false;
+	
+	public string Forms = "Default";
 	
 	public int getStamina()
 	{
@@ -102,7 +104,17 @@ public abstract class EnemyCharacter : Character
 		
 	}
 	
+	public virtual void InitialBuffs()
+	{
+		return;
+	}
+	
 	public virtual void PrepareNextPhase()
+	{
+		return;
+	}
+	
+	public virtual void EnterNewForm(string s)
 	{
 		return;
 	}

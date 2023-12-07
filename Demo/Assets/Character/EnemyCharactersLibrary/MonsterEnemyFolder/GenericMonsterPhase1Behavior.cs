@@ -25,7 +25,7 @@ public class GenericMonsterPhase1Behavior : EnemyCharacter
         this.StaminaRegeneration = this.MaxStamina / 2;
         Moves = new Stack<EnemyMove>();
         
-        this.CanRevive = true;
+        this.MultiplePhase = true;
         
         this.CharacterIcon = Resources.Load<Sprite>("EnemyCharacterImages/GenericMonsterIcon");
         

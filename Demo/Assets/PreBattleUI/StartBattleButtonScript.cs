@@ -32,6 +32,6 @@ public class StartBattleButtonScript : MonoBehaviour
         }
         
         //Load Scene for Player to select Encounter
-        SceneManager.LoadScene("GenericMonsterBattleScene", LoadSceneMode.Single);
+        SceneManager.LoadScene("RatEnemyEncounter", LoadSceneMode.Single);
     }
 }
