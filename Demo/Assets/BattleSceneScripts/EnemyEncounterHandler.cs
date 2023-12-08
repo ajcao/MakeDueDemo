@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using CharacterUtil;
 
 public class EnemyEncounterHandler : MonoBehaviour
 {
@@ -15,10 +16,15 @@ public class EnemyEncounterHandler : MonoBehaviour
     
     public GameObject CreateEnemy(int Pool, int Location, bool Initial)
     {
+        GameObject G;
         if (Initial)
-            return Instantiate(InitialSpawnPool[Pool], SpawnLocation[Location], Quaternion.identity) as GameObject;
+            G = Instantiate(InitialSpawnPool[Pool], SpawnLocation[Location], Quaternion.identity) as GameObject;
         else
-            return Instantiate(SpawnPool[Pool], SpawnLocation[Location], Quaternion.identity) as GameObject;
+            G = Instantiate(SpawnPool[Pool], SpawnLocation[Location], Quaternion.identity) as GameObject;
+        
+        EnemyCharacter E = G.GetComponent<EnemyCharacter>();
+        E.InitialBuffs();
+        return G;
     }
     
 }

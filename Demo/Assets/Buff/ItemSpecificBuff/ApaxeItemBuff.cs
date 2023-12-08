@@ -49,18 +49,21 @@ public class ApaxeItemBuff : Buff
         onPlayerBasicAttackTrigger TE = (onPlayerBasicAttackTrigger) E;
         if (TE.AttackingPlayer == this.BuffTarget)
         {
+            
             if (EnemyEncounter.getEncounterSize() > 0)
             {
-                int r = Random.Range(0,EnemyEncounter.getEncounterSize());
-                EnemyCharacter E2 = EnemyEncounter.getEncounterMember(r).GetComponent<EnemyCharacter>();
-                BattleLogicHandler.BuffDamage(E2, 20);
+                List<GameObject> CurrentEncounter = EnemyEncounter.GetLivingEncounterMembers();
+                int r = Random.Range(0,CurrentEncounter.Count);
+                EnemyCharacter Enem = CurrentEncounter[r].GetComponent<EnemyCharacter>();
+                BattleLogicHandler.BuffDamage(Enem, 20);
             }
             
             if (EnemyEncounter.getEncounterSize() > 0)
             {
-                int r = Random.Range(0,EnemyEncounter.getEncounterSize());
-                EnemyCharacter E2 = EnemyEncounter.getEncounterMember(r).GetComponent<EnemyCharacter>();
-                BattleLogicHandler.BuffDamage(E2, 20);
+                List<GameObject> CurrentEncounter = EnemyEncounter.GetLivingEncounterMembers();
+                int r = Random.Range(0,CurrentEncounter.Count);
+                EnemyCharacter Enem = CurrentEncounter[r].GetComponent<EnemyCharacter>();
+                BattleLogicHandler.BuffDamage(Enem, 20);
             }
         }
     }

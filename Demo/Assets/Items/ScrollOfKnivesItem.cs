@@ -25,7 +25,7 @@ public class ScrollOfKnivesItem : GameItem
     
     public override void OnApply()
     {
-        Buff B = new ScrollOfKnivesItemBuff(this.ItemOwner, this.ItemOwner, 10, null);
+        Buff B = new ScrollOfKnivesItemBuff(this.ItemOwner, this.ItemOwner, 0, null);
         BattleLogicHandler.OnBuffApply(B);
     }
     

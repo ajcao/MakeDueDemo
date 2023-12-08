@@ -46,6 +46,8 @@ public class BattleSceneHandler : MonoBehaviour
         //Add method to delegate for ending the game
         EndGame = EndGameMethod;
         
+        BattleLogicHandler.Init();
+                
         //Place Player in correct location
         PlayerParty.getPartyMember(0).transform.position = new Vector3(-9.0f,0.0f,0.0f);
         PlayerParty.getPartyMember(1).transform.position = new Vector3(-6.5f,0.0f,0.0f);
@@ -62,8 +64,6 @@ public class BattleSceneHandler : MonoBehaviour
         Round = 1;
         isBattling = true;
         
-        BattleLogicHandler.Init();
-        
         //Load Background
         
         //Go Through all Items in PlayerParty and add buffs to BattleLogicHandler
@@ -75,12 +75,7 @@ public class BattleSceneHandler : MonoBehaviour
                 I.OnApply();
             }
         }
-        
-        foreach (GameObject C in EnemyEncounter.GetLivingEncounterMembers())
-        {
-            EnemyCharacter E = C.GetComponent<EnemyCharacter>();
-            E.InitialBuffs();
-        }
+
         
         //Begin Combat Encounter
         StartCoroutine(TurnOrder());

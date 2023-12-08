@@ -49,16 +49,15 @@ public class DemonCubeItemBuff : Buff
         //Turn number is multiple of 10
         if (this.BuffTarget.GetType().IsSubclassOf(T.CharacterType) && (this.Intensity % 10) == 0)
         {
-            for (int i = 0; i < EnemyEncounter.getEncounterSize(); i++)
+            List<GameObject> CurrentEncounter = EnemyEncounter.GetLivingEncounterMembers();
+            foreach (GameObject G in CurrentEncounter)
             {
-                if (i < EnemyEncounter.getEncounterSize())
+                EnemyCharacter Enem = G.GetComponent<EnemyCharacter>();
+                if (Enem.isAlive() && this.BuffTarget.isAlive())
                 {
-                    EnemyCharacter Enem = EnemyEncounter.getEncounter()[i].GetComponent<EnemyCharacter>();
-                    if (Enem.isAlive() && this.BuffTarget.isAlive())
-                    {
-                        BattleLogicHandler.BuffDamage(Enem, 200);
-                    }
+                    BattleLogicHandler.BuffDamage(Enem, 200);
                 }
+                
             }
         }
     }

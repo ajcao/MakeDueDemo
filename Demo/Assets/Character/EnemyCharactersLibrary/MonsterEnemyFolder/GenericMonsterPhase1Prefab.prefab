@@ -160,4 +160,5 @@ MonoBehaviour:
   CharacterName: 
   canStaminaRegenerate: 0
   IsStunned: 0
-  CanRevive: 0
+  MultiplePhase: 0
+  Forms: Default

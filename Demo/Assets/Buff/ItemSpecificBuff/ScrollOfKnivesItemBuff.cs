@@ -35,26 +35,35 @@ public class ScrollOfKnivesItemBuff : Buff
     
     public override string GetTooltipString()
     {
-        string s1 = "Everytime a skill is cast, deal 10 damage to everyone";
+        string s1 = "Everytime two times a skill is cast, deal 10 damage to everyone";
         return s1;
     }
     
+    int counter = 0;
     public override void onTriggerEffect(TriggerEvent E, ref int v)
     {
         onPlayerSkillTrigger T = (onPlayerSkillTrigger) E;
         if (T.CastingPlayer == (PlayableCharacter) BuffTarget)
         {
-            for (int i = 0; i < EnemyEncounter.getEncounterSize(); i++)
+            counter+=1;
+            
+            this.Intensity = (counter % 2);
+            
+            if (this.Intensity == 1)
             {
-                if (i < EnemyEncounter.getEncounterSize())
+                return;
+            }
+            
+            List<GameObject> CurrentEncounter = EnemyEncounter.GetLivingEncounterMembers();
+            foreach (GameObject G in CurrentEncounter)
+            {
+                EnemyCharacter Enem = G.GetComponent<EnemyCharacter>();
+                if (Enem.isAlive() && this.BuffTarget.isAlive())
                 {
-                    EnemyCharacter Enem = EnemyEncounter.getEncounter()[i].GetComponent<EnemyCharacter>();
-                    if (Enem.isAlive() && this.BuffTarget.isAlive())
-                    {
-                        BattleLogicHandler.BuffDamage(Enem, 10);
-                    }
+                    BattleLogicHandler.BuffDamage(Enem, 10);
                 }
-            }            
+                
+            }        
         }
         
     }

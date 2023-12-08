@@ -21,22 +21,21 @@ public class BurstAoeAbility : Ability
     
     public override void onCast(Character InputE)
     {        
-        //Fix to avoid using size
-        //Relies on fixing Player Party and Enemy Encounter
-        //Fix this, gets issues with null spot
         
-        int r = Random.Range(0,EnemyEncounter.GetLivingEncounterMembers().Count);
-        EnemyCharacter E = EnemyEncounter.getEncounterMember(r).GetComponent<EnemyCharacter>();
-        BattleLogicHandler.AttackDamage(PC, E, 10 + PC.getDamageOutputModifier());
+        List<GameObject> CurrentEncounter = EnemyEncounter.GetLivingEncounterMembers();
+        int r = Random.Range(0,CurrentEncounter.Count);
+        EnemyCharacter Enem = CurrentEncounter[r].GetComponent<EnemyCharacter>();
+        BattleLogicHandler.AttackDamage(PC, Enem, 10 + PC.getDamageOutputModifier());
+    
+        CurrentEncounter = EnemyEncounter.GetLivingEncounterMembers();
+        r = Random.Range(0,CurrentEncounter.Count);
+        Enem = CurrentEncounter[r].GetComponent<EnemyCharacter>();
+        BattleLogicHandler.AttackDamage(PC, Enem, 10 + PC.getDamageOutputModifier());
         
-        r = Random.Range(0,EnemyEncounter.GetLivingEncounterMembers().Count);
-        E = EnemyEncounter.getEncounterMember(r).GetComponent<EnemyCharacter>();
-        BattleLogicHandler.AttackDamage(PC, E, 10 + PC.getDamageOutputModifier());
-    
-    
-        r = Random.Range(0,EnemyEncounter.GetLivingEncounterMembers().Count);
-        E = EnemyEncounter.getEncounterMember(r).GetComponent<EnemyCharacter>();
-        BattleLogicHandler.AttackDamage(PC, E, 10 + PC.getDamageOutputModifier());
+        CurrentEncounter = EnemyEncounter.GetLivingEncounterMembers();
+        r = Random.Range(0,CurrentEncounter.Count);
+        Enem = CurrentEncounter[r].GetComponent<EnemyCharacter>();
+        BattleLogicHandler.AttackDamage(PC, Enem, 10 + PC.getDamageOutputModifier());
         
     }
     

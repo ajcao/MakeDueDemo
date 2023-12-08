@@ -144,6 +144,7 @@ public class EnemyMoveHandler : MonoBehaviour
 
                     //Remove the current Move to Next Phase move the enemy's movepool
                     EnemyMove EM = E.getCurrentMoves().Pop();
+                    Debug.Log(EM);
                     
                     //Play the move's animation, then cast the move
                     BattleAnimation.StartAnimation(E.gameObject, EM.getAnimation());

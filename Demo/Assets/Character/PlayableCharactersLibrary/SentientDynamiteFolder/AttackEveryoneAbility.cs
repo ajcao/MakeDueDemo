@@ -21,19 +21,17 @@ public class AttackEveryoneAbility : Ability
     
     public override void onCast(Character P)
     {
-        //Fix to avoid using size
-        //Relies on fixing Player Party and Enemy Encounter
-        for (int i = 0; i < EnemyEncounter.getEncounterSize(); i++)
+        
+        List<GameObject> CurrentEncounter = EnemyEncounter.GetLivingEncounterMembers();
+        foreach (GameObject G in CurrentEncounter)
         {
-            if (i < EnemyEncounter.getEncounterSize())
+            EnemyCharacter Enem = G.GetComponent<EnemyCharacter>();
+            if (Enem.isAlive() && PC.isAlive())
             {
-                EnemyCharacter E = EnemyEncounter.getEncounter()[i].GetComponent<EnemyCharacter>();
-                if (E.isAlive() && PC.isAlive())
-                {
-                    BattleLogicHandler.AttackDamage(PC, E, PC.getAttackStat() + PC.getDamageOutputModifier());
-                }
+                    BattleLogicHandler.AttackDamage(PC, Enem, PC.getAttackStat() + PC.getDamageOutputModifier());
             }
-        }
+            
+        }  
     }
     
     public override void postCast(Character C)

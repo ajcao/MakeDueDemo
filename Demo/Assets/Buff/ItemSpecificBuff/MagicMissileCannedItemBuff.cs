@@ -44,12 +44,10 @@ public class MagicMissileCannedItemBuff : Buff
         onPlayerActivateResolveTrigger TE = (onPlayerActivateResolveTrigger) E;
         if (TE.CastingPlayer == this.BuffTarget)
         {
-            if (EnemyEncounter.getEncounterSize() > 0)
-            {
-                int r = Random.Range(0,EnemyEncounter.getEncounterSize());
-                EnemyCharacter E2 = EnemyEncounter.getEncounterMember(r).GetComponent<EnemyCharacter>();
-                BattleLogicHandler.BuffDamage(E2, 30);
-            }
+            List<GameObject> CurrentEncounter = EnemyEncounter.GetLivingEncounterMembers();
+            int r = Random.Range(0,CurrentEncounter.Count);
+            EnemyCharacter Enem = CurrentEncounter[r].GetComponent<EnemyCharacter>();
+            BattleLogicHandler.BuffDamage(Enem, 30);
         }
     }
 }

@@ -72,6 +72,11 @@ public abstract class EnemyCharacter : Character
 	
 	public void GetStunned()
 	{
+		if (!this.isAlive())
+		{
+			return;
+		}
+		
 		//If the enemy already has a move plan, delete it 
 		//and replace the move with the Stunned moved
 		if (Moves.Count > 0)
