@@ -252,6 +252,24 @@ public static class BattleLogicHandler
 	//This function only marks character for death
 	public static void CharacterDies(Character C)
 	{
+		//Move Characters offscreen
+		if ((C.GetType()).IsSubclassOf(typeof(EnemyCharacter)))
+		{
+			EnemyCharacter E = (EnemyCharacter) C;
+			E.DeleteMoves();
+			
+			if (!E.MultipleLives)
+			{
+				C.gameObject.transform.position = new Vector3(0, -500, 0);
+			}
+		}
+		else
+		{
+			C.gameObject.transform.position = new Vector3(0, -500, 0);
+		}
+					
+		//Destroy health/armor indicator
+		UnityEngine.Object.Destroy(C.gameObject.GetComponentInChildren<HealthArmorScript>().gameObject);
 		C.onDeath();
 	}
 	

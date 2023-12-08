@@ -25,7 +25,7 @@ public class GenericMonsterPhase1Behavior : EnemyCharacter
         this.StaminaRegeneration = this.MaxStamina / 2;
         Moves = new Stack<EnemyMove>();
         
-        this.MultiplePhase = true;
+        this.MultipleLives = true;
         
         this.CharacterIcon = Resources.Load<Sprite>("EnemyCharacterImages/GenericMonsterIcon");
         
@@ -51,7 +51,6 @@ public class GenericMonsterPhase1Behavior : EnemyCharacter
                 Target = EnemyTargetingLibrary.TargetNRandomHeroes(1);
                 Moves.Push(new EnemyAttackMove(this, 80, Target));
             }
-            else
             
             if (i == 2)
             {
@@ -62,11 +61,9 @@ public class GenericMonsterPhase1Behavior : EnemyCharacter
         
     }
     
-    public override void PrepareNextPhase()
+    public override void EnterNextLife()
     {
         Debug.Log("Prepare for next phase");
-        Character[] Target = new Character[] {(Character) this};
-        (int,int)[] array = new (int,int)[] {(0,0)};
-        Moves.Push(new EnemyReviveMove(this, Target, array));
+        EnemyEncounter.ReplaceEncounterMember(0, 0);
     }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class NextTurnButtonScript : MonoBehaviour
 {
@@ -15,7 +16,12 @@ public class NextTurnButtonScript : MonoBehaviour
 
     public void onButtonClick()
     {
-        AB.ResetCasting();
-        this.gameObject.GetComponent<Button>().interactable = false;
+        if (BattleSceneHandler.GetRound() > 0)
+        {
+            AB.ResetCasting();
+            this.gameObject.GetComponent<Button>().interactable = false;
+        }
+        else
+            SceneManager.LoadScene("BattleSelectionScene", LoadSceneMode.Single);
     }
 }

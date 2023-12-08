@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Resources/Scenes/RatEnemyEncounter.unity
     guid: e1e602b6d3202ef45aebd9a367726ce6
+  - enabled: 1
+    path: Assets/Resources/Scenes/BattleSelectionScene.unity
+    guid: 0fff7c1369351de4b88f86e65eb76c24
   m_configObjects: {}

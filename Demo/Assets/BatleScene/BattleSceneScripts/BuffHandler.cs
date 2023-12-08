@@ -129,6 +129,16 @@ public static class BuffHandler
 		
 	}
 	
+	public static void RemoveAllBuffsFromCharacter(Character C)
+	{
+		List<Buff> BList = C.getBuffList();
+		foreach (Buff B in BList)
+		{
+			B.PrepareBuffForDeletion();
+		}
+		BuffHandler.RemoveDeletedBuffsFromList(BList);
+	}
+	
 	public static void RemoveDeletedBuffsFromEveryone()
 	{
 		foreach (GameObject G in PlayerParty.GetLivingPartyMembers())
@@ -206,6 +216,12 @@ public static class BuffHandler
 				if (DT.DyingCharacter.getCurrentHealth() <= 0)
 				{
 					//Mark character as dead
+					//Rewrite how death is handled
+					//BattleLogicHandler should handle calling trigger of buffs
+					//BuffHandler should really only be a storage. It should not determine when to trigger buffs
+					
+					//Death is handled here
+					//Sphagetti Code
 					BattleLogicHandler.CharacterDies(DT.DyingCharacter);
 					
 					//Proc any on death buff effects
@@ -223,38 +239,8 @@ public static class BuffHandler
 						}
 					}
 					
-					//Rewrite how death is handled
-					//BattleLogicHandler should handle calling trigger of buffs
-					//BuffHandler should really only be a storage. It should not determine when to trigger buffs
-					
-					//Death is handled here
-					//Sphagetti Code
-					
 					//Mark all buffs on the character
 					BuffHandler.MarkBuffsOnDeadCharacter(DT.DyingCharacter);
-					
-					//Move Characters offscreen
-					if ((DT.DyingCharacter.GetType()).IsSubclassOf(typeof(EnemyCharacter)))
-					{
-						EnemyCharacter E = (EnemyCharacter) DT.DyingCharacter;
-						if (!E.MultiplePhase)
-							DT.DyingCharacter.gameObject.transform.position = new Vector3(0, -500, 0);
-						else
-						{
-							//Delete movepool of Enemy while it waits to go to next phase
-							Stack<EnemyMove> Moves = E.getCurrentMoves();
-							while (Moves.Count > 0)
-							{
-								EnemyMove EM = E.getCurrentMoves().Pop();
-								EM.DeleteMoveIndicator();
-							}
-							E.PrepareNextPhase();
-						}
-					}
-					else
-					{
-						DT.DyingCharacter.gameObject.transform.position = new Vector3(0, -500, 0);
-					}
 					
 				}
 			}

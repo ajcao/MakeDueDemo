@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using CharacterUtil;
+using UnityEngine.UI;
 using ItemUtil;
 
 public class BattleSceneHandler : MonoBehaviour
@@ -37,7 +38,16 @@ public class BattleSceneHandler : MonoBehaviour
         }
         else
         {
-            Debug.Log("YOU WIN!");
+            foreach (GameObject G in PlayerParty.GetLivingPartyMembers())
+            {
+                Character P = G.GetComponent<PlayableCharacter>();
+                BuffHandler.RemoveAllBuffsFromCharacter(P);
+                
+                Object.Destroy(G.GetComponentInChildren<HealthArmorScript>().gameObject);
+            }
+            AB_Handler.NextTurnButton.gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("NextBattleButton") as Sprite;
+            AB_Handler.NextTurnButton.gameObject.gameObject.GetComponent<Button>().interactable = true;
+            Round = -1;
         }
     }
     
@@ -49,10 +59,14 @@ public class BattleSceneHandler : MonoBehaviour
         BattleLogicHandler.Init();
                 
         //Place Player in correct location
-        PlayerParty.getPartyMember(0).transform.position = new Vector3(-9.0f,0.0f,0.0f);
-        PlayerParty.getPartyMember(1).transform.position = new Vector3(-6.5f,0.0f,0.0f);
-        PlayerParty.getPartyMember(2).transform.position = new Vector3(-4.0f,0.0f,0.0f);
-        PlayerParty.getPartyMember(3).transform.position = new Vector3(-1.5f,0.0f,0.0f);
+        if (PlayerParty.getPartyMember(0).GetComponent<Character>().isAlive())
+            PlayerParty.getPartyMember(0).transform.position = new Vector3(-9.0f,0.0f,0.0f);
+        if (PlayerParty.getPartyMember(1).GetComponent<Character>().isAlive())
+            PlayerParty.getPartyMember(1).transform.position = new Vector3(-6.5f,0.0f,0.0f);
+        if (PlayerParty.getPartyMember(2).GetComponent<Character>().isAlive())
+            PlayerParty.getPartyMember(2).transform.position = new Vector3(-4.0f,0.0f,0.0f);
+        if (PlayerParty.getPartyMember(3).GetComponent<Character>().isAlive())
+            PlayerParty.getPartyMember(3).transform.position = new Vector3(-1.5f,0.0f,0.0f);
         
         EnemyEncounter.LoadEncounter();
                 
@@ -67,6 +81,8 @@ public class BattleSceneHandler : MonoBehaviour
         //Load Background
         
         //Go Through all Items in PlayerParty and add buffs to BattleLogicHandler
+        //Reset armor and resolve to 0
+        //Reset cooldown
         foreach (GameObject C in PlayerParty.GetLivingPartyMembers())
         {
             PlayableCharacter P = C.GetComponent<PlayableCharacter>();
@@ -74,6 +90,8 @@ public class BattleSceneHandler : MonoBehaviour
             {
                 I.OnApply();
             }
+            P.setResolve(0);
+            P.setCurrentArmor(0);
         }
 
         

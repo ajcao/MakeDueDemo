@@ -78,7 +78,7 @@ public class EnemyMoveHandler : MonoBehaviour
             //Show moves as normallly
             else
             {
-                EM_Indicator.transform.position = E.transform.position + new Vector3(0.0f,i*1.2f,0.0f) + new Vector3(0.0f, 2.0f*SR.size.y,0.0f);
+                EM_Indicator.transform.position = E.transform.position + new Vector3(0.0f,i*1.1f,0.0f) + new Vector3(0.0f, 2.0f*SR.size.y,0.0f);
                 EM_Indicator.GetComponent<BoxCollider2D>().size = new Vector2(1.47f, 1.04f);
                 EM_Indicator.GetComponent<BoxCollider2D>().offset = new Vector2(0f, 0f);
             }
@@ -132,28 +132,25 @@ public class EnemyMoveHandler : MonoBehaviour
         }
         
         //After normal moves
-        //Enemy Phase Transition Moves occur
+        //Enemies with extra lives comeback
         GameObject[] CurrentEncounter =  EnemyEncounter.getEncounter();
         for (int i = 0; i < EnemyEncounter.getEncounterSize(); i++)
         {
             if (CurrentEncounter[i] != null)
             {
                 EnemyCharacter E = CurrentEncounter[i].GetComponent<EnemyCharacter>();
-                if (!E.isAlive() && E.MultiplePhase)
+                if (!E.isAlive() && E.MultipleLives)
                 {
 
-                    //Remove the current Move to Next Phase move the enemy's movepool
-                    EnemyMove EM = E.getCurrentMoves().Pop();
-                    Debug.Log(EM);
                     
-                    //Play the move's animation, then cast the move
-                    BattleAnimation.StartAnimation(E.gameObject, EM.getAnimation());
+                    //Play the shake animation
+                    BattleAnimation.StartAnimation(E.gameObject, "Shake");
                     while (BattleAnimation.isAnimationPlaying())
                     {
                         yield return null;
                     }
                     //Do not use onCastWrapper as that checks for death
-                    EM.onCast(null);
+                    E.EnterNextLife();
                 }
             }
         }

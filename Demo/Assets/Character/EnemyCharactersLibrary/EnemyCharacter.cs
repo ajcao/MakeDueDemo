@@ -20,7 +20,7 @@ public abstract class EnemyCharacter : Character
 	protected int MaxStamina;
 	protected int StaminaRegeneration;
 	
-	public bool MultiplePhase = false;
+	public bool MultipleLives = false;
 	
 	public string Forms = "Default";
 	
@@ -70,6 +70,17 @@ public abstract class EnemyCharacter : Character
 		return Moves;
 	}
 	
+	public void DeleteMoves()
+	{
+		//Delete movepool of Enemy
+		Stack<EnemyMove> Moves = this.getCurrentMoves();
+		while (Moves.Count > 0)
+		{
+			EnemyMove EM = this.getCurrentMoves().Pop();
+			EM.DeleteMoveIndicator();
+		}
+	}
+	
 	public void GetStunned()
 	{
 		if (!this.isAlive())
@@ -114,7 +125,7 @@ public abstract class EnemyCharacter : Character
 		return;
 	}
 	
-	public virtual void PrepareNextPhase()
+	public virtual void EnterNextLife()
 	{
 		return;
 	}

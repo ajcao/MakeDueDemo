@@ -17,6 +17,10 @@ public class PreBattleSceneHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {        
+        //Reset BattleScene
+        SceneCoordinator.ResetBattleStatus();
+        
+        
         List<GameObject> TotalCharacterArray = new List<GameObject>();
         TotalCharacterArray.Add(P1);
         TotalCharacterArray.Add(P2);
