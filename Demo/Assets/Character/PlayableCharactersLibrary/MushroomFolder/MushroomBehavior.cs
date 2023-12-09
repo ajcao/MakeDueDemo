@@ -33,6 +33,8 @@ public class MushroomBehavior : PlayableCharacter
         this.AbilityPool.Add(new DefendAbility(this));
         this.AbilityPool.Add(new MushroomHealAbility(this));
         this.AbilityPool.Add(new ToxicSporeAbility(this));
+        this.AbilityPool.Add(new VulnurableSporeAbililty(this));
+        this.AbilityPool.Add(new WeakSporeAbility(this));
 
         
     }

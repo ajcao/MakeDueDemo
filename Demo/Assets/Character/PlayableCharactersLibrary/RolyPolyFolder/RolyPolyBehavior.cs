@@ -33,6 +33,8 @@ public class RolyPolyBehavior : PlayableCharacter
         this.AbilityPool.Add(new DefendAbility(this));
         this.AbilityPool.Add(new DefensiveCurlAbility(this));
         this.AbilityPool.Add(new RollAbility(this));
+        this.AbilityPool.Add(new BugTempDoubleDamageAbility(this));
+        this.AbilityPool.Add(new StunHitAbility(this));
 
         
     }

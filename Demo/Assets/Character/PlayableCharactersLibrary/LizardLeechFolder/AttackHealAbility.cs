@@ -26,7 +26,6 @@ public class AttackHealAbility : Ability
     
     public override void postCast(Character C)
     {
-        BattleLogicHandler.PlayerBasicAttack(PC, (EnemyCharacter) C);
         BattleLogicHandler.PlayerAttack(PC, (EnemyCharacter) C);
     }
     

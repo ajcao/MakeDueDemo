@@ -92,6 +92,7 @@ public class BattleSceneHandler : MonoBehaviour
             }
             P.setResolve(0);
             P.setCurrentArmor(0);
+            P.ResetAllCooldown();
         }
 
         

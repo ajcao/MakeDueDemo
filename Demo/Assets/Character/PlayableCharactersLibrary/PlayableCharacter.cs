@@ -119,6 +119,14 @@ public abstract class PlayableCharacter : Character
 		return AbilityPool;
 	}
 	
+	public void ResetAllCooldown()
+	{
+		foreach (Ability A in AbilityPool)
+		{
+			A.resetCooldown();
+		}
+	}
+	
 
 	public List<GameItem> GetIntentory()
 	{

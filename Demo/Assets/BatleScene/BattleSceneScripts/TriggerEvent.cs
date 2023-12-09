@@ -222,11 +222,13 @@ public class onDealDamageAddTrigger : TriggerEvent
 
 public class onDealDamageMultiTrigger : TriggerEvent
 {
+	public Character AttackingChar;
 	public Character ReceivingChar; 
 	public int DamageAmount;
 	
-	public onDealDamageMultiTrigger(Character RC, int d)
+	public onDealDamageMultiTrigger(Character AC, Character RC, int d)
 	{
+		AttackingChar = AC;
 		ReceivingChar = RC;
 		DamageAmount = d;
 	}

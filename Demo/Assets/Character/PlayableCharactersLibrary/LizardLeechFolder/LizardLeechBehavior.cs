@@ -33,6 +33,8 @@ public class LizardLeechBehavior : PlayableCharacter
         this.AbilityPool.Add(new DefendAbility(this));
         this.AbilityPool.Add(new AttackHealAbility(this));
         this.AbilityPool.Add(new EnemyGivesHPAbilty(this));
+        this.AbilityPool.Add(new DoubleAttackAbility(this));
+        this.AbilityPool.Add(new HPForATKAbility(this));
 
         
     }

@@ -30,7 +30,7 @@ public static class BattleLogicHandler
 		TriggerEvent TE = new onDealDamageAddTrigger(AC, RC, d);
 		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onDealDamageAddEnum, TE, ref d);
 		
-		TE = new onDealDamageMultiTrigger(RC, d);
+		TE = new onDealDamageMultiTrigger(AC, RC, d);
 		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onDealDamageMultiEnum, TE, ref d);
 		
 		TE = new onDealDamageSpecialTrigger(RC, d);
@@ -115,6 +115,25 @@ public static class BattleLogicHandler
 			TE = new onHealthDamageWasTakenTrigger(RC, damageToHealth);
 			BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onHealthDamageWasTakenEnum, TE, ref dummy);
 		}
+	}
+	
+	public static void DirectlyLoseHP(Character C, int inputD)
+	{
+		//Displays damage
+		GameObject.Find("DamageNumberHandler").GetComponent<DamageNumberHandler>().CreateDamageNumber(C, inputD);
+		C.setCurrentHealth(Mathf.Max(0, C.getCurrentHealth() - inputD));
+		TriggerEvent TE;
+		
+		if (C.getCurrentHealth() <= 0)
+		{
+			//Adds death trigger, to be processed after buffs proc
+			TE = new onDeathTrigger(C);
+			BuffHandler.AddTriggerToHigherPrioirty((onDeathTrigger) TE);
+		}
+		
+		int dummy = 0;
+		TE = new onHealthDamageWasTakenTrigger(C, inputD);
+		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onHealthDamageWasTakenEnum, TE, ref dummy);
 	}
 	
 	public static void BuffGainArmor(Character C, int inputD)

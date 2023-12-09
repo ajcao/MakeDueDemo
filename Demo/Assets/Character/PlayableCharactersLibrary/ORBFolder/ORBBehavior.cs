@@ -31,6 +31,8 @@ public class ORBBehavior : PlayableCharacter
         this.AbilityPool.Add(new ActivateResolveAbility(this));
         this.AbilityPool.Add(new AttackAbility(this));
         this.AbilityPool.Add(new DefendAbility(this));
+        this.AbilityPool.Add(new OrbResetCooldown(this));
+        this.AbilityPool.Add(new OrbAttackArmor(this));
         this.AbilityPool.Add(new HealAbility(this));
         this.AbilityPool.Add(new GiveResolveAbility(this));
     }

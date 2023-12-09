@@ -4,6 +4,7 @@ using UnityEngine;
 using CharacterUtil;
 using UnityEngine.UI;
 using TooltipUtil;
+using BuffUtil;
 
 
 namespace AbilityUtil
@@ -61,6 +62,11 @@ public abstract class Ability
         {
             currentCooldown-=1;
         }
+    }
+    
+    public void resetCooldown()
+    {
+        currentCooldown = 0;
     }
     
     public Sprite getIcon()

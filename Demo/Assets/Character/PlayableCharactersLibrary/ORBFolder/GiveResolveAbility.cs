@@ -15,7 +15,7 @@ public class GiveResolveAbility : Ability
         this.currentCooldown = 0;
         this.maxCooldown = 2;
         
-        this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/GenericGiveResolve") as Sprite;
+        this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/OrbGainResolve") as Sprite;
     }
     
     public override void onCast(Character C)

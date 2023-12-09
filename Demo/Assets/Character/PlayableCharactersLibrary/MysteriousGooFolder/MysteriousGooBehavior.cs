@@ -32,7 +32,9 @@ public class MysteriousGooBehavior : PlayableCharacter
         this.AbilityPool.Add(new AttackAbility(this));
         this.AbilityPool.Add(new DefendAbility(this));
         this.AbilityPool.Add(new ApplyVulnurableAbilty(this));
-        this.AbilityPool.Add(new CorrosiveGooAbility(this));
+        this.AbilityPool.Add(new CorrosiveGooAbility(this));        
+        this.AbilityPool.Add(new ShareArmorAbility(this));
+        this.AbilityPool.Add(new ArmorAbsorbAbility(this));
 
         
     }

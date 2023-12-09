@@ -15,7 +15,7 @@ public class HealAbility : Ability
         this.currentCooldown = 0;
         this.maxCooldown = 4;
         
-        this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/GenericAbilityHeal") as Sprite;
+        this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/OrbGainHealth") as Sprite;
     }
     
     public override void onCast(Character C)

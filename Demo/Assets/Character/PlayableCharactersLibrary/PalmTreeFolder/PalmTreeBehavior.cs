@@ -33,6 +33,8 @@ public class PalmTreeBehavior : PlayableCharacter
         this.AbilityPool.Add(new DefendAbility(this));
         this.AbilityPool.Add(new ArmorMilkAbility(this));
         this.AbilityPool.Add(new CoconutStunAbility(this));
+        this.AbilityPool.Add(new CoconutAoeStunAbillity(this));
+        this.AbilityPool.Add(new CoconutBurst(this));
 
         
     }
