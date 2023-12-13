@@ -13,9 +13,9 @@ public class CoconutAoeStunAbillity : Ability
         this.AssignCharacter(inputC);
         this.targetingType = TargetingTypeEnum.NoTarget;
         this.currentCooldown = 0;
-        this.maxCooldown = 3;
+        this.maxCooldown = 6;
         
-        this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/CoconutAoeStun") as Sprite;
+        this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/PalmTreeAbilities/CoconutAoeStun") as Sprite;
     }
     
     public override void onCast(Character E)
@@ -26,7 +26,7 @@ public class CoconutAoeStunAbillity : Ability
             EnemyCharacter Enem = G.GetComponent<EnemyCharacter>();
             if (Enem.isAlive() && PC.isAlive())
             {
-                BattleLogicHandler.LowerStamina(Enem, 30);
+                BattleLogicHandler.LowerStamina(Enem, 60);
             }
             
         }  
@@ -39,9 +39,10 @@ public class CoconutAoeStunAbillity : Ability
     
     public override string GetTooltipString()
     {
-        string s1 = "Deal 30 stamina damage to all enemies";
+        string name = "Uproot";
+        string s1 = "Deal 60 stamina damage to all enemies";
         string s2 = "Cooldown: " + currentCooldown + "/" + maxCooldown;
-        return s1 + "\n" + s2;
+        return name + "\n" + s1 + "\n" + s2;
     }
     
 }

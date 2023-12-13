@@ -13,15 +13,15 @@ public class GiveResolveAbility : Ability
         this.AssignCharacter(inputC);
         this.targetingType = TargetingTypeEnum.PlayerTarget;
         this.currentCooldown = 0;
-        this.maxCooldown = 2;
+        this.maxCooldown = 6;
         
-        this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/OrbGainResolve") as Sprite;
+        this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/OrbAbilities/OrbGainResolve") as Sprite;
     }
     
     public override void onCast(Character C)
     {
         PlayableCharacter P = (PlayableCharacter) C;
-        BattleLogicHandler.GainResolve(P, 60);
+        BattleLogicHandler.GainResolve(P, 40);
     }
     
     public override void postCast(Character C)
@@ -31,9 +31,10 @@ public class GiveResolveAbility : Ability
     
     public override string GetTooltipString()
     {
-        string s1 = "Gain " + 60 + " resolve";
+        string name = "Negative Charge";
+        string s1 = "Restore " + 60 + " resolve to an ally player";
         string s2 = "Cooldown: " + currentCooldown + "/" + maxCooldown;
-        return s1 + "\n" + s2;
+        return name + "\n" + s1 + "\n" + s2;
     }
     
 }

@@ -16,7 +16,7 @@ public class ArmorRetainAbility : Ability
         this.currentCooldown = 0;
         this.maxCooldown = 4;
         
-        this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/SpikeyRockRetain") as Sprite;
+        this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/SpikeyRockAbillities/RockPowder") as Sprite;
     }
     
     public override void onCast(Character C)
@@ -35,9 +35,10 @@ public class ArmorRetainAbility : Ability
     
     public override string GetTooltipString()
     {
-        string s1 = "Defend and give armor retain";
+        string name = "Rock Powder";
+        string s1 = "Give an ally player " + (30 + PC.getDefenseOutputModifier()) + " armor and 30 armor retain";
         string s2 = "Cooldown: " + currentCooldown + "/" + maxCooldown;
-        return s1 + "\n" + s2;
+        return name + "\n" + s1 + "\n" + s2;
     }
     
 }

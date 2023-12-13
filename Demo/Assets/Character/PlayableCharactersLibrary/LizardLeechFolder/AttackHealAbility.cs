@@ -13,15 +13,20 @@ public class AttackHealAbility : Ability
         this.AssignCharacter(inputC);
         this.targetingType = TargetingTypeEnum.EnemyTarget;
         this.currentCooldown = 0;
-        this.maxCooldown = 2;
+        this.maxCooldown = 3;
         
-        this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/GenericAbilityLIfestealAttack") as Sprite;
+        this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/LizardLeechAbilities/GenericAbilityLIfestealAttack") as Sprite;
     }
     
-    public override void onCast(Character E)
+    public override void onCast(Character C)
     {
+        EnemyCharacter E = (EnemyCharacter) C;
+        
+        int enemyHPBeforeAttack = E.getCurrentHealth();
         BattleLogicHandler.AttackDamage(PC, (EnemyCharacter) E, PC.getAttackStat() + PC.getDamageOutputModifier());
-        BattleLogicHandler.GainHealth(PC, PC.getAttackStat());
+        int enemyHPAfterAttack = E.getCurrentHealth();
+        
+        BattleLogicHandler.GainHealth(PC, (enemyHPAfterAttack - enemyHPBeforeAttack) );
     }
     
     public override void postCast(Character C)
@@ -31,9 +36,10 @@ public class AttackHealAbility : Ability
     
     public override string GetTooltipString()
     {
-        string s1 = "Deal " + (PC.getAttackStat() + PC.getDamageOutputModifier()) + " damage. Heal for damage amount";
+        string name = "Bite";
+        string s1 = "Deal " + (PC.getAttackStat() + PC.getDamageOutputModifier()) + " damage. Heal for total damage done to enemy health";
         string s2 = "Cooldown: " + currentCooldown + "/" + maxCooldown;
-        return s1 + "\n" + s2;
+        return name + "\n" + s1 + "\n" + s2;
     }
     
 }

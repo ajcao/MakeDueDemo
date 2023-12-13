@@ -12,16 +12,16 @@ public class SentientDynamiteBehavior : PlayableCharacter
     {
         this.Alive = true;
         this.HasCasted = false;
-        this.CurrentHealth = 60;
-        this.MaxHealth = 60;
+        this.CurrentHealth = 140;
+        this.MaxHealth = 140;
         this.CurrentArmor = 0;
         this.ArmorRetain = 0;
         this.DamageOutputModifier = 0;
         this.DefenseOutputModifier = 0;
         this.AttackStat = 20;
-        this.DefenseStat = 20;
+        this.DefenseStat = 10;
         this.Resolve = 0;
-        this.MaxResolve = 120;
+        this.MaxResolve = 100;
         this.ResolveRegeneration = (int) Mathf.Ceil((float) this.MaxResolve / 2.0f);
         
         this.CharacterIcon = Resources.Load<Sprite>("PlayableCharacterImages/SentientDynamiteIcon");
@@ -31,9 +31,9 @@ public class SentientDynamiteBehavior : PlayableCharacter
         this.AbilityPool.Add(new ActivateResolveAbility(this));
         this.AbilityPool.Add(new AttackAbility(this));
         this.AbilityPool.Add(new DefendAbility(this));
-        this.AbilityPool.Add(new AttackEveryoneAbility(this));
+        this.AbilityPool.Add(new SmallAoeAttack(this));
         this.AbilityPool.Add(new NuclearAttackAbility(this));
-        this.AbilityPool.Add(new BurstAoeAbility(this));
+        this.AbilityPool.Add(new ShrapnelAttack(this));
         this.AbilityPool.Add(new SmokeAbility(this));
     }
 

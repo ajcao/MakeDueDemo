@@ -17,7 +17,7 @@ public class SmokeAbility : Ability
         this.currentCooldown = 0;
         this.maxCooldown = 2;
         
-        this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/SmokeScreen") as Sprite;
+        this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/DynamiteAbilities/SmokeScreen") as Sprite;
     }
     
     public override void onCast(Character P)
@@ -43,9 +43,10 @@ public class SmokeAbility : Ability
     
     public override string GetTooltipString()
     {
-        string s1 = "Deal " + (PC.getAttackStat() + PC.getDamageOutputModifier()) + " damage to all enemies";
+        string name = "Smokescreen";
+        string s1 = "Apply 1 weak to all enemies. Weak reduces damage by 50%";
         string s2 = "Cooldown: " + currentCooldown + "/" + maxCooldown;
-        return s1 + "\n" + s2;
+        return name + "\n" + s1 + "\n" + s2;
     }
 }
 

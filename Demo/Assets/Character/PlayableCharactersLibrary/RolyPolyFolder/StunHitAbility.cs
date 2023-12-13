@@ -14,9 +14,9 @@ public class StunHitAbility : Ability
         this.AssignCharacter(inputC);
         targetingType = TargetingTypeEnum.EnemyTarget;
         this.currentCooldown = 0;
-        this.maxCooldown = 3;
+        this.maxCooldown = 4;
         
-        this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/StunHit") as Sprite;
+        this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/RolyPolyAbilities/PolyDrop") as Sprite;
     }
     
     public override void onCast(Character C)
@@ -28,14 +28,15 @@ public class StunHitAbility : Ability
     
     public override void postCast(Character C)
     {
-        BattleLogicHandler.PlayerSkill(PC,null);
+        BattleLogicHandler.PlayerAttack(PC, (EnemyCharacter) C);
     }
     
     public override string GetTooltipString()
     {
-        string s1 = "Stun for 40, then basic attack";
+        string name = "Shell Drop";
+        string s1 = "Stun for 40, then attack for " + (PC.getAttackStat() + PC.getDamageOutputModifier()) + " damage";
         string s2 = "Cooldown: " + currentCooldown + "/" + maxCooldown;
-        return s1 + "\n" + s2;
+        return name + "\n" + s1 + "\n" + s2;
     }
 }
 

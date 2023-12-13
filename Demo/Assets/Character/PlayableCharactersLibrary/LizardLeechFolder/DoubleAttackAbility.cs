@@ -13,9 +13,9 @@ public class DoubleAttackAbility : Ability
         this.AssignCharacter(inputC);
         this.targetingType = TargetingTypeEnum.EnemyTarget;
         this.currentCooldown = 0;
-        this.maxCooldown = 2;
+        this.maxCooldown = 4;
         
-        this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/GenericAbilityAttackTwice") as Sprite;
+        this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/LizardLeechAbilities/LeechDoubleSlash") as Sprite;
     }
     
     public override void onCast(Character E)
@@ -31,9 +31,10 @@ public class DoubleAttackAbility : Ability
     
     public override string GetTooltipString()
     {
+        string name = "Double Slash";
         string s1 = "Attack twice for " + (PC.getAttackStat() + PC.getDamageOutputModifier()) + " damage.";
         string s2 = "Cooldown: " + currentCooldown + "/" + maxCooldown;
-        return s1 + "\n" + s2;
+        return name + "\n" + s1 + "\n" + s2;
     }
     
 }

@@ -15,7 +15,7 @@ public class OrbAttackArmor : Ability
         this.currentCooldown = 0;
         this.maxCooldown = 2;
         
-        this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/OrbStealArmor") as Sprite;
+        this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/OrbAbilities/OrbStealArmor") as Sprite;
     }
     
     public override void onCast(Character C)
@@ -31,9 +31,10 @@ public class OrbAttackArmor : Ability
     
     public override string GetTooltipString()
     {
-        string s1 = "Deal 30 damage to an enemy's armor";
+        string name = "Magnetic Pull";
+        string s1 = "Reduce enemy's current armor by 30";
         string s2 = "Cooldown: " + currentCooldown + "/" + maxCooldown;
-        return s1 + "\n" + s2;
+        return name + "\n" + s1 + "\n" + s2;
     }
     
 }

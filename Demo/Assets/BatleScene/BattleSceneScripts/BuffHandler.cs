@@ -239,8 +239,10 @@ public static class BuffHandler
 						}
 					}
 					
-					//Mark all buffs on the character
+					//Mark all buffs on the dead character
 					BuffHandler.MarkBuffsOnDeadCharacter(DT.DyingCharacter);
+					
+					BuffHandler.RemoveDeletedBuffsFromList(DT.DyingCharacter.getBuffList());
 					
 				}
 			}

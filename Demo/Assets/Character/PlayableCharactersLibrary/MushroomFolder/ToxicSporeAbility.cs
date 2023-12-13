@@ -14,14 +14,14 @@ public class ToxicSporeAbility : Ability
         this.AssignCharacter(inputC);
         this.targetingType = TargetingTypeEnum.EnemyTarget;
         this.currentCooldown = 0;
-        this.maxCooldown = 3;
+        this.maxCooldown = 7;
         
-        this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/ToxicSpore") as Sprite;
+        this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/MushroomAbilities/ToxicSpore") as Sprite;
     }
     
     public override void onCast(Character E)
     {
-        Buff B = new ToxicSporeBuff(E, this.getPlayableCharacter(), 30, 1);
+        Buff B = new VulnurableBuff(E, this.getPlayableCharacter(), null, 5);
         BattleLogicHandler.OnBuffApply(B);
     }
     
@@ -32,9 +32,10 @@ public class ToxicSporeAbility : Ability
     
     public override string GetTooltipString()
     {
-        string s1 = "Debuff enemy. When enemy is attacked, damage for 30 hp";
+        string name = "Toxic Spore";
+        string s1 = "Apply vulnurable to enemy for 5 turns. Enemy take 50% more damage";
         string s2 = "Cooldown: " + currentCooldown + "/" + maxCooldown;
-        return s1 + "\n" + s2;
+        return name + "\n" + s1 + "\n" + s2;
     }
     
 }

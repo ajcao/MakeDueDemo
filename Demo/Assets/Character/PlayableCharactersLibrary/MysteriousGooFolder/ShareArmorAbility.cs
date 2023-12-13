@@ -14,28 +14,30 @@ public class ShareArmorAbility : Ability
         this.AssignCharacter(inputC);
         this.targetingType = TargetingTypeEnum.PlayerTarget;
         this.currentCooldown = 0;
-        this.maxCooldown = 2;
+        this.maxCooldown = 4;
         
-        this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/ArmorShareAbility") as Sprite;
+        this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/GooAbillities/ArmorShareAbility") as Sprite;
     }
     
     public override void onCast(Character E)
     {
         int currentArmor = this.PC.getCurrentArmor();
         
-        BattleLogicHandler.GainArmor(this.PC, E, currentArmor);
+        BattleLogicHandler.GainArmor(this.PC, E, currentArmor + PC.getDefenseOutputModifier());
     }
     
     public override void postCast(Character C)
     {
+        BattleLogicHandler.PlayerDefend(PC, (PlayableCharacter) C);
         BattleLogicHandler.PlayerSkill(PC, C);
     }
     
     public override string GetTooltipString()
     {
-        string s1 = "Give " + this.PC.getCurrentArmor() + " armor";
+        string name = "Discarded Armor";
+        string s1 = "Give an ally player armor equal to the slime's current armor (" + (this.PC.getCurrentArmor() + PC.getDefenseOutputModifier()) + ")";
         string s2 = "Cooldown: " + currentCooldown + "/" + maxCooldown;
-        return s1 + "\n" + s2;
+        return name + "\n" + s1 + "\n" + s2;
     }
     
 }

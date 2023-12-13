@@ -20,7 +20,7 @@ public class SpikeBuff : Buff
         this.Visible = true;
         this.Stackable = true;
         
-        BuffIcon = Resources.Load<Sprite>("AbilityImages/GainSpike");
+        BuffIcon = Resources.Load<Sprite>("AbilityImages/Spike");
     }
     
     public override void onApplication()

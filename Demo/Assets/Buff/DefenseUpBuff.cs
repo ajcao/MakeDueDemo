@@ -12,7 +12,7 @@ public class DefenseUpBuff : Buff
 {
     public DefenseUpBuff(Character CTarget, Character CBuffer, int Inten, int? Dur) 
     {
-        this.Trigger = TriggerEventEnum.onArmorGainAddEnum;
+        this.Trigger = TriggerEventEnum.noTriggerEnum;
         this.TriggerSecondary = TriggerEventEnum.noTriggerEnum;
         this.BuffTarget = CTarget;
         this.OriginalBuffer = CBuffer;
@@ -27,10 +27,12 @@ public class DefenseUpBuff : Buff
     
     public override void onApplication()
     {
+        this.BuffTarget.setDefenseOutputModifier(this.BuffTarget.getDefenseOutputModifier() + this.Intensity.Value);
     }
     
     public override void onExpire()
     {
+        this.BuffTarget.setDefenseOutputModifier(this.BuffTarget.getDefenseOutputModifier() + this.Intensity.Value);
     }
     
     public override string GetTooltipString()
@@ -40,11 +42,6 @@ public class DefenseUpBuff : Buff
     
     public override void onTriggerEffect(TriggerEvent E, ref int v)
     {
-        onArmorGainAddTrigger T = (onArmorGainAddTrigger) E;
-        if (T.CastingChar == BuffTarget)
-        {
-            v = (int) (v + this.Intensity.Value);
-        }
     }
 }
 

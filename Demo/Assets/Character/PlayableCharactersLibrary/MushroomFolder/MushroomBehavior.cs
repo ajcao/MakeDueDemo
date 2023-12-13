@@ -12,16 +12,16 @@ public class MushroomBehavior : PlayableCharacter
     {
         this.Alive = true;
         this.HasCasted = false;
-        this.CurrentHealth = 40;
-        this.MaxHealth = 40;
+        this.CurrentHealth = 100;
+        this.MaxHealth = 100;
         this.CurrentArmor = 0;
         this.ArmorRetain = 0;
         this.DamageOutputModifier = 0;
         this.DefenseOutputModifier = 0;
-        this.AttackStat = 10;
-        this.DefenseStat = 10;
+        this.AttackStat = 20;
+        this.DefenseStat = 20;
         this.Resolve = 0;
-        this.MaxResolve = 90;
+        this.MaxResolve = 80;
         this.ResolveRegeneration = (int) Mathf.Ceil((float) this.MaxResolve / 2.0f);
         
         CharacterIcon = Resources.Load<Sprite>("PlayableCharacterImages/MushroomIcon");
@@ -33,8 +33,8 @@ public class MushroomBehavior : PlayableCharacter
         this.AbilityPool.Add(new DefendAbility(this));
         this.AbilityPool.Add(new MushroomHealAbility(this));
         this.AbilityPool.Add(new ToxicSporeAbility(this));
-        this.AbilityPool.Add(new VulnurableSporeAbililty(this));
         this.AbilityPool.Add(new WeakSporeAbility(this));
+        this.AbilityPool.Add(new SiphonAbility(this));
 
         
     }

@@ -15,9 +15,9 @@ public class HPForATKAbility : Ability
         this.AssignCharacter(inputC);
         targetingType = TargetingTypeEnum.NoTarget;
         this.currentCooldown = 0;
-        this.maxCooldown = 3;
+        this.maxCooldown = 4;
         
-        this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/LeechHPForATK") as Sprite;
+        this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/LizardLeechAbilities/Frenzy") as Sprite;
     }
     
     public override void onCast(Character PI)
@@ -35,9 +35,10 @@ public class HPForATKAbility : Ability
     
     public override string GetTooltipString()
     {
+        string name = "Frenzy";
         string s1 = "Lose 30 hp. Gain 5 strength";
         string s2 = "Cooldown: " + currentCooldown + "/" + maxCooldown;
-        return s1 + "\n" + s2;
+        return name + "\n" + s1 + "\n" + s2;
     }
 }
 

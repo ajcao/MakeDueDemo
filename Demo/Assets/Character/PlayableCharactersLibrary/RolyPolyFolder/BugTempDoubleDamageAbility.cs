@@ -15,9 +15,9 @@ public class BugTempDoubleDamageAbility : Ability
         this.AssignCharacter(inputC);
         targetingType = TargetingTypeEnum.PlayerTarget;
         this.currentCooldown = 0;
-        this.maxCooldown = 3;
+        this.maxCooldown = 6;
         
-        this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/BugDoubleDamage") as Sprite;
+        this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/RolyPolyAbilities/AngerPheromones") as Sprite;
     }
     
     public override void onCast(Character C)
@@ -29,15 +29,15 @@ public class BugTempDoubleDamageAbility : Ability
     
     public override void postCast(Character C)
     {
-        BattleLogicHandler.PlayerDefend(PC,null);
         BattleLogicHandler.PlayerSkill(PC,null);
     }
     
     public override string GetTooltipString()
     {
-        string s1 = "Give a buff that lets the next attack deal double damage";
+        string name = "Poly Anger Pheromones";
+        string s1 = "Give an ally player a buff that gives the next attack double damage";
         string s2 = "Cooldown: " + currentCooldown + "/" + maxCooldown;
-        return s1 + "\n" + s2;
+        return name + "\n" + s1 + "\n" + s2;
     }
 }
 

@@ -16,7 +16,7 @@ public class NuclearAttackAbility : Ability
         this.currentCooldown = 0;
         this.maxCooldown = 8;
         
-        this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/Nuclear") as Sprite;
+        this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/DynamiteAbilities/Nuclear") as Sprite;
     }
     
     public override void onCast(Character P)
@@ -41,9 +41,10 @@ public class NuclearAttackAbility : Ability
     
     public override string GetTooltipString()
     {
+        string name = "Big Boom";
         string s1 = "Deal " + (50 + PC.getDamageOutputModifier()) + " damage to all enemies";
         string s2 = "Cooldown: " + currentCooldown + "/" + maxCooldown;
-        return s1 + "\n" + s2;
+        return name + "\n" + s1 + "\n" + s2;
     }
 }
 

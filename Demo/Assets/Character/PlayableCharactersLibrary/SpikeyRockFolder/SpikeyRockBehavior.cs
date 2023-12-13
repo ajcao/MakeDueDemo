@@ -11,14 +11,14 @@ public class SpikeyRockBehavior : PlayableCharacter
     {
         this.Alive = true;
         this.HasCasted = false;
-        this.CurrentHealth = 100;
-        this.MaxHealth = 100;
+        this.CurrentHealth = 140;
+        this.MaxHealth = 140;
         this.CurrentArmor = 0;
         this.ArmorRetain = 0;
         this.DamageOutputModifier = 0;
         this.DefenseOutputModifier = 0;
-        this.AttackStat = 20;
-        this.DefenseStat = 20;
+        this.AttackStat = 30;
+        this.DefenseStat = 30;
         this.Resolve = 0;
         this.MaxResolve = 100;
         this.ResolveRegeneration = (int) Mathf.Ceil((float) this.MaxResolve / 2.0f);

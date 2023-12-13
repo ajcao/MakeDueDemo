@@ -6,6 +6,7 @@ using UnityEngine;
 using CharacterUtil;
 using Random=UnityEngine.Random;
 using BuffUtil;
+using System.Linq;
 
 namespace EnemyTargetingLibraryUtil
 {
@@ -36,9 +37,44 @@ public static class EnemyTargetingLibrary
     }
     
     //Target only characters that don't have a buff
-    public static Character[] TargetNRandomHeroesWithoutBuff(int inputN, Buff B)
+    public static Character[] TargetNRandomHeroesBasedOnBuff(int inputN, Buff B, bool HasBuff, bool ExactBuff)
     {
-        return null;
+        //Get a list of living party members
+        List<Character> randomList = new List<Character>();
+        foreach (GameObject G in PlayerParty.GetLivingPartyMembers())
+        {
+            randomList.Add((Character) G.GetComponent<PlayableCharacter>());
+        }
+        
+         IEnumerable<Character> FilteredEnumerable = randomList.Where(C => ( HasBuff == BuffHandler.CharacterHaveBuff(C, B, ExactBuff) ) );
+         
+         List<Character> FilteredList = FilteredEnumerable.ToList();
+         
+         int N = Mathf.Min(inputN, FilteredList.Count);
+         
+         //List is empty
+         if (N == 0)
+         {
+            //Chose a random target of 1
+            return TargetNRandomHeroes(1);
+         }
+         else
+         {
+            Character[] Targets = new Character[N];
+            int i = 0;
+            while (randomList.Count > 0 && i < N)
+            {
+                int r = Random.Range(0,FilteredList.Count);
+                Character T = FilteredList[r];
+                Targets[i] = T;
+                FilteredList.Remove(T);
+                i++;
+            }
+            return Targets;
+         }
+        
+        
+        
     }
     
     public static int[] CreateEvenDistributionToN(int N)

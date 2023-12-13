@@ -12,8 +12,8 @@ public class ORBBehavior : PlayableCharacter
     {
         this.Alive = true;
         this.HasCasted = false;
-        this.CurrentHealth = 30;
-        this.MaxHealth = 30;
+        this.CurrentHealth = 60;
+        this.MaxHealth = 60;
         this.CurrentArmor = 0;
         this.ArmorRetain = 0;
         this.DamageOutputModifier = 0;
@@ -21,7 +21,7 @@ public class ORBBehavior : PlayableCharacter
         this.AttackStat = 10;
         this.DefenseStat = 30;
         this.Resolve = 0;
-        this.MaxResolve = 150;
+        this.MaxResolve = 120;
         this.ResolveRegeneration = (int) Mathf.Ceil((float) this.MaxResolve / 2.0f);
         
         this.CharacterIcon = Resources.Load<Sprite>("PlayableCharacterImages/ORBIcon");

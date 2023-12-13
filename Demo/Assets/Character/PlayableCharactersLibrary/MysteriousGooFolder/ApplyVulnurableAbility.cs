@@ -14,9 +14,9 @@ public class ApplyVulnurableAbilty : Ability
         this.AssignCharacter(inputC);
         this.targetingType = TargetingTypeEnum.EnemyTarget;
         this.currentCooldown = 0;
-        this.maxCooldown = 2;
+        this.maxCooldown = 4;
         
-        this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/GooApplyVulnurable") as Sprite;
+        this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/GooAbillities/CorrosiveGoo") as Sprite;
     }
     
     public override void onCast(Character E)
@@ -32,9 +32,10 @@ public class ApplyVulnurableAbilty : Ability
     
     public override string GetTooltipString()
     {
-        string s1 = "Apply Vulnurable (take 50% more damage)";
+        string name = "Corrosive Slime";
+        string s1 = "Apply vulnurable to enemy for 2 turns. Enemy take 50% more damage";
         string s2 = "Cooldown: " + currentCooldown + "/" + maxCooldown;
-        return s1 + "\n" + s2;
+        return name + "\n" + s1 + "\n" + s2;
     }
     
 }

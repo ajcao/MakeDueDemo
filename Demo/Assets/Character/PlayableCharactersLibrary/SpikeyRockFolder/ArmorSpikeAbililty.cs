@@ -16,13 +16,13 @@ public class ArmorSpikeAbility : Ability
         this.currentCooldown = 0;
         this.maxCooldown = 4;
         
-        this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/GiveSpike") as Sprite;
+        this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/SpikeyRockAbillities/GiveSpike") as Sprite;
     }
     
     public override void onCast(Character C)
     {
         PlayableCharacter P = (PlayableCharacter) C;
-        BattleLogicHandler.GainArmor(PC, P, PC.getDefenseStat() + PC.getDefenseOutputModifier());
+        BattleLogicHandler.GainArmor(PC, P, 30 + PC.getDefenseOutputModifier());
         
         Buff B = new SpikeBuff(P, this.getPlayableCharacter(), 20, 3);
         BattleLogicHandler.OnBuffApply(B);
@@ -35,9 +35,10 @@ public class ArmorSpikeAbility : Ability
     
     public override string GetTooltipString()
     {
-        string s1 = "Give armor and spikes";
+        string name = "Spike Cover";
+        string s1 = "Give an ally player " + (30 + PC.getDefenseOutputModifier()) + " armor and 20 spikes for 3 turn";
         string s2 = "Cooldown: " + currentCooldown + "/" + maxCooldown;
-        return s1 + "\n" + s2;
+        return name + "\n" + s1 + "\n" + s2;
     }
     
 }

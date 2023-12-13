@@ -13,9 +13,9 @@ public class HealAbility : Ability
         this.AssignCharacter(inputC);
         this.targetingType = TargetingTypeEnum.PlayerTarget;
         this.currentCooldown = 0;
-        this.maxCooldown = 4;
+        this.maxCooldown = 6;
         
-        this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/OrbGainHealth") as Sprite;
+        this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/OrbAbilities/OrbGainHealth") as Sprite;
     }
     
     public override void onCast(Character C)
@@ -30,9 +30,10 @@ public class HealAbility : Ability
     
     public override string GetTooltipString()
     {
-        string s1 = "Restore " + 50 + " health";
+        string name = "Positive Charge";
+        string s1 = "Restore " + 50 + " health to an ally player";
         string s2 = "Cooldown: " + currentCooldown + "/" + maxCooldown;
-        return s1 + "\n" + s2;
+        return name + "\n" + s1 + "\n" + s2;
     }
     
 }

@@ -16,7 +16,7 @@ public class GiveSelfSpikeAbility : Ability
         this.currentCooldown = 0;
         this.maxCooldown = 2;
         
-        this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/GainSpike") as Sprite;
+        this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/SpikeyRockAbillities/GainSpike") as Sprite;
     }
     
     public override void onCast(Character E)
@@ -33,9 +33,10 @@ public class GiveSelfSpikeAbility : Ability
     
     public override string GetTooltipString()
     {
+        string name = "Sharpen";
         string s1 = "Gain buff that deals 20 damage to Enemy Attackers";        
         string s2 = "Cooldown: " + currentCooldown + "/" + maxCooldown;
-        return s1 + "\n" + s2;
+        return name + "\n" + s1 + "\n" + s2;
     }
     
 }

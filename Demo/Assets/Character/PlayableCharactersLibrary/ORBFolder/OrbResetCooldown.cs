@@ -13,9 +13,9 @@ public class OrbResetCooldown : Ability
         this.AssignCharacter(inputC);
         this.targetingType = TargetingTypeEnum.PlayerTarget;
         this.currentCooldown = 0;
-        this.maxCooldown = 6;
+        this.maxCooldown = 8;
         
-        this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/OrbResetCooldown") as Sprite;
+        this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/OrbAbilities/OrbResetCooldown") as Sprite;
     }
     
     public override void onCast(Character C)
@@ -31,9 +31,10 @@ public class OrbResetCooldown : Ability
     
     public override string GetTooltipString()
     {
+        string name = "Harmonic Wave";
         string s1 = "Reset a character's cooldown";
         string s2 = "Cooldown: " + currentCooldown + "/" + maxCooldown;
-        return s1 + "\n" + s2;
+        return name + "\n" + s1 + "\n" + s2;
     }
     
 }

@@ -13,14 +13,14 @@ public class MushroomHealAbility : Ability
         this.AssignCharacter(inputC);
         this.targetingType = TargetingTypeEnum.PlayerTarget;
         this.currentCooldown = 0;
-        this.maxCooldown = 2;
+        this.maxCooldown = 3;
         
-        this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/MushroomHeal") as Sprite;
+        this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/MushroomAbilities/MushroomHeal") as Sprite;
     }
     
     public override void onCast(Character C)
     {
-        BattleLogicHandler.GainHealth((PlayableCharacter) C, 10);
+        BattleLogicHandler.GainHealth((PlayableCharacter) C, 30);
     }
     
     public override void postCast(Character C)
@@ -30,9 +30,10 @@ public class MushroomHealAbility : Ability
     
     public override string GetTooltipString()
     {
-        string s1 = "Restore " + 10 + " health";
+        string name = "Shroom Berry";
+        string s1 = "Restore " + 30 + " health to an ally player";
         string s2 = "Cooldown: " + currentCooldown + "/" + maxCooldown;
-        return s1 + "\n" + s2;
+        return name + "\n" + s1 + "\n" + s2;
     }
     
 }

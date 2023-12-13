@@ -12,16 +12,16 @@ public class RolyPolyBehavior : PlayableCharacter
     {
         this.Alive = true;
         this.HasCasted = false;
-        this.CurrentHealth = 50;
-        this.MaxHealth = 50;
+        this.CurrentHealth = 80;
+        this.MaxHealth = 80;
         this.CurrentArmor = 0;
         this.ArmorRetain = 0;
         this.DamageOutputModifier = 0;
         this.DefenseOutputModifier = 0;
         this.AttackStat = 20;
-        this.DefenseStat = 10;
+        this.DefenseStat = 20;
         this.Resolve = 0;
-        this.MaxResolve = 120;
+        this.MaxResolve = 60;
         this.ResolveRegeneration = (int) Mathf.Ceil((float) this.MaxResolve / 2.0f);
         
         CharacterIcon = Resources.Load<Sprite>("PlayableCharacterImages/RolyPolyIcon");

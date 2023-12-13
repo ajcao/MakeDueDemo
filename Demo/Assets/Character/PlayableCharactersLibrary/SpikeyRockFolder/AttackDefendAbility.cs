@@ -15,7 +15,7 @@ public class AttackDefendAbility : Ability
         this.currentCooldown = 0;
         this.maxCooldown = 4;
         
-        this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/AttackDefendAbility") as Sprite;
+        this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/SpikeyRockAbillities/AttackDefendAbility") as Sprite;
     }
     
     public override void onCast(Character E)
@@ -26,15 +26,18 @@ public class AttackDefendAbility : Ability
     
     public override void postCast(Character C)
     {
+        BattleLogicHandler.PlayerBasicAttack(PC, (EnemyCharacter) C);
         BattleLogicHandler.PlayerAttack(PC,(EnemyCharacter) C);
+        BattleLogicHandler.PlayerBasicDefend(PC, (PlayableCharacter) C);
         BattleLogicHandler.PlayerDefend(PC,(PlayableCharacter) PC);
     }
     
     public override string GetTooltipString()
     {
-        string s1 = "Attack and Defend at the same time";
+        string name = "Rock Roll";
+        string s1 = "Perform a basic Attack ( " + (PC.getAttackStat() + PC.getDamageOutputModifier()) + ") and a basic Defend (" + PC.getDefenseStat() + PC.getDefenseOutputModifier() + ")";
         string s2 = "Cooldown: " + currentCooldown + "/" + maxCooldown;
-        return s1 + "\n" + s2;
+        return name + "\n" + s1 + "\n" + s2;
     }
     
 }

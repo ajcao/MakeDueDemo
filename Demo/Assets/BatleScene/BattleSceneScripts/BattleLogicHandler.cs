@@ -286,6 +286,9 @@ public static class BattleLogicHandler
 		{
 			C.gameObject.transform.position = new Vector3(0, -500, 0);
 		}
+		
+		//Remove tag for targetting
+		C.gameObject.tag = "Untagged";
 					
 		//Destroy health/armor indicator
 		UnityEngine.Object.Destroy(C.gameObject.GetComponentInChildren<HealthArmorScript>().gameObject);

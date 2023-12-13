@@ -14,9 +14,9 @@ public class ArmorAbsorbAbility : Ability
         this.AssignCharacter(inputC);
         this.targetingType = TargetingTypeEnum.EnemyTarget;
         this.currentCooldown = 0;
-        this.maxCooldown = 2;
+        this.maxCooldown = 6;
         
-        this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/ArmorAbsorb") as Sprite;
+        this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/GooAbillities/ArmorAbsorb") as Sprite;
     }
     
     public override void onCast(Character E)
@@ -34,9 +34,10 @@ public class ArmorAbsorbAbility : Ability
     
     public override string GetTooltipString()
     {
+        string name = "Consume";
         string s1 = "Remove enemy's armor, gain as armor for self";
         string s2 = "Cooldown: " + currentCooldown + "/" + maxCooldown;
-        return s1 + "\n" + s2;
+        return name + "\n" + s1 + "\n" + s2;
     }
     
 }

@@ -21,7 +21,7 @@ public class LizardLeechBehavior : PlayableCharacter
         this.AttackStat = 20;
         this.DefenseStat = 10;
         this.Resolve = 0;
-        this.MaxResolve = 100;
+        this.MaxResolve = 60;
         this.ResolveRegeneration = (int) Mathf.Ceil((float) this.MaxResolve / 2.0f);
         
         CharacterIcon = Resources.Load<Sprite>("PlayableCharacterImages/LizardleechIcon");

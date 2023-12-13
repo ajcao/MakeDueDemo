@@ -16,7 +16,7 @@ public class DefensiveCurlAbility : Ability
         this.currentCooldown = 0;
         this.maxCooldown = 3;
         
-        this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/DefensiveCurl") as Sprite;
+        this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/RolyPolyAbilities/ChitinShield") as Sprite;
     }
     
     public override void onCast(Character PI)
@@ -26,7 +26,7 @@ public class DefensiveCurlAbility : Ability
         foreach (GameObject G in PlayerParty.GetLivingPartyMembers())
         {
             PlayableCharacter C = G.GetComponent<PlayableCharacter>();
-            BattleLogicHandler.GainArmor(PC, C, 10);
+            BattleLogicHandler.GainArmor(PC, C, 25 + PC.getDefenseOutputModifier());
         }
     }
     
@@ -38,9 +38,10 @@ public class DefensiveCurlAbility : Ability
     
     public override string GetTooltipString()
     {
-        string s1 = "Give everyone 10 armor";
+        string name = "Chitin Scale";
+        string s1 = "Give all allies " + (25 + PC.getDefenseOutputModifier()) + " armor";
         string s2 = "Cooldown: " + currentCooldown + "/" + maxCooldown;
-        return s1 + "\n" + s2;
+        return name + "\n" + s1 + "\n" + s2;
     }
 }
 

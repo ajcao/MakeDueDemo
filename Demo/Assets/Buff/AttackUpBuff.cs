@@ -12,7 +12,7 @@ public class AttackUpBuff : Buff
 {
     public AttackUpBuff(Character CTarget, Character CBuffer, int Inten, int? Dur) 
     {
-        this.Trigger = TriggerEventEnum.onDealDamageAddEnum;
+        this.Trigger = TriggerEventEnum.noTriggerEnum;
         this.TriggerSecondary = TriggerEventEnum.noTriggerEnum;
         this.BuffTarget = CTarget;
         this.OriginalBuffer = CBuffer;
@@ -27,10 +27,12 @@ public class AttackUpBuff : Buff
     
     public override void onApplication()
     {
+        this.BuffTarget.setDamageOutputModifier(this.BuffTarget.getDamageOutputModifier() + this.Intensity.Value);
     }
     
     public override void onExpire()
     {
+        this.BuffTarget.setDamageOutputModifier(this.BuffTarget.getDamageOutputModifier() - this.Intensity.Value);
     }
     
     public override string GetTooltipString()
@@ -40,11 +42,6 @@ public class AttackUpBuff : Buff
     
     public override void onTriggerEffect(TriggerEvent E, ref int v)
     {
-        onDealDamageAddTrigger T = (onDealDamageAddTrigger) E;
-        if (T.AttackingChar == BuffTarget)
-        {
-            v = (int) (v + this.Intensity.Value);
-        }
     }
 }
 
