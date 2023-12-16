@@ -12,8 +12,8 @@ public class MushroomBehavior : PlayableCharacter
     {
         this.Alive = true;
         this.HasCasted = false;
-        this.CurrentHealth = 100;
-        this.MaxHealth = 100;
+        this.CurrentHealth = 120;
+        this.MaxHealth = 120;
         this.CurrentArmor = 0;
         this.ArmorRetain = 0;
         this.DamageOutputModifier = 0;

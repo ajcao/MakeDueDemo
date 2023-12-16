@@ -14,7 +14,7 @@ public class ToxicSporeAbility : Ability
         this.AssignCharacter(inputC);
         this.targetingType = TargetingTypeEnum.EnemyTarget;
         this.currentCooldown = 0;
-        this.maxCooldown = 7;
+        this.maxCooldown = 8;
         
         this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/MushroomAbilities/ToxicSpore") as Sprite;
     }

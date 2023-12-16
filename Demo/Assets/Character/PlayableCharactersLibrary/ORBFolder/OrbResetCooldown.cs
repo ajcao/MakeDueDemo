@@ -13,7 +13,7 @@ public class OrbResetCooldown : Ability
         this.AssignCharacter(inputC);
         this.targetingType = TargetingTypeEnum.PlayerTarget;
         this.currentCooldown = 0;
-        this.maxCooldown = 8;
+        this.maxCooldown = 10;
         
         this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/OrbAbilities/OrbResetCooldown") as Sprite;
     }

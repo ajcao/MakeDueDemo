@@ -41,6 +41,19 @@ public static class EnemyEncounter
         return AliveList;
     }
     
+    public static int GetLivingEncounterSize()
+    {
+        int i = 0;
+        foreach (GameObject G in Encounter)
+        {
+            if ((G != null) && (G.GetComponent<PlayableCharacter>().isAlive()))
+            {
+                i++;
+            }
+        }
+        return i;
+    }
+    
     //Will probably need to rework
     public static void ReplaceEncounterMember(int RespawnPool, int RespawnLocation)
     {
@@ -60,6 +73,20 @@ public static class EnemyEncounter
     public static GameObject getEncounterMember(int i)
     {
         return Encounter[i];
+    }
+    
+    public static int getEncounterIndex(GameObject C)
+    {
+        int i = 0;
+        foreach (GameObject G in Encounter)
+        {
+            if (G == C)
+            {
+                return i;
+            }
+            i++;
+        }
+        return -1;
     }
     
     public static int getEncounterSize()

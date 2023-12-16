@@ -12,8 +12,8 @@ public class GenericEnemy1Behavior : EnemyCharacter
     void Awake()
     {
         this.Alive = true;
-        this.CurrentHealth = 150;
-        this.MaxHealth = 150;
+        this.CurrentHealth = 800;
+        this.MaxHealth = 800;
         this.CurrentArmor = 0;
         this.ArmorRetain = 0;
         this.DamageOutputModifier = 0;
@@ -38,11 +38,11 @@ public class GenericEnemy1Behavior : EnemyCharacter
         Character[] Target;
         
         //If the buff was never applied, try to apply
-        if (!BuffHandler.CharacterHaveBuff(this,new GainArmorBuff(this, this, 20, null), true))
+        if (!BuffHandler.CharacterHaveBuff(this,new GainArmorBuff(this, this, 40, null), true))
         {
             Target = new Character[] {(Character) this};
             
-            EnemyApplyBuffMove E = new EnemyApplyBuffMove(this, Target, "GainArmorBuff", 20, null);
+            EnemyApplyBuffMove E = new EnemyApplyBuffMove(this, Target, "GainArmorBuff", 40, null);
             Moves.Push(E);
         }
         else
@@ -56,7 +56,7 @@ public class GenericEnemy1Behavior : EnemyCharacter
             else
             {
                 Target = EnemyTargetingLibrary.TargetNRandomHeroes(3);
-                Moves.Push(new EnemyAttackMove(this, 20, Target));
+                Moves.Push(new EnemyAttackMove(this, 40, Target));
                 NoVulnurableMoveTurn+=1;
             }
         }

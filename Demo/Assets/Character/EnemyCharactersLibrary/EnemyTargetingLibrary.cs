@@ -36,6 +36,54 @@ public static class EnemyTargetingLibrary
         return Targets;
     }
     
+    public static Character[] TargetNRandomEnemies(int inputN)
+    {
+        int N = Mathf.Min(inputN, EnemyEncounter.GetLivingEncounterSize());
+        
+        List<Character> randomList = new List<Character>();
+        Character[] Targets = new Character[N];
+        foreach (GameObject G in EnemyEncounter.GetLivingEncounterMembers())
+        {
+            randomList.Add((Character) G.GetComponent<EnemyCharacter>());
+        }
+        int i = 0;
+        while (randomList.Count > 0 && i < N)
+        {
+            int r = Random.Range(0,randomList.Count);
+            Character T = randomList[r];
+            Targets[i] = T;
+            randomList.Remove(T);
+            i++;
+        }
+        
+        Array.Sort(Targets, EnemyTargetingLibrary.CompareEnemyIndex);
+        return Targets;
+    }
+    
+    public static Character[] TargetEnemyType<T>()
+    {
+        List<Character> EnemyTypeList = new List<Character>();
+        foreach (GameObject G in EnemyEncounter.GetLivingEncounterMembers())
+        {
+            EnemyCharacter E = G.GetComponent<EnemyCharacter>();
+            if (typeof(T) == E.GetType())
+            {
+                EnemyTypeList.Add((Character) E);
+            }
+        }
+        
+        Character[] Targets = new Character[EnemyTypeList.Count];
+        int i = 0;
+        foreach (Character C in EnemyTypeList)
+        {
+            Targets[i] = C;
+            i++;
+        }
+        
+        return Targets;
+        
+    }
+    
     //Target only characters that don't have a buff
     public static Character[] TargetNRandomHeroesBasedOnBuff(int inputN, Buff B, bool HasBuff, bool ExactBuff)
     {
@@ -103,6 +151,15 @@ public static class EnemyTargetingLibrary
     public static int ComparePlayerIndex(Character C1, Character C2)
     {
         if (PlayerParty.getPartyIndex(C1.gameObject) > PlayerParty.getPartyIndex(C2.gameObject))
+        {
+            return 1;
+        }
+        return -1;
+    }
+    
+    public static int CompareEnemyIndex(Character C1, Character C2)
+    {
+        if (EnemyEncounter.getEncounterIndex(C1.gameObject) > PlayerParty.getPartyIndex(C2.gameObject))
         {
             return 1;
         }

@@ -32,7 +32,7 @@ public class GiveResolveAbility : Ability
     public override string GetTooltipString()
     {
         string name = "Negative Charge";
-        string s1 = "Restore " + 60 + " resolve to an ally player";
+        string s1 = "Restore " + 50 + " resolve to an ally player";
         string s2 = "Cooldown: " + currentCooldown + "/" + maxCooldown;
         return name + "\n" + s1 + "\n" + s2;
     }

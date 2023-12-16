@@ -14,14 +14,14 @@ public class GiveSelfSpikeAbility : Ability
         this.AssignCharacter(inputC);
         targetingType = TargetingTypeEnum.NoTarget;
         this.currentCooldown = 0;
-        this.maxCooldown = 2;
+        this.maxCooldown = 3;
         
         this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/SpikeyRockAbillities/GainSpike") as Sprite;
     }
     
     public override void onCast(Character E)
     {
-        Buff B = new SpikeBuff(this.getPlayableCharacter(), this.getPlayableCharacter(), 2000, null);
+        Buff B = new SpikeBuff(this.getPlayableCharacter(), this.getPlayableCharacter(), 20, null);
         BattleLogicHandler.OnBuffApply(B);
         
     }

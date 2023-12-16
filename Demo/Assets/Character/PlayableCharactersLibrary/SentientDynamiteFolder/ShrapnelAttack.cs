@@ -14,7 +14,7 @@ public class ShrapnelAttack : Ability
         this.AssignCharacter(inputC);
         targetingType = TargetingTypeEnum.NoTarget;
         this.currentCooldown = 0;
-        this.maxCooldown = 2;
+        this.maxCooldown = 4;
         
         this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/DynamiteAbilities/ShrapnelAttack") as Sprite;
     }

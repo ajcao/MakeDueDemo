@@ -20,7 +20,7 @@ public class MushroomHealAbility : Ability
     
     public override void onCast(Character C)
     {
-        BattleLogicHandler.GainHealth((PlayableCharacter) C, 30);
+        BattleLogicHandler.GainHealth((PlayableCharacter) C, 20);
     }
     
     public override void postCast(Character C)
@@ -31,7 +31,7 @@ public class MushroomHealAbility : Ability
     public override string GetTooltipString()
     {
         string name = "Shroom Berry";
-        string s1 = "Restore " + 30 + " health to an ally player";
+        string s1 = "Restore " + 20 + " health to an ally player";
         string s2 = "Cooldown: " + currentCooldown + "/" + maxCooldown;
         return name + "\n" + s1 + "\n" + s2;
     }

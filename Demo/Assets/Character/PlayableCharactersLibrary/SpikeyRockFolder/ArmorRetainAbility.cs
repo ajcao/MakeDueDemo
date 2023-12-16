@@ -22,7 +22,7 @@ public class ArmorRetainAbility : Ability
     public override void onCast(Character C)
     {
         PlayableCharacter P = (PlayableCharacter) C;
-        BattleLogicHandler.GainArmor(PC, P, PC.getDefenseStat() + PC.getDefenseOutputModifier());
+        BattleLogicHandler.GainArmor(PC, P, 30 + PC.getDefenseOutputModifier());
         
         Buff B = new RetainBuff(P, this.getPlayableCharacter(), 30, null);
         BattleLogicHandler.OnBuffApply(B);

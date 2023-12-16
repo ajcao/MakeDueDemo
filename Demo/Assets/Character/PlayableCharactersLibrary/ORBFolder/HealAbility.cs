@@ -31,7 +31,7 @@ public class HealAbility : Ability
     public override string GetTooltipString()
     {
         string name = "Positive Charge";
-        string s1 = "Restore " + 50 + " health to an ally player";
+        string s1 = "Restore " + 60 + " health to an ally player";
         string s2 = "Cooldown: " + currentCooldown + "/" + maxCooldown;
         return name + "\n" + s1 + "\n" + s2;
     }

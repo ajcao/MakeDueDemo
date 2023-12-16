@@ -23,7 +23,7 @@ public class StunHitAbility : Ability
     {
         EnemyCharacter E = (EnemyCharacter) C;
         BattleLogicHandler.LowerStamina(E, 40);
-        BattleLogicHandler.AttackDamage(PC, E, PC.getAttackStat() + PC.getDamageOutputModifier());
+        BattleLogicHandler.AttackDamage(PC, E, 20 + PC.getDamageOutputModifier());
     }
     
     public override void postCast(Character C)
@@ -34,7 +34,7 @@ public class StunHitAbility : Ability
     public override string GetTooltipString()
     {
         string name = "Shell Drop";
-        string s1 = "Stun for 40, then attack for " + (PC.getAttackStat() + PC.getDamageOutputModifier()) + " damage";
+        string s1 = "Stun for 40, then attack for " + (20 + PC.getDamageOutputModifier()) + " damage";
         string s2 = "Cooldown: " + currentCooldown + "/" + maxCooldown;
         return name + "\n" + s1 + "\n" + s2;
     }

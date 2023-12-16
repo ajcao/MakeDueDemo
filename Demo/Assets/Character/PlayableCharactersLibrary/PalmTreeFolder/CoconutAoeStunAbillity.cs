@@ -13,7 +13,7 @@ public class CoconutAoeStunAbillity : Ability
         this.AssignCharacter(inputC);
         this.targetingType = TargetingTypeEnum.NoTarget;
         this.currentCooldown = 0;
-        this.maxCooldown = 6;
+        this.maxCooldown = 4;
         
         this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/PalmTreeAbilities/CoconutAoeStun") as Sprite;
     }

@@ -21,7 +21,7 @@ public class ApplyVulnurableAbilty : Ability
     
     public override void onCast(Character E)
     {
-        Buff B = new VulnurableBuff(E, this.getPlayableCharacter(), null, 3);
+        Buff B = new VulnurableBuff(E, this.getPlayableCharacter(), null, 2);
         BattleLogicHandler.OnBuffApply(B);
     }
     

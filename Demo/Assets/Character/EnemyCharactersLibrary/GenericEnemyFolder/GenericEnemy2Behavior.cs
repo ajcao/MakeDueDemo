@@ -12,15 +12,15 @@ public class GenericEnemy2Behavior : EnemyCharacter
     void Awake()
     {
         this.Alive = true;
-        this.CurrentHealth = 300;
-        this.MaxHealth = 300;
+        this.CurrentHealth = 1000;
+        this.MaxHealth = 1000;
         this.CurrentArmor = 0;
         this.ArmorRetain = 0;
         this.DamageOutputModifier = 0;
         this.DefenseOutputModifier = 0;
         this.canStaminaRegenerate = true;
         this.IsStunned = false;
-        this.Stamina = 100;
+        this.Stamina = 300;
         this.MaxStamina = this.Stamina;
         this.StaminaRegeneration = this.MaxStamina / 2;
         Moves = new Stack<EnemyMove>();
@@ -40,7 +40,7 @@ public class GenericEnemy2Behavior : EnemyCharacter
             if (i == 0)
             {
                 Target = EnemyTargetingLibrary.TargetNRandomHeroes(1);
-                Moves.Push(new EnemyAttackMove(this, 40, Target));
+                Moves.Push(new EnemyAttackMove(this, 50, Target));
             }
             
             if (i == 1)
@@ -52,7 +52,7 @@ public class GenericEnemy2Behavior : EnemyCharacter
             if (i == 2)
             {
                 Target = new Character[] {(Character) this};
-                Moves.Push(new EnemyDefendMove(this, 40, Target));
+                Moves.Push(new EnemyDefendMove(this, 50, Target));
             }
         }
     }
