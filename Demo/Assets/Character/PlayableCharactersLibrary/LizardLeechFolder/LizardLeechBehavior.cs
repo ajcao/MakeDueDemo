@@ -12,7 +12,7 @@ public class LizardLeechBehavior : PlayableCharacter
     {
         this.Alive = true;
         this.HasCasted = false;
-        this.CurrentHealth = 80;
+        this.CurrentHealth = 60;
         this.MaxHealth = 80;
         this.CurrentArmor = 0;
         this.ArmorRetain = 0;

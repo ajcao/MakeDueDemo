@@ -12,7 +12,7 @@ public class RolyPolyBehavior : PlayableCharacter
     {
         this.Alive = true;
         this.HasCasted = false;
-        this.CurrentHealth = 100;
+        this.CurrentHealth = 80;
         this.MaxHealth = 100;
         this.CurrentArmor = 0;
         this.ArmorRetain = 0;
