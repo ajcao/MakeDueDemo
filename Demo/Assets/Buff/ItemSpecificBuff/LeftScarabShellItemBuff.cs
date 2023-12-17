@@ -35,7 +35,7 @@ public class LeftScarabShellItemBuff : Buff
     
     public override string GetTooltipString()
     {
-        string s1 = "Gain 20 armor for Round 1-4. \n";
+        string s1 = "Gain 40 armor for Round 1-4. \n";
         return s1;
     }
     
@@ -49,7 +49,7 @@ public class LeftScarabShellItemBuff : Buff
         {
             if (roundNum <= 4)
             {
-                BattleLogicHandler.BuffGainArmor(this.BuffTarget, 20);
+                BattleLogicHandler.BuffGainArmor(this.BuffTarget, 40);
             }
             else
             {

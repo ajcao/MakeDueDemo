@@ -25,13 +25,13 @@ public class ArmorRepairKitItem : GameItem
     
     public override void OnApply()
     {
-        Buff B = new RetainBuff(this.ItemOwner, this.ItemOwner, 20, null);
+        Buff B = new RetainBuff(this.ItemOwner, this.ItemOwner, 40, null);
         BattleLogicHandler.OnBuffApply(B);
     }
     
     public override string GetTooltipString()
     {
-        return "Retain 20 armor";
+        return "Retain 40 armor";
     }
 }
 

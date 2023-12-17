@@ -40,7 +40,7 @@ public enum TriggerEventEnum
 	onStaminaWasLostEnum,
 	
 	onArmorGainAddEnum,
-	//onArmorGainMultiEnum,
+	onArmorGainMultiEnum,
 	//onArmorGainSpecialEnum,
 	onArmorGainPostEnum,
 	
@@ -323,6 +323,21 @@ public class onArmorGainAddTrigger : TriggerEvent
 	public int ArmorAmount;
 	
 	public onArmorGainAddTrigger(Character CC, Character RC, int a)
+	{
+		CastingChar = CC;
+		ReceivingChar = RC;
+		ArmorAmount = a;
+	}
+	
+}
+
+public class onArmorGainMultiTrigger : TriggerEvent
+{
+	public Character CastingChar;
+	public Character ReceivingChar;
+	public int ArmorAmount;
+	
+	public onArmorGainMultiTrigger(Character CC, Character RC, int a)
 	{
 		CastingChar = CC;
 		ReceivingChar = RC;

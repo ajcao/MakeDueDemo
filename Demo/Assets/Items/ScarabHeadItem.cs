@@ -32,7 +32,7 @@ public class ScarabHeadItem : GameItem
     
     public override string GetTooltipString()
     {
-        return "Gain 40 armor for turns 9-12";
+        return "Gain 80 armor for turns 9-12";
     }
 }
 

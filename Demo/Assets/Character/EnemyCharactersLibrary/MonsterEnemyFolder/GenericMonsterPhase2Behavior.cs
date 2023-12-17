@@ -12,15 +12,15 @@ public class GenericMonsterPhase2Behavior : EnemyCharacter
     void Awake()
     {
         this.Alive = true;
-        this.CurrentHealth = 150;
-        this.MaxHealth = 150;
+        this.CurrentHealth = 500;
+        this.MaxHealth = 500;
         this.CurrentArmor = 0;
         this.ArmorRetain = 0;
         this.DamageOutputModifier = 0;
         this.DefenseOutputModifier = 0;
         this.canStaminaRegenerate = true;
         this.IsStunned = false;
-        this.Stamina = 50;
+        this.Stamina = 100;
         this.MaxStamina = this.Stamina;
         this.StaminaRegeneration = this.MaxStamina / 2;
         Moves = new Stack<EnemyMove>();
@@ -30,6 +30,17 @@ public class GenericMonsterPhase2Behavior : EnemyCharacter
         
     }
     
+    public override void InitialBuffs()
+    {
+        Buff B = new AttackUpBuff(this, this, 20, null);
+        BattleLogicHandler.OnBuffApply(B);
+        
+        B = new DefenseUpBuff(this, this, 20, null);
+        BattleLogicHandler.OnBuffApply(B);
+    }
+    
+    
+    public bool AttackMode = true;
     
     public override void GenerateMoves()
     {
@@ -37,25 +48,31 @@ public class GenericMonsterPhase2Behavior : EnemyCharacter
         Character[] Target;
         
         
-  
-        
-        //Otherwise have random of three moves
-        int[] RandomMoveInt = EnemyTargetingLibrary.CreateEvenDistributionToN(3);
-        
-        foreach (int i in RandomMoveInt)
+        if (AttackMode)
         {
-            if (i == 1)
-            {
-                Target = EnemyTargetingLibrary.TargetNRandomHeroes(1);
-                Moves.Push(new EnemyAttackMove(this, 80, Target));
-            }
+            AttackMode = false;
+            Target = EnemyTargetingLibrary.TargetNRandomHeroes(1);
+            Moves.Push(new EnemyAttackMove(this, 120, Target));
+        }
+        else
+        {
             
+            AttackMode = true;
+            
+            int[] RandomMoveInt = EnemyTargetingLibrary.CreateEvenDistributionToN(2);
+            
+            if (RandomMoveInt[0] == 0)
+            {
+                Target = EnemyTargetingLibrary.TargetNRandomHeroes(4);
+                Moves.Push(new EnemyApplyBuffMove(this, Target, "Vulnurable", null, 2));
+            }
             else
             {
-                Target = EnemyTargetingLibrary.TargetNRandomHeroes(3);
-                Moves.Push(new EnemyAttackMove(this, 15, Target));
+                Target = new Character[] {(Character) this};
+                Moves.Push(new EnemyDefendMove(this, 40, Target));        
             }
         }
+
         
         
         

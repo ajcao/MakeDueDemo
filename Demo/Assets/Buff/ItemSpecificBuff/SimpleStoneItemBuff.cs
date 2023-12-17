@@ -36,7 +36,7 @@ public class SimpleStoneItemBuff : Buff
     public override string GetTooltipString()
     {
         string s1 = "Whenever you basic attack or defend,";
-        string s2 = "Gain +2 dmg and +2 def";
+        string s2 = "Gain +5 dmg and +5 def";
         return s1 + "\n" + s2;
     }
     

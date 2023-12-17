@@ -15,6 +15,11 @@ public static class BuffLibrary
             return new AttackUpBuff(CTarget, CBuffer, Inten.Value, Dur);
         }
         
+        if (name == "DefenseUpBuff")
+        {
+            return new DefenseUpBuff(CTarget, CBuffer, Inten.Value, Dur);
+        }
+        
         if (name == "GiveHPWhenAttackedDebuff")
         {
             return new GiveHPWhenAttackedDebuff(CTarget, CBuffer, Inten.Value, Dur);
@@ -28,6 +33,11 @@ public static class BuffLibrary
         if (name == "VulnurableBuff")
         {
             return new VulnurableBuff(CTarget, CBuffer, null, Dur);
+        }
+        
+        if (name == "FrailBuff")
+        {
+            return new FrailBuff(CTarget, CBuffer, null, Dur);
         }
         
         return new NullBuff(CTarget, CBuffer, Inten, Dur);

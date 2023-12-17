@@ -155,6 +155,9 @@ public static class BattleLogicHandler
 		TriggerEvent TE = new onArmorGainAddTrigger(CC, RC, d);
 		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onArmorGainAddEnum, TE, ref d);
 		
+		TE = new onArmorGainMultiTrigger(CC, RC, d);
+		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onArmorGainMultiEnum, TE, ref d);
+		
 		RC.setCurrentArmor(RC.getCurrentArmor() + d);
 		
 		TE = new onArmorGainPostTrigger(RC, d);

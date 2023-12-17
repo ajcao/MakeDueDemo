@@ -32,7 +32,7 @@ public class RightScarabShellItem : GameItem
     
     public override string GetTooltipString()
     {
-        return "Gain 30 armor for turns 5-8";
+        return "Gain 60 armor for turns 5-8";
     }
 }
 

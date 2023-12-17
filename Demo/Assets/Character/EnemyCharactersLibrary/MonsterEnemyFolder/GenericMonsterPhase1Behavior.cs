@@ -12,15 +12,15 @@ public class GenericMonsterPhase1Behavior : EnemyCharacter
     void Awake()
     {
         this.Alive = true;
-        this.CurrentHealth = 50;
-        this.MaxHealth = 50;
+        this.CurrentHealth = 1000;
+        this.MaxHealth = 1000;
         this.CurrentArmor = 0;
         this.ArmorRetain = 0;
         this.DamageOutputModifier = 0;
         this.DefenseOutputModifier = 0;
         this.canStaminaRegenerate = true;
         this.IsStunned = false;
-        this.Stamina = 50;
+        this.Stamina = 150;
         this.MaxStamina = this.Stamina;
         this.StaminaRegeneration = this.MaxStamina / 2;
         Moves = new Stack<EnemyMove>();
@@ -32,30 +32,76 @@ public class GenericMonsterPhase1Behavior : EnemyCharacter
         
     }
     
+    public bool BigAttackMode = true;
+    
+    public int ApplyFrailCounter = 0;
+    public bool WasFrailProc = false;
     
     public override void GenerateMoves()
     {
         Debug.Log("Generating moves");
         Character[] Target;
         
-        
-  
-        
-        //Otherwise have random of three moves
-        int[] RandomMoveInt = EnemyTargetingLibrary.CreateEvenDistributionToN(5);
-        
-        foreach (int i in RandomMoveInt)
+        if (BigAttackMode)
         {
-            if (i == 0)
+            BigAttackMode = false;
+            Target = EnemyTargetingLibrary.TargetNRandomHeroes(1);
+            Moves.Push(new EnemyAttackMove(this, 120, Target));
+        }
+        
+        else
+        {
+        
+            BigAttackMode = true;
+                    
+            int[] RandomMoveInt = EnemyTargetingLibrary.CreateEvenDistributionToN(5 + ApplyFrailCounter);
+            
+            for(int i = 0; i < 3; i++)
             {
-                Target = EnemyTargetingLibrary.TargetNRandomHeroes(1);
-                Moves.Push(new EnemyAttackMove(this, 80, Target));
+                //Attack
+                if (RandomMoveInt[i] < 2)
+                {
+                    Target = EnemyTargetingLibrary.TargetNRandomHeroes(1);
+                    Moves.Push(new EnemyAttackDefendMove(this, 40, 20, Target));
+                    continue;
+                }
+                
+                //Defend
+                if (RandomMoveInt[i] < 4)
+                {
+                    Target = new Character[] {(Character) this};
+                    Moves.Push(new EnemyDefendMove(this, 40, Target));
+                    continue;
+                }
+                
+                //If frail was already proc, then simply defend
+                if (RandomMoveInt[i] >= 4)
+                {
+                    if (!WasFrailProc)
+                    {
+                        Target = EnemyTargetingLibrary.TargetNRandomHeroes(4);
+                        Moves.Push(new EnemyApplyBuffMove(this, Target, "FrailBuff", null, 4));
+                        WasFrailProc = true;
+                    }
+                    else
+                    {
+                        Target = new Character[] {(Character) this};
+                        Moves.Push(new EnemyDefendMove(this, 40, Target));                        
+                    }
+                    continue;
+                    
+                }
             }
             
-            if (i == 2)
+            //Make applying frail more likely in the future
+            if (WasFrailProc)
             {
-                Target = new Character[] {(Character) this};
-                Moves.Push(new EnemyDefendMove(this, 40, Target));
+                WasFrailProc = false;
+                ApplyFrailCounter = 0;
+            }
+            else
+            {
+                ApplyFrailCounter++;
             }
         }
         

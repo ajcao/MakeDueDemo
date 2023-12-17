@@ -28,8 +28,8 @@ public class AttackDefendAbility : Ability
     {
         BattleLogicHandler.PlayerBasicAttack(PC, (EnemyCharacter) C);
         BattleLogicHandler.PlayerAttack(PC,(EnemyCharacter) C);
-        BattleLogicHandler.PlayerBasicDefend(PC, (PlayableCharacter) C);
-        BattleLogicHandler.PlayerDefend(PC,(PlayableCharacter) PC);
+        BattleLogicHandler.PlayerBasicDefend(PC, PC);
+        BattleLogicHandler.PlayerDefend(PC, PC);
     }
     
     public override string GetTooltipString()

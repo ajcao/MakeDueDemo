@@ -12,15 +12,15 @@ public class RatEnemyBehavior : EnemyCharacter
     void Awake()
     {
         this.Alive = true;
-        this.CurrentHealth = 80;
-        this.MaxHealth = 80;
+        this.CurrentHealth = 250;
+        this.MaxHealth = 250;
         this.CurrentArmor = 0;
         this.ArmorRetain = 0;
         this.DamageOutputModifier = 0;
         this.DefenseOutputModifier = 0;
         this.canStaminaRegenerate = true;
         this.IsStunned = false;
-        this.Stamina = 50;
+        this.Stamina = 100;
         this.MaxStamina = this.Stamina;
         this.StaminaRegeneration = this.MaxStamina / 2;
         Moves = new Stack<EnemyMove>();
@@ -39,6 +39,7 @@ public class RatEnemyBehavior : EnemyCharacter
         BattleLogicHandler.OnBuffApply(B);
     }
     
+    public int NoDefenseTurn = 0;
     public override void GenerateMoves()
     {
         Debug.Log("Generating moves");
@@ -46,22 +47,24 @@ public class RatEnemyBehavior : EnemyCharacter
 
         if (this.Forms != "Sleeping")
         {
-            int[] RandomMoveInt = EnemyTargetingLibrary.CreateEvenDistributionToN(6);
-            for (int j = 0; j < 2; j++)
+            //First move is always a defend move
+            Target = new Character[] {(Character) this};
+            Moves.Push(new EnemyDefendMove(this, 50, Target));
+            
+            
+            int[] RandomMoveInt = EnemyTargetingLibrary.CreateEvenDistributionToN(2);
+            if (Random.Range(0.0f, 1.0f) <= 0.15f + 0.15f * NoDefenseTurn)
             {
-                int i = RandomMoveInt[j];
-
-                if (i < 4)
-                {
-                        Target = EnemyTargetingLibrary.TargetNRandomHeroes(1);
-                        Moves.Push(new EnemyAttackMove(this, 20, Target));
-                }
-
-                if (i >= 4)
-                {
-                        Target = EnemyTargetingLibrary.TargetNRandomHeroes(2);
-                        Moves.Push(new EnemyAttackMove(this, 10, Target));
-                }
+                Target = new Character[] {(Character) this};
+                Moves.Push(new EnemyApplyBuffMove(this, Target, "DefenseUpBuff", 20, null));
+                NoDefenseTurn = 0;
+            }
+            else
+            {
+                Target = EnemyTargetingLibrary.TargetNRandomHeroes(1);
+                Moves.Push(new EnemyAttackDefendMove(this, 40, 20, Target));
+                NoDefenseTurn++;
+                
             }
 
         }
@@ -76,13 +79,13 @@ public class RatEnemyBehavior : EnemyCharacter
         {
             case ("Awake"):
                 currentSprite.sprite = Resources.Load<Sprite>("EnemyCharacterImages/RatEnemy");
-                B = new EnragedFormBuff(this, this, 40, null);
+                B = new EnragedFormBuff(this, this, 120, null);
                 BattleLogicHandler.OnBuffApply(B);
                 this.Forms = s;
                 break;
             case ("Enranged"):
                 currentSprite.sprite = Resources.Load<Sprite>("EnemyCharacterImages/EnragedRatEnemy");
-                B = new AttackUpBuff(this, this, 10, null);
+                B = new AttackUpBuff(this, this, 20, null);
                 BattleLogicHandler.OnBuffApply(B);
                 this.Forms = s;
                 break;

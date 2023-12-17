@@ -49,7 +49,7 @@ public class GenericEnemy1Behavior : EnemyCharacter
         {
             if (Random.Range(0.0f, 1.0f) <= 0.15f + 0.15f * NoVulnurableMoveTurn)
             {
-                Target = EnemyTargetingLibrary.TargetNRandomHeroes(1);
+                Target = EnemyTargetingLibrary.TargetNRandomHeroesBasedOnBuff(1, new VulnurableBuff(null, null, null, null), true, false);
                 Moves.Push(new EnemyApplyBuffMove(this, Target, "VulnurableBuff", null, 4));
                 NoVulnurableMoveTurn = 0;
             }

@@ -26,13 +26,13 @@ public class SimpleStoneItem : GameItem
     
     public override void OnApply()
     {
-        Buff B = new SimpleStoneItemBuff(this.ItemOwner, this.ItemOwner, 2, null);
+        Buff B = new SimpleStoneItemBuff(this.ItemOwner, this.ItemOwner, 5, null);
         BattleLogicHandler.OnBuffApply(B);
     }
     
     public override string GetTooltipString()
     {
-        return "Whenever you basic attack or defend, gain +2 dmg and +2 block";
+        return "Whenever you basic attack or defend, gain +5 dmg and +5 block";
     }
 }
 

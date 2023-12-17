@@ -35,7 +35,7 @@ public class ScarabHeadItemBuff : Buff
     
     public override string GetTooltipString()
     {
-        string s1 = "Gain 40 armor for Round 9-12. \n";
+        string s1 = "Gain 80 armor for Round 9-12. \n";
         return s1;
     }
     
@@ -50,7 +50,7 @@ public class ScarabHeadItemBuff : Buff
         {
             if ((9 <= roundNum) && (roundNum <= 12))
             {
-                BattleLogicHandler.BuffGainArmor(this.BuffTarget, 40);
+                BattleLogicHandler.BuffGainArmor(this.BuffTarget, 80);
             }
             else if (roundNum > 12)
             {

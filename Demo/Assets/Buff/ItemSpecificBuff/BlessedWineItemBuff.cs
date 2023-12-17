@@ -35,7 +35,7 @@ public class BlessedWineItemBuff : Buff
     
     public override string GetTooltipString()
     {
-        string s1 = "Every 10th abilities cast, heal to full";
+        string s1 = "Every 12th abilities cast, heal to full";
         return s1;
     }
     
@@ -46,7 +46,7 @@ public class BlessedWineItemBuff : Buff
         {
             this.Intensity += 1;
             
-            if (this.Intensity >= 10)
+            if (this.Intensity >= 12)
             {
                 this.Intensity = 0;
                 BattleLogicHandler.GainHealth(BuffTarget, BuffTarget.getMaxHealth());

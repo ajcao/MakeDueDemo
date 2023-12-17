@@ -25,13 +25,13 @@ public class MetalRoseItem : GameItem
     
     public override void OnApply()
     {
-        Buff B = new SpikeBuff(this.ItemOwner, this.ItemOwner, 10, null);
+        Buff B = new SpikeBuff(this.ItemOwner, this.ItemOwner, 30, null);
         BattleLogicHandler.OnBuffApply(B);
     }
     
     public override string GetTooltipString()
     {
-        return "Gain 10 spike";
+        return "Gain 30 spike";
     }
 }
 
