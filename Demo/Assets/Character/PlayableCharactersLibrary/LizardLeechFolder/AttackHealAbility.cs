@@ -26,7 +26,7 @@ public class AttackHealAbility : Ability
         BattleLogicHandler.AttackDamage(PC, (EnemyCharacter) E, 30 + PC.getDamageOutputModifier());
         int enemyHPAfterAttack = E.getCurrentHealth();
         
-        BattleLogicHandler.GainHealth(PC, (enemyHPAfterAttack - enemyHPBeforeAttack) );
+        BattleLogicHandler.GainHealth(PC, Mathf.Max(0, (enemyHPBeforeAttack - enemyHPAfterAttack)) );
     }
     
     public override void postCast(Character C)

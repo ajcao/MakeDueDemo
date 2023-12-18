@@ -1205,9 +1205,9 @@ MonoBehaviour:
   - {fileID: 2465709451207476951, guid: 0f00946b8853a6d43a1f81a3461ef19d, type: 3}
   SpawnLocation:
   - {x: 2, y: 0}
-  - {x: 4.5, y: 0}
-  - {x: 7, y: 0}
-  - {x: 9.5, y: 0}
+  - {x: 4, y: 0}
+  - {x: 6, y: 0}
+  - {x: 8, y: 0}
   SpawnPool: []
 --- !u!4 &864064425
 Transform:

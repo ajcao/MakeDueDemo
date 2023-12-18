@@ -153,6 +153,11 @@ public class AbilityButtonHandler : MonoBehaviour
         {
             StartCoroutine(CharacterCasting());
         }
+        else
+        {
+            BattleLogicHandler.CheckForAllPlayersDeaths();
+            BattleLogicHandler.CheckForEncounterDeath();
+        }
     }
     
     public bool CanSomeoneCast()

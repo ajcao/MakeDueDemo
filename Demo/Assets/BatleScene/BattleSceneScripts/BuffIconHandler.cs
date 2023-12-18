@@ -60,8 +60,11 @@ public class BuffIconHandler : MonoBehaviour
         }
     }
     
-    private Vector3 GetNextBuffLocation(int p)
+    private Vector3 GetNextBuffLocation(int NthBuff)
     {
-        return new Vector3(-1.00f + Mathf.Repeat(p * 0.65f,2.6f), -2.2f + -0.65f*(p / 4), 0f);
+        int MaxBuffRow = 4;
+        float xCoord = -0.75f + Mathf.Repeat(NthBuff * 0.5f,2.0f);
+        float yCoord = -2.0f + -0.5f*(NthBuff / MaxBuffRow);
+        return new Vector3(xCoord, yCoord, 0f);
     }
 }

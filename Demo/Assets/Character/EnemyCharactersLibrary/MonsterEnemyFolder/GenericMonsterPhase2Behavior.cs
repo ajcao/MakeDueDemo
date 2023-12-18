@@ -64,7 +64,7 @@ public class GenericMonsterPhase2Behavior : EnemyCharacter
             if (RandomMoveInt[0] == 0)
             {
                 Target = EnemyTargetingLibrary.TargetNRandomHeroes(4);
-                Moves.Push(new EnemyApplyBuffMove(this, Target, "Vulnurable", null, 2));
+                Moves.Push(new EnemyApplyBuffMove(this, Target, "VulnurableBuff", null, 2));
             }
             else
             {

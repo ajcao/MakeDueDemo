@@ -45,8 +45,7 @@ public class BattleSceneHandler : MonoBehaviour
                 
                 Object.Destroy(G.GetComponentInChildren<HealthArmorScript>().gameObject);
             }
-            AB_Handler.NextTurnButton.gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("NextBattleButton") as Sprite;
-            AB_Handler.NextTurnButton.gameObject.gameObject.GetComponent<Button>().interactable = true;
+            AB_Handler.NextTurnButton.gameObject.GetComponent<NextTurnButtonScript>().SetToNextScene();
             Round = -1;
         }
     }
@@ -60,13 +59,13 @@ public class BattleSceneHandler : MonoBehaviour
                 
         //Place Player in correct location
         if (PlayerParty.getPartyMember(0).GetComponent<Character>().isAlive())
-            PlayerParty.getPartyMember(0).transform.position = new Vector3(-9.0f,0.0f,0.0f);
+            PlayerParty.getPartyMember(0).transform.position = new Vector3(-8.0f,0.0f,0.0f);
         if (PlayerParty.getPartyMember(1).GetComponent<Character>().isAlive())
-            PlayerParty.getPartyMember(1).transform.position = new Vector3(-6.5f,0.0f,0.0f);
+            PlayerParty.getPartyMember(1).transform.position = new Vector3(-6.0f,0.0f,0.0f);
         if (PlayerParty.getPartyMember(2).GetComponent<Character>().isAlive())
             PlayerParty.getPartyMember(2).transform.position = new Vector3(-4.0f,0.0f,0.0f);
         if (PlayerParty.getPartyMember(3).GetComponent<Character>().isAlive())
-            PlayerParty.getPartyMember(3).transform.position = new Vector3(-1.5f,0.0f,0.0f);
+            PlayerParty.getPartyMember(3).transform.position = new Vector3(-2.0f,0.0f,0.0f);
         
         EnemyEncounter.LoadEncounter();
                 
@@ -93,6 +92,7 @@ public class BattleSceneHandler : MonoBehaviour
             P.setResolve(0);
             P.setCurrentArmor(0);
             P.ResetAllCooldown();
+            P.setHasCasted(false);
         }
 
         
@@ -116,6 +116,9 @@ public class BattleSceneHandler : MonoBehaviour
             Debug.Log("PlayerTurn");
             BattleLogicHandler.PlayerPreTurn();
             
+            BattleLogicHandler.CheckForAllPlayersDeaths();
+            BattleLogicHandler.CheckForEncounterDeath();
+            
             AB_Handler.StartCastingMode();
             
             while (AB_Handler.IsInCastingMode())
@@ -128,8 +131,6 @@ public class BattleSceneHandler : MonoBehaviour
             //Enemy plays out remaining attack
             //Check Players Death first, then enemies
             Debug.Log("Checking deaths");
-            BattleLogicHandler.CheckForAllPlayersDeaths();
-            BattleLogicHandler.CheckForEncounterDeath();
             
             BattleLogicHandler.PlayerPostTurn();
             
@@ -138,7 +139,8 @@ public class BattleSceneHandler : MonoBehaviour
             
             BattleLogicHandler.EnemyPreTurn();
             
-            
+            BattleLogicHandler.CheckForAllPlayersDeaths();
+            BattleLogicHandler.CheckForEncounterDeath();
             
             EM_Handler.BeginEnemyTurn();
             while (EM_Handler.EnemyisMoving)

@@ -1201,7 +1201,7 @@ MonoBehaviour:
   InitialSpawnPool:
   - {fileID: 2465709451207476951, guid: 6391dfe3ef260074983e2e1ec40dc5c6, type: 3}
   SpawnLocation:
-  - {x: 7, y: 0}
+  - {x: 5, y: 0}
   SpawnPool:
   - {fileID: 2465709451207476951, guid: add92bc3bad4a154d966946d4220143f, type: 3}
 --- !u!4 &864064425

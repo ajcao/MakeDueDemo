@@ -393,13 +393,21 @@ public static class BattleLogicHandler
             {
                 E.setStamina(Mathf.Min(E.getStamina() + E.getStaminaRegeneration(), E.getMaxStamina()));
             }
-            E.canStaminaRegenerate = true;
             
-            if (E.IsStunned == true)
+            if (E.IsStunned == true && !BuffHandler.CharacterHaveBuff(E, new StunnedBuff(null, null, null, 1), false))
             {
                 E.IsStunned = false;
                 E.setStamina(E.getMaxStamina());
+				E.canStaminaRegenerate = true;
             }
+			else if (E.IsStunned == true && BuffHandler.CharacterHaveBuff(E, new StunnedBuff(null, null, null, 1), false))
+			{
+				E.canStaminaRegenerate = false;
+			}
+			else
+			{
+				E.canStaminaRegenerate = true;
+			}
             
         }
 		

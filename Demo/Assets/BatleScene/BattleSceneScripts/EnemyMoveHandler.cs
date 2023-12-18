@@ -156,6 +156,9 @@ public class EnemyMoveHandler : MonoBehaviour
         }
         EnemyisMoving = false;
         
+        BattleLogicHandler.CheckForAllPlayersDeaths();
+        BattleLogicHandler.CheckForEncounterDeath();
+        
     }
 
 }
