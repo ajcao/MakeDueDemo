@@ -12,7 +12,7 @@ public class LawBookItemBuff : Buff
 {
     public LawBookItemBuff(Character CTarget, Character CBuffer, int Inten, int? Dur) 
     {
-        this.Trigger = TriggerEventEnum.onPlayerAbilityPostEnum;
+        this.Trigger = TriggerEventEnum.onPlayerSkillEnum;
         this.TriggerSecondary = TriggerEventEnum.noTriggerEnum;
         this.BuffTarget = CTarget;
         this.OriginalBuffer = CBuffer;

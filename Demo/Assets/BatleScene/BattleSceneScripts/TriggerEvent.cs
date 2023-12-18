@@ -47,7 +47,6 @@ public enum TriggerEventEnum
 	onArmorWasGainedEnum,
 	
 	onHealthGainSpecialEnum,
-	onHealthGainEnum,
 	
 	
 	onEnemyAttackEnum,

@@ -30,7 +30,7 @@ public class BrainSlugItemBuff : Buff
     
     public override string GetTooltipString()
     {
-        return "Players gain " + this.Intensity.Value + " resolve when attacking";
+        return "Players gain " + this.Intensity.Value + " resolve whenever the character deals damage via attack";
     }
     
     public override void onExpire()

@@ -26,13 +26,13 @@ public class MosquitoHeadItem : GameItem
     
     public override void OnApply()
     {
-        Buff B = new MosquitoHeadItemBuff(this.ItemOwner, this.ItemOwner, 5, null);
+        Buff B = new MosquitoHeadItemBuff(this.ItemOwner, this.ItemOwner, 10, null);
         BattleLogicHandler.OnBuffApply(B);
     }
     
     public override string GetTooltipString()
     {
-        return "Whenever you deal damage, gain 5 hp";
+        return "Whenever you deal damage via attacks, gain 10 hp";
     }
 }
 

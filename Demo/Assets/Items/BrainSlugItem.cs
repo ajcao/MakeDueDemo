@@ -26,13 +26,13 @@ public class BrainSlugItem : GameItem
     
     public override void OnApply()
     {
-        Buff B = new BrainSlugItemBuff(this.ItemOwner, this.ItemOwner, 30, null);
+        Buff B = new BrainSlugItemBuff(this.ItemOwner, this.ItemOwner, 20, null);
         BattleLogicHandler.OnBuffApply(B);
     }
     
     public override string GetTooltipString()
     {
-        return "Whenever you attack, 30 gain resolve";
+        return "Whenever you deal damage via attacks, gain 20 resolve";
     }
 }
 

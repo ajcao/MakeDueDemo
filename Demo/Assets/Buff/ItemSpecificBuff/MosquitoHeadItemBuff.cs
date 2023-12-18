@@ -30,7 +30,7 @@ public class MosquitoHeadItemBuff : Buff
     
     public override string GetTooltipString()
     {
-        return "Players heal " + this.Intensity.Value + " hp when attacking";
+        return "Players heal " + this.Intensity.Value + " hp whenever the character deals damage via attack";
     }
     
     public override void onExpire()
