@@ -62,7 +62,7 @@ public class RatEnemyBehavior : EnemyCharacter
             else
             {
                 Target = EnemyTargetingLibrary.TargetNRandomHeroes(1);
-                Moves.Push(new EnemyAttackDefendMove(this, 40, 20, Target));
+                Moves.Push(new EnemyAttackDefendMove(this, 30, 10, Target));
                 NoDefenseTurn++;
                 
             }

@@ -12,8 +12,8 @@ public class GenericEnemy1Behavior : EnemyCharacter
     void Awake()
     {
         this.Alive = true;
-        this.CurrentHealth = 800;
-        this.MaxHealth = 800;
+        this.CurrentHealth = 600;
+        this.MaxHealth = 600;
         this.CurrentArmor = 0;
         this.ArmorRetain = 0;
         this.DamageOutputModifier = 0;

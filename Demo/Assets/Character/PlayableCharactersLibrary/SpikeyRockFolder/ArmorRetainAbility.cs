@@ -22,9 +22,9 @@ public class ArmorRetainAbility : Ability
     public override void onCast(Character C)
     {
         PlayableCharacter P = (PlayableCharacter) C;
-        BattleLogicHandler.GainArmor(PC, P, 30 + PC.getDefenseOutputModifier());
+        BattleLogicHandler.GainArmor(PC, P, 50 + PC.getDefenseOutputModifier());
         
-        Buff B = new RetainBuff(P, this.getPlayableCharacter(), 30, null);
+        Buff B = new RetainBuff(P, this.getPlayableCharacter(), (50 + PC.getDefenseOutputModifier()), null);
         BattleLogicHandler.OnBuffApply(B);
     }
     
@@ -36,7 +36,7 @@ public class ArmorRetainAbility : Ability
     public override string GetTooltipString()
     {
         string name = "Rock Powder";
-        string s1 = "Give an ally player " + (30 + PC.getDefenseOutputModifier()) + " armor and 30 armor retain";
+        string s1 = "Give an ally player " + (50 + PC.getDefenseOutputModifier()) + " armor and " + (50 + PC.getDefenseOutputModifier()) + " armor retain";
         string s2 = "Cooldown: " + currentCooldown + "/" + maxCooldown;
         return name + "\n" + s1 + "\n" + s2;
     }

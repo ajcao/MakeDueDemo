@@ -35,7 +35,7 @@ public class MagicMissileCannedItemBuff : Buff
     
     public override string GetTooltipString()
     {
-        string s1 = "Whenever you proc resolve, deal 30 damage to random enemy";
+        string s1 = "Whenever you proc resolve, deal 50 damage to random enemy";
         return s1;
     }
     
@@ -47,7 +47,7 @@ public class MagicMissileCannedItemBuff : Buff
             List<GameObject> CurrentEncounter = EnemyEncounter.GetLivingEncounterMembers();
             int r = Random.Range(0,CurrentEncounter.Count);
             EnemyCharacter Enem = CurrentEncounter[r].GetComponent<EnemyCharacter>();
-            BattleLogicHandler.BuffDamage(Enem, 30);
+            BattleLogicHandler.BuffDamage(Enem, 50);
         }
     }
 }

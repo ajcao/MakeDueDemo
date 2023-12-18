@@ -26,13 +26,13 @@ public class MagicMissileCannedItem : GameItem
     
     public override void OnApply()
     {
-        Buff B = new MagicMissileCannedItemBuff(this.ItemOwner, this.ItemOwner, 30, null);
+        Buff B = new MagicMissileCannedItemBuff(this.ItemOwner, this.ItemOwner, 50, null);
         BattleLogicHandler.OnBuffApply(B);
     }
     
     public override string GetTooltipString()
     {
-        return "Whenever you proc resolve, deal 30 damage to random enemy";
+        return "Whenever you proc resolve, deal 50 damage to random enemy";
     }
 }
 

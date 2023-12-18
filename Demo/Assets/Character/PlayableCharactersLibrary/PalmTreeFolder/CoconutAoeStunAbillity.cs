@@ -26,7 +26,7 @@ public class CoconutAoeStunAbillity : Ability
             EnemyCharacter Enem = G.GetComponent<EnemyCharacter>();
             if (Enem.isAlive() && PC.isAlive())
             {
-                BattleLogicHandler.LowerStamina(Enem, 60);
+                BattleLogicHandler.LowerStamina(Enem, 80);
             }
             
         }  
@@ -40,7 +40,7 @@ public class CoconutAoeStunAbillity : Ability
     public override string GetTooltipString()
     {
         string name = "Uproot";
-        string s1 = "Deal 60 stamina damage to all enemies";
+        string s1 = "Deal 80 stamina damage to all enemies";
         string s2 = "Cooldown: " + currentCooldown + "/" + maxCooldown;
         return name + "\n" + s1 + "\n" + s2;
     }

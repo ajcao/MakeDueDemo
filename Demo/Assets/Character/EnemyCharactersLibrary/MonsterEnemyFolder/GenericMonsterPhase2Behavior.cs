@@ -12,8 +12,8 @@ public class GenericMonsterPhase2Behavior : EnemyCharacter
     void Awake()
     {
         this.Alive = true;
-        this.CurrentHealth = 500;
-        this.MaxHealth = 500;
+        this.CurrentHealth = 600;
+        this.MaxHealth = 600;
         this.CurrentArmor = 0;
         this.ArmorRetain = 0;
         this.DamageOutputModifier = 0;
@@ -52,7 +52,7 @@ public class GenericMonsterPhase2Behavior : EnemyCharacter
         {
             AttackMode = false;
             Target = EnemyTargetingLibrary.TargetNRandomHeroes(1);
-            Moves.Push(new EnemyAttackMove(this, 120, Target));
+            Moves.Push(new EnemyAttackMove(this, 100, Target));
         }
         else
         {

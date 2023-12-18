@@ -20,7 +20,7 @@ public class GenericSaplingBehavior : EnemyCharacter
         this.DefenseOutputModifier = 0;
         this.canStaminaRegenerate = true;
         this.IsStunned = false;
-        this.Stamina = 80;
+        this.Stamina = 60;
         this.MaxStamina = this.Stamina;
         this.StaminaRegeneration = this.MaxStamina / 2;
         Moves = new Stack<EnemyMove>();

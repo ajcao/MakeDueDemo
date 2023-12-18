@@ -35,7 +35,7 @@ public class ScrollOfKnivesItemBuff : Buff
     
     public override string GetTooltipString()
     {
-        string s1 = "Everytime two times a skill is cast, deal 10 damage to everyone";
+        string s1 = "Everytime two times a skill is cast, deal 30 damage to everyone";
         return s1;
     }
     
@@ -60,7 +60,7 @@ public class ScrollOfKnivesItemBuff : Buff
                 EnemyCharacter Enem = G.GetComponent<EnemyCharacter>();
                 if (Enem.isAlive() && this.BuffTarget.isAlive())
                 {
-                    BattleLogicHandler.BuffDamage(Enem, 10);
+                    BattleLogicHandler.BuffDamage(Enem, 30);
                 }
                 
             }        
