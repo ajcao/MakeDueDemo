@@ -17,7 +17,7 @@ public abstract class PlayableCharacter : Character
 	
 	protected int Resolve;
 	protected int MaxResolve;
-	protected int ResolveRegeneration;
+	public int ResolveRegeneration;
 	
 	protected bool HasCasted;
 	

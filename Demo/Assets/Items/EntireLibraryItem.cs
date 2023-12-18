@@ -74,6 +74,18 @@ public static class EntireLibraryItem
         A = new BrainSlugItem();
         ReturnList.Add(A);
         
+        A = new BambooBerryItem();
+        ReturnList.Add(A);
+        
+        A = new BatteryItem();
+        ReturnList.Add(A);
+        
+        A = new HammerTridentItem();
+        ReturnList.Add(A);
+        
+        A = new LawBookItem();
+        ReturnList.Add(A);
+        
         return ReturnList;
     }
 }

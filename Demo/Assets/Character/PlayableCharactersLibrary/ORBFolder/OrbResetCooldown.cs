@@ -32,7 +32,7 @@ public class OrbResetCooldown : Ability
     public override string GetTooltipString()
     {
         string name = "Harmonic Wave";
-        string s1 = "Reset a character's cooldown";
+        string s1 = "Reset a character's cooldown (this ability does not reset if self-casted)";
         string s2 = "Cooldown: " + currentCooldown + "/" + maxCooldown;
         return name + "\n" + s1 + "\n" + s2;
     }
