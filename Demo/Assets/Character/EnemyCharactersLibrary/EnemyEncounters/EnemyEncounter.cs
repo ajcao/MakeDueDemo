@@ -9,21 +9,22 @@ public static class EnemyEncounter
     //Total List; Has everyone listed
     //Alive/Target list: Lists who is alive/can be targeted
     //How to handle removal?
+    
     public static int MaxEncounterSize;
     public static GameObject[] Encounter;
-    public static EnemyEncounterHandler EE_Handler;
+    public static EnemyEncounterData EE_Data;
     
     public static void LoadEncounter()
     {
         Debug.Log("Loading Encounter");
-        EE_Handler = GameObject.Find("EnemyEncounterHandlerGameObject").GetComponent<EnemyEncounterHandler>();
-        MaxEncounterSize = EE_Handler.EncounterSize;
+        EE_Data = GameObject.Find("EnemyEncounterDataGameObject").GetComponent<EnemyEncounterData>();
+        MaxEncounterSize = EE_Data.EncounterSize;
         Encounter = new GameObject[MaxEncounterSize];
         for (int i = 0; i < MaxEncounterSize; i++)
         {
-            GameObject E = EE_Handler.InitialSpawnPool[i];
+            GameObject E = EE_Data.InitialSpawnPool[i];
             if (E != null)
-                Encounter[i] = EE_Handler.CreateEnemy(i,i, true);
+                Encounter[i] = EE_Data.CreateEnemy(i,i, true);
         }
     }
     
@@ -62,7 +63,7 @@ public static class EnemyEncounter
             //Destroy the original value
             Object.Destroy(Encounter[RespawnLocation]);     
         }
-        Encounter[RespawnLocation] = EE_Handler.CreateEnemy(RespawnPool,RespawnLocation, false);
+        Encounter[RespawnLocation] = EE_Data.CreateEnemy(RespawnPool,RespawnLocation, false);
         
         HealthArmorHandler HA_Handler = GameObject.Find("HealthArmorHandlerGameObject").GetComponent<HealthArmorHandler>();
         HA_Handler.AddHealthIndicator(Encounter[RespawnLocation]);

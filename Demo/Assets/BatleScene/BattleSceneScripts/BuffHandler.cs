@@ -25,6 +25,10 @@ public static class BuffHandler
     
     public static void Init()
     {
+		//False
+		inBuffTriggerProcess = false;
+		
+		
         //Init BuffsList
 		BuffsList = new Dictionary<TriggerEventEnum, List<Buff>>();
         

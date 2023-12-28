@@ -19,8 +19,6 @@ public class InventorySingleboxScript : MonoBehaviour, IDropHandler
     
     public void OnDrop(PointerEventData eventData)
     {
-        Debug.Log("OnDrop");
-        Debug.Log(eventData.pointerDrag);
         //There is an item
         if (eventData.pointerDrag != null)
         {

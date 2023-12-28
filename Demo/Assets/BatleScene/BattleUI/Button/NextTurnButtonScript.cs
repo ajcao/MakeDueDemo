@@ -30,6 +30,12 @@ public class NextTurnButtonScript : MonoBehaviour
             this.gameObject.GetComponent<Button>().interactable = false;
         }
         else
+        {
+            //Destory EnemyData
+            GameObject EE_Data = GameObject.Find("EnemyEncounterDataGameObject");
+            Destroy(EE_Data);
+            
             SceneManager.LoadScene("BattleSelectionScene", LoadSceneMode.Single);
+        }
     }
 }

@@ -23,19 +23,28 @@ public class ShrapnelAttack : Ability
     {        
         
         List<GameObject> CurrentEncounter = EnemyEncounter.GetLivingEncounterMembers();
-        int r = Random.Range(0,CurrentEncounter.Count);
-        EnemyCharacter Enem = CurrentEncounter[r].GetComponent<EnemyCharacter>();
-        BattleLogicHandler.AttackDamage(PC, Enem, 10 + PC.getDamageOutputModifier());
+        if (CurrentEncounter.Count > 0)
+        {
+            int r = Random.Range(0,CurrentEncounter.Count);
+            EnemyCharacter Enem = CurrentEncounter[r].GetComponent<EnemyCharacter>();
+            BattleLogicHandler.AttackDamage(PC, Enem, 10 + PC.getDamageOutputModifier());
+        }
     
         CurrentEncounter = EnemyEncounter.GetLivingEncounterMembers();
-        r = Random.Range(0,CurrentEncounter.Count);
-        Enem = CurrentEncounter[r].GetComponent<EnemyCharacter>();
-        BattleLogicHandler.AttackDamage(PC, Enem, 10 + PC.getDamageOutputModifier());
+        if (CurrentEncounter.Count > 0)
+        {
+            int r = Random.Range(0,CurrentEncounter.Count);
+            EnemyCharacter Enem = CurrentEncounter[r].GetComponent<EnemyCharacter>();
+            BattleLogicHandler.AttackDamage(PC, Enem, 10 + PC.getDamageOutputModifier());
+        }
         
         CurrentEncounter = EnemyEncounter.GetLivingEncounterMembers();
-        r = Random.Range(0,CurrentEncounter.Count);
-        Enem = CurrentEncounter[r].GetComponent<EnemyCharacter>();
-        BattleLogicHandler.AttackDamage(PC, Enem, 10 + PC.getDamageOutputModifier());
+        if (CurrentEncounter.Count > 0)
+        {
+            int r = Random.Range(0,CurrentEncounter.Count);
+            EnemyCharacter Enem = CurrentEncounter[r].GetComponent<EnemyCharacter>();
+            BattleLogicHandler.AttackDamage(PC, Enem, 10 + PC.getDamageOutputModifier());
+        }
         
     }
     

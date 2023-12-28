@@ -262,6 +262,10 @@ PrefabInstance:
       propertyPath: BattleString
       value: Rat
       objectReference: {fileID: 0}
+    - target: {fileID: 186479821431102310, guid: 263462653a1c1d24f98b1f0f700671a4, type: 3}
+      propertyPath: BattleDataPrefab
+      value: 
+      objectReference: {fileID: 7641228669318310219, guid: fb56ad547868eb244bbe8a55ebb682f4, type: 3}
     - target: {fileID: 4546982661360222871, guid: 263462653a1c1d24f98b1f0f700671a4, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -472,6 +476,10 @@ PrefabInstance:
       propertyPath: BattleString
       value: RockBean
       objectReference: {fileID: 0}
+    - target: {fileID: 186479821431102310, guid: 263462653a1c1d24f98b1f0f700671a4, type: 3}
+      propertyPath: BattleDataPrefab
+      value: 
+      objectReference: {fileID: 5089786282045700919, guid: 8483d28684da1734e9143ab20e5aa89b, type: 3}
     - target: {fileID: 2756797343754099446, guid: 263462653a1c1d24f98b1f0f700671a4, type: 3}
       propertyPath: m_Type
       value: 1
@@ -730,6 +738,10 @@ PrefabInstance:
       propertyPath: BattleString
       value: Monster
       objectReference: {fileID: 0}
+    - target: {fileID: 186479821431102310, guid: 263462653a1c1d24f98b1f0f700671a4, type: 3}
+      propertyPath: BattleDataPrefab
+      value: 
+      objectReference: {fileID: 1141007482181414971, guid: aac1e6d528f48dc4498d5b0c02e5d2ca, type: 3}
     - target: {fileID: 4546982661360222871, guid: 263462653a1c1d24f98b1f0f700671a4, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -937,6 +949,10 @@ PrefabInstance:
       propertyPath: BattleString
       value: Plant
       objectReference: {fileID: 0}
+    - target: {fileID: 186479821431102310, guid: 263462653a1c1d24f98b1f0f700671a4, type: 3}
+      propertyPath: BattleDataPrefab
+      value: 
+      objectReference: {fileID: 3768464011384743037, guid: 461c0be3b91a0814d8876250370e0f67, type: 3}
     - target: {fileID: 4546982661360222871, guid: 263462653a1c1d24f98b1f0f700671a4, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

@@ -252,7 +252,6 @@ public class onHealthDamageWasTakenTrigger : TriggerEvent
 	
 	public onHealthDamageWasTakenTrigger(Character RC, int a)
 	{
-		Debug.Log("waking up");
 		ReceivingChar = RC;
 		DamageAmount = a;
 	}

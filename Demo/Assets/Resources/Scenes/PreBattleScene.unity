@@ -798,6 +798,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9db0c0d3fde233547b7f8159207be9dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 0}
   InventorySlots:
   - {fileID: 1676483156}
   - {fileID: 323506404}
@@ -1483,6 +1484,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9db0c0d3fde233547b7f8159207be9dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 0}
   InventorySlots:
   - {fileID: 2111000137}
   - {fileID: 2116436850}
@@ -2311,6 +2313,11 @@ MonoBehaviour:
   P6: {fileID: 7831967512756798593, guid: 1b3881300a6bba347a916718587cc9fe, type: 3}
   P7: {fileID: 7831967512756798593, guid: 196d886c53a4cd547ac62c0dedf9d11a, type: 3}
   P8: {fileID: 3063199090697513369, guid: fb1701b96ef362a46a84f3e55f714581, type: 3}
+  AllCharacterInventories:
+  - {fileID: 744316895}
+  - {fileID: 2008331486}
+  - {fileID: 1669776811}
+  - {fileID: 1113467743}
 --- !u!4 &1356935770
 Transform:
   m_ObjectHideFlags: 0
@@ -2384,6 +2391,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9db0c0d3fde233547b7f8159207be9dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 0}
   InventorySlots:
   - {fileID: 1029993857}
   - {fileID: 1893061067}
@@ -2980,6 +2988,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9db0c0d3fde233547b7f8159207be9dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 0}
   InventorySlots:
   - {fileID: 1807255613}
   - {fileID: 667509349}
@@ -3469,6 +3478,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9db0c0d3fde233547b7f8159207be9dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 0}
   InventorySlots:
   - {fileID: 1099774044}
   - {fileID: 758885844}

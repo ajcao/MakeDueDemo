@@ -49,9 +49,13 @@ public class ParryShieldItemBuff : Buff
             
             if (TE.CastingPlayer == this.BuffTarget && TE.ReceivingPlayer != this.BuffTarget)
             {
-                int r = Random.Range(0,EnemyEncounter.GetLivingEncounterMembers().Count);
-                EnemyCharacter E2 = EnemyEncounter.getEncounterMember(r).GetComponent<EnemyCharacter>();
-                BattleLogicHandler.BuffDamage(E2, 10);
+                List<GameObject> CurrentEncounter = EnemyEncounter.GetLivingEncounterMembers();
+                if (CurrentEncounter.Count > 0)
+                {
+                    int r = Random.Range(0,CurrentEncounter.Count);
+                    EnemyCharacter Enem = CurrentEncounter[r].GetComponent<EnemyCharacter>();
+                    BattleLogicHandler.BuffDamage(Enem, 10);
+                }
             }
         }
         
@@ -62,9 +66,12 @@ public class ParryShieldItemBuff : Buff
             if (TE.ReceivingChar == this.BuffTarget)
             {
                 List<GameObject> CurrentEncounter = EnemyEncounter.GetLivingEncounterMembers();
-                int r = Random.Range(0,CurrentEncounter.Count);
-                EnemyCharacter Enem = CurrentEncounter[r].GetComponent<EnemyCharacter>();
-                BattleLogicHandler.BuffDamage(Enem, 10);
+                if (CurrentEncounter.Count > 0)
+                {
+                    int r = Random.Range(0,CurrentEncounter.Count);
+                    EnemyCharacter Enem = CurrentEncounter[r].GetComponent<EnemyCharacter>();
+                    BattleLogicHandler.BuffDamage(Enem, 10);
+                }
             }
             
         }

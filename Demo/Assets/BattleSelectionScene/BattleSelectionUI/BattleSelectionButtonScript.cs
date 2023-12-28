@@ -8,6 +8,7 @@ using TMPro;
 public class BattleSelectionButtonScript : MonoBehaviour
 {
     public string BattleString;
+    public GameObject BattleDataPrefab;
     public TextMeshProUGUI TextBox;
     
     // Start is called before the first frame update
@@ -26,6 +27,11 @@ public class BattleSelectionButtonScript : MonoBehaviour
     public void onButtonClick()
     {
         SceneCoordinator.BattleBeaten(BattleString);
-        SceneCoordinator.LoadBattleEncounter(BattleString);
+        
+        GameObject BattleData = Instantiate(BattleDataPrefab, new Vector2(0.0f,0.0f), Quaternion.identity) as GameObject;
+        DontDestroyOnLoad(BattleData);
+        BattleData.name = "EnemyEncounterDataGameObject";
+        
+        SceneCoordinator.LoadBattleEncounter();
     }
 }

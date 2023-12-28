@@ -4,5 +4,8 @@ using UnityEngine;
 
 public class CanvasInventoryScript : MonoBehaviour
 {
+    
+    public GameObject Player;
+    
     public GameObject[] InventorySlots;
 }
