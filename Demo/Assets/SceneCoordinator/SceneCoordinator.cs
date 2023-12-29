@@ -55,8 +55,16 @@ public static class SceneCoordinator
                 break;
         }
     }
+    
+    //The Select Battle Scene buttons contain the data for the encounter as a prefab
+    //Scene Coordinator only marks the battle as beaten/not beaten and loads the scene
     public static void LoadBattleEncounter()
     {
         SceneManager.LoadScene("BattleScene", LoadSceneMode.Single);
+    }
+    
+    public static void LoadCharacterDataScene()
+    {
+        SceneManager.LoadScene("CharacterDataScene", LoadSceneMode.Additive);
     }
 }

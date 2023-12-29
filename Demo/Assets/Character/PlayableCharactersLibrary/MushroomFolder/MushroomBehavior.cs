@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -36,6 +37,19 @@ public class MushroomBehavior : PlayableCharacter
         this.AbilityPool.Add(new WeakSporeAbility(this));
         this.AbilityPool.Add(new SiphonAbility(this));
 
+        
+    }
+    
+    public override string GetLoreData()
+    {
+        string hp = String.Format("Max HP: {0}", this.MaxHealth);
+        string resolve = String.Format("Max Resolve: {0}", this.MaxResolve);
+        string attack = String.Format("Basic Attack: {0}",  this.AttackStat);
+        string defense = String.Format("Basic Defend: {0}", this.DefenseStat);
+        
+        string lore = "This is a standard mushroom. There is nothing particularly interesting about this one. The mushroom uses dense mycelium roots to gather nutrients from the soil. The spores of the mushroom are slightly toxic, causing a hallugenic effect when entering the bloodstream by inhalation or injection. Finally, the pileus of the mushroom is edible and is used as a alternative health option in multiple countries";
+        
+        return String.Format("{0}\n{1}\n{2}\n{3}\n\n\n{4}", hp, resolve, attack, defense, lore);
         
     }
 

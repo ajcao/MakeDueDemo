@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -36,6 +37,19 @@ public class LizardLeechBehavior : PlayableCharacter
         this.AbilityPool.Add(new DoubleAttackAbility(this));
         this.AbilityPool.Add(new HPForATKAbility(this));
 
+        
+    }
+    
+    public override string GetLoreData()
+    {
+        string hp = String.Format("Max HP: {0}", this.MaxHealth);
+        string resolve = String.Format("Max Resolve: {0}", this.MaxResolve);
+        string attack = String.Format("Basic Attack: {0}",  this.AttackStat);
+        string defense = String.Format("Basic Defend: {0}", this.DefenseStat);
+        
+        string lore = "The LizardLeech is a parasitic animal that can be found throughout Landeus. The reptile prefers to live in semi-aquatic enviornments such as swamps, marshes, and bogs. However the LizardLeech have also spread into human settlements. The sewers of large cities make a perfect habitat for the animal. As such, these four-legged abominations are a common nuisance for many cityfolk, occasionally crawling out of pipes to steal blood at night. Currently the King's Council is searching for a solutin.";
+        
+        return String.Format("{0}\n{1}\n{2}\n{3}\n\n\n{4}", hp, resolve, attack, defense, lore);
         
     }
 

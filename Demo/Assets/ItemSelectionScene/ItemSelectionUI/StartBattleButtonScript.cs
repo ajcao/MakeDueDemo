@@ -29,6 +29,9 @@ public class StartBattleButtonScript : MonoBehaviour
                     PlayerParty.getPartyMember(i).GetComponent<PlayableCharacter>().AddToInventory(I);
                 }
             }
+            
+            //Click on character no longer opens up Character Data scene, avoids potential crashes
+            PlayerParty.getPartyMember(i).GetComponent<PlayableCharacter>().ToggleCharacterData(false);
         }
         
         SceneManager.LoadScene("BattleSelectionScene", LoadSceneMode.Single);

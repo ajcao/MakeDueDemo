@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -37,5 +38,18 @@ public class SentientDynamiteBehavior : PlayableCharacter
         this.AbilityPool.Add(new SmokeAbility(this));
     }
 
+    public override string GetLoreData()
+    {
+        string hp = String.Format("Max HP: {0}", this.MaxHealth);
+        string resolve = String.Format("Max Resolve: {0}", this.MaxResolve);
+        string attack = String.Format("Basic Attack: {0}",  this.AttackStat);
+        string defense = String.Format("Basic Defend: {0}", this.DefenseStat);
+        
+        string lore = "The sentient dynamite was the first conjuration spell of soon-to-be great wizard. Unlike other students who created birds or cats, she decided to create a bomb, perhaps in honor of her favorite alchemy class and her favorite substance, gunpowder. Currently she is serves as one of the chief advisors of Landeus, specializing in military and military research. Her life went through leaps of oppurtunities and changes, which could be a reason why she forgot her first success.";
+        
+        return String.Format("{0}\n{1}\n{2}\n{3}\n\n\n{4}", hp, resolve, attack, defense, lore);
+        
+    }
+    
 }
 

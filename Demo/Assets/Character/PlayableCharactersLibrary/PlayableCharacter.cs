@@ -21,6 +21,8 @@ public abstract class PlayableCharacter : Character
 	
 	protected bool HasCasted;
 	
+	protected bool GetCharacterDataScene = true;
+	
 	
 	public List<Ability> AbilityPool;
 	
@@ -138,6 +140,28 @@ public abstract class PlayableCharacter : Character
 		this.Inventory.Add(I);
 		I.AssignCharacter(this);
 		I.OnPickup();
+	}
+	
+	public void ToggleCharacterData(bool B)
+	{
+		GetCharacterDataScene = B;
+	}
+	
+	public abstract string GetLoreData();
+	
+	//Should probably move this to a more UI-focused script
+	public void OnMouseDown()
+	{
+		//In a scene where players can access character data
+		//eg: title screen, item selection scene
+		if (GetCharacterDataScene)
+		{
+			GameObject DummyCharacter = Instantiate(this.gameObject, new Vector2(0.0f,0.0f), Quaternion.identity) as GameObject;
+			DontDestroyOnLoad(DummyCharacter);
+			DummyCharacter.name = "DummyCharacterGameObject";
+			
+			SceneCoordinator.LoadCharacterDataScene();
+		}
 	}
 			
 }

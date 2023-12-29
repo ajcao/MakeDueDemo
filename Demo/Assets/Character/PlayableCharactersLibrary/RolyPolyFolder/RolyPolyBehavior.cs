@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -36,6 +37,19 @@ public class RolyPolyBehavior : PlayableCharacter
         this.AbilityPool.Add(new BugTempDoubleDamageAbility(this));
         this.AbilityPool.Add(new StunHitAbility(this));
 
+        
+    }
+    
+    public override string GetLoreData()
+    {
+        string hp = String.Format("Max HP: {0}", this.MaxHealth);
+        string resolve = String.Format("Max Resolve: {0}", this.MaxResolve);
+        string attack = String.Format("Basic Attack: {0}",  this.AttackStat);
+        string defense = String.Format("Basic Defend: {0}", this.DefenseStat);
+        
+        string lore = "The rolypolys are large 200 pounds insects with strong eusocial behaviors. The rolypolys can form large underground colony comprised of multiple tunnels and rooms. The rolypoly is usually non-aggressive to humans, but issues can arise if the colony inadvertently expands near human settlements. Disposing of these insects proves challenging due to their thick exoskeleton and swarming behavior";
+        
+        return String.Format("{0}\n{1}\n{2}\n{3}\n\n\n{4}", hp, resolve, attack, defense, lore);
         
     }
 

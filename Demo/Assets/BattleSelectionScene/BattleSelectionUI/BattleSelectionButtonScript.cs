@@ -26,6 +26,7 @@ public class BattleSelectionButtonScript : MonoBehaviour
 
     public void onButtonClick()
     {
+        //Mark Battle as beaten/attempted
         SceneCoordinator.BattleBeaten(BattleString);
         
         GameObject BattleData = Instantiate(BattleDataPrefab, new Vector2(0.0f,0.0f), Quaternion.identity) as GameObject;

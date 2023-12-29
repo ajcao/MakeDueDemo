@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -39,5 +40,18 @@ public class PalmTreeBehavior : PlayableCharacter
         
     }
 
+    public override string GetLoreData()
+    {
+        string hp = String.Format("Max HP: {0}", this.MaxHealth);
+        string resolve = String.Format("Max Resolve: {0}", this.MaxResolve);
+        string attack = String.Format("Basic Attack: {0}",  this.AttackStat);
+        string defense = String.Format("Basic Defend: {0}", this.DefenseStat);
+        
+        string lore = "The southern coast of Landeus contains trees famous for their towering heights, averaging about 65 meters. Another noticable feature is the seeds--Large brown husks with a hard exterior and nutritious fleshy interior. The seeds of the tree require a lot of nutrients and space to grow, making it tough to grow this tree outside its native enviornment. As such, it is interesting how one managed to grow within a comparatively small pot.";
+        
+        return String.Format("{0}\n{1}\n{2}\n{3}\n\n\n{4}", hp, resolve, attack, defense, lore);
+        
+    }
+    
 }
 
