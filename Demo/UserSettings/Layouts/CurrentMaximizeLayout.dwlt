@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 26058
+  controlID: 29552
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 26059
+  controlID: 29553
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 25968
+  controlID: 29554
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -672,21 +672,21 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Character/PlayableCharactersLibrary/SpikeyRockFolder
+    - Assets/Character/PlayableCharactersLibrary/MysteriousGooFolder
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets/Character/PlayableCharactersLibrary/SpikeyRockFolder
+  - Assets/Character/PlayableCharactersLibrary/MysteriousGooFolder
   m_LastFoldersGridSize: 96
   m_LastProjectPath: C:\Users\Andrew\MakeDueDemo\Demo
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 168}
-    m_SelectedIDs: da650000
-    m_LastClickedID: 26074
+    m_SelectedIDs: d0650000
+    m_LastClickedID: 26064
     m_ExpandedIDs: 00000000986500009a6500009c6500009e650000a0650000a2650000a465000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -740,9 +740,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 100d0000
-    m_LastClickedInstanceID: 3344
-    m_HadKeyboardFocusLastEvent: 1
+    m_SelectedInstanceIDs: 72100000
+    m_LastClickedInstanceID: 4210
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c62300004a6200003c620000b6620000c062000060620000cc84000000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -860,7 +860,7 @@ MonoBehaviour:
     m_CachedPref: 151
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
-  m_LastInspectedObjectInstanceID: 3344
+  m_LastInspectedObjectInstanceID: 4210
   m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_InspectorMode: 0

@@ -53,28 +53,19 @@ public class GenericMonsterPhase1Behavior : EnemyCharacter
         {
         
             BigAttackMode = true;
-                    
+            
+            //As frail fails to proc, changes of frail goes up
             int[] RandomMoveInt = EnemyTargetingLibrary.CreateEvenDistributionToN(5 + ApplyFrailCounter);
             
             for(int i = 0; i < 3; i++)
             {
-                //Attack
-                if (RandomMoveInt[i] < 2)
-                {
-                    Target = EnemyTargetingLibrary.TargetNRandomHeroes(1);
-                    Moves.Push(new EnemyAttackDefendMove(this, 40, 20, Target));
-                    continue;
-                }
-                
-                //Defend
                 if (RandomMoveInt[i] < 4)
                 {
-                    Target = new Character[] {(Character) this};
-                    Moves.Push(new EnemyDefendMove(this, 40, Target));
+                    this.RandomAttackOrDefend();
                     continue;
                 }
                 
-                //If frail was already proc, then simply defend
+                //If frail was already proc, then 50/50 attack or defend
                 if (RandomMoveInt[i] >= 4)
                 {
                     if (!WasFrailProc)
@@ -85,15 +76,14 @@ public class GenericMonsterPhase1Behavior : EnemyCharacter
                     }
                     else
                     {
-                        Target = new Character[] {(Character) this};
-                        Moves.Push(new EnemyDefendMove(this, 40, Target));                        
+                        this.RandomAttackOrDefend();                   
                     }
                     continue;
                     
                 }
             }
             
-            //Make applying frail more likely in the future
+            //Make applying frail more likely in the future if it didn't proc
             if (WasFrailProc)
             {
                 WasFrailProc = false;
@@ -105,6 +95,24 @@ public class GenericMonsterPhase1Behavior : EnemyCharacter
             }
         }
         
+    }
+
+    public void RandomAttackOrDefend()
+    {
+        Character[] Target;
+
+        int[] RandomMoveInt = EnemyTargetingLibrary.CreateEvenDistributionToN(2);
+        
+        if (RandomMoveInt[0] == 0)
+        {
+                Target = EnemyTargetingLibrary.TargetNRandomHeroes(1);
+                Moves.Push(new EnemyAttackDefendMove(this, 40, 20, Target));
+        }
+        else
+        {
+                Target = new Character[] {(Character) this};
+                Moves.Push(new EnemyDefendMove(this, 50, Target));    
+        }
     }
     
     public override void EnterNextLife()

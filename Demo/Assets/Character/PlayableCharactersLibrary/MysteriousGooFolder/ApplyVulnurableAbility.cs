@@ -9,7 +9,7 @@ namespace AbilityUtil
 
 public class ApplyVulnurableAbilty : Ability
 {
-    private int duration = 2;
+    private int duration = 3;
     
     public ApplyVulnurableAbilty(PlayableCharacter inputC)
     {

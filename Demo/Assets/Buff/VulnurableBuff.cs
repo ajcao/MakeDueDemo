@@ -30,7 +30,7 @@ public class VulnurableBuff : Buff
     
     public override string GetTooltipString()
     {
-        return "Take 50% more damage";
+        return "Take 50% more damage from attacks";
     }
     
     public override void onExpire()

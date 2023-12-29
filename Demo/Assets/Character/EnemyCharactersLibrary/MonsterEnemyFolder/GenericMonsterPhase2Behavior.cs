@@ -69,7 +69,7 @@ public class GenericMonsterPhase2Behavior : EnemyCharacter
             else
             {
                 Target = new Character[] {(Character) this};
-                Moves.Push(new EnemyDefendMove(this, 40, Target));        
+                Moves.Push(new EnemyDefendMove(this, 50, Target));        
             }
         }
 

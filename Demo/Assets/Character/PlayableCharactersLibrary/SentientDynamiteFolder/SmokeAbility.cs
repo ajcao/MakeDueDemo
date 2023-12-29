@@ -18,7 +18,7 @@ public class SmokeAbility : Ability
         this.AssignCharacter(inputC);
         targetingType = TargetingTypeEnum.NoTarget;
         this.currentCooldown = 0;
-        this.maxCooldown = 5;
+        this.maxCooldown = 3;
         
         this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/DynamiteAbilities/SmokeScreen") as Sprite;
     }

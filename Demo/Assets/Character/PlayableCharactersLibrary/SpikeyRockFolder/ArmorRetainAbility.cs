@@ -15,7 +15,7 @@ public class ArmorRetainAbility : Ability
         this.AssignCharacter(inputC);
         this.targetingType = TargetingTypeEnum.PlayerTarget;
         this.currentCooldown = 0;
-        this.maxCooldown = 4;
+        this.maxCooldown = 5;
         
         this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/SpikeyRockAbillities/RockPowder") as Sprite;
     }

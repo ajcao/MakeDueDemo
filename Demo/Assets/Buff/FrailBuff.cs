@@ -30,7 +30,7 @@ public class FrailBuff : Buff
     
     public override string GetTooltipString()
     {
-        return "Reduce armor gain by 50%";
+        return "Reduce armor gain from abilities by 50%";
     }
     
     public override void onExpire()

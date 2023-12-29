@@ -78,12 +78,12 @@ public class GenericPlantBehavior : EnemyCharacter
             if (RandomMoveInt[i] < 2)
             {
                 Target = EnemyTargetingLibrary.TargetNRandomHeroes(1);
-                Moves.Push(new EnemyAttackMove(this, 60, Target));
+                Moves.Push(new EnemyAttackMove(this, 40, Target));
             }
             else
             {
                 Target = EnemyTargetingLibrary.TargetEnemyType<GenericSaplingBehavior>();
-                Moves.Push(new EnemyDefendMove(this, 40, Target));
+                Moves.Push(new EnemyDefendMove(this, 30, Target));
             }
         }
         

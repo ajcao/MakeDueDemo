@@ -47,10 +47,6 @@ public class RatEnemyBehavior : EnemyCharacter
 
         if (this.Forms != "Sleeping")
         {
-            //First move is always a defend move
-            Target = new Character[] {(Character) this};
-            Moves.Push(new EnemyDefendMove(this, 50, Target));
-            
             
             int[] RandomMoveInt = EnemyTargetingLibrary.CreateEvenDistributionToN(2);
             if (Random.Range(0.0f, 1.0f) <= 0.15f + 0.15f * NoDefenseTurn)
@@ -66,6 +62,10 @@ public class RatEnemyBehavior : EnemyCharacter
                 NoDefenseTurn++;
                 
             }
+
+            //First move is always a defend move, on top of stack
+            Target = new Character[] {(Character) this};
+            Moves.Push(new EnemyDefendMove(this, 40, Target));
 
         }
         

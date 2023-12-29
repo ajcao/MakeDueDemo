@@ -38,11 +38,11 @@ public class GenericEnemy1Behavior : EnemyCharacter
         Character[] Target;
         
         //If the buff was never applied, try to apply
-        if (!BuffHandler.CharacterHaveBuff(this,new GainArmorBuff(this, this, 40, null), true))
+        if (!BuffHandler.CharacterHaveBuff(this,new GainArmorBuff(this, this, 30, null), true))
         {
             Target = new Character[] {(Character) this};
             
-            EnemyApplyBuffMove E = new EnemyApplyBuffMove(this, Target, "GainArmorBuff", 40, null);
+            EnemyApplyBuffMove E = new EnemyApplyBuffMove(this, Target, "GainArmorBuff", 30, null);
             Moves.Push(E);
         }
         else

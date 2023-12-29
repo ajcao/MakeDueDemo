@@ -15,7 +15,7 @@ public class CoconutMilkAbility : Ability
         this.AssignCharacter(inputC);
         this.targetingType = TargetingTypeEnum.PlayerTarget;
         this.currentCooldown = 0;
-        this.maxCooldown = 3;
+        this.maxCooldown = 4;
         
         this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/PalmTreeAbilities/CoconutMilk") as Sprite;
     }

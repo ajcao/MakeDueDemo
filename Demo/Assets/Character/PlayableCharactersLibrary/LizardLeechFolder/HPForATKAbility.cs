@@ -15,7 +15,7 @@ public class HPForATKAbility : Ability
         this.AssignCharacter(inputC);
         targetingType = TargetingTypeEnum.NoTarget;
         this.currentCooldown = 0;
-        this.maxCooldown = 5;
+        this.maxCooldown = 4;
         
         this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/LizardLeechAbilities/Frenzy") as Sprite;
     }

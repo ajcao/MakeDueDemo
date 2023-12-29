@@ -10,14 +10,14 @@ namespace AbilityUtil
 public class StunHitAbility : Ability
 {
     private int staminaAmount = 40;
-    private int basedamage = 20;
+    private int basedamage = 30;
 
     public StunHitAbility(PlayableCharacter inputC)
     {
         this.AssignCharacter(inputC);
         targetingType = TargetingTypeEnum.EnemyTarget;
         this.currentCooldown = 0;
-        this.maxCooldown = 4;
+        this.maxCooldown = 3;
         
         this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/RolyPolyAbilities/PolyDrop") as Sprite;
     }

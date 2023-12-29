@@ -9,13 +9,13 @@ namespace AbilityUtil
 
 public class SiphonAbility : Ability
 {
-    private int basedamage = 20;
+    private int basedamage = 30;
     public SiphonAbility(PlayableCharacter inputC)
     {
         this.AssignCharacter(inputC);
         this.targetingType = TargetingTypeEnum.EnemyTarget;
         this.currentCooldown = 0;
-        this.maxCooldown = 4;
+        this.maxCooldown = 2;
         
         this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/MushroomAbilities/SiphonAbility") as Sprite;
     }
@@ -37,7 +37,7 @@ public class SiphonAbility : Ability
     public override string GetTooltipString()
     {
         string name = "Mycelium Siphon";
-        string s1 = "Deal " + (basedamage + PC.getDamageOutputModifier()) + " damage. Absorb " + (basedamage + PC.getDamageOutputModifier()) + " Resolve";
+        string s1 = "Deal " + (basedamage + PC.getDamageOutputModifier()) + " damage. Gain " + (basedamage + PC.getDamageOutputModifier()) + " Resolve";
         string s2 = "Cooldown: " + currentCooldown + "/" + maxCooldown;
         return name + "\n" + s1 + "\n" + s2;
     }
