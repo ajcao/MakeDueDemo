@@ -9,6 +9,7 @@ namespace AbilityUtil
 
 public class GiveSelfSpikeAbility : Ability
 {
+    private int intensity = 20;
     public GiveSelfSpikeAbility(PlayableCharacter inputC)
     {
         this.AssignCharacter(inputC);
@@ -21,7 +22,7 @@ public class GiveSelfSpikeAbility : Ability
     
     public override void onCast(Character E)
     {
-        Buff B = new SpikeBuff(this.getPlayableCharacter(), this.getPlayableCharacter(), 20, null);
+        Buff B = new SpikeBuff(this.getPlayableCharacter(), this.getPlayableCharacter(), intensity, null);
         BattleLogicHandler.OnBuffApply(B);
         
     }
@@ -34,7 +35,7 @@ public class GiveSelfSpikeAbility : Ability
     public override string GetTooltipString()
     {
         string name = "Sharpen";
-        string s1 = "Gain buff that deals 20 damage to Enemy Attackers";        
+        string s1 = "Gain buff that deals " + intensity + " damage to Enemy Attackers";        
         string s2 = "Cooldown: " + currentCooldown + "/" + maxCooldown;
         return name + "\n" + s1 + "\n" + s2;
     }

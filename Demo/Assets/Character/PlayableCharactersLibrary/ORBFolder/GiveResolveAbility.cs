@@ -8,6 +8,7 @@ namespace AbilityUtil
 
 public class GiveResolveAbility : Ability
 {
+    private int resolveAmount = 50;
     public GiveResolveAbility(PlayableCharacter inputC)
     {
         this.AssignCharacter(inputC);
@@ -21,7 +22,7 @@ public class GiveResolveAbility : Ability
     public override void onCast(Character C)
     {
         PlayableCharacter P = (PlayableCharacter) C;
-        BattleLogicHandler.GainResolve(P, 40);
+        BattleLogicHandler.GainResolve(P, resolveAmount);
     }
     
     public override void postCast(Character C)
@@ -32,7 +33,7 @@ public class GiveResolveAbility : Ability
     public override string GetTooltipString()
     {
         string name = "Negative Charge";
-        string s1 = "Restore " + 50 + " resolve to an ally player";
+        string s1 = "Restore " + resolveAmount + " resolve to an ally player";
         string s2 = "Cooldown: " + currentCooldown + "/" + maxCooldown;
         return name + "\n" + s1 + "\n" + s2;
     }

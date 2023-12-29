@@ -9,6 +9,7 @@ namespace AbilityUtil
 
 public class CoconutMilkAbility : Ability
 {
+    private int resolveAmount = 30;
     public CoconutMilkAbility(PlayableCharacter inputC)
     {
         this.AssignCharacter(inputC);
@@ -22,8 +23,8 @@ public class CoconutMilkAbility : Ability
     public override void onCast(Character C)
     {
         PlayableCharacter P = (PlayableCharacter) C;
-        BattleLogicHandler.GainResolve(this.PC, 30);
-        BattleLogicHandler.GainResolve(P, 30);
+        BattleLogicHandler.GainResolve(this.PC, resolveAmount);
+        BattleLogicHandler.GainResolve(P, resolveAmount);
     }
     
     public override void postCast(Character C)
@@ -34,7 +35,7 @@ public class CoconutMilkAbility : Ability
     public override string GetTooltipString()
     {
         string name = "Coconut Milk";
-        string s1 = "Give an both yourself and an ally player 30 resolve";
+        string s1 = "Give both yourself and an ally player " + resolveAmount + " resolve";
         string s2 = "Cooldown: " + currentCooldown + "/" + maxCooldown;
         return name + "\n" + s1 + "\n" + s2;
     }

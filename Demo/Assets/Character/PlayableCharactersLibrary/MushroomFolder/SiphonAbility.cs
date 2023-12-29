@@ -9,6 +9,7 @@ namespace AbilityUtil
 
 public class SiphonAbility : Ability
 {
+    private int basedamage = 20;
     public SiphonAbility(PlayableCharacter inputC)
     {
         this.AssignCharacter(inputC);
@@ -23,8 +24,8 @@ public class SiphonAbility : Ability
     {
         EnemyCharacter E = (EnemyCharacter) C;
         
-        BattleLogicHandler.AttackDamage(PC, E, 20 + PC.getDamageOutputModifier());
-        BattleLogicHandler.GainResolve(PC, 20 + PC.getDamageOutputModifier());
+        BattleLogicHandler.AttackDamage(PC, E, basedamage + PC.getDamageOutputModifier());
+        BattleLogicHandler.GainResolve(PC, basedamage + PC.getDamageOutputModifier());
     }
     
     public override void postCast(Character C)
@@ -36,7 +37,7 @@ public class SiphonAbility : Ability
     public override string GetTooltipString()
     {
         string name = "Mycelium Siphon";
-        string s1 = "Deal " + (20 + PC.getDamageOutputModifier()) + " damage. Absorb " + (20 + PC.getDamageOutputModifier()) + " Resolve";
+        string s1 = "Deal " + (basedamage + PC.getDamageOutputModifier()) + " damage. Absorb " + (basedamage + PC.getDamageOutputModifier()) + " Resolve";
         string s2 = "Cooldown: " + currentCooldown + "/" + maxCooldown;
         return name + "\n" + s1 + "\n" + s2;
     }

@@ -9,6 +9,9 @@ namespace AbilityUtil
 
 public class CoconutArmorAbility : Ability
 {
+
+    private int basearmor = 30;
+    private int duration = 3;
     public CoconutArmorAbility(PlayableCharacter inputC)
     {
         this.AssignCharacter(inputC);
@@ -21,7 +24,7 @@ public class CoconutArmorAbility : Ability
     
     public override void onCast(Character E)
     {
-        Buff B = new GainArmorBuff(E, this.PC, (30 + this.PC.getDefenseOutputModifier()), 3);
+        Buff B = new GainArmorBuff(E, this.PC, (basearmor + this.PC.getDefenseOutputModifier()), 3);
         BattleLogicHandler.OnBuffApply(B);
     }
     
@@ -33,7 +36,7 @@ public class CoconutArmorAbility : Ability
     public override string GetTooltipString()
     {
         string name = "Coconut Armor";
-        string s1 = "Give an ally player a buff that restores " + (30 + PC.getDefenseOutputModifier()) + " armor per turn. Buff lasts 3 turns";
+        string s1 = "Give an ally player a buff that restores " + (basearmor + PC.getDefenseOutputModifier()) + " armor per turn. Buff lasts " + duration + " turns";
         string s2 = "Cooldown: " + currentCooldown + "/" + maxCooldown;
         return name + "\n" + s1 + "\n" + s2;
     }

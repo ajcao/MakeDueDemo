@@ -9,6 +9,9 @@ namespace AbilityUtil
   
 public class ShrapnelAttack : Ability
 {
+    private int basedamage = 10;
+    private int AttackCount = 3;
+
     public ShrapnelAttack(PlayableCharacter inputC)
     {
         this.AssignCharacter(inputC);
@@ -20,30 +23,18 @@ public class ShrapnelAttack : Ability
     }
     
     public override void onCast(Character InputE)
-    {        
-        
-        List<GameObject> CurrentEncounter = EnemyEncounter.GetLivingEncounterMembers();
-        if (CurrentEncounter.Count > 0)
-        {
-            int r = Random.Range(0,CurrentEncounter.Count);
-            EnemyCharacter Enem = CurrentEncounter[r].GetComponent<EnemyCharacter>();
-            BattleLogicHandler.AttackDamage(PC, Enem, 10 + PC.getDamageOutputModifier());
-        }
-    
-        CurrentEncounter = EnemyEncounter.GetLivingEncounterMembers();
-        if (CurrentEncounter.Count > 0)
-        {
-            int r = Random.Range(0,CurrentEncounter.Count);
-            EnemyCharacter Enem = CurrentEncounter[r].GetComponent<EnemyCharacter>();
-            BattleLogicHandler.AttackDamage(PC, Enem, 10 + PC.getDamageOutputModifier());
-        }
+    {
+        List<GameObject> CurrentEncounter;   
         
         CurrentEncounter = EnemyEncounter.GetLivingEncounterMembers();
-        if (CurrentEncounter.Count > 0)
+        for (int i = 0; i < AttackCount; i++)
         {
-            int r = Random.Range(0,CurrentEncounter.Count);
-            EnemyCharacter Enem = CurrentEncounter[r].GetComponent<EnemyCharacter>();
-            BattleLogicHandler.AttackDamage(PC, Enem, 10 + PC.getDamageOutputModifier());
+            if (CurrentEncounter.Count > 0)
+            {
+                int r = Random.Range(0,CurrentEncounter.Count);
+                EnemyCharacter Enem = CurrentEncounter[r].GetComponent<EnemyCharacter>();
+                BattleLogicHandler.AttackDamage(PC, Enem, basedamage + PC.getDamageOutputModifier());
+            }
         }
         
     }
@@ -56,7 +47,7 @@ public class ShrapnelAttack : Ability
     public override string GetTooltipString()
     {
         string name = "Shrapnel";
-        string s1 = "Deal " + (10 + PC.getDamageOutputModifier()) + " damage to random enemy three times";
+        string s1 = "Deal " + (10 + PC.getDamageOutputModifier()) + " damage to random enemy " + AttackCount + " times";
         string s2 = "Cooldown: " + currentCooldown + "/" + maxCooldown;
         return name + "\n" + s1 + "\n" + s2;
     }

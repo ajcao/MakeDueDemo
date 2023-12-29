@@ -9,6 +9,8 @@ namespace AbilityUtil
 
 public class WeakSporeAbility : Ability
 {
+    private int duration = 3;
+    
     public WeakSporeAbility(PlayableCharacter inputC)
     {
         this.AssignCharacter(inputC);
@@ -21,7 +23,7 @@ public class WeakSporeAbility : Ability
     
     public override void onCast(Character E)
     {
-        Buff B = new WeakBuff(E, this.getPlayableCharacter(), null, 3);
+        Buff B = new WeakBuff(E, this.getPlayableCharacter(), null, duration);
         BattleLogicHandler.OnBuffApply(B);
     }
     
@@ -33,7 +35,7 @@ public class WeakSporeAbility : Ability
     public override string GetTooltipString()
     {
         string name = "Hallucinogenic Spore";
-        string s1 = "Apply weak to enemy for 3 turns. Enemy deals 50% less damage";
+        string s1 = "Apply weak to enemy for " + duration + " turns. Enemy deals 50% less damage";
         string s2 = "Cooldown: " + currentCooldown + "/" + maxCooldown;
         return name + "\n" + s1 + "\n" + s2;
     }

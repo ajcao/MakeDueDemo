@@ -10,6 +10,9 @@ namespace AbilityUtil
   
 public class SmokeAbility : Ability
 {
+
+    private int duration = 1;
+
     public SmokeAbility(PlayableCharacter inputC)
     {
         this.AssignCharacter(inputC);
@@ -29,7 +32,7 @@ public class SmokeAbility : Ability
             EnemyCharacter Enem = G.GetComponent<EnemyCharacter>();
             if (Enem.isAlive() && PC.isAlive())
             {
-                Buff B = new WeakBuff(Enem, this.getPlayableCharacter(), null, 3);
+                Buff B = new WeakBuff(Enem, this.getPlayableCharacter(), null, duration);
                 BattleLogicHandler.OnBuffApply(B);
             }
             
@@ -44,7 +47,7 @@ public class SmokeAbility : Ability
     public override string GetTooltipString()
     {
         string name = "Smokescreen";
-        string s1 = "Apply 1 weak to all enemies. Weak reduces damage by 50%";
+        string s1 = "Apply " + duration + " turns of weak to all enemies. Weak reduces damage by 50%";
         string s2 = "Cooldown: " + currentCooldown + "/" + maxCooldown;
         return name + "\n" + s1 + "\n" + s2;
     }

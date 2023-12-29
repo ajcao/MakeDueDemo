@@ -8,6 +8,8 @@ namespace AbilityUtil
 
 public class AttackHealAbility : Ability
 {
+    private int basedamage = 30;
+    
     public AttackHealAbility(PlayableCharacter inputC)
     {
         this.AssignCharacter(inputC);
@@ -23,7 +25,7 @@ public class AttackHealAbility : Ability
         EnemyCharacter E = (EnemyCharacter) C;
         
         int enemyHPBeforeAttack = E.getCurrentHealth();
-        BattleLogicHandler.AttackDamage(PC, (EnemyCharacter) E, 30 + PC.getDamageOutputModifier());
+        BattleLogicHandler.AttackDamage(PC, (EnemyCharacter) E, basedamage + PC.getDamageOutputModifier());
         int enemyHPAfterAttack = E.getCurrentHealth();
         
         BattleLogicHandler.GainHealth(PC, Mathf.Max(0, (enemyHPBeforeAttack - enemyHPAfterAttack)) );
@@ -37,7 +39,7 @@ public class AttackHealAbility : Ability
     public override string GetTooltipString()
     {
         string name = "Bite";
-        string s1 = "Deal " + (30 + PC.getDamageOutputModifier()) + " damage. Heal for total damage done to enemy health";
+        string s1 = "Deal " + (basedamage + PC.getDamageOutputModifier()) + " damage. Heal for total damage done to enemy health";
         string s2 = "Cooldown: " + currentCooldown + "/" + maxCooldown;
         return name + "\n" + s1 + "\n" + s2;
     }

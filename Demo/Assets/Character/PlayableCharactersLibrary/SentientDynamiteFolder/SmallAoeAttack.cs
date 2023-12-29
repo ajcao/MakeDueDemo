@@ -9,6 +9,9 @@ namespace AbilityUtil
   
 public class SmallAoeAttack : Ability
 {
+
+    private int basedamage = 20;
+
     public SmallAoeAttack(PlayableCharacter inputC)
     {
         this.AssignCharacter(inputC);
@@ -28,7 +31,7 @@ public class SmallAoeAttack : Ability
             EnemyCharacter Enem = G.GetComponent<EnemyCharacter>();
             if (Enem.isAlive() && PC.isAlive())
             {
-                    BattleLogicHandler.AttackDamage(PC, Enem, 20 + PC.getDamageOutputModifier());
+                    BattleLogicHandler.AttackDamage(PC, Enem, basedamage + PC.getDamageOutputModifier());
             }
             
         }  
@@ -42,7 +45,7 @@ public class SmallAoeAttack : Ability
     public override string GetTooltipString()
     {
         string name = "Small Boom";
-        string s1 = "Deal " + (20 + PC.getDamageOutputModifier()) + " damage to all enemies";
+        string s1 = "Deal " + (basedamage + PC.getDamageOutputModifier()) + " damage to all enemies";
         string s2 = "Cooldown: " + currentCooldown + "/" + maxCooldown;
         return name + "\n" + s1 + "\n" + s2;
     }

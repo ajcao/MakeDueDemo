@@ -9,6 +9,9 @@ namespace AbilityUtil
 
 public class EnemyGivesHPAbilty : Ability
 {
+    private int duration = 3;
+    private int intensity = 10;
+    
     public EnemyGivesHPAbilty(PlayableCharacter inputC)
     {
         this.AssignCharacter(inputC);
@@ -21,7 +24,7 @@ public class EnemyGivesHPAbilty : Ability
     
     public override void onCast(Character E)
     {
-        Buff B = new GiveHPWhenAttackedDebuff(E, this.getPlayableCharacter(), 10, 3);
+        Buff B = new GiveHPWhenAttackedDebuff(E, this.getPlayableCharacter(), intensity, duration);
         BattleLogicHandler.OnBuffApply(B);
     }
     
@@ -33,7 +36,7 @@ public class EnemyGivesHPAbilty : Ability
     public override string GetTooltipString()
     {
         string name = "Leech Venom";
-        string s1 = "Debuff enemy for 3 turns. When enemy is attacked, heal player for 10 hp";
+        string s1 = "Debuff enemy for " + duration + " turns. When enemy is attacked, heal player for " + intensity + " hp";
         string s2 = "Cooldown: " + currentCooldown + "/" + maxCooldown;
         return name + "\n" + s1 + "\n" + s2;
     }

@@ -9,6 +9,7 @@ namespace AbilityUtil
 
 public class ArmorRetainAbility : Ability
 {
+    private int armorAmount = 40;
     public ArmorRetainAbility(PlayableCharacter inputC)
     {
         this.AssignCharacter(inputC);
@@ -22,9 +23,9 @@ public class ArmorRetainAbility : Ability
     public override void onCast(Character C)
     {
         PlayableCharacter P = (PlayableCharacter) C;
-        BattleLogicHandler.GainArmor(PC, P, 50 + PC.getDefenseOutputModifier());
+        BattleLogicHandler.GainArmor(PC, P, armorAmount + PC.getDefenseOutputModifier());
         
-        Buff B = new RetainBuff(P, this.getPlayableCharacter(), (50 + PC.getDefenseOutputModifier()), null);
+        Buff B = new RetainBuff(P, this.getPlayableCharacter(), (armorAmount + PC.getDefenseOutputModifier()), null);
         BattleLogicHandler.OnBuffApply(B);
     }
     
@@ -36,7 +37,7 @@ public class ArmorRetainAbility : Ability
     public override string GetTooltipString()
     {
         string name = "Rock Powder";
-        string s1 = "Give an ally player " + (50 + PC.getDefenseOutputModifier()) + " armor and " + (50 + PC.getDefenseOutputModifier()) + " armor retain";
+        string s1 = "Give an ally player " + (armorAmount + PC.getDefenseOutputModifier()) + " armor and " + (armorAmount + PC.getDefenseOutputModifier()) + " armor retain";
         string s2 = "Cooldown: " + currentCooldown + "/" + maxCooldown;
         return name + "\n" + s1 + "\n" + s2;
     }

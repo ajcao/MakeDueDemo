@@ -8,6 +8,7 @@ namespace AbilityUtil
 
 public class CoconutAoeStunAbillity : Ability
 {
+    private int stunAmount = 80;
     public CoconutAoeStunAbillity(PlayableCharacter inputC)
     {
         this.AssignCharacter(inputC);
@@ -26,7 +27,7 @@ public class CoconutAoeStunAbillity : Ability
             EnemyCharacter Enem = G.GetComponent<EnemyCharacter>();
             if (Enem.isAlive() && PC.isAlive())
             {
-                BattleLogicHandler.LowerStamina(Enem, 80);
+                BattleLogicHandler.LowerStamina(Enem, stunAmount);
             }
             
         }  
@@ -40,7 +41,7 @@ public class CoconutAoeStunAbillity : Ability
     public override string GetTooltipString()
     {
         string name = "Uproot";
-        string s1 = "Deal 80 stamina damage to all enemies";
+        string s1 = "Deal " + stunAmount + " stamina damage to all enemies";
         string s2 = "Cooldown: " + currentCooldown + "/" + maxCooldown;
         return name + "\n" + s1 + "\n" + s2;
     }

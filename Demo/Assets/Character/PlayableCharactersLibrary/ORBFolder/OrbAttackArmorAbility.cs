@@ -8,6 +8,7 @@ namespace AbilityUtil
 
 public class OrbAttackArmor : Ability
 {
+    private int armorAmount = 40;
     public OrbAttackArmor(PlayableCharacter inputC)
     {
         this.AssignCharacter(inputC);
@@ -21,7 +22,7 @@ public class OrbAttackArmor : Ability
     public override void onCast(Character C)
     {
         EnemyCharacter E = (EnemyCharacter) C;
-        BattleLogicHandler.LowerArmor(E, 40);
+        BattleLogicHandler.LowerArmor(E, armorAmount);
     }
     
     public override void postCast(Character C)
@@ -32,7 +33,7 @@ public class OrbAttackArmor : Ability
     public override string GetTooltipString()
     {
         string name = "Magnetic Pull";
-        string s1 = "Reduce enemy's current armor by 40";
+        string s1 = "Reduce enemy's current armor by " + armorAmount;
         string s2 = "Cooldown: " + currentCooldown + "/" + maxCooldown;
         return name + "\n" + s1 + "\n" + s2;
     }

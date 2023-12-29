@@ -8,6 +8,7 @@ namespace AbilityUtil
 
 public class HealAbility : Ability
 {
+    private int healamount = 50;
     public HealAbility(PlayableCharacter inputC)
     {
         this.AssignCharacter(inputC);
@@ -20,7 +21,7 @@ public class HealAbility : Ability
     
     public override void onCast(Character C)
     {
-        BattleLogicHandler.GainHealth((PlayableCharacter) C, 50);
+        BattleLogicHandler.GainHealth((PlayableCharacter) C, healamount);
     }
     
     public override void postCast(Character C)
@@ -31,7 +32,7 @@ public class HealAbility : Ability
     public override string GetTooltipString()
     {
         string name = "Positive Charge";
-        string s1 = "Restore " + 60 + " health to an ally player";
+        string s1 = "Restore " + healamount + " health to an ally player";
         string s2 = "Cooldown: " + currentCooldown + "/" + maxCooldown;
         return name + "\n" + s1 + "\n" + s2;
     }

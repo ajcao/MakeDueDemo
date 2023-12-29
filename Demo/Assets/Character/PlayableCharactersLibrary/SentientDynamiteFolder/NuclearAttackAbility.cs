@@ -9,6 +9,8 @@ namespace AbilityUtil
   
 public class NuclearAttackAbility : Ability
 {
+    private int basedamage = 50;
+
     public NuclearAttackAbility(PlayableCharacter inputC)
     {
         this.AssignCharacter(inputC);
@@ -28,7 +30,7 @@ public class NuclearAttackAbility : Ability
             EnemyCharacter Enem = G.GetComponent<EnemyCharacter>();
             if (Enem.isAlive() && PC.isAlive())
             {
-                    BattleLogicHandler.AttackDamage(PC, Enem, 50 + PC.getDamageOutputModifier());
+                    BattleLogicHandler.AttackDamage(PC, Enem, basedamage + PC.getDamageOutputModifier());
             }
             
         }  
@@ -42,7 +44,7 @@ public class NuclearAttackAbility : Ability
     public override string GetTooltipString()
     {
         string name = "Big Boom";
-        string s1 = "Deal " + (50 + PC.getDamageOutputModifier()) + " damage to all enemies";
+        string s1 = "Deal " + (basedamage + PC.getDamageOutputModifier()) + " damage to all enemies";
         string s2 = "Cooldown: " + currentCooldown + "/" + maxCooldown;
         return name + "\n" + s1 + "\n" + s2;
     }
