@@ -9,6 +9,7 @@ public class SelectCharacterButtonScript : MonoBehaviour, IPointerEnterHandler
 {
     private AbilityButtonHandler AB;
     private PlayableCharacter C;
+    private Coroutine Flashing;
     
     public void Init(PlayableCharacter inputC, AbilityButtonHandler inputAB)
     {

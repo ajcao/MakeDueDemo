@@ -196,13 +196,14 @@ public class AbilityButtonHandler : MonoBehaviour
             Cursor.SetCursor(TargetCrosshairPlayer, new Vector2(TargetCrosshairPlayer.width / 2, TargetCrosshairPlayer.height / 2), CursorMode.Auto);
         }
         
+        
         //Makes character selector button grey or not
         foreach (SelectCharacterButtonScript SC in SelectCharacterButtonList)
         {
             
             if (!SC.GetAssignedCharacter().IsAbletoCast())
             {
-                  SC.gameObject.GetComponent<Image>().color = Color.gray;
+                  SC.gameObject.GetComponent<Image>().color = new Color(0.410f, 0.410f, 0.410f);
             }
             else
             {

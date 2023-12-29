@@ -39,6 +39,8 @@ public class EnemyMoveHandler : MonoBehaviour
         }
     }
     
+    //Find a way to move code to EnemyMoveUI to handle UI elements.
+    //EnemyMoveHandler should handle strictly gamelogic
     public void DrawMoves(EnemyCharacter E)
     {
         int i = 0;
@@ -107,6 +109,8 @@ public class EnemyMoveHandler : MonoBehaviour
             {
                 
                 //Get the current move to get the animation
+                //Find a way to move code to EnemyMoveUI to handle UI elements.
+                //EnemyMoveHandler should handle strictly gamelogic
                 EnemyMove EM = E.getCurrentMoves().Peek();
                 BattleAnimation.StartAnimation(EM.getMoveIndicator().transform.GetChild(0).gameObject, "Flash");
                 

@@ -12,8 +12,8 @@ public class RatEnemyBehavior : EnemyCharacter
     void Awake()
     {
         this.Alive = true;
-        this.CurrentHealth = 250;
-        this.MaxHealth = 250;
+        this.CurrentHealth = 300;
+        this.MaxHealth = 300;
         this.CurrentArmor = 0;
         this.ArmorRetain = 0;
         this.DamageOutputModifier = 0;
@@ -79,7 +79,7 @@ public class RatEnemyBehavior : EnemyCharacter
         {
             case ("Awake"):
                 currentSprite.sprite = Resources.Load<Sprite>("EnemyCharacterImages/RatEnemy");
-                B = new EnragedFormBuff(this, this, 120, null);
+                B = new EnragedFormBuff(this, this, 130, null);
                 BattleLogicHandler.OnBuffApply(B);
                 this.Forms = s;
                 break;

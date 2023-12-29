@@ -20,7 +20,7 @@ public class GenericMonsterPhase2Behavior : EnemyCharacter
         this.DefenseOutputModifier = 0;
         this.canStaminaRegenerate = true;
         this.IsStunned = false;
-        this.Stamina = 100;
+        this.Stamina = 150;
         this.MaxStamina = this.Stamina;
         this.StaminaRegeneration = this.MaxStamina / 2;
         Moves = new Stack<EnemyMove>();

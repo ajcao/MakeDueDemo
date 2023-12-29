@@ -14,7 +14,7 @@ public class ArmorAbsorbAbility : Ability
         this.AssignCharacter(inputC);
         this.targetingType = TargetingTypeEnum.EnemyTarget;
         this.currentCooldown = 0;
-        this.maxCooldown = 4;
+        this.maxCooldown = 3;
         
         this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/GooAbillities/ArmorAbsorb") as Sprite;
     }

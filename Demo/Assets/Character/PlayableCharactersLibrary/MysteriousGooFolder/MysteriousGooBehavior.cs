@@ -22,7 +22,7 @@ public class MysteriousGooBehavior : PlayableCharacter
         this.AttackStat = 10;
         this.DefenseStat = 20;
         this.Resolve = 0;
-        this.MaxResolve = 80;
+        this.MaxResolve = 100;
         this.ResolveRegeneration = (int) Mathf.Ceil((float) this.MaxResolve / 2.0f);
         
         CharacterIcon = Resources.Load<Sprite>("PlayableCharacterImages/MysteriousGooIcon");

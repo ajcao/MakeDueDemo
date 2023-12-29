@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using CharacterUtil;
+using TMPro;
 using AbilityUtil;
 using TooltipUtil;
 
@@ -9,6 +10,7 @@ public class AbilityButtonScript : MonoBehaviour, TooltipStringInterface
 {    
     public AbilityButtonHandler AB;
     private Ability AssignedAbility;
+    public TextMeshProUGUI CooldownText;
     
     public void Init(AbilityButtonHandler InputAB)
     {
@@ -32,6 +34,20 @@ public class AbilityButtonScript : MonoBehaviour, TooltipStringInterface
             AB.SetCurrentAbility(null);
         }
         
+    }
+    
+    //Update cooldown
+    public void Update()
+    {
+
+        if ( (AssignedAbility == null) || (AssignedAbility.getCooldown() <= 0) )
+        {
+            CooldownText.text = "";
+        }
+        else
+        {
+            CooldownText.text = AssignedAbility.getCooldown() + "";
+        }
     }
 
     public string GetTooltipString()

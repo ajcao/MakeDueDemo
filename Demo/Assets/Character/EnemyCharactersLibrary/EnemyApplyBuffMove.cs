@@ -46,11 +46,11 @@ public class EnemyApplyBuffMove : EnemyMove
     {
         if ((TargetArray[0].GetType()).IsSubclassOf(typeof(EnemyCharacter)))
         {
-            return "Buffing";
+            return "Buff";
         }
         else
         {
-            return "Debuff";
+            return "Dbf";
         }
     }
     

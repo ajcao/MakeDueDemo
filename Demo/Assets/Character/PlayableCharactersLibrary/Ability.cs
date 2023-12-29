@@ -39,7 +39,6 @@ public abstract class Ability
         return PC;
     }
     
-    
     public TargetingTypeEnum getTargetingType()
     {
         return targetingType;
@@ -62,6 +61,11 @@ public abstract class Ability
         {
             currentCooldown-=1;
         }
+    }
+    
+    public int getCooldown()
+    {
+        return currentCooldown;
     }
     
     public void resetCooldown()

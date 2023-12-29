@@ -54,7 +54,7 @@ public class ParryShieldItemBuff : Buff
                 {
                     int r = Random.Range(0,CurrentEncounter.Count);
                     EnemyCharacter Enem = CurrentEncounter[r].GetComponent<EnemyCharacter>();
-                    BattleLogicHandler.BuffDamage(Enem, 10);
+                    BattleLogicHandler.BuffDamage(Enem, this.Intensity.Value);
                 }
             }
         }
@@ -70,7 +70,7 @@ public class ParryShieldItemBuff : Buff
                 {
                     int r = Random.Range(0,CurrentEncounter.Count);
                     EnemyCharacter Enem = CurrentEncounter[r].GetComponent<EnemyCharacter>();
-                    BattleLogicHandler.BuffDamage(Enem, 10);
+                    BattleLogicHandler.BuffDamage(Enem, this.Intensity.Value);
                 }
             }
             
