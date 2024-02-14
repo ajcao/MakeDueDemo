@@ -64,7 +64,7 @@ public class EnemyMoveHandler : MonoBehaviour
             if (EM_Indicator.GetComponent<EnemyMoveIndicatorScript>().Condensed == true)
             {
                 
-                EM_Indicator.transform.position = E.transform.position + new Vector3(0.0f,i*0.2f,0.0f) + new Vector3(0.0f, 2.0f*SR.size.y,0.0f);
+                EM_Indicator.transform.position = E.transform.position + new Vector3(0.0f,i*0.2f,0.0f) + new Vector3(0.0f, 1.8f*SR.size.y,0.0f);
                 //Have the first hitbox be normal size
                 if (i == 0)
                 {
@@ -80,7 +80,9 @@ public class EnemyMoveHandler : MonoBehaviour
             //Show moves as normallly
             else
             {
-                EM_Indicator.transform.position = E.transform.position + new Vector3(0.0f,i*1.1f,0.0f) + new Vector3(0.0f, 2.0f*SR.size.y,0.0f);
+                Debug.Log("Y Size: " + SR.size.y);
+                Debug.Log("X Size: " + SR.size.x);
+                EM_Indicator.transform.position = E.transform.position + new Vector3(0.0f,i*0.9f,0.0f) + new Vector3(0.0f, 1.8f*SR.size.y,0.0f);
                 EM_Indicator.GetComponent<BoxCollider2D>().size = new Vector2(1.47f, 1.04f);
                 EM_Indicator.GetComponent<BoxCollider2D>().offset = new Vector2(0f, 0f);
             }

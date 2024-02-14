@@ -47,7 +47,7 @@ public class LizardLeechBehavior : PlayableCharacter
         string attack = String.Format("Basic Attack: {0}",  this.AttackStat);
         string defense = String.Format("Basic Defend: {0}", this.DefenseStat);
         
-        string lore = "The LizardLeech is a parasitic animal that can be found throughout Landeus. The reptile prefers to live in semi-aquatic enviornments such as swamps, marshes, and bogs. However the LizardLeech have also spread into human settlements. The sewers of large cities make a perfect habitat for the animal. As such, these four-legged abominations are a common nuisance for many cityfolk, occasionally crawling out of pipes to steal blood at night. Currently the King's Council is searching for a solutin.";
+        string lore = "The LizardLeech is a parasitic animal that can be found throughout Landeus. The reptile prefers to live in semi-aquatic enviornments such as swamps, marshes, and bogs. A mother LizardLeech can lay around 1000 eggs during breeding season. However only about a 2.4% of the babies will survive into adulthood. These four-legged abominations have a varied diet consisting of fish, small rodents, and birds. A LizardLeech hunts by stalking and amushing prey. Their bite delievers powerful venom with powerful anticoagulant effects, allowing the LizardLeech to easily drain blood from the victim. The venom has useful medical properties and is used in medicine throughout Landeus.";
         
         return String.Format("{0}\n{1}\n{2}\n{3}\n\n\n{4}", hp, resolve, attack, defense, lore);
         

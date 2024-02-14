@@ -13,6 +13,8 @@ namespace ItemUtil
     
 public class ArmorRepairKitItem : GameItem
 {
+    private int ItemLevel = 40;
+    
     public ArmorRepairKitItem()
     {
         this.ItemIcon = Resources.Load<Sprite>("ItemImages/ArmorRepairKit");
@@ -25,13 +27,13 @@ public class ArmorRepairKitItem : GameItem
     
     public override void OnApply()
     {
-        Buff B = new RetainBuff(this.ItemOwner, this.ItemOwner, 40, null);
+        Buff B = new RetainBuff(this.ItemOwner, this.ItemOwner, ItemLevel, null);
         BattleLogicHandler.OnBuffApply(B);
     }
     
     public override string GetTooltipString()
     {
-        return "Retain 40 armor";
+        return "Retain " + ItemLevel + " armor";
     }
 }
 

@@ -145,7 +145,6 @@ public class AbilityButtonHandler : MonoBehaviour
             yield return null;
         }
         
-        currentCharacter = null;
         currentTarget = null;
         currentAbility = null;
         
