@@ -13,7 +13,7 @@ public class DemonCubeItemBuff : Buff
     public DemonCubeItemBuff(Character CTarget, Character CBuffer, int Inten, int? Dur) 
     {
         this.Trigger = TriggerEventEnum.onPreTurnEnum;
-        this.TriggerSecondary = TriggerEventEnum.noTriggerEnum;
+        this.TriggerSecondary = TriggerEventEnum.onPostTurnEnum;
         this.BuffTarget = CTarget;
         this.OriginalBuffer = CBuffer;
         this.Intensity = Inten;
@@ -41,23 +41,34 @@ public class DemonCubeItemBuff : Buff
     
     public override void onTriggerEffect(TriggerEvent E, ref int v)
     {
-        onPreTurnTrigger T = (onPreTurnTrigger) E;
-        int roundNum = BattleSceneHandler.GetRound();
-        this.Intensity = roundNum;
-        //Ensures two conditions:
-        //Ensure it is the player's turn
-        //Turn number is multiple of 10
-        if (this.BuffTarget.GetType().IsSubclassOf(T.CharacterType) && (this.Intensity % 10) == 0)
+        //Uses preturn to increment counter by 1 during start of player turn
+        if (E.GetType() == typeof(onPreTurnTrigger))
         {
-            List<GameObject> CurrentEncounter = EnemyEncounter.GetLivingEncounterMembers();
-            foreach (GameObject G in CurrentEncounter)
+            onPreTurnTrigger T = (onPreTurnTrigger) E;
+            if (this.BuffTarget.GetType().IsSubclassOf(T.CharacterType))
             {
-                EnemyCharacter Enem = G.GetComponent<EnemyCharacter>();
-                if (Enem.isAlive() && this.BuffTarget.isAlive())
+                int roundNum = BattleSceneHandler.GetRound();
+                this.Intensity = roundNum;
+            }
+        }
+
+        //Explosion occurs at end of player turn
+        if (E.GetType() == typeof(onPostTurnTrigger))
+        {
+            onPostTurnTrigger T = (onPostTurnTrigger) E;
+            
+            if (this.BuffTarget.GetType().IsSubclassOf(T.CharacterType) && (this.Intensity % 10) == 0)
+            {
+                List<GameObject> CurrentEncounter = EnemyEncounter.GetLivingEncounterMembers();
+                foreach (GameObject G in CurrentEncounter)
                 {
-                    BattleLogicHandler.BuffDamage(Enem, 200);
+                    EnemyCharacter Enem = G.GetComponent<EnemyCharacter>();
+                    if (Enem.isAlive() && this.BuffTarget.isAlive())
+                    {
+                        BattleLogicHandler.BuffDamage(Enem, 200);
+                    }
+                    
                 }
-                
             }
         }
     }

@@ -138,7 +138,6 @@ public class BattleSceneHandler : MonoBehaviour
             
             BattleLogicHandler.PlayerPostTurn();
             
-            
             Debug.Log("EnemyTurn");
             
             BattleLogicHandler.EnemyPreTurn();

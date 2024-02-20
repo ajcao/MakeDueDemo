@@ -80,8 +80,6 @@ public class EnemyMoveHandler : MonoBehaviour
             //Show moves as normallly
             else
             {
-                Debug.Log("Y Size: " + SR.size.y);
-                Debug.Log("X Size: " + SR.size.x);
                 EM_Indicator.transform.position = E.transform.position + new Vector3(0.0f,i*0.9f,0.0f) + new Vector3(0.0f, 1.8f*SR.size.y,0.0f);
                 EM_Indicator.GetComponent<BoxCollider2D>().size = new Vector2(1.47f, 1.04f);
                 EM_Indicator.GetComponent<BoxCollider2D>().offset = new Vector2(0f, 0f);
@@ -95,6 +93,10 @@ public class EnemyMoveHandler : MonoBehaviour
     public void BeginEnemyTurn()
     {
         EnemyisMoving = true;
+        //Force move draw
+        //Done because some niche situtations may have a move
+        //added but the move indicator is never drawn
+        this.Update();
         StartCoroutine(EnemyTurn());
     }
     
@@ -117,6 +119,7 @@ public class EnemyMoveHandler : MonoBehaviour
                 //Find a way to move code to EnemyMoveUI to handle UI elements.
                 //EnemyMoveHandler should handle strictly gamelogic
                 EnemyMove EM = E.getCurrentMoves().Peek();
+                Debug.Log(EM.getMoveIndicator());
                 BattleAnimation.StartAnimation(EM.getMoveIndicator().transform.GetChild(0).gameObject, "Flash");
                 
                 //Pause execution during animation
