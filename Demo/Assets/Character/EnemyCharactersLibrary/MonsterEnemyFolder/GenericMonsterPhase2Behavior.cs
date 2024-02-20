@@ -52,7 +52,7 @@ public class GenericMonsterPhase2Behavior : EnemyCharacter
         {
             AttackMode = false;
             Target = EnemyTargetingLibrary.TargetNRandomHeroes(1);
-            Moves.Push(new EnemyAttackMove(this, 100, Target));
+            Moves.Push(new EnemyAttackMove(this, 180, Target));
         }
         else
         {
@@ -69,7 +69,7 @@ public class GenericMonsterPhase2Behavior : EnemyCharacter
             else
             {
                 Target = new Character[] {(Character) this};
-                Moves.Push(new EnemyDefendMove(this, 50, Target));        
+                Moves.Push(new EnemyDefendMove(this, 80, Target));        
             }
         }
 

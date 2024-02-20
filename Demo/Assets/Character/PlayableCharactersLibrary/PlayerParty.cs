@@ -81,7 +81,8 @@ public static class PlayerParty
         return Party;
     }
     
-    //A party is dead when Party List is empty (since characters are removed on death)
+    //Death should not remove characcter from player party
+    //since characters may be revivable the future
     public static bool IsPartyDead()
     {
         foreach (GameObject G in Party)
@@ -93,4 +94,35 @@ public static class PlayerParty
         }
         return true;
     }
+
+    //Scripts for Out-of-battle PlayerParty manipulation
+    //This should be used to generate party once on game start-up
+    //Afterwards player keeps same party
+    public static bool CheckPartyEmpty()
+    {
+        for (int i = 0; i < MaxPartySize; i++)
+        {
+            if (Party[i] != null)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    //Scripts for Out-of-battle PlayerParty manipulation
+    //This should be used to delete current party before
+    //the game generates a new one
+    public static void DeleteParty()
+    {
+        for (int i = 0; i < MaxPartySize; i++)
+        {
+            if (Party[i] != null)
+            {
+                GameObject.Destroy(Party[i]);
+                Party[i] = null;
+            }
+        }
+    }
+    
 }

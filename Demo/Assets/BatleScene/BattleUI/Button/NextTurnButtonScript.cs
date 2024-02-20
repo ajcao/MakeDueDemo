@@ -7,35 +7,61 @@ using UnityEngine.SceneManagement;
 public class NextTurnButtonScript : MonoBehaviour
 {
     private AbilityButtonHandler AB;
-    private bool GoToNextSceneBool = false;
+    private string ButtonFunction;
         
     // Start is called before the first frame update
     public void Init(AbilityButtonHandler InputAB)
     {
         AB = InputAB;
+        ButtonFunction = "EndPlayerTurn";
     }
 
-    public void SetToNextScene()
+    public void EditButtonFunction(string s)
     {
-        this.gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("NextBattleButton") as Sprite;
-        this.gameObject.gameObject.GetComponent<Button>().interactable = true;
-        GoToNextSceneBool = true;
+        ButtonFunction = s;
+
+        if (ButtonFunction == "EndPlayerTurn")
+        {
+            this.gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("NextTurnButtonImage") as Sprite;
+            this.gameObject.gameObject.GetComponent<Button>().interactable = true;
+        }
+
+        else if (ButtonFunction == "IsEnemyTurn")
+        {
+            this.gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("EnemyTurnButton") as Sprite;
+            this.gameObject.gameObject.GetComponent<Button>().interactable = false;
+        }
+
+        else if (ButtonFunction == "ReturnToItemScene")
+        {
+            this.gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("ResetBattleButton") as Sprite;
+            this.gameObject.gameObject.GetComponent<Button>().interactable = true;
+        }
+
+        else if (ButtonFunction == "GoToNextScene")
+        {
+            this.gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("NextBattleButton") as Sprite;
+            this.gameObject.gameObject.GetComponent<Button>().interactable = true;
+        }
     }
     
     public void onButtonClick()
     {
-        if (!GoToNextSceneBool)
+        if (ButtonFunction == "EndPlayerTurn")
         {
             AB.ResetCasting();
             this.gameObject.GetComponent<Button>().interactable = false;
         }
         else
         {
-            //Destory EnemyData
+            //Destroy EnemyData
             GameObject EE_Data = GameObject.Find("EnemyEncounterDataGameObject");
             Destroy(EE_Data);
             
-            SceneManager.LoadScene("BattleSelectionScene", LoadSceneMode.Single);
+            if (ButtonFunction == "ReturnToItemScene")
+                SceneManager.LoadScene("ItemSelectionScene", LoadSceneMode.Single);
+            if (ButtonFunction == "GoToNextScene")
+                SceneManager.LoadScene("BattleSelectionScene", LoadSceneMode.Single);
         }
     }
 }

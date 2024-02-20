@@ -12,8 +12,8 @@ public class RatEnemyBehavior : EnemyCharacter
     void Awake()
     {
         this.Alive = true;
-        this.CurrentHealth = 300;
-        this.MaxHealth = 300;
+        this.CurrentHealth = 400;
+        this.MaxHealth = 400;
         this.CurrentArmor = 0;
         this.ArmorRetain = 0;
         this.DamageOutputModifier = 0;
@@ -58,14 +58,14 @@ public class RatEnemyBehavior : EnemyCharacter
             else
             {
                 Target = EnemyTargetingLibrary.TargetNRandomHeroes(1);
-                Moves.Push(new EnemyAttackDefendMove(this, 30, 10, Target));
+                Moves.Push(new EnemyAttackDefendMove(this, 50, 20, Target));
                 NoDefenseTurn++;
                 
             }
 
             //First move is always a defend move, on top of stack
             Target = new Character[] {(Character) this};
-            Moves.Push(new EnemyDefendMove(this, 40, Target));
+            Moves.Push(new EnemyDefendMove(this, 60, Target));
 
         }
         
@@ -79,7 +79,7 @@ public class RatEnemyBehavior : EnemyCharacter
         {
             case ("Awake"):
                 currentSprite.sprite = Resources.Load<Sprite>("EnemyCharacterImages/RatEnemy");
-                B = new EnragedFormBuff(this, this, 130, null);
+                B = new EnragedFormBuff(this, this, 150, null);
                 BattleLogicHandler.OnBuffApply(B);
                 this.Forms = s;
                 break;

@@ -42,13 +42,13 @@ public class GenericSaplingBehavior : EnemyCharacter
             if (i < 4)
             {
                 Target = EnemyTargetingLibrary.TargetNRandomHeroes(1);
-                Moves.Push(new EnemyAttackDefendMove(this, 40, 20, Target));
+                Moves.Push(new EnemyAttackDefendMove(this, 40, 30, Target));
             }
             
             if (i >= 4)
             {
                 Target = EnemyTargetingLibrary.TargetNRandomHeroes(2);
-                Moves.Push(new EnemyAttackDefendMove(this, 20, 20, Target));
+                Moves.Push(new EnemyAttackDefendMove(this, 20, 30, Target));
             }
         }
     }

@@ -6,6 +6,9 @@ using CharacterUtil;
 using AbilityUtil;
 using TMPro;
 
+//Current this scene is enter by the OnMouseDown function in PlayableCharacter
+//Should find a way to move character detail button to here. 
+
 public class CharacterDataSceneHandler : MonoBehaviour
 {    
     private PlayableCharacter currentCharacter;

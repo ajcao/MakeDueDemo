@@ -6,7 +6,7 @@ TagManager:
   tags:
   - EnemyCharacter
   - PlayableCharacter
-  - EnemyMoveTag
+  - Untargetable
   layers:
   - Default
   - TransparentFX

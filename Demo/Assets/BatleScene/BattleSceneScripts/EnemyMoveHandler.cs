@@ -98,11 +98,14 @@ public class EnemyMoveHandler : MonoBehaviour
         StartCoroutine(EnemyTurn());
     }
     
+    //EnemyTurn is a coroutine cause my animations can only be done in corountines
+    //If the animation system of unity is ever learned,
+    //Enemy turn may be rewritten to not be corountine
     IEnumerator EnemyTurn()
     {
         //Change the NextTurn Button to represent Enemy's turn
-        Sprite ButtonImage = Resources.Load<Sprite>("EnemyTurnButton") as Sprite;
-        NextTurnButton.gameObject.GetComponent<Image>().sprite = ButtonImage;
+        NextTurnButton.gameObject.GetComponent<NextTurnButtonScript>().EditButtonFunction("IsEnemyTurn");
+
         
         foreach (GameObject G in EnemyEncounter.GetLivingEncounterMembers())
         {

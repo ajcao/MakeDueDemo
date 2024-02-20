@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+//Coordinates scene loading for monster encounters
 public static class SceneCoordinator
 {
     public static bool BeatPlant;
