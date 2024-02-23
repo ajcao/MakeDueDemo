@@ -159,8 +159,7 @@ public class BattleSceneHandler : MonoBehaviour
             BattleLogicHandler.EnemyPostTurn();
             
             BattleLogicHandler.EndCombatRound(Round);
-            
-            
+
 
             
             

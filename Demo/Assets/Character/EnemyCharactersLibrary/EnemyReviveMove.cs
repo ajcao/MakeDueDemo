@@ -41,7 +41,7 @@ public class EnemyReviveMove : EnemyMove
     
     public override string MoveIndicatorText()
     {
-        return "Summon";
+        return "Sum";
     }
     
     public override string getAnimation()

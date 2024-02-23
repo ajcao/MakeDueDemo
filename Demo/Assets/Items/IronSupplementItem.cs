@@ -11,12 +11,12 @@ using BuffUtil;
 namespace ItemUtil
 {
     
-public class ShinobiKatanaItem : GameItem
+public class IronSupplementItem : GameItem
 {
-    public ShinobiKatanaItem()
+    public IronSupplementItem()
     {
-        this.ItemIcon = Resources.Load<Sprite>("ItemImages/ShinobiKatana");
-        this.ItemName = "Shinobi Katana";
+        this.ItemIcon = Resources.Load<Sprite>("ItemImages/IronSupplement");
+        this.ItemName = "Iron Supplement";
     }
     
     public override void OnPickup()
@@ -26,13 +26,13 @@ public class ShinobiKatanaItem : GameItem
     
     public override void OnApply()
     {
-        Buff B = new ShinobiKatanaItemBuff(this.ItemOwner, this.ItemOwner, null, null);
+        Buff B = new IronSupplementBuff(this.ItemOwner, this.ItemOwner, 0, null);
         BattleLogicHandler.OnBuffApply(B);
     }
     
     public override string GetTooltipString()
     {
-        return "Whenever you block an enemy attack, deal triple the blocked damage as stamina damage";
+        return "At the end of the round, excess armor is turned a stack. When the stack reaches 100, heal 10";
     }
 }
 

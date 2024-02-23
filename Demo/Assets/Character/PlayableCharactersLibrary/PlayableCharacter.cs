@@ -47,7 +47,7 @@ public abstract class PlayableCharacter : Character
 	{
 		if (this.CurrentHealth >= this.MaxHealth)
 		{
-			this.setResolve(this.Resolve + this.ResolveRegeneration);
+			BattleLogicHandler.GainResolve(this, this.ResolveRegeneration);
 		}
 	}
 	

@@ -39,14 +39,17 @@ public enum TriggerEventEnum
 	
 	onStaminaWasLostEnum,
 	
+	onResolveGainSpecialEnum,
+	
 	onArmorGainAddEnum,
 	onArmorGainMultiEnum,
-	//onArmorGainSpecialEnum,
+	
 	onArmorGainPostEnum,
 	
 	onArmorWasGainedEnum,
 	
 	onHealthGainSpecialEnum,
+	onHealthGainPostEnum,
 	
 	
 	onEnemyAttackEnum,
@@ -314,6 +317,18 @@ public class onStaminaWasLostTrigger : TriggerEvent
 	
 }
 
+public class onResolveGainSpecialTrigger : TriggerEvent
+{
+	public PlayableCharacter ReceivingChar; 
+	public int ResolveAmt;
+	
+	public onResolveGainSpecialTrigger(PlayableCharacter RC, int d)
+	{
+		ReceivingChar = RC;
+		ResolveAmt = d;
+	}
+}
+
 public class onArmorGainAddTrigger : TriggerEvent
 {
 	public Character CastingChar;
@@ -376,6 +391,18 @@ public class onHealthGainSpecialTrigger : TriggerEvent
 	public int HealthAmount;
 	
 	public onHealthGainSpecialTrigger(Character RC, int d)
+	{
+		ReceivingChar = RC;
+		HealthAmount = d;
+	}
+}
+
+public class onHealthGainPostTrigger : TriggerEvent
+{
+	public Character ReceivingChar; 
+	public int HealthAmount;
+	
+	public onHealthGainPostTrigger(Character RC, int d)
 	{
 		ReceivingChar = RC;
 		HealthAmount = d;

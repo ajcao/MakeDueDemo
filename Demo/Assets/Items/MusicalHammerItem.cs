@@ -11,12 +11,13 @@ using BuffUtil;
 namespace ItemUtil
 {
     
-public class ShinobiKatanaItem : GameItem
+public class MusicalHammerItem : GameItem
 {
-    public ShinobiKatanaItem()
+    int StaminaAmt = 100;
+    public MusicalHammerItem()
     {
-        this.ItemIcon = Resources.Load<Sprite>("ItemImages/ShinobiKatana");
-        this.ItemName = "Shinobi Katana";
+        this.ItemIcon = Resources.Load<Sprite>("ItemImages/MusicalHammer");
+        this.ItemName = "Musical Hammer";
     }
     
     public override void OnPickup()
@@ -26,13 +27,13 @@ public class ShinobiKatanaItem : GameItem
     
     public override void OnApply()
     {
-        Buff B = new ShinobiKatanaItemBuff(this.ItemOwner, this.ItemOwner, null, null);
+        Buff B = new MusicalHammerBuff(this.ItemOwner, this.ItemOwner, StaminaAmt, null);
         BattleLogicHandler.OnBuffApply(B);
     }
     
     public override string GetTooltipString()
     {
-        return "Whenever you block an enemy attack, deal triple the blocked damage as stamina damage";
+        return "If your attack breaks an enemy armor, deal " + StaminaAmt + " stamina damage";
     }
 }
 

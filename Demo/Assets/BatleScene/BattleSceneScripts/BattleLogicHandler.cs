@@ -194,10 +194,18 @@ public static class BattleLogicHandler
 		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onHealthGainSpecialEnum, TE, ref d);
 		
 		C.setCurrentHealth(Mathf.Min(C.getCurrentHealth() + d, C.getMaxHealth()));
+		
+		TE = new onHealthGainPostTrigger(C, d);
+		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onHealthGainPostEnum, TE, ref d);
 	}
 	
-	public static void GainResolve(PlayableCharacter P, int r)
+	public static void GainResolve(PlayableCharacter P, int inputR)
 	{
+		int r = inputR;
+		
+		TriggerEvent TE = new onResolveGainSpecialTrigger(P, r);
+		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onResolveGainSpecialEnum, TE, ref r);
+		
 		P.setResolve(Mathf.Min(P.getResolve() + r, P.getMaxResolve()));
 	}
 	

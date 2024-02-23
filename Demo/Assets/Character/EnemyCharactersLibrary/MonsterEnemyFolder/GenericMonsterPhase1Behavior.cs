@@ -46,12 +46,11 @@ public class GenericMonsterPhase1Behavior : EnemyCharacter
         {
             BigAttackMode = false;
             Target = EnemyTargetingLibrary.TargetNRandomHeroes(1);
-            Moves.Push(new EnemyAttackMove(this, 180, Target));
+            Moves.Push(new EnemyAttackMove(this, 120, Target));
         }
         
         else
         {
-        
             BigAttackMode = true;
             
             //As frail fails to proc, changes of frail goes up
@@ -79,7 +78,6 @@ public class GenericMonsterPhase1Behavior : EnemyCharacter
                         this.RandomAttackOrDefend();                   
                     }
                     continue;
-                    
                 }
             }
             
@@ -106,12 +104,12 @@ public class GenericMonsterPhase1Behavior : EnemyCharacter
         if (RandomMoveInt[0] == 0)
         {
                 Target = EnemyTargetingLibrary.TargetNRandomHeroes(1);
-                Moves.Push(new EnemyAttackDefendMove(this, 80, 40, Target));
+                Moves.Push(new EnemyAttackDefendMove(this, 40, 20, Target));
         }
         else
         {
                 Target = new Character[] {(Character) this};
-                Moves.Push(new EnemyDefendMove(this, 80, Target));    
+                Moves.Push(new EnemyDefendMove(this, 60, Target));    
         }
     }
     

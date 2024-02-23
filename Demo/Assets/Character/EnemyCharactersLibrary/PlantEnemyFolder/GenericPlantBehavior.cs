@@ -12,8 +12,8 @@ public class GenericPlantBehavior : EnemyCharacter
     void Awake()
     {
         this.Alive = true;
-        this.CurrentHealth = 900;
-        this.MaxHealth = 900;
+        this.CurrentHealth = 1000;
+        this.MaxHealth = 1000;
         this.CurrentArmor = 0;
         this.ArmorRetain = 0;
         this.DamageOutputModifier = 0;
@@ -70,20 +70,19 @@ public class GenericPlantBehavior : EnemyCharacter
             return;
         }
         
-        //Otherwise have random of three moves
-        int[] RandomMoveInt = EnemyTargetingLibrary.CreateEvenDistributionToN(5);
+        int[] RandomMoveInt = EnemyTargetingLibrary.CreateEvenDistributionToN(3);
         
         for (int i = 0; i < 2; i++)
         {
             if (RandomMoveInt[i] < 2)
             {
-                Target = EnemyTargetingLibrary.TargetNRandomHeroes(1);
-                Moves.Push(new EnemyAttackMove(this, 80, Target));
+                Target = EnemyTargetingLibrary.TargetNRandomHeroes(4);
+                Moves.Push(new EnemyAttackMove(this, 20, Target));
             }
             else
             {
                 Target = EnemyTargetingLibrary.TargetEnemyType<GenericSaplingBehavior>();
-                Moves.Push(new EnemyDefendMove(this, 60, Target));
+                Moves.Push(new EnemyDefendMove(this, 50, Target));
             }
         }
         

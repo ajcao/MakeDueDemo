@@ -11,12 +11,12 @@ using BuffUtil;
 namespace ItemUtil
 {
     
-public class ShinobiKatanaItem : GameItem
+public class WarBannerItem : GameItem
 {
-    public ShinobiKatanaItem()
+    public WarBannerItem()
     {
-        this.ItemIcon = Resources.Load<Sprite>("ItemImages/ShinobiKatana");
-        this.ItemName = "Shinobi Katana";
+        this.ItemIcon = Resources.Load<Sprite>("ItemImages/WarBanner");
+        this.ItemName = "War Banner";
     }
     
     public override void OnPickup()
@@ -26,13 +26,13 @@ public class ShinobiKatanaItem : GameItem
     
     public override void OnApply()
     {
-        Buff B = new ShinobiKatanaItemBuff(this.ItemOwner, this.ItemOwner, null, null);
+        Buff B = new WarBannerBuff(this.ItemOwner, this.ItemOwner, null, 1);
         BattleLogicHandler.OnBuffApply(B);
     }
     
     public override string GetTooltipString()
     {
-        return "Whenever you block an enemy attack, deal triple the blocked damage as stamina damage";
+        return "Every attack during the first turn, apply 2 vulnurable to all enemies";
     }
 }
 

@@ -97,7 +97,30 @@ public static class ItemPool
 
         A = new LawBookItem();
         ReturnList.Add(A);
-
+        
+        A = new HardhatItem();
+        ReturnList.Add(A);
+        
+        A = new WeightsItem();
+        ReturnList.Add(A);
+        
+        A = new WarBannerItem();
+        ReturnList.Add(A);
+        
+        A = new MusicalHammerItem();
+        ReturnList.Add(A);
+        
+        A = new IronSupplementItem();
+        ReturnList.Add(A);
+        
+        A = new SoulContractItem();
+        ReturnList.Add(A);
+        
+        A = new MindContractItem();
+        ReturnList.Add(A);
+        
+        A = new PerpetualPendulumItem();
+        ReturnList.Add(A);
     }
 
 }
