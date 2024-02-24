@@ -248,6 +248,7 @@ public class onDealDamageSpecialTrigger : TriggerEvent
 	}
 }
 
+//This one refers to any case where health damage was taken (buff, abillities, etc)
 public class onHealthDamageWasTakenTrigger : TriggerEvent
 {
 	public Character ReceivingChar;
@@ -290,6 +291,7 @@ public class onDealArmorDamagePostTrigger : TriggerEvent
 	}
 }
 
+//This one refers to cases where health was damaged by abilities
 public class onDealHealthDamagePostTrigger : TriggerEvent
 {
 	public Character AttackingChar;

@@ -46,7 +46,7 @@ public class GenericMonsterPhase1Behavior : EnemyCharacter
         {
             BigAttackMode = false;
             Target = EnemyTargetingLibrary.TargetNRandomHeroes(1);
-            Moves.Push(new EnemyAttackMove(this, 120, Target));
+            Moves.Push(new EnemyAttackMove(this, 160, Target));
         }
         
         else
@@ -104,7 +104,7 @@ public class GenericMonsterPhase1Behavior : EnemyCharacter
         if (RandomMoveInt[0] == 0)
         {
                 Target = EnemyTargetingLibrary.TargetNRandomHeroes(1);
-                Moves.Push(new EnemyAttackDefendMove(this, 40, 20, Target));
+                Moves.Push(new EnemyAttackDefendMove(this, 60, 20, Target));
         }
         else
         {

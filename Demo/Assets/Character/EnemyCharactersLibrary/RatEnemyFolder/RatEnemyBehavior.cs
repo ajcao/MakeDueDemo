@@ -51,10 +51,12 @@ public class RatEnemyBehavior : EnemyCharacter
             Target = new Character[] {(Character) this};
             Moves.Push(new EnemyDefendMove(this, 60, Target));
             
+            //When enranged, only attack
             if (this.Forms == "Enranged")
             {
-                Target = EnemyTargetingLibrary.TargetNRandomHeroes(1);
-                Moves.Push(new RatLifeStealAttack(this, 60, Target));
+                    Target = EnemyTargetingLibrary.TargetNRandomHeroes(1);
+                    Moves.Push(new EnemyAttackDefendMove(this, 80, 20, Target));
+                    NoDefenseTurn++;
             }
             else //Enemy is attacking normally
             {
@@ -68,7 +70,7 @@ public class RatEnemyBehavior : EnemyCharacter
                 else
                 {
                     Target = EnemyTargetingLibrary.TargetNRandomHeroes(1);
-                    Moves.Push(new EnemyAttackDefendMove(this, 60, 20, Target));
+                    Moves.Push(new EnemyAttackDefendMove(this, 80, 20, Target));
                     NoDefenseTurn++;
                 }
             }
@@ -90,7 +92,7 @@ public class RatEnemyBehavior : EnemyCharacter
                 break;
             case ("Enranged"):
                 currentSprite.sprite = Resources.Load<Sprite>("EnemyCharacterImages/EnragedRatEnemy");
-                B = new AttackUpBuff(this, this, 20, null);
+                B = new RatLifeStealBuff(this, this, null, null);
                 BattleLogicHandler.OnBuffApply(B);
                 this.Forms = s;
                 break;

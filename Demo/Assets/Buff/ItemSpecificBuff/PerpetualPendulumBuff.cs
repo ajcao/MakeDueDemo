@@ -37,7 +37,7 @@ public class PerpetualPendulumBuff : Buff
     
     public override string GetTooltipString()
     {
-        string s1 = "Cooldoowns are reduced twice as fast. Resolve can no longer be gained";
+        string s1 = "Cooldoowns are reduced twice as fast. Resolve can no longer be gained for anyone";
         return s1;
     }
     
@@ -51,11 +51,8 @@ public class PerpetualPendulumBuff : Buff
         
         else //Is character receiving resolve
         {
-            onResolveGainSpecialTrigger TE = (onResolveGainSpecialTrigger) E;
-            if (TE.ReceivingChar == BuffTarget)
-            {
-                v = 0;
-            }
+            //Since resolve is banned for everyone, we do not need to check who the buffholder is
+            v = 0;
             
         }
     }

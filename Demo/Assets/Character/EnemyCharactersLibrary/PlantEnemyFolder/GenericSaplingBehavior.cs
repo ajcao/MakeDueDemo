@@ -12,15 +12,15 @@ public class GenericSaplingBehavior : EnemyCharacter
     void Awake()
     {
         this.Alive = true;
-        this.CurrentHealth = 200;
-        this.MaxHealth = 200;
+        this.CurrentHealth = 120;
+        this.MaxHealth = 120;
         this.CurrentArmor = 0;
         this.ArmorRetain = 0;
         this.DamageOutputModifier = 0;
         this.DefenseOutputModifier = 0;
         this.canStaminaRegenerate = true;
         this.IsStunned = false;
-        this.Stamina = 100;
+        this.Stamina = 120;
         this.MaxStamina = this.Stamina;
         this.StaminaRegeneration = this.MaxStamina / 2;
         Moves = new Stack<EnemyMove>();
