@@ -37,7 +37,7 @@ public class SoulContractDamageDebuff : Buff
     
     public override string GetTooltipString()
     {
-        string s1 = "Cooldoowns are reduced twice as fast. Resolve can no longer be gained";
+        string s1 = "Every turn take 5 damage and incrase this amount by 5";
         return s1;
     }
     

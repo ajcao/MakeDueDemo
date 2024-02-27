@@ -35,7 +35,7 @@ public class SoulContractItem : GameItem
     
     public override string GetTooltipString()
     {
-        return "Every turn gain 50% resolve. Every turn lose 5 hp and incrase this amount by 5";
+        return "Every turn gain 50% resolve. Every turn take 5 damage and incrase this amount by 5";
     }
 }
 

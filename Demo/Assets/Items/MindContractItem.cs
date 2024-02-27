@@ -29,17 +29,14 @@ public class MindContractItem : GameItem
         Buff B = new GainResolveBuff(this.ItemOwner, this.ItemOwner, this.ItemOwner.getMaxResolve() / 2, null);
         BattleLogicHandler.OnBuffApply(B);
         
-        B = new VulnurableBuff(this.ItemOwner, this.ItemOwner, null, null);
-        BattleLogicHandler.OnBuffApply(B);
-        
-        B = new WeakBuff(this.ItemOwner, this.ItemOwner, null, null);
+        B = new MindContractDamageDebuff(this.ItemOwner, this.ItemOwner, 5, null);
         BattleLogicHandler.OnBuffApply(B);
 
     }
     
     public override string GetTooltipString()
     {
-        return "Every turn gain 50% resolve. Become permantly vulnurable and weak";
+        return "Every turn gain 50% resolve. Every turn lose 5 hp";
     }
 }
 
