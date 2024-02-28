@@ -30,7 +30,7 @@ public class ShinobiKatanaItemBuff : Buff
     
     public override string GetTooltipString()
     {
-        return "Whenever you block an enemy attack, deal armor amount as stamina damage";
+        return "Whenever you block an enemy attack, deal armor amount as poise damage";
     }
     
     public override void onExpire()
@@ -43,7 +43,7 @@ public class ShinobiKatanaItemBuff : Buff
         onDealArmorDamagePostTrigger T = (onDealArmorDamagePostTrigger) E;
         if (T.ReceivingChar == BuffTarget)
         {
-            BattleLogicHandler.LowerStamina((EnemyCharacter) T.AttackingChar, v);
+            BattleLogicHandler.LowerPoise((EnemyCharacter) T.AttackingChar, v);
         }
     }
 }

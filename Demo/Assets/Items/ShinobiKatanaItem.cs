@@ -32,7 +32,7 @@ public class ShinobiKatanaItem : GameItem
     
     public override string GetTooltipString()
     {
-        return "Whenever you block an enemy attack, deal armor amount as stamina damage";
+        return "Whenever you block an enemy attack, deal armor amount as poise damage";
     }
 }
 

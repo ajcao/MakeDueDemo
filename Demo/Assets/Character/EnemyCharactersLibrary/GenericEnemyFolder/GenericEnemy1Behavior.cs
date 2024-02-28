@@ -18,11 +18,11 @@ public class GenericEnemy1Behavior : EnemyCharacter
         this.ArmorRetain = 0;
         this.DamageOutputModifier = 0;
         this.DefenseOutputModifier = 0;
-        this.canStaminaRegenerate = true;
+        this.canPoiseRegenerate = true;
         this.IsStunned = false;
-        this.Stamina = 200;
-        this.MaxStamina = this.Stamina;
-        this.StaminaRegeneration = this.MaxStamina / 2;
+        this.Poise = 200;
+        this.MaxPoise = this.Poise;
+        this.PoiseRegeneration = this.MaxPoise / 2;
         Moves = new Stack<EnemyMove>();
         
         this.CharacterIcon = Resources.Load<Sprite>("EnemyCharacterImages/GenericEnemy1Icon");

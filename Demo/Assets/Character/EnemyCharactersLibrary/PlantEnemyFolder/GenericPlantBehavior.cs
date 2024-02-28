@@ -18,11 +18,11 @@ public class GenericPlantBehavior : EnemyCharacter
         this.ArmorRetain = 0;
         this.DamageOutputModifier = 0;
         this.DefenseOutputModifier = 0;
-        this.canStaminaRegenerate = true;
+        this.canPoiseRegenerate = true;
         this.IsStunned = false;
-        this.Stamina = 300;
-        this.MaxStamina = this.Stamina;
-        this.StaminaRegeneration = this.MaxStamina / 2;
+        this.Poise = 300;
+        this.MaxPoise = this.Poise;
+        this.PoiseRegeneration = this.MaxPoise / 2;
         Moves = new Stack<EnemyMove>();
         
         this.CharacterIcon = Resources.Load<Sprite>("EnemyCharacterImages/GenericPlantIcon");

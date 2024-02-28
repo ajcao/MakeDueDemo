@@ -14,52 +14,52 @@ public abstract class EnemyCharacter : Character
 	//Move pool for display variable
 	protected Stack<EnemyMove> Moves;
 	
-	public bool canStaminaRegenerate;
+	public bool canPoiseRegenerate;
 	public bool IsStunned;
-	protected int Stamina;
-	protected int MaxStamina;
-	protected int StaminaRegeneration;
+	protected int Poise;
+	protected int MaxPoise;
+	protected int PoiseRegeneration;
 	
 	public bool MultipleLives = false;
 	
 	public string Forms = "Default";
 	
-	public int getStamina()
+	public int getPoise()
 	{
-		return this.Stamina;
+		return this.Poise;
 	}
 	
-	public void setStamina(int s)
+	public void setPoise(int s)
 	{
-		//When Stunned, stamina does not matter anymore
+		//When Stunned, poise does not matter anymore
 		if (!this.IsStunned)
 		{
-			//If stamina is lowering, cancel regenerating stamina at end of turn
-			if (s < this.Stamina)
+			//If poise is lowering, cancel regenerating poise at end of turn
+			if (s < this.Poise)
 			{
-				canStaminaRegenerate = false;
+				canPoiseRegenerate = false;
 			}
-			this.Stamina = Mathf.Max(s,0);
-			if (this.Stamina <= 0)
+			this.Poise = Mathf.Max(s,0);
+			if (this.Poise <= 0)
 			{
 				this.GetStunned();
 			}
 		}
 	}
 	
-	public int getMaxStamina()
+	public int getMaxPoise()
 	{
-		return this.MaxStamina;
+		return this.MaxPoise;
 	}
 	
-	public void setMaxStamina(int s)
+	public void setMaxPoise(int s)
 	{
-		this.MaxStamina = s;
+		this.MaxPoise = s;
 	}
 	
-	public int getStaminaRegeneration()
+	public int getPoiseRegeneration()
 	{
-		return this.StaminaRegeneration;
+		return this.PoiseRegeneration;
 	}
 	
 	public abstract void GenerateMoves();
