@@ -39,14 +39,17 @@ public enum TriggerEventEnum
 	
 	onPoiseWasLostEnum,
 	
+	onResolveGainSpecialEnum,
+	
 	onArmorGainAddEnum,
 	onArmorGainMultiEnum,
-	//onArmorGainSpecialEnum,
+	
 	onArmorGainPostEnum,
 	
 	onArmorWasGainedEnum,
 	
 	onHealthGainSpecialEnum,
+	onHealthGainPostEnum,
 	
 	
 	onEnemyAttackEnum,
@@ -245,6 +248,7 @@ public class onDealDamageSpecialTrigger : TriggerEvent
 	}
 }
 
+//This one refers to any case where health damage was taken (buff, abillities, etc)
 public class onHealthDamageWasTakenTrigger : TriggerEvent
 {
 	public Character ReceivingChar;
@@ -287,6 +291,7 @@ public class onDealArmorDamagePostTrigger : TriggerEvent
 	}
 }
 
+//This one refers to cases where health was damaged by abilities
 public class onDealHealthDamagePostTrigger : TriggerEvent
 {
 	public Character AttackingChar;
@@ -312,6 +317,18 @@ public class onPoiseWasLostTrigger : TriggerEvent
 		PoiseAmount = a;
 	}
 	
+}
+
+public class onResolveGainSpecialTrigger : TriggerEvent
+{
+	public PlayableCharacter ReceivingChar; 
+	public int ResolveAmt;
+	
+	public onResolveGainSpecialTrigger(PlayableCharacter RC, int d)
+	{
+		ReceivingChar = RC;
+		ResolveAmt = d;
+	}
 }
 
 public class onArmorGainAddTrigger : TriggerEvent
@@ -376,6 +393,18 @@ public class onHealthGainSpecialTrigger : TriggerEvent
 	public int HealthAmount;
 	
 	public onHealthGainSpecialTrigger(Character RC, int d)
+	{
+		ReceivingChar = RC;
+		HealthAmount = d;
+	}
+}
+
+public class onHealthGainPostTrigger : TriggerEvent
+{
+	public Character ReceivingChar; 
+	public int HealthAmount;
+	
+	public onHealthGainPostTrigger(Character RC, int d)
 	{
 		ReceivingChar = RC;
 		HealthAmount = d;

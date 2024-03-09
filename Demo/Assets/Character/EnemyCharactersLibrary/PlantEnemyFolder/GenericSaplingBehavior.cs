@@ -12,15 +12,15 @@ public class GenericSaplingBehavior : EnemyCharacter
     void Awake()
     {
         this.Alive = true;
-        this.CurrentHealth = 150;
-        this.MaxHealth = 150;
+        this.CurrentHealth = 120;
+        this.MaxHealth = 120;
         this.CurrentArmor = 0;
         this.ArmorRetain = 0;
         this.DamageOutputModifier = 0;
         this.DefenseOutputModifier = 0;
         this.canPoiseRegenerate = true;
         this.IsStunned = false;
-        this.Poise = 60;
+        this.Poise = 120;
         this.MaxPoise = this.Poise;
         this.PoiseRegeneration = this.MaxPoise / 2;
         Moves = new Stack<EnemyMove>();
@@ -42,13 +42,13 @@ public class GenericSaplingBehavior : EnemyCharacter
             if (i < 4)
             {
                 Target = EnemyTargetingLibrary.TargetNRandomHeroes(1);
-                Moves.Push(new EnemyAttackDefendMove(this, 40, 20, Target));
+                Moves.Push(new EnemyAttackDefendMove(this, 50, 30, Target));
             }
             
             if (i >= 4)
             {
                 Target = EnemyTargetingLibrary.TargetNRandomHeroes(2);
-                Moves.Push(new EnemyAttackDefendMove(this, 20, 20, Target));
+                Moves.Push(new EnemyAttackDefendMove(this, 25, 30, Target));
             }
         }
     }

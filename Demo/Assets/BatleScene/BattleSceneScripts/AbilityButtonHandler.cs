@@ -97,9 +97,7 @@ public class AbilityButtonHandler : MonoBehaviour
     public void StartCastingMode()
     {
         IsCastingMode = true;
-        Sprite ButtonImage = Resources.Load<Sprite>("NextTurnButtonImage") as Sprite;
-        NextTurnButton.gameObject.GetComponent<Image>().sprite = ButtonImage;
-        NextTurnButton.gameObject.gameObject.GetComponent<Button>().interactable = true;
+        NextTurnButton.gameObject.GetComponent<NextTurnButtonScript>().EditButtonFunction("EndPlayerTurn");
         StartCoroutine(CharacterCasting());
     }
 

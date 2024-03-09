@@ -32,7 +32,7 @@ public class DefenseUpBuff : Buff
     
     public override void onExpire()
     {
-        this.BuffTarget.setDefenseOutputModifier(this.BuffTarget.getDefenseOutputModifier() + this.Intensity.Value);
+        this.BuffTarget.setDefenseOutputModifier(this.BuffTarget.getDefenseOutputModifier() - this.Intensity.Value);
     }
     
     public override string GetTooltipString()

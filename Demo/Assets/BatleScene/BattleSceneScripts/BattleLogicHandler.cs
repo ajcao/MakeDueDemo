@@ -194,10 +194,18 @@ public static class BattleLogicHandler
 		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onHealthGainSpecialEnum, TE, ref d);
 		
 		C.setCurrentHealth(Mathf.Min(C.getCurrentHealth() + d, C.getMaxHealth()));
+		
+		TE = new onHealthGainPostTrigger(C, d);
+		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onHealthGainPostEnum, TE, ref d);
 	}
 	
-	public static void GainResolve(PlayableCharacter P, int r)
+	public static void GainResolve(PlayableCharacter P, int inputR)
 	{
+		int r = inputR;
+		
+		TriggerEvent TE = new onResolveGainSpecialTrigger(P, r);
+		BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onResolveGainSpecialEnum, TE, ref r);
+		
 		P.setResolve(Mathf.Min(P.getResolve() + r, P.getMaxResolve()));
 	}
 	
@@ -284,14 +292,16 @@ public static class BattleLogicHandler
 			{
 				C.gameObject.transform.position = new Vector3(0, -500, 0);
 			}
+			else
+			{
+				//Keep Character but untag them so they cannot be targetted anymore
+				C.gameObject.tag = "Untargetable";
+			}
 		}
 		else
 		{
 			C.gameObject.transform.position = new Vector3(0, -500, 0);
 		}
-		
-		//Remove tag for targetting
-		C.gameObject.tag = "Untagged";
 					
 		//Destroy health/armor indicator
 		UnityEngine.Object.Destroy(C.gameObject.GetComponentInChildren<HealthArmorScript>().gameObject);

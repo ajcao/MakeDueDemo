@@ -38,17 +38,16 @@ public class ItemDragDropScript : MonoBehaviour, IBeginDragHandler, IDragHandler
     
     public void OnBeginDrag(PointerEventData eventData)
     {
+        
         this.isDragged = true;
         this.GetComponent<Image>().raycastTarget = false;
-        this.GetComponent<CanvasGroup>().alpha = 0.5f;
-        this.GetComponent<CanvasGroup>().blocksRaycasts = false;
     }
     
     public void OnDrag(PointerEventData eventData)
     {
         this.gameObject.transform.position = Input.mousePosition;
         
-        //Disable tooltips if one popes up
+        //Disable tooltips if one pops up
         if (eventData.pointerDrag.TryGetComponent(out TooltipScript textScript))
         {
             textScript.ResetToolTip();
@@ -59,8 +58,6 @@ public class ItemDragDropScript : MonoBehaviour, IBeginDragHandler, IDragHandler
     {
         isDragged = false;
         this.GetComponent<Image>().raycastTarget = true;
-        this.GetComponent<CanvasGroup>().alpha = 1f;
-        this.GetComponent<CanvasGroup>().blocksRaycasts = true;
     }
     
     //If the item was not dropped in a box as a last resort reset position if needed

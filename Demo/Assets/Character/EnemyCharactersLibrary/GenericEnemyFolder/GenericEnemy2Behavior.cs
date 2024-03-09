@@ -40,19 +40,19 @@ public class GenericEnemy2Behavior : EnemyCharacter
             if (i == 0)
             {
                 Target = EnemyTargetingLibrary.TargetNRandomHeroes(1);
-                Moves.Push(new EnemyAttackMove(this, 50, Target));
+                Moves.Push(new EnemyAttackMove(this, 60, Target));
             }
             
             if (i == 1)
             {
                 Target = new Character[] {(Character) this};
-                Moves.Push(new EnemyApplyBuffMove(this, Target, "AttackUpBuff", 20, null));
+                Moves.Push(new EnemyApplyBuffMove(this, Target, "AttackUpBuff", 30, null));
             }
             
             if (i == 2)
             {
                 Target = new Character[] {(Character) this};
-                Moves.Push(new EnemyDefendMove(this, 50, Target));
+                Moves.Push(new EnemyDefendMove(this, 60, Target));
             }
         }
     }

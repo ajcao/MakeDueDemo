@@ -30,7 +30,7 @@ public class FrailBuff : Buff
     
     public override string GetTooltipString()
     {
-        return "Reduce armor gain from abilities by 50%";
+        return "Reduce armor given from abilities by 50%";
     }
     
     public override void onExpire()
@@ -41,7 +41,7 @@ public class FrailBuff : Buff
     public override void onTriggerEffect(TriggerEvent E, ref int v)
     {
         onArmorGainMultiTrigger T = (onArmorGainMultiTrigger) E;
-        if (T.ReceivingChar == BuffTarget)
+        if (T.CastingChar == BuffTarget)
         {
             v = (int) (v * 0.5);
         }

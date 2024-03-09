@@ -4,6 +4,7 @@ using UnityEngine;
 using CharacterUtil;
 using TMPro;
 using EnemyTargetingLibraryUtil;
+using BuffUtil;
 
 namespace EnemyMoveUtil
 {
@@ -35,7 +36,12 @@ public class EnemyAttackDefendMove : EnemyMove
     
     public override string MoveIndicatorText()
     {
-        return "" + (damageAmount + EC.getDamageOutputModifier()) + "/" + (armorAmount + EC.getDefenseOutputModifier());
+        int dmgText = damageAmount + EC.getDamageOutputModifier();
+        if (BuffHandler.CharacterHaveBuff((Character) EC, new WeakBuff(EC, EC, null, null), false))
+        {
+            dmgText = dmgText / 2;
+        }
+        return "" + dmgText + "/" + (armorAmount + EC.getDefenseOutputModifier());
     }
     
     public override string getAnimation()

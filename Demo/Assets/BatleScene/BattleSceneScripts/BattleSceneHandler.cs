@@ -32,22 +32,26 @@ public class BattleSceneHandler : MonoBehaviour
     {
         StopAllCoroutines();
         isBattling = false;
+
+        foreach (GameObject G in PlayerParty.GetLivingPartyMembers())
+        {
+            Character P = G.GetComponent<PlayableCharacter>();
+            BuffHandler.RemoveAllBuffsFromCharacter(P);
+            
+            Object.Destroy(G.GetComponentInChildren<HealthArmorScript>().gameObject);
+        }
+
         if (PlayerParty.IsPartyDead())
         {
-            Debug.Log("YOU LOSE!");
+            //Changes the End Turn button to move to next battle scene
+            AB_Handler.NextTurnButton.gameObject.GetComponent<NextTurnButtonScript>().EditButtonFunction("ReturnToItemScene");
         }
         else
         {
-            foreach (GameObject G in PlayerParty.GetLivingPartyMembers())
-            {
-                Character P = G.GetComponent<PlayableCharacter>();
-                BuffHandler.RemoveAllBuffsFromCharacter(P);
-                
-                Object.Destroy(G.GetComponentInChildren<HealthArmorScript>().gameObject);
-            }
-            AB_Handler.NextTurnButton.gameObject.GetComponent<NextTurnButtonScript>().SetToNextScene();
-            Round = -1;
+            //Changes the End Turn button to move to next battle scene
+            AB_Handler.NextTurnButton.gameObject.GetComponent<NextTurnButtonScript>().EditButtonFunction("GoToNextScene");
         }
+        Round = -1;
     }
     
     public void Awake()
@@ -134,7 +138,6 @@ public class BattleSceneHandler : MonoBehaviour
             
             BattleLogicHandler.PlayerPostTurn();
             
-            
             Debug.Log("EnemyTurn");
             
             BattleLogicHandler.EnemyPreTurn();
@@ -156,8 +159,7 @@ public class BattleSceneHandler : MonoBehaviour
             BattleLogicHandler.EnemyPostTurn();
             
             BattleLogicHandler.EndCombatRound(Round);
-            
-            
+
 
             
             
