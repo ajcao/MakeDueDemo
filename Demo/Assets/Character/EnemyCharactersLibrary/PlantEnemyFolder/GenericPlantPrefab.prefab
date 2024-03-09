@@ -132,7 +132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BuffListDirty: 0
   CharacterName: 
-  canStaminaRegenerate: 0
+  canPoiseRegenerate: 0
   IsStunned: 0
   MultipleLives: 0
   Forms: Default

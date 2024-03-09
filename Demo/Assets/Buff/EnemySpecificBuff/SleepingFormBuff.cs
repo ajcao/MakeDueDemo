@@ -11,7 +11,7 @@ public class SleepingFormBuff : Buff
 {
     public SleepingFormBuff(Character CTarget, Character CBuffer, int? Inten, int? Dur) 
     {
-        this.Trigger = TriggerEventEnum.onStaminaWasLostEnum;
+        this.Trigger = TriggerEventEnum.onPoiseWasLostEnum;
         this.TriggerSecondary = TriggerEventEnum.onHealthDamageWasTakenEnum;
         this.BuffTarget = CTarget;
         this.OriginalBuffer = CBuffer;
@@ -42,9 +42,9 @@ public class SleepingFormBuff : Buff
     public override void onTriggerEffect(TriggerEvent E, ref int v)
     {
         
-        if (E.GetType() == typeof(onStaminaWasLostTrigger))
+        if (E.GetType() == typeof(onPoiseWasLostTrigger))
         {
-            onStaminaWasLostTrigger TE = (onStaminaWasLostTrigger) E;
+            onPoiseWasLostTrigger TE = (onPoiseWasLostTrigger) E;
             
             if (TE.ReceivingChar == this.BuffTarget)
             {

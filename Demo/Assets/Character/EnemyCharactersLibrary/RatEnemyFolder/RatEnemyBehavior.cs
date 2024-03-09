@@ -18,11 +18,11 @@ public class RatEnemyBehavior : EnemyCharacter
         this.ArmorRetain = 0;
         this.DamageOutputModifier = 0;
         this.DefenseOutputModifier = 0;
-        this.canStaminaRegenerate = true;
+        this.canPoiseRegenerate = true;
         this.IsStunned = false;
-        this.Stamina = 150;
-        this.MaxStamina = this.Stamina;
-        this.StaminaRegeneration = this.MaxStamina / 2;
+        this.Poise = 150;
+        this.MaxPoise = this.Poise;
+        this.PoiseRegeneration = this.MaxPoise / 2;
         Moves = new Stack<EnemyMove>();
         
         

@@ -76,15 +76,15 @@ public class HealthArmorScript : MonoBehaviour
         else
         {
             EnemyCharacter E = (EnemyCharacter) C;
-            SecondBarText.text = "" + E.getStamina() + "/" + E.getMaxStamina();
-            SecondBar.transform.localScale = new Vector3( (E.getStamina() / (float) E.getMaxStamina()), 1.0f, 1.0f);
+            SecondBarText.text = "" + E.getPoise() + "/" + E.getMaxPoise();
+            SecondBar.transform.localScale = new Vector3( (E.getPoise() / (float) E.getMaxPoise()), 1.0f, 1.0f);
             
-            //Flash if enemy can regenerate stamina
-            if (E.canStaminaRegenerate && (E.getStamina() != E.getMaxStamina()) && (Flashing == null))
+            //Flash if enemy can regenerate poise
+            if (E.canPoiseRegenerate && (E.getPoise() != E.getMaxPoise()) && (Flashing == null))
             {
                 Flashing = StartCoroutine(FlashingBar());
             }
-            else if ((!E.canStaminaRegenerate || (E.getStamina() == E.getMaxStamina())) && (Flashing != null))
+            else if ((!E.canPoiseRegenerate || (E.getPoise() == E.getMaxPoise())) && (Flashing != null))
             {
                 SecondBar.color = new Color(0.0f, 0.118f, 0.118f);
                 StopCoroutine(Flashing);

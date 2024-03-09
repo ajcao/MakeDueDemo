@@ -76,7 +76,7 @@ public static class BattleLogicHandler
 		else
 		{
 			//Enemy lose armor
-			BattleLogicHandler.LowerStamina((EnemyCharacter) RC, damageToHealth);
+			BattleLogicHandler.LowerPoise((EnemyCharacter) RC, damageToHealth);
 		}
 	}
 	
@@ -95,7 +95,7 @@ public static class BattleLogicHandler
 		}
 		else
 		{
-			BattleLogicHandler.LowerStamina((EnemyCharacter) RC, damageToHealth);
+			BattleLogicHandler.LowerPoise((EnemyCharacter) RC, damageToHealth);
 		}
 		
 		
@@ -173,15 +173,15 @@ public static class BattleLogicHandler
 		C.setCurrentArmor(Mathf.Max(C.getCurrentArmor() - d, 0));
 	}
 	
-	public static void LowerStamina(EnemyCharacter E, int d)
+	public static void LowerPoise(EnemyCharacter E, int d)
 	{
-		E.setStamina(Mathf.Max(E.getStamina() - d, 0));
+		E.setPoise(Mathf.Max(E.getPoise() - d, 0));
 		
 		if (d > 0)
 		{
 			int dummy = 0;
-			TriggerEvent TE = new onStaminaWasLostTrigger(E, d);
-			BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onStaminaWasLostEnum, TE, ref dummy);
+			TriggerEvent TE = new onPoiseWasLostTrigger(E, d);
+			BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onPoiseWasLostEnum, TE, ref dummy);
 		}
 		
 	}
@@ -381,7 +381,7 @@ public static class BattleLogicHandler
 	}
 	
 	//Decrease buff duration
-	//Reset Stamina
+	//Reset Poise
 	//Reset Resolve
 	//Force respawn of multiple phases enemies
 	public static void EndCombatRound(int R)
@@ -399,24 +399,24 @@ public static class BattleLogicHandler
         {
             EnemyCharacter E = G.GetComponent<EnemyCharacter>();
             
-            if (E.canStaminaRegenerate == true)
+            if (E.canPoiseRegenerate == true)
             {
-                E.setStamina(Mathf.Min(E.getStamina() + E.getStaminaRegeneration(), E.getMaxStamina()));
+                E.setPoise(Mathf.Min(E.getPoise() + E.getPoiseRegeneration(), E.getMaxPoise()));
             }
             
             if (E.IsStunned == true && !BuffHandler.CharacterHaveBuff(E, new StunnedBuff(null, null, null, 1), false))
             {
                 E.IsStunned = false;
-                E.setStamina(E.getMaxStamina());
-				E.canStaminaRegenerate = true;
+                E.setPoise(E.getMaxPoise());
+				E.canPoiseRegenerate = true;
             }
 			else if (E.IsStunned == true && BuffHandler.CharacterHaveBuff(E, new StunnedBuff(null, null, null, 1), false))
 			{
-				E.canStaminaRegenerate = false;
+				E.canPoiseRegenerate = false;
 			}
 			else
 			{
-				E.canStaminaRegenerate = true;
+				E.canPoiseRegenerate = true;
 			}
             
         }

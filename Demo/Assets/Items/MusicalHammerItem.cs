@@ -13,7 +13,7 @@ namespace ItemUtil
     
 public class MusicalHammerItem : GameItem
 {
-    int StaminaAmt = 100;
+    int PoiseAmt = 100;
     public MusicalHammerItem()
     {
         this.ItemIcon = Resources.Load<Sprite>("ItemImages/MusicalHammer");
@@ -27,13 +27,13 @@ public class MusicalHammerItem : GameItem
     
     public override void OnApply()
     {
-        Buff B = new MusicalHammerBuff(this.ItemOwner, this.ItemOwner, StaminaAmt, null);
+        Buff B = new MusicalHammerBuff(this.ItemOwner, this.ItemOwner, PoiseAmt, null);
         BattleLogicHandler.OnBuffApply(B);
     }
     
     public override string GetTooltipString()
     {
-        return "If your attack breaks an enemy armor, deal " + StaminaAmt + " stamina damage";
+        return "If your attack breaks an enemy armor, deal " + PoiseAmt + " poise damage";
     }
 }
 

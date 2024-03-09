@@ -23,7 +23,7 @@ public class CoconutStunAbility : Ability
     
     public override void onCast(Character E)
     {
-        BattleLogicHandler.LowerStamina((EnemyCharacter) E, stunAmount);
+        BattleLogicHandler.LowerPoise((EnemyCharacter) E, stunAmount);
     }
     
     public override void postCast(Character C)
@@ -34,7 +34,7 @@ public class CoconutStunAbility : Ability
     public override string GetTooltipString()
     {
         string name = "Coconut Drop";
-        string s1 = "Deal " + stunAmount + " stamina damage";
+        string s1 = "Deal " + stunAmount + " poise damage";
         string s2 = "Cooldown: " + currentCooldown + "/" + maxCooldown;
         return name + "\n" + s1 + "\n" + s2;
     }

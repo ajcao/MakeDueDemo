@@ -9,7 +9,7 @@ namespace AbilityUtil
   
 public class StunHitAbility : Ability
 {
-    private int staminaAmount = 40;
+    private int poiseAmount = 40;
     private int basedamage = 30;
 
     public StunHitAbility(PlayableCharacter inputC)
@@ -25,7 +25,7 @@ public class StunHitAbility : Ability
     public override void onCast(Character C)
     {
         EnemyCharacter E = (EnemyCharacter) C;
-        BattleLogicHandler.LowerStamina(E, staminaAmount);
+        BattleLogicHandler.LowerPoise(E, poiseAmount);
         BattleLogicHandler.AttackDamage(PC, E, basedamage + PC.getDamageOutputModifier());
     }
     
@@ -37,7 +37,7 @@ public class StunHitAbility : Ability
     public override string GetTooltipString()
     {
         string name = "Shell Drop";
-        string s1 = "Stun for " + staminaAmount + ", then attack for " + (basedamage + PC.getDamageOutputModifier()) + " damage";
+        string s1 = "Stun for " + poiseAmount + ", then attack for " + (basedamage + PC.getDamageOutputModifier()) + " damage";
         string s2 = "Cooldown: " + currentCooldown + "/" + maxCooldown;
         return name + "\n" + s1 + "\n" + s2;
     }

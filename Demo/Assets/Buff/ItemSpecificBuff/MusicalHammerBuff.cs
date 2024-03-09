@@ -35,7 +35,7 @@ public class MusicalHammerBuff : Buff
     
     public override string GetTooltipString()
     {
-        string s1 = "If your attack breaks an enemy armor, deal " + this.Intensity.Value + " stamina damage";
+        string s1 = "If your attack breaks an enemy armor, deal " + this.Intensity.Value + " poise damage";
         return s1;
     }
     
@@ -50,7 +50,7 @@ public class MusicalHammerBuff : Buff
             if (T.ArmorAmount > 0 && T.ReceivingChar.getCurrentArmor() == 0)
             {
                 EnemyCharacter Enem = (EnemyCharacter) T.ReceivingChar;
-                BattleLogicHandler.LowerStamina(Enem, this.Intensity.Value);
+                BattleLogicHandler.LowerPoise(Enem, this.Intensity.Value);
             }
             
         }

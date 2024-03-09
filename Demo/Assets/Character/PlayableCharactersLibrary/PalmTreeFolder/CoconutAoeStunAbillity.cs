@@ -27,7 +27,7 @@ public class CoconutAoeStunAbillity : Ability
             EnemyCharacter Enem = G.GetComponent<EnemyCharacter>();
             if (Enem.isAlive() && PC.isAlive())
             {
-                BattleLogicHandler.LowerStamina(Enem, stunAmount);
+                BattleLogicHandler.LowerPoise(Enem, stunAmount);
             }
             
         }  
@@ -41,7 +41,7 @@ public class CoconutAoeStunAbillity : Ability
     public override string GetTooltipString()
     {
         string name = "Uproot";
-        string s1 = "Deal " + stunAmount + " stamina damage to all enemies";
+        string s1 = "Deal " + stunAmount + " poise damage to all enemies";
         string s2 = "Cooldown: " + currentCooldown + "/" + maxCooldown;
         return name + "\n" + s1 + "\n" + s2;
     }
