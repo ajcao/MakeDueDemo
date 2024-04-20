@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 //Coordinates scene loading for monster encounters
+//Is the interface between BattleScelectionScene and the button
+
 public static class SceneCoordinator
 {
     public static bool BeatPlant;

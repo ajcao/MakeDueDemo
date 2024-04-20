@@ -32,7 +32,7 @@ public class NextTurnButtonScript : MonoBehaviour
             this.gameObject.gameObject.GetComponent<Button>().interactable = false;
         }
 
-        else if (ButtonFunction == "ReturnToItemScene")
+        else if (ButtonFunction == "ReturnToTitleScene")
         {
             this.gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("ResetBattleButton") as Sprite;
             this.gameObject.gameObject.GetComponent<Button>().interactable = true;
@@ -58,8 +58,8 @@ public class NextTurnButtonScript : MonoBehaviour
             GameObject EE_Data = GameObject.Find("EnemyEncounterDataGameObject");
             Destroy(EE_Data);
             
-            if (ButtonFunction == "ReturnToItemScene")
-                SceneManager.LoadScene("ItemSelectionScene", LoadSceneMode.Single);
+            if (ButtonFunction == "ReturnToTitleScene")
+                SceneManager.LoadScene("TitleScreenScene", LoadSceneMode.Single);
             if (ButtonFunction == "GoToNextScene")
                 SceneManager.LoadScene("BattleSelectionScene", LoadSceneMode.Single);
         }

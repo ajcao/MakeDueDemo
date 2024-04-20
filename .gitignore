@@ -3,3 +3,6 @@ Demo/Logs
 Demo/Temp
 Demo/UserSettings
 Demo/Builds
+Demo/.vs
+Demo/.vscode
+Demo/.vsconfig

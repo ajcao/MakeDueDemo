@@ -19,6 +19,8 @@ public class BattleSceneHandler : MonoBehaviour
     public EnemyMoveHandler EM_Handler;
     
     public HealthArmorHandler HA_Handler;
+
+    public BattleTurnIndicatorScript BT_Indicator;
     
     public delegate void EndGameDelegate();
     public static EndGameDelegate EndGame;
@@ -43,8 +45,8 @@ public class BattleSceneHandler : MonoBehaviour
 
         if (PlayerParty.IsPartyDead())
         {
-            //Changes the End Turn button to move to next battle scene
-            AB_Handler.NextTurnButton.gameObject.GetComponent<NextTurnButtonScript>().EditButtonFunction("ReturnToItemScene");
+            //Changes the End Turn button to move to return to the title scene
+            AB_Handler.NextTurnButton.gameObject.GetComponent<NextTurnButtonScript>().EditButtonFunction("ReturnToTitleScene");
         }
         else
         {
@@ -118,6 +120,7 @@ public class BattleSceneHandler : MonoBehaviour
             
             //Player turn
             Debug.Log("PlayerTurn");
+            BT_Indicator.FlashTurn(true);
             BattleLogicHandler.PlayerPreTurn();
             
             BattleLogicHandler.CheckForAllPlayersDeaths();
@@ -139,7 +142,7 @@ public class BattleSceneHandler : MonoBehaviour
             BattleLogicHandler.PlayerPostTurn();
             
             Debug.Log("EnemyTurn");
-            
+            BT_Indicator.FlashTurn(false);
             BattleLogicHandler.EnemyPreTurn();
             
             BattleLogicHandler.CheckForAllPlayersDeaths();

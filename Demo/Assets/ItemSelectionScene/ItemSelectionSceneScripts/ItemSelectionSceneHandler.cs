@@ -17,6 +17,7 @@ public class ItemSelectionSceneHandler : MonoBehaviour
     
     
     // Start is called before the first frame update
+    //This scene is only entered when a new round has started
     void Start()
     {        
         //Reset BattleScene
@@ -85,6 +86,7 @@ public class ItemSelectionSceneHandler : MonoBehaviour
 
 
     //Overwrites the PlayerParty static class data
+    //This should be moved to a new location
     public void GenerateRandomParty()
     {
         //Deletes the current party

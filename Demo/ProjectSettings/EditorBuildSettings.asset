@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Resources/Scenes/TitleScreenScene.unity
+    guid: 7d5eb493deccd2f49a3c3bd6e9be9924
+  - enabled: 1
     path: Assets/Resources/Scenes/ItemSelectionScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
@@ -17,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Resources/Scenes/CharacterDataScene.unity
     guid: dac95831e6d531c4ba3dc404218c696e
+  - enabled: 1
+    path: Assets/Resources/Scenes/HowToPlayScene.unity
+    guid: 31802734563747a4c9942bbb136b3ad0
   m_configObjects: {}
