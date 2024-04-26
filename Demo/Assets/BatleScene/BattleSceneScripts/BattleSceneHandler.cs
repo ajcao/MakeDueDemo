@@ -4,6 +4,7 @@ using UnityEngine;
 using CharacterUtil;
 using UnityEngine.UI;
 using ItemUtil;
+using Unity.VisualScripting.FullSerializer;
 
 public class BattleSceneHandler : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class BattleSceneHandler : MonoBehaviour
     
     public static int Round;
     private bool isBattling;
+    public bool isTutorial;
     
     public AbilityButtonHandler AB_Handler;
     
@@ -43,7 +45,7 @@ public class BattleSceneHandler : MonoBehaviour
             Object.Destroy(G.GetComponentInChildren<HealthArmorScript>().gameObject);
         }
 
-        if (PlayerParty.IsPartyDead())
+        if (PlayerParty.IsPartyDead() || isTutorial)
         {
             //Changes the End Turn button to move to return to the title scene
             AB_Handler.NextTurnButton.gameObject.GetComponent<NextTurnButtonScript>().EditButtonFunction("ReturnToTitleScene");
@@ -60,9 +62,37 @@ public class BattleSceneHandler : MonoBehaviour
     {
         //Add method to delegate for ending the game
         EndGame = EndGameMethod;
-        
+
         BattleLogicHandler.Init();
-                
+
+        //In Tutorial
+        if (isTutorial)
+        {
+            //Deletes the current party
+            PlayerParty.DeleteParty();
+            
+            //Creates a party for the tutorial
+            PlayerLibraryScript PLS = GameObject.Find("PlayerLibrary").GetComponent<PlayerLibraryScript>();
+
+            GameObject[] CurrentCharacterArray = PlayerParty.GenerateParty(PLS);
+
+            //Instantiate the player characters as new game object prefab
+            PlayerParty.AddPartyMember((Instantiate(CurrentCharacterArray[0]) as GameObject));
+            PlayerParty.AddPartyMember((Instantiate(CurrentCharacterArray[1]) as GameObject));
+            PlayerParty.AddPartyMember((Instantiate(CurrentCharacterArray[2]) as GameObject));
+            PlayerParty.AddPartyMember((Instantiate(CurrentCharacterArray[3]) as GameObject));
+
+            //Killl the 2 characters at the end
+            GameObject[] Party = PlayerParty.getParty();
+            Party[2].GetComponent<Character>().onDeath();
+            Party[2].GetComponent<Character>().transform.position = new Vector3(0, -500, 0);
+            Party[3].GetComponent<Character>().onDeath();
+            Party[3].GetComponent<Character>().transform.position = new Vector3(0, -500, 0);
+
+            AB_Handler.HideCharacterSelectionDuringTutorial();
+
+        }
+
         //Place Player in correct location
         if (PlayerParty.getPartyMember(0).GetComponent<Character>().isAlive())
             PlayerParty.getPartyMember(0).transform.position = new Vector3(-8.0f,0.0f,0.0f);

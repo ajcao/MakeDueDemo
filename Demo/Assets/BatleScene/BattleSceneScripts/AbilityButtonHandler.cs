@@ -28,9 +28,8 @@ public class AbilityButtonHandler : MonoBehaviour
     public Texture2D TargetCrosshairPlayer;
     
     protected bool IsCastingMode = false;
-    
-    
-    
+    private int i;
+
     public void Start()
     {
         //Assigns giving the character gameobject to the buttons
@@ -50,6 +49,7 @@ public class AbilityButtonHandler : MonoBehaviour
         NextTurnButton.Init(this);
             
     }
+
     
     public void SetCastingMode(bool v)
     {
@@ -263,5 +263,10 @@ public class AbilityButtonHandler : MonoBehaviour
             }
             
         }
+    }
+    public void HideCharacterSelectionDuringTutorial()
+    {
+        SelectCharacterButtonList[2].transform.position = new Vector3(0, -5000, 0);
+        SelectCharacterButtonList[3].transform.position = new Vector3(0, -5000, 0);
     }
 }

@@ -234,6 +234,9 @@
     <Compile Include="Assets\Character\EnemyCharactersLibrary\EnemyMove.cs" />
     <Compile Include="Assets\Items\MagicMissileCannedItem.cs" />
     <Compile Include="Assets\Character\PlayableCharactersLibrary\LizardLeechFolder\LizardLeechBehavior.cs" />
+    <Compile Include="Assets\Character\PlayableCharactersLibrary\PlayerLibraryScript.cs" />
+    <Compile Include="Assets\Character\EnemyCharactersLibrary\TutorialEnemyFolder\Yash.cs" />
+    <Compile Include="Assets\Character\EnemyCharactersLibrary\TutorialEnemyFolder\Karl.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

@@ -4,14 +4,7 @@ using UnityEngine;
 
 public class ItemSelectionSceneHandler : MonoBehaviour
 {
-    public GameObject P1;
-    public GameObject P2;
-    public GameObject P3;
-    public GameObject P4;
-    public GameObject P5;
-    public GameObject P6;
-    public GameObject P7;
-    public GameObject P8;
+    public PlayerLibraryScript PLS;
     
     public CanvasInventoryScript[] AllCharacterInventories;
     
@@ -92,28 +85,7 @@ public class ItemSelectionSceneHandler : MonoBehaviour
         //Deletes the current party
         PlayerParty.DeleteParty();
 
-        List<GameObject> TotalCharacterArray = new List<GameObject>();
-        TotalCharacterArray.Add(P1);
-        TotalCharacterArray.Add(P2);
-        TotalCharacterArray.Add(P3);
-        TotalCharacterArray.Add(P4);
-        TotalCharacterArray.Add(P5);
-        TotalCharacterArray.Add(P6);
-        TotalCharacterArray.Add(P7);
-        TotalCharacterArray.Add(P8);
-        
-        GameObject[] CurrentCharacterArray = new GameObject[4];
-        
-        //Draft random party of 4 characters from poll of 8
-        int i = 0;
-        while (TotalCharacterArray.Count > 0 && i < 4)
-        {
-            int r = Random.Range(0, TotalCharacterArray.Count);
-            GameObject P = TotalCharacterArray[r];
-            CurrentCharacterArray[i] = P;
-            TotalCharacterArray.Remove(P);
-            i++;
-        }
+        GameObject[] CurrentCharacterArray = PlayerParty.GenerateParty(PLS);
         
         //Instantiate the player characters as new game object prefab
         PlayerParty.AddPartyMember((Instantiate(CurrentCharacterArray[0]) as GameObject));

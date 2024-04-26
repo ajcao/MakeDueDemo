@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7230936284792030705
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1973672081306765775}
+  - component: {fileID: 2450550579896659960}
+  m_Layer: 0
+  m_Name: PlayerLibrary
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1973672081306765775
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7230936284792030705}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.917247, y: 1.1003909, z: -2.5742617}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2450550579896659960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7230936284792030705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd7bf3359ad40a04a830c620ede2d167, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  P1: {fileID: 7831967512756798593, guid: 96173b2996e710b4ca855960ccacc87c, type: 3}
+  P2: {fileID: 7831967512756798593, guid: 29a3aedd91ff7d446aeb0ace78446161, type: 3}
+  P3: {fileID: 7831967512756798593, guid: 1466ad0098d586546bad92d382982619, type: 3}
+  P4: {fileID: 4216986254345584924, guid: f38d57aa17694ef44bec8f4585cd1b95, type: 3}
+  P5: {fileID: 7831967512756798593, guid: a6629b8669ded334d9a85d0dc4d04a28, type: 3}
+  P6: {fileID: 7831967512756798593, guid: 1b3881300a6bba347a916718587cc9fe, type: 3}
+  P7: {fileID: 7831967512756798593, guid: 196d886c53a4cd547ac62c0dedf9d11a, type: 3}
+  P8: {fileID: 3063199090697513369, guid: fb1701b96ef362a46a84f3e55f714581, type: 3}

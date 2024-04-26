@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using CharacterUtil;
+using static UnityEditor.PlayerSettings;
 
 public static class PlayerParty
 {
@@ -123,6 +124,38 @@ public static class PlayerParty
                 Party[i] = null;
             }
         }
+    }
+
+    public static GameObject[] GenerateParty(PlayerLibraryScript PLS)
+    {
+        List<GameObject> TotalCharacterArray = new List<GameObject>();
+        TotalCharacterArray.Add(PLS.P1);
+        TotalCharacterArray.Add(PLS.P2);
+        TotalCharacterArray.Add(PLS.P3);
+        TotalCharacterArray.Add(PLS.P4);
+        TotalCharacterArray.Add(PLS.P5);
+        TotalCharacterArray.Add(PLS.P6);
+        TotalCharacterArray.Add(PLS.P7);
+        TotalCharacterArray.Add(PLS.P8);
+
+        GameObject[] CurrentCharacterArray = new GameObject[4];
+
+        //Draft random party of 4 characters from poll of 8
+        int i = 0;
+        while (TotalCharacterArray.Count > 0 && i < 4)
+        {
+            int r = Random.Range(0, TotalCharacterArray.Count);
+            GameObject P = TotalCharacterArray[r];
+            CurrentCharacterArray[i] = P;
+            TotalCharacterArray.Remove(P);
+            i++;
+        }
+
+        return CurrentCharacterArray;
+    }
+    public static void CreateTutorialParty()
+    {
+
     }
     
 }
