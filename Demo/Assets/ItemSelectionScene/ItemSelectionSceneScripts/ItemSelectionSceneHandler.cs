@@ -1,3 +1,5 @@
+using CharacterUtil;
+using ItemUtil;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -39,7 +41,14 @@ public class ItemSelectionSceneHandler : MonoBehaviour
             this.SetPlayerGameObjectToCorrectLocation();
             this.SetPlayerGameObjectToCanvasInventory();
         }
-        
+
+        //Allow the plalyer to access character information
+        for (int i = 0; i < 4; i++)
+        {
+            //Click on character no longer opens up Character Data scene, avoids potential crashes
+            PlayerParty.getPartyMember(i).GetComponent<PlayableCharacter>().ToggleCharacterData(true);
+        }
+
     }
 
     //Draw the correct player gameobject to the correct location

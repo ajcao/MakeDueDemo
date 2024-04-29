@@ -103,6 +103,7 @@
     <Compile Include="Assets\Buff\ItemSpecificBuff\MindContractDamage.cs" />
     <Compile Include="Assets\Character\PlayableCharactersLibrary\PalmTreeFolder\CoconutMilkAbility.cs" />
     <Compile Include="Assets\Items\BambooBerryItem.cs" />
+    <Compile Include="Assets\BatleScene\HowToPlaySceneScripts\TutorialBoxText.cs" />
     <Compile Include="Assets\Items\MosquitoHeadItem.cs" />
     <Compile Include="Assets\Items\HardhatItem.cs" />
     <Compile Include="Assets\Items\ItemPool.cs" />
@@ -119,6 +120,7 @@
     <Compile Include="Assets\Character\PlayableCharactersLibrary\PalmTreeFolder\CoconutStunAbility.cs" />
     <Compile Include="Assets\Buff\ItemSpecificBuff\ParryShieldItemBuff.cs" />
     <Compile Include="Assets\Character\EnemyCharactersLibrary\RatEnemyFolder\RatEnemyBehavior.cs" />
+    <Compile Include="Assets\Character\PlayableCharactersLibrary\PlayerLibraryScript.cs" />
     <Compile Include="Assets\Buff\ItemSpecificBuff\BrainSlugItemBuff.cs" />
     <Compile Include="Assets\Character\PlayableCharactersLibrary\SentientDynamiteFolder\ShrapnelAttack.cs" />
     <Compile Include="Assets\BatleScene\BattleSceneScripts\BuffHandler.cs" />
@@ -157,6 +159,7 @@
     <Compile Include="Assets\Items\EnergyPillsItem.cs" />
     <Compile Include="Assets\Buff\WeakBuff.cs" />
     <Compile Include="Assets\Buff\NullBuff.cs" />
+    <Compile Include="Assets\Character\EnemyCharactersLibrary\TutorialEnemyFolder\Karl.cs" />
     <Compile Include="Assets\Character\PlayableCharactersLibrary\MysteriousGooFolder\ApplyVulnurableAbility.cs" />
     <Compile Include="Assets\Character\EnemyCharactersLibrary\GenericEnemyFolder\GenericEnemy1Behavior.cs" />
     <Compile Include="Assets\Character\EnemyCharactersLibrary\EnemyDefendMove.cs" />
@@ -167,6 +170,7 @@
     <Compile Include="Assets\Character\EnemyCharactersLibrary\EnemyEncounters\EnemyEncounterData.cs" />
     <Compile Include="Assets\BatleScene\BattleSceneScripts\EnemyMoveHandler.cs" />
     <Compile Include="Assets\Buff\EnemySpecificBuff\RatLifeStealBuff.cs" />
+    <Compile Include="Assets\Character\EnemyCharactersLibrary\TutorialEnemyFolder\Yash.cs" />
     <Compile Include="Assets\Character\EnemyCharactersLibrary\EnemyTargetingLibrary.cs" />
     <Compile Include="Assets\Character\PlayableCharactersLibrary\ORBFolder\OrbResetCooldown.cs" />
     <Compile Include="Assets\Character\PlayableCharactersLibrary\RolyPolyFolder\StunHitAbility.cs" />
@@ -188,6 +192,7 @@
     <Compile Include="Assets\Character\PlayableCharactersLibrary\MysteriousGooFolder\MysteriousGooBehavior.cs" />
     <Compile Include="Assets\ItemSelectionScene\ItemSelectionUI\RerollCharacterButtonScript.cs" />
     <Compile Include="Assets\Items\HammerTridentItem.cs" />
+    <Compile Include="Assets\Character\EnemyCharactersLibrary\EnemyHealMove.cs" />
     <Compile Include="Assets\Items\MusicalHammerItem.cs" />
     <Compile Include="Assets\Buff\FrailBuff.cs" />
     <Compile Include="Assets\BatleScene\BattleUI\BattleTurnIndicatorScript.cs" />
@@ -234,9 +239,7 @@
     <Compile Include="Assets\Character\EnemyCharactersLibrary\EnemyMove.cs" />
     <Compile Include="Assets\Items\MagicMissileCannedItem.cs" />
     <Compile Include="Assets\Character\PlayableCharactersLibrary\LizardLeechFolder\LizardLeechBehavior.cs" />
-    <Compile Include="Assets\Character\PlayableCharactersLibrary\PlayerLibraryScript.cs" />
-    <Compile Include="Assets\Character\EnemyCharactersLibrary\TutorialEnemyFolder\Yash.cs" />
-    <Compile Include="Assets\Character\EnemyCharactersLibrary\TutorialEnemyFolder\Karl.cs" />
+    <Compile Include="Assets\BatleScene\HowToPlaySceneUI\TutorialBoxPrefabScript.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

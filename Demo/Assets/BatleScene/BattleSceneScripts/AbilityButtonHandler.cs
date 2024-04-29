@@ -264,9 +264,8 @@ public class AbilityButtonHandler : MonoBehaviour
             
         }
     }
-    public void HideCharacterSelectionDuringTutorial()
+    public void HideCharacterSelectionDuringTutorial(int i)
     {
-        SelectCharacterButtonList[2].transform.position = new Vector3(0, -5000, 0);
-        SelectCharacterButtonList[3].transform.position = new Vector3(0, -5000, 0);
+        SelectCharacterButtonList[i].transform.position = new Vector3(0, -5000, 0);
     }
 }

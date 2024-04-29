@@ -12,7 +12,7 @@ public class Karl : EnemyCharacter
     void Awake()
     {
         this.Alive = true;
-        this.CurrentHealth = 75;
+        this.CurrentHealth = 70;
         this.MaxHealth = 150;
         this.CurrentArmor = 0;
         this.ArmorRetain = 0;
@@ -20,12 +20,12 @@ public class Karl : EnemyCharacter
         this.DefenseOutputModifier = 0;
         this.canPoiseRegenerate = true;
         this.IsStunned = false;
-        this.Poise = 75;
+        this.Poise = 60;
         this.MaxPoise = this.Poise;
         this.PoiseRegeneration = this.MaxPoise / 2;
         Moves = new Stack<EnemyMove>();
         
-        this.CharacterIcon = Resources.Load<Sprite>("EnemyCharacterImages/GenericEnemy2Icon");
+        this.CharacterIcon = Resources.Load<Sprite>("EnemyCharacterImages/KarlIcon");
         
     }
     
@@ -33,27 +33,26 @@ public class Karl : EnemyCharacter
     {
         Character[] Target;
         
-        int[] RandomMoveInt = EnemyTargetingLibrary.CreateEvenDistributionToN(3);
-        
-        foreach (int i in RandomMoveInt)
+        if (this.CurrentHealth < 80)
         {
-            if (i == 0)
+            Target = new Character[] { (Character)this };
+            Moves.Push(new EnemyHealMove(this, 80, Target));
+        }
+        else
+        {
+            int[] RandomMoveInt = EnemyTargetingLibrary.CreateEvenDistributionToN(3);
+
+            if (RandomMoveInt[0] < 2)
             {
                 Target = EnemyTargetingLibrary.TargetNRandomHeroes(1);
-                Moves.Push(new EnemyAttackMove(this, 60, Target));
+                Moves.Push(new EnemyAttackMove(this, 30, Target));
             }
-            
-            if (i == 1)
+            else
             {
-                Target = new Character[] {(Character) this};
-                Moves.Push(new EnemyApplyBuffMove(this, Target, "AttackUpBuff", 30, null));
+                Target = new Character[] { (Character)this };
+                Moves.Push(new EnemyDefendMove(this, 30, Target));
             }
-            
-            if (i == 2)
-            {
-                Target = new Character[] {(Character) this};
-                Moves.Push(new EnemyDefendMove(this, 60, Target));
-            }
+
         }
     }
 

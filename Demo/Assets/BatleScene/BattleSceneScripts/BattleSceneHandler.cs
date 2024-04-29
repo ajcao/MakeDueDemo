@@ -82,14 +82,15 @@ public class BattleSceneHandler : MonoBehaviour
             PlayerParty.AddPartyMember((Instantiate(CurrentCharacterArray[2]) as GameObject));
             PlayerParty.AddPartyMember((Instantiate(CurrentCharacterArray[3]) as GameObject));
 
-            //Killl the 2 characters at the end
+            //Killl the 2 characters so player party resembles 2
             GameObject[] Party = PlayerParty.getParty();
-            Party[2].GetComponent<Character>().onDeath();
-            Party[2].GetComponent<Character>().transform.position = new Vector3(0, -500, 0);
-            Party[3].GetComponent<Character>().onDeath();
-            Party[3].GetComponent<Character>().transform.position = new Vector3(0, -500, 0);
+            Party[0].GetComponent<Character>().onDeath();
+            Party[0].GetComponent<Character>().transform.position = new Vector3(0, -500, 0);
+            AB_Handler.HideCharacterSelectionDuringTutorial(0);
 
-            AB_Handler.HideCharacterSelectionDuringTutorial();
+            Party[1].GetComponent<Character>().onDeath();
+            Party[1].GetComponent<Character>().transform.position = new Vector3(0, -500, 0);
+            AB_Handler.HideCharacterSelectionDuringTutorial(1);
 
         }
 

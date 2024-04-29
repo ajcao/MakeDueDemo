@@ -21,7 +21,7 @@ public abstract class PlayableCharacter : Character
 	
 	protected bool HasCasted;
 	
-	protected bool GetCharacterDataScene = true;
+	protected bool GetCharacterDataScene = false;
 	
 	
 	public List<Ability> AbilityPool;
