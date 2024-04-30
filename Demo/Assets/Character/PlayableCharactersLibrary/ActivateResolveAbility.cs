@@ -29,8 +29,15 @@ public class ActivateResolveAbility : Ability
     public override void onCast(Character E)
     {
         this.PC.setResolve(0);
-        ResolveBuff B = new ResolveBuff(this.PC, this.PC, 1, null);
-        BattleLogicHandler.OnBuffApply(B);
+        if (!this.PC.getHasCasted())
+        {
+            ResolveBuff B = new ResolveBuff(this.PC, this.PC, 1, null);
+            BattleLogicHandler.OnBuffApply(B);
+        }
+        else
+        {
+            this.PC.RefreshCasting();
+        }
         
     }
     

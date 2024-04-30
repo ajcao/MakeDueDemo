@@ -94,7 +94,7 @@ public abstract class Ability
     
     public virtual bool canCast()
     {
-        return (currentCooldown == 0);
+        return (currentCooldown == 0 && PC.IsAbletoCast());
     }
     
 }

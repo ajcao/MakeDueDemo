@@ -6,14 +6,23 @@ using UnityEngine;
 
 public static class TutorialBoxText
 {
+
     private static (string Name, string[] text) Intro =
+    ("Intro", new String[]
+        {
+            "MakeDue is a game where you control a party of up to four characters to defeat enemy encounters.\n" +
+            "Combat is turn-based. During your turn, you can use your character's abilities. When your turn is finished, hit the ENDTURN button\n" +
+            "You win by reducing the enemy's health to 0 while keeping yours above 0."
+        }
+    );
+
+    private static (string Name, string[] text) Abilities =
     ("Abilities", new String[]
         {
-            "MakeDue is a game where you control a party of up to four characters to defeat enemy encounters. You win by lowering the enemy HP while keeping yours above 0",
-            "Select a character by hovering over the MOVES button. Every character has abilities. You can read what abilities do by hovering over the ability button",
+            "Select a character's abilities by hovering over the MOVES button. You can read what abilities do by hovering over the ability button",
             "Characters also have a Basic Attack and Defend. Finally all characters have a special Resolve ability",
             "After using a move, it will enter cooldown and be unusable until its cooldown is over. Basic Attack/Defends and the Resolve ability don't have cooldowns",
-            "Every character gets one action at the start of the turn. When you are finished your turn, hit the ENDTURN button"
+            "Every character gets one action at the start of the turn."
         }
     );
 
@@ -61,32 +70,34 @@ public static class TutorialBoxText
         }
     );
 
-    public static (string ChapterTitle, string[] Pages)[] Chapters = { Intro, Armor, Resolve, Poise, Buffs, EnemyIntent };
+    private static (string Name, string[] text) Outro =
+    ("Outro", new String[]
+        {
+            "There are many enemy encounters and many ways to get stronger. Defeat these two enemies to leave the tutorial"
+        }
+    );
+
+    public static (string ChapterTitle, string[] Pages)[] Chapters = { Intro, Abilities, Armor, Resolve, Poise, Buffs, EnemyIntent, Outro };
 
     public static (int x, int y) CurrentCoords = (0,0);
 
 
     public static (string, string) GetText(int i)
-    //Precondition: i = 1, 0 -1. i shouuld not be any other value
+    //Precondition: i = 1 or -1. i shouuld not be any other value
     {
-        //Simply give the current page
-        if (i == 0)
-        {
-            return (Chapters[CurrentCoords.x].ChapterTitle, Chapters[CurrentCoords.x].Pages[CurrentCoords.y]);
-        }
 
         if (i == 1)
         {
             //If we are not at the end of the chapter, go to the next page
             if (CurrentCoords.y + i < Chapters[CurrentCoords.x].Pages.Length)
             {
-                CurrentCoords = (CurrentCoords.x, CurrentCoords.y + 1);
+                CurrentCoords.y += 1;
             }
-
             //We are at end of the chapter, but we have another chapter
-            if (CurrentCoords.y + i == Chapters[CurrentCoords.x].Pages.Length && CurrentCoords.x + i < Chapters.Length)
+            else if (CurrentCoords.y + i == Chapters[CurrentCoords.x].Pages.Length && CurrentCoords.x + i < Chapters.Length)
             {
-                CurrentCoords = (CurrentCoords.x + 1, 0);
+                CurrentCoords.x += 1;
+                CurrentCoords.y = 0;
             }
 
             //Otherwise, do not change the coordinates at all to avoid out of bounds
@@ -98,13 +109,16 @@ public static class TutorialBoxText
             //If we are not at the start of chapter, go to previous page
             if (CurrentCoords.y + i >= 0)
             {
-                CurrentCoords = (CurrentCoords.x, CurrentCoords.y - 1);
+                CurrentCoords.y -= 1;
             }
-
             //We are at start of the chapter, but we have a previous chapter
-            if (CurrentCoords.y + i < 0 && CurrentCoords.x + i >= 0)
+            else if (CurrentCoords.y + i < 0 && CurrentCoords.x + i >= 0)
             {
-                CurrentCoords = (CurrentCoords.x - 1, Chapters[CurrentCoords.x - 1].Pages.Length - 1);
+                //First, set x coord to a lower value
+                CurrentCoords.x -= 1;
+
+                //Since x coord is not set, use it to access the current # of pages
+                CurrentCoords.y = Chapters[CurrentCoords.x].Pages.Length - 1;
             }
 
             //Otherwise, do not change the coordinates at all to avoid out of bounds

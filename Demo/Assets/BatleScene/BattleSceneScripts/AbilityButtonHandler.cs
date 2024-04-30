@@ -146,7 +146,9 @@ public class AbilityButtonHandler : MonoBehaviour
         currentTarget = null;
         currentAbility = null;
         
-        if (CanSomeoneCast() == true && !EnemyEncounter.IsEncounterDead())
+        //Until the player wins or
+        //hits the end turn button, it is always the players turn
+        if (!EnemyEncounter.IsEncounterDead())
         {
             StartCoroutine(CharacterCasting());
         }
@@ -156,22 +158,7 @@ public class AbilityButtonHandler : MonoBehaviour
             BattleLogicHandler.CheckForEncounterDeath();
         }
     }
-    
-    public bool CanSomeoneCast()
-    {
-        //If all enemies are dead, there is no more need to cast
-        if (EnemyEncounter.IsEncounterDead())
-        {
-            return false;
-        }
-        
-        foreach (GameObject G in PlayerParty.getParty())
-        {
-            if (G.GetComponent<PlayableCharacter>().IsAbletoCast())
-                return true;
-        }
-        return false;
-    }
+   
     
     //Update ability buttons to always display current Characters Abilities
     //Also handles colors of Abillity buttons
@@ -225,15 +212,10 @@ public class AbilityButtonHandler : MonoBehaviour
                 AbilityButton.GetComponent<AbilityButtonScript>().DefineAbility(A);
                 AbilityButton.GetComponent<Image>().sprite = A.getIcon();
                 
-                //Determines whether buttons castable and thus intertable
-                //Checks if owning character is able to cast
-                if (!currentCharacter.IsAbletoCast())
-                {
-                    AbilityButton.GetComponent<Button>().interactable = false;
-                }
+
                 //Abilities that cannot be cast for internal reasons (cooldown, etc)
                 //are displayed but cannot be cast
-                else if (A.canCast() == false)
+                if (A.canCast() == false)
                 {
                     AbilityButton.GetComponent<Button>().interactable = false;
                 }

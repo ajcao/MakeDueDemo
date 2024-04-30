@@ -11,6 +11,9 @@ public class TutorialBoxPrefabScript : MonoBehaviour
 
     public TextMeshProUGUI textBox;
 
+    public int xCor = TutorialBoxText.CurrentCoords.x;
+    public int yCor = TutorialBoxText.CurrentCoords.y;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,9 +31,16 @@ public class TutorialBoxPrefabScript : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        xCor = TutorialBoxText.CurrentCoords.x;
+        yCor = TutorialBoxText.CurrentCoords.y;
+    }
+
     public void GoToNextPage()
     {
         (string Chapter, string Page) CurrentPage = TutorialBoxText.GetText(1);
+        //Calls HandleChapterSelects below
         DropdownBox.value = TutorialBoxText.CurrentCoords.x;
 
         textBox.text = CurrentPage.Page;
@@ -39,6 +49,7 @@ public class TutorialBoxPrefabScript : MonoBehaviour
     public void GoToPrevPage()
     {
         (string Chapter, string Page) CurrentPage = TutorialBoxText.GetText(-1);
+        //Calls HandleChapterSelects below
         DropdownBox.value = TutorialBoxText.CurrentCoords.x;
 
         textBox.text = CurrentPage.Page;
@@ -46,10 +57,14 @@ public class TutorialBoxPrefabScript : MonoBehaviour
 
     public void HandleChapterSelect(int i)
     {
-        (string Chapter, string Page) CurrentPage = TutorialBoxText.GoToChapter(i);
-        DropdownBox.value = TutorialBoxText.CurrentCoords.x;
+        //Required to work with DropdownBox.value
+        //Only go to chapter is the user clicked on the dropdown value
+        //And not when user uses buttons to go to another chapter
+        if (TutorialBoxText.CurrentCoords.x != i)
+        {
+            (string Chapter, string Page) CurrentPage = TutorialBoxText.GoToChapter(i);
+            textBox.text = CurrentPage.Page;
 
-        textBox.text = CurrentPage.Page;
-
+        }
     }
 }

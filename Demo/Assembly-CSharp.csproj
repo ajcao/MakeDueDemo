@@ -170,6 +170,7 @@
     <Compile Include="Assets\Character\EnemyCharactersLibrary\EnemyEncounters\EnemyEncounterData.cs" />
     <Compile Include="Assets\BatleScene\BattleSceneScripts\EnemyMoveHandler.cs" />
     <Compile Include="Assets\Buff\EnemySpecificBuff\RatLifeStealBuff.cs" />
+    <Compile Include="Assets\BatleScene\HowToPlaySceneUI\TutorialBoxPrefabScript.cs" />
     <Compile Include="Assets\Character\EnemyCharactersLibrary\TutorialEnemyFolder\Yash.cs" />
     <Compile Include="Assets\Character\EnemyCharactersLibrary\EnemyTargetingLibrary.cs" />
     <Compile Include="Assets\Character\PlayableCharactersLibrary\ORBFolder\OrbResetCooldown.cs" />
@@ -239,7 +240,6 @@
     <Compile Include="Assets\Character\EnemyCharactersLibrary\EnemyMove.cs" />
     <Compile Include="Assets\Items\MagicMissileCannedItem.cs" />
     <Compile Include="Assets\Character\PlayableCharactersLibrary\LizardLeechFolder\LizardLeechBehavior.cs" />
-    <Compile Include="Assets\BatleScene\HowToPlaySceneUI\TutorialBoxPrefabScript.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

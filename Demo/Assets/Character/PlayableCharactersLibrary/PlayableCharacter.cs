@@ -95,15 +95,7 @@ public abstract class PlayableCharacter : Character
 			return false;
 		}
 		
-		foreach (Ability A in AbilityPool)
-		{
-			if (A.canCast())
-			{
-				return true;
-			}
-		}
-		
-		return false;
+		return true;
 	}
 	
 	public void RefreshCasting()
