@@ -33,22 +33,22 @@ public class GenericSaplingBehavior : EnemyCharacter
     {
         Character[] Target;
         
-        int[] RandomMoveInt = EnemyTargetingLibrary.CreateEvenDistributionToN(6);
+        int[] RandomMoveInt = EnemyTargetingLibrary.CreateEvenDistributionToN(3);
         
         for (int j = 0; j < 2; j++)
         {
             int i = RandomMoveInt[j];
             
-            if (i < 4)
+            if (i == 0)
             {
-                Target = EnemyTargetingLibrary.TargetNRandomHeroes(1);
-                Moves.Push(new EnemyAttackDefendMove(this, 50, 30, Target));
+                Target = new Character[] { (Character)this };
+                Moves.Push(new EnemyApplyBuffMove(this, Target, "AttackUpBuff", 10, null));
             }
             
-            if (i >= 4)
+            else
             {
                 Target = EnemyTargetingLibrary.TargetNRandomHeroes(2);
-                Moves.Push(new EnemyAttackDefendMove(this, 25, 30, Target));
+                Moves.Push(new EnemyAttackDefendMove(this, 40, 40, Target));
             }
         }
     }

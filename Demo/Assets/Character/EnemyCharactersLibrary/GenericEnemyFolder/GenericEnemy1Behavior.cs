@@ -56,7 +56,7 @@ public class GenericEnemy1Behavior : EnemyCharacter
             else
             {
                 Target = EnemyTargetingLibrary.TargetNRandomHeroes(3);
-                Moves.Push(new EnemyAttackMove(this, 40, Target));
+                Moves.Push(new EnemyAttackMove(this, 50, Target));
                 NoVulnurableMoveTurn+=1;
             }
         }

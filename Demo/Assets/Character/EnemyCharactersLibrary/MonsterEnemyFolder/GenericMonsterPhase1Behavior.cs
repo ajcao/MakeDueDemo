@@ -46,7 +46,7 @@ public class GenericMonsterPhase1Behavior : EnemyCharacter
         {
             BigAttackMode = false;
             Target = EnemyTargetingLibrary.TargetNRandomHeroes(1);
-            Moves.Push(new EnemyAttackMove(this, 160, Target));
+            Moves.Push(new EnemyAttackMove(this, 200, Target));
         }
         
         else
@@ -64,7 +64,7 @@ public class GenericMonsterPhase1Behavior : EnemyCharacter
                     continue;
                 }
                 
-                //If frail was already proc, then 50/50 attack or defend
+                //If frail was already proc, then 50/50 attack or defend. Avoids frail proccing multiple times
                 if (RandomMoveInt[i] >= 4)
                 {
                     if (!WasFrailProc)
@@ -104,12 +104,12 @@ public class GenericMonsterPhase1Behavior : EnemyCharacter
         if (RandomMoveInt[0] == 0)
         {
                 Target = EnemyTargetingLibrary.TargetNRandomHeroes(1);
-                Moves.Push(new EnemyAttackDefendMove(this, 60, 20, Target));
+                Moves.Push(new EnemyAttackDefendMove(this, 100, 20, Target));
         }
         else
         {
-                Target = new Character[] {(Character) this};
-                Moves.Push(new EnemyDefendMove(this, 60, Target));    
+            Target = EnemyTargetingLibrary.TargetNRandomHeroes(2);
+            Moves.Push(new EnemyAttackDefendMove(this, 50, 20, Target));
         }
     }
     

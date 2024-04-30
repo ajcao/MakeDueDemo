@@ -48,14 +48,11 @@ public class RatEnemyBehavior : EnemyCharacter
         if (this.Forms != "Sleeping")
         {
             
-            Target = new Character[] {(Character) this};
-            Moves.Push(new EnemyDefendMove(this, 60, Target));
-            
             //When enranged, only attack
             if (this.Forms == "Enranged")
             {
                     Target = EnemyTargetingLibrary.TargetNRandomHeroes(1);
-                    Moves.Push(new EnemyAttackDefendMove(this, 80, 20, Target));
+                    Moves.Push(new EnemyAttackDefendMove(this, 120, 60, Target));
                     NoDefenseTurn++;
             }
             else //Enemy is attacking normally
@@ -74,6 +71,9 @@ public class RatEnemyBehavior : EnemyCharacter
                     NoDefenseTurn++;
                 }
             }
+
+            Target = new Character[] { (Character)this };
+            Moves.Push(new EnemyDefendMove(this, 60, Target));
         }
         
     }

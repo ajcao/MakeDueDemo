@@ -30,15 +30,6 @@ public class GenericMonsterPhase2Behavior : EnemyCharacter
         
     }
     
-    public override void InitialBuffs()
-    {
-        Buff B = new AttackUpBuff(this, this, 20, null);
-        BattleLogicHandler.OnBuffApply(B);
-        
-        B = new DefenseUpBuff(this, this, 20, null);
-        BattleLogicHandler.OnBuffApply(B);
-    }
-    
     
     public bool AttackMode = true;
     
@@ -52,7 +43,7 @@ public class GenericMonsterPhase2Behavior : EnemyCharacter
         {
             AttackMode = false;
             Target = EnemyTargetingLibrary.TargetNRandomHeroes(1);
-            Moves.Push(new EnemyAttackMove(this, 160, Target));
+            Moves.Push(new EnemyAttackMove(this, 250, Target));
         }
         else
         {
@@ -68,8 +59,8 @@ public class GenericMonsterPhase2Behavior : EnemyCharacter
             }
             else
             {
-                Target = new Character[] {(Character) this};
-                Moves.Push(new EnemyDefendMove(this, 60, Target));        
+                Target = EnemyTargetingLibrary.TargetNRandomHeroes(2);
+                Moves.Push(new EnemyAttackDefendMove(this, 80, 20, Target));
             }
         }
 
