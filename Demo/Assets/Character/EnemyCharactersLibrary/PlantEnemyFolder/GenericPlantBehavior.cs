@@ -12,8 +12,8 @@ public class GenericPlantBehavior : EnemyCharacter
     void Awake()
     {
         this.Alive = true;
-        this.CurrentHealth = 1200;
-        this.MaxHealth = 1200;
+        this.CurrentHealth = 1500;
+        this.MaxHealth = 1500;
         this.CurrentArmor = 0;
         this.ArmorRetain = 0;
         this.DamageOutputModifier = 0;

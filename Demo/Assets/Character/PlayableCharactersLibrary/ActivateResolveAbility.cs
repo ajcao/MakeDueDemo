@@ -53,7 +53,7 @@ public class ActivateResolveAbility : Ability
     
     public override string GetTooltipString()
     {
-        return "Use all resolve to take an extra turn";
+        return "Use all resolve to take an extra turn. This ability can be casted whenever it is the player's turn";
     }
     
 }

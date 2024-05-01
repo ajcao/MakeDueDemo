@@ -8,48 +8,46 @@ using BuffUtil;
 
 public class GenericSaplingBehavior : EnemyCharacter
 {
+    private int noBuffTurn;
+
     //Initalize Stats
     void Awake()
     {
         this.Alive = true;
-        this.CurrentHealth = 120;
-        this.MaxHealth = 120;
+        this.CurrentHealth = 100;
+        this.MaxHealth = 100;
         this.CurrentArmor = 0;
         this.ArmorRetain = 0;
         this.DamageOutputModifier = 0;
         this.DefenseOutputModifier = 0;
         this.canPoiseRegenerate = true;
         this.IsStunned = false;
-        this.Poise = 120;
+        this.Poise = 100;
         this.MaxPoise = this.Poise;
         this.PoiseRegeneration = this.MaxPoise / 2;
         Moves = new Stack<EnemyMove>();
-        
+
+        noBuffTurn = Random.Range(0, 2);
+
         this.CharacterIcon = Resources.Load<Sprite>("EnemyCharacterImages/GenericSaplingIcon");
         
     }
-    
+
     public override void GenerateMoves()
     {
         Character[] Target;
-        
-        int[] RandomMoveInt = EnemyTargetingLibrary.CreateEvenDistributionToN(3);
-        
-        for (int j = 0; j < 2; j++)
+
+        if (Random.Range(0.0f, 1.0f) <= 0.20f + 0.20f * noBuffTurn)
         {
-            int i = RandomMoveInt[j];
-            
-            if (i == 0)
-            {
-                Target = new Character[] { (Character)this };
-                Moves.Push(new EnemyApplyBuffMove(this, Target, "AttackUpBuff", 10, null));
-            }
-            
-            else
-            {
-                Target = EnemyTargetingLibrary.TargetNRandomHeroes(2);
-                Moves.Push(new EnemyAttackDefendMove(this, 40, 40, Target));
-            }
+            Target = new Character[] { (Character)this };
+            Moves.Push(new EnemyApplyBuffMove(this, Target, "AttackUpBuff", 10, null));
+            noBuffTurn = 0;
+        }
+        else
+        {
+            Target = EnemyTargetingLibrary.TargetNRandomHeroes(2);
+            Moves.Push(new EnemyAttackDefendMove(this, 30, 30, Target));
+            noBuffTurn += 1;
         }
     }
 

@@ -30,7 +30,7 @@ public class RetainBuff : Buff
     
     public override string GetTooltipString()
     {
-        return "Retain " + this.Intensity + " armor at the start of the next round";
+        return "Retain " + this.Intensity + " armor at the start of the next turn";
     }
     
     public override void onExpire()

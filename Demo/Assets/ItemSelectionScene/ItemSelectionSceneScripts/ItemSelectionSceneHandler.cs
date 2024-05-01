@@ -104,6 +104,13 @@ public class ItemSelectionSceneHandler : MonoBehaviour
 
         this.SetPlayerGameObjectToCorrectLocation();
         this.SetPlayerGameObjectToCanvasInventory();
+
+        //Allow the plalyer to access character information
+        for (int i = 0; i < 4; i++)
+        {
+            //Click on character no longer opens up Character Data scene, avoids potential crashes
+            PlayerParty.getPartyMember(i).GetComponent<PlayableCharacter>().ToggleCharacterData(true);
+        }
     }
 
 

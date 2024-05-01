@@ -46,7 +46,7 @@ public class GenericEnemy2Behavior : EnemyCharacter
             if (i == 1)
             {
                 Target = new Character[] {(Character) this};
-                Moves.Push(new EnemyApplyBuffMove(this, Target, "AttackUpBuff", 50, null));
+                Moves.Push(new EnemyApplyBuffMove(this, Target, "AttackUpBuff", 60, null));
             }
             
             if (i == 2)

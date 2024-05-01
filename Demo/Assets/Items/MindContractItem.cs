@@ -36,7 +36,7 @@ public class MindContractItem : GameItem
     
     public override string GetTooltipString()
     {
-        return "Every turn gain 50% resolve. Every turn lose 5 hp";
+        return "Every turn gain 50% resolve. Every turn lose 5 hp. The damage cannot be blocked";
     }
 }
 

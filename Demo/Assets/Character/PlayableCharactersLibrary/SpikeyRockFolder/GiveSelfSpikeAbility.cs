@@ -9,13 +9,13 @@ namespace AbilityUtil
 
 public class GiveSelfSpikeAbility : Ability
 {
-    private int intensity = 20;
+    private int intensity = 30;
     public GiveSelfSpikeAbility(PlayableCharacter inputC)
     {
         this.AssignCharacter(inputC);
         targetingType = TargetingTypeEnum.NoTarget;
         this.currentCooldown = 0;
-        this.maxCooldown = 3;
+        this.maxCooldown = 2;
         
         this.AbilityIcon = Resources.Load<Sprite>("AbilityImages/SpikeyRockAbillities/GainSpike") as Sprite;
     }

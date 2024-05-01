@@ -25,13 +25,13 @@ public class ApaxeItem : GameItem
     
     public override void OnApply()
     {
-        Buff B = new ApaxeItemBuff(this.ItemOwner, this.ItemOwner, 10, null);
+        Buff B = new ApaxeItemBuff(this.ItemOwner, this.ItemOwner, 20, null);
         BattleLogicHandler.OnBuffApply(B);
     }
     
     public override string GetTooltipString()
     {
-        return "Increase damage by 10. Whenenver you basic attack, deal 20 damage to two random enemies";
+        return "Increase damage by 20. Whenenver you basic attack, deal 20 damage to two random enemies";
     }
 }
 

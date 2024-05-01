@@ -39,7 +39,7 @@ public class HeavensSpearItemBuff : Buff
                 PlayableCharacter PC = G.GetComponent<PlayableCharacter>();
                 if (PC.isAlive())
                 {
-                    BattleLogicHandler.BuffDamage(PC, 200);
+                    BattleLogicHandler.BuffDamage(PC, 300);
                 }
             }
             

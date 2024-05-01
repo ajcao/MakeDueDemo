@@ -37,7 +37,7 @@ public class MindContractDamageDebuff : Buff
     
     public override string GetTooltipString()
     {
-        string s1 = "Every turn lose 5 hp";
+        string s1 = "Every turn lose 5 hp. This damage cannot be blocked";
         return s1;
     }
     

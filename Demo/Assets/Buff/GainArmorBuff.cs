@@ -36,7 +36,7 @@ public class GainArmorBuff : Buff
     
     public override string GetTooltipString()
     {
-        return "At the start of the turn, gain " + this.Intensity.Value + " armor";
+        return "At the end of the turn, gain " + this.Intensity.Value + " armor";
     }
     
     public override void onTriggerEffect(TriggerEvent E, ref int v)
