@@ -12,15 +12,15 @@ public class GenericMonsterPhase2Behavior : EnemyCharacter
     void Awake()
     {
         this.Alive = true;
-        this.CurrentHealth = 600;
-        this.MaxHealth = 600;
+        this.CurrentHealth = 800;
+        this.MaxHealth = 800;
         this.CurrentArmor = 0;
         this.ArmorRetain = 0;
         this.DamageOutputModifier = 0;
         this.DefenseOutputModifier = 0;
         this.canPoiseRegenerate = true;
         this.IsStunned = false;
-        this.Poise = 150;
+        this.Poise = 200;
         this.MaxPoise = this.Poise;
         this.PoiseRegeneration = this.MaxPoise / 2;
         Moves = new Stack<EnemyMove>();
@@ -55,7 +55,12 @@ public class GenericMonsterPhase2Behavior : EnemyCharacter
             if (RandomMoveInt[0] == 0)
             {
                 Target = EnemyTargetingLibrary.TargetNRandomHeroes(4);
-                Moves.Push(new EnemyApplyBuffMove(this, Target, "VulnurableBuff", null, 2));
+                List<Buff> appliedBuffs = new List<Buff>();
+                foreach (Character C in Target)
+                {
+                    appliedBuffs.Add(new VulnurableBuff(C, this, null, 2));
+                }
+                Moves.Push(new EnemyApplyBuffMove(this, Target, appliedBuffs));
             }
             else
             {

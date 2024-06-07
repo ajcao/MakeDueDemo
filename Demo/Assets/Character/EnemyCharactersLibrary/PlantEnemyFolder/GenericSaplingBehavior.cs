@@ -22,7 +22,7 @@ public class GenericSaplingBehavior : EnemyCharacter
         this.DefenseOutputModifier = 0;
         this.canPoiseRegenerate = true;
         this.IsStunned = false;
-        this.Poise = 100;
+        this.Poise = 50;
         this.MaxPoise = this.Poise;
         this.PoiseRegeneration = this.MaxPoise / 2;
         Moves = new Stack<EnemyMove>();
@@ -40,13 +40,15 @@ public class GenericSaplingBehavior : EnemyCharacter
         if (Random.Range(0.0f, 1.0f) <= 0.20f + 0.20f * noBuffTurn)
         {
             Target = new Character[] { (Character)this };
-            Moves.Push(new EnemyApplyBuffMove(this, Target, "AttackUpBuff", 10, null));
+            List<Buff> appliedBuffs = new List<Buff>();
+            appliedBuffs.Add(new AttackUpBuff(this, this, 10, null));
+            Moves.Push(new EnemyApplyBuffMove(this, Target, appliedBuffs));
             noBuffTurn = 0;
         }
         else
         {
             Target = EnemyTargetingLibrary.TargetNRandomHeroes(2);
-            Moves.Push(new EnemyAttackDefendMove(this, 30, 30, Target));
+            Moves.Push(new EnemyAttackMove(this, 40, Target));
             noBuffTurn += 1;
         }
     }

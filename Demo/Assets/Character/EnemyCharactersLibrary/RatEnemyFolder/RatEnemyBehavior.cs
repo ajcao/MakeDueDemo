@@ -12,15 +12,15 @@ public class RatEnemyBehavior : EnemyCharacter
     void Awake()
     {
         this.Alive = true;
-        this.CurrentHealth = 400;
-        this.MaxHealth = 400;
+        this.CurrentHealth = 500;
+        this.MaxHealth = 500;
         this.CurrentArmor = 0;
         this.ArmorRetain = 0;
         this.DamageOutputModifier = 0;
         this.DefenseOutputModifier = 0;
         this.canPoiseRegenerate = true;
         this.IsStunned = false;
-        this.Poise = 100;
+        this.Poise = 200;
         this.MaxPoise = this.Poise;
         this.PoiseRegeneration = this.MaxPoise / 2;
         Moves = new Stack<EnemyMove>();
@@ -61,7 +61,9 @@ public class RatEnemyBehavior : EnemyCharacter
                 if (Random.Range(0.0f, 1.0f) <= 0.3f + 0.3f * NoDefenseTurn)
                 {
                     Target = new Character[] {(Character) this};
-                    Moves.Push(new EnemyApplyBuffMove(this, Target, "DefenseUpBuff", 40, null));
+                    List<Buff> appliedBuffs = new List<Buff>();
+                    appliedBuffs.Add(new DefenseUpBuff(this, this, 40, null));
+                    Moves.Push(new EnemyApplyBuffMove(this, Target, appliedBuffs));
                     NoDefenseTurn = -1;
                 }
                 else
@@ -70,10 +72,10 @@ public class RatEnemyBehavior : EnemyCharacter
                     Moves.Push(new EnemyAttackDefendMove(this, 80, 20, Target));
                     NoDefenseTurn++;
                 }
-            }
 
-            Target = new Character[] { (Character)this };
-            Moves.Push(new EnemyDefendMove(this, 60, Target));
+                Target = new Character[] { (Character)this };
+                Moves.Push(new EnemyDefendMove(this, 60, Target));
+            }
         }
         
     }

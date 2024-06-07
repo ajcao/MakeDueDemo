@@ -30,20 +30,18 @@ public class GenericPlantBehavior : EnemyCharacter
         
     }
     
-    private bool HasSummoned = false;
     
     public override void GenerateMoves()
     {
         Debug.Log("Generating moves");
         Character[] Target;
         
-        //On the first turn summon all saplings
-        if (!HasSummoned)
+        //If Saplings have never been summoned, always attempt to spawn all two saplings
+        if (EnemyEncounter.getEncounterMember(0) == null && EnemyEncounter.getEncounterMember(1) == null)
         {
             Target = new Character[] {(Character) this};
             (int,int)[] array = new (int,int)[] {(0,0),(0,1)};
             Moves.Push(new EnemyReviveMove(this, Target, array));
-            HasSummoned = true;
             return;
         }
         
@@ -74,14 +72,20 @@ public class GenericPlantBehavior : EnemyCharacter
         
         for (int i = 0; i < 2; i++)
         {
-            if (RandomMoveInt[i] < 2)
+            Target = EnemyTargetingLibrary.TargetEnemyType<GenericSaplingBehavior>();
+
+            if (RandomMoveInt[i] == 0)
             {
-                Target = EnemyTargetingLibrary.TargetNRandomHeroes(4);
-                Moves.Push(new EnemyAttackMove(this, 40, Target));
+                List<Buff> appliedBuffs = new List<Buff>();
+                foreach (Character C in Target)
+                {
+                    appliedBuffs.Add(new RetainBuff(C, this, 10, null));
+                    appliedBuffs.Add(new GainHPBuff(C, this, 5, null));
+                }
+                Moves.Push(new EnemyApplyBuffMove(this, Target, appliedBuffs));
             }
             else
             {
-                Target = EnemyTargetingLibrary.TargetEnemyType<GenericSaplingBehavior>();
                 Moves.Push(new EnemyDefendMove(this, 100, Target));
             }
         }

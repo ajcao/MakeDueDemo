@@ -20,7 +20,7 @@ public class GenericMonsterPhase1Behavior : EnemyCharacter
         this.DefenseOutputModifier = 0;
         this.canPoiseRegenerate = true;
         this.IsStunned = false;
-        this.Poise = 200;
+        this.Poise = 300;
         this.MaxPoise = this.Poise;
         this.PoiseRegeneration = this.MaxPoise / 2;
         Moves = new Stack<EnemyMove>();
@@ -70,7 +70,12 @@ public class GenericMonsterPhase1Behavior : EnemyCharacter
                     if (!WasFrailProc)
                     {
                         Target = EnemyTargetingLibrary.TargetNRandomHeroes(4);
-                        Moves.Push(new EnemyApplyBuffMove(this, Target, "FrailBuff", null, 4));
+                        List<Buff> appliedBuffs = new List<Buff>();
+                        foreach (Character C in Target)
+                        {
+                            appliedBuffs.Add(new FrailBuff(C, this, null, 4));
+                        }
+                        Moves.Push(new EnemyApplyBuffMove(this, Target, appliedBuffs));
                         WasFrailProc = true;
                     }
                     else

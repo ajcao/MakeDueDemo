@@ -92,22 +92,31 @@ public static class EnemyTargetingLibrary
         foreach (GameObject G in PlayerParty.GetLivingPartyMembers())
         {
             randomList.Add((Character) G.GetComponent<PlayableCharacter>());
+                Debug.Log(G);
         }
         
-         IEnumerable<Character> FilteredEnumerable = randomList.Where(C => ( HasBuff == BuffHandler.CharacterHaveBuff(C, B, ExactBuff) ) );
+        IEnumerable<Character> FilteredEnumerable = randomList.Where(C => ( HasBuff == BuffHandler.CharacterHaveBuff(C, B, ExactBuff) ) );
+            Debug.Log(FilteredEnumerable.ToString());
          
-         List<Character> FilteredList = FilteredEnumerable.ToList();
+        List<Character> FilteredList = FilteredEnumerable.ToList();
+            Debug.Log(FilteredList.ToString());
          
-         int N = Mathf.Min(inputN, FilteredList.Count);
+        int N = Mathf.Min(inputN, FilteredList.Count);
+            Debug.Log(N);
+            Debug.Log(inputN);
+        //Right now if the inputN is greater than the amount of buff targets
+        //the enemy will activelly target less units
+        //Should this be chagned such that extra targets are simply forced chosen from the non-valid pool?
+        //If so, this needs to be reworked
          
-         //List is empty
-         if (N == 0)
-         {
-            //Chose a random target of 1
+        //List is empty
+        if (N == 0)
+        {
+            //Chose a random target of inputN
             return TargetNRandomHeroes(1);
-         }
-         else
-         {
+        }
+        else
+        {
             Character[] Targets = new Character[N];
             int i = 0;
             while (randomList.Count > 0 && i < N)
@@ -119,7 +128,7 @@ public static class EnemyTargetingLibrary
                 i++;
             }
             return Targets;
-         }
+        }
         
         
         

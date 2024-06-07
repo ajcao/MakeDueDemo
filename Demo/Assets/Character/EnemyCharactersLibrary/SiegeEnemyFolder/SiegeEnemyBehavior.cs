@@ -70,8 +70,7 @@ public class SiegeEnemyBehavior : EnemyCharacter
                 {
                     if (!WasFrailProc)
                     {
-                        Target = EnemyTargetingLibrary.TargetNRandomHeroes(4);
-                        Moves.Push(new EnemyApplyBuffMove(this, Target, "FrailBuff", null, 4));
+                        this.RandomAttackOrDefend();
                         WasFrailProc = true;
                     }
                     else

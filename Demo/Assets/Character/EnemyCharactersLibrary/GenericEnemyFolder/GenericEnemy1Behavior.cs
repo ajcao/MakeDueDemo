@@ -12,8 +12,8 @@ public class GenericEnemy1Behavior : EnemyCharacter
     void Awake()
     {
         this.Alive = true;
-        this.CurrentHealth = 600;
-        this.MaxHealth = 600;
+        this.CurrentHealth = 800;
+        this.MaxHealth = 800;
         this.CurrentArmor = 0;
         this.ArmorRetain = 0;
         this.DamageOutputModifier = 0;
@@ -36,21 +36,28 @@ public class GenericEnemy1Behavior : EnemyCharacter
     {
         Debug.Log("Generating moves");
         Character[] Target;
+        List<Buff> appliedBuffs;
         
         //If the buff was never applied, try to apply
         if (!BuffHandler.CharacterHaveBuff(this,new GainArmorBuff(this, this, 40, null), true))
         {
             Target = new Character[] {(Character) this};
-            
-            EnemyApplyBuffMove E = new EnemyApplyBuffMove(this, Target, "GainArmorBuff", 40, null);
+            appliedBuffs = new List<Buff>();
+            appliedBuffs.Add(new GainArmorBuff(this, this, 40, null));
+            EnemyApplyBuffMove E = new EnemyApplyBuffMove(this, Target, appliedBuffs);
             Moves.Push(E);
         }
         else
         {
             if (Random.Range(0.0f, 1.0f) <= 0.15f + 0.15f * NoVulnurableMoveTurn)
             {
-                Target = EnemyTargetingLibrary.TargetNRandomHeroesBasedOnBuff(1, new VulnurableBuff(null, null, null, null), true, false);
-                Moves.Push(new EnemyApplyBuffMove(this, Target, "VulnurableBuff", null, 4));
+                Target = EnemyTargetingLibrary.TargetNRandomHeroesBasedOnBuff(2, new VulnurableBuff(null, null, null, null), false, false);
+                appliedBuffs = new List<Buff>();
+                foreach (Character C in Target)
+                {
+                    appliedBuffs.Add(new VulnurableBuff(C, this, null, 5));
+                }
+                Moves.Push(new EnemyApplyBuffMove(this, Target, appliedBuffs));
                 NoVulnurableMoveTurn = 0;
             }
             else

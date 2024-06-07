@@ -62,6 +62,7 @@ public static class BuffHandler
     public static bool CharacterHaveBuff(Character C, Buff InputB, bool Exact)
     {
         List<Buff> BuffList = C.getBuffList();
+        Debug.Log(C);
         
         foreach (Buff B in BuffList)
         {

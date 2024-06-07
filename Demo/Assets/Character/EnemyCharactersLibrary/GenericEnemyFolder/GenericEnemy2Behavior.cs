@@ -20,7 +20,7 @@ public class GenericEnemy2Behavior : EnemyCharacter
         this.DefenseOutputModifier = 0;
         this.canPoiseRegenerate = true;
         this.IsStunned = false;
-        this.Poise = 200;
+        this.Poise = 150;
         this.MaxPoise = this.Poise;
         this.PoiseRegeneration = this.MaxPoise / 2;
         Moves = new Stack<EnemyMove>();
@@ -46,7 +46,9 @@ public class GenericEnemy2Behavior : EnemyCharacter
             if (i == 1)
             {
                 Target = new Character[] {(Character) this};
-                Moves.Push(new EnemyApplyBuffMove(this, Target, "AttackUpBuff", 60, null));
+                List<Buff> appliedBuffs = new List<Buff>();
+                appliedBuffs.Add(new AttackUpBuff(this, this, 60, null));
+                Moves.Push(new EnemyApplyBuffMove(this, Target, appliedBuffs));
             }
             
             if (i == 2)

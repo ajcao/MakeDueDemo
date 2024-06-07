@@ -10,17 +10,15 @@ namespace EnemyMoveUtil
     
 public class EnemyApplyBuffMove : EnemyMove
 {
-    string BuffName;
+    List<Buff> BuffList;
     int? Intensity;
     int? Duration;
     
-    public EnemyApplyBuffMove (EnemyCharacter InputC, Character[] CArray, string BN, int? I, int? D)
+    public EnemyApplyBuffMove (EnemyCharacter InputC, Character[] CArray, List<Buff> BN)
     {
         TargetArray = CArray;
         EC = InputC;
-        BuffName = BN;
-        this.Intensity = I;
-        this.Duration = D;
+        BuffList = BN;
         if ((CArray[0].GetType()).IsSubclassOf(typeof(EnemyCharacter)))
         {
             AbilityIcon = Resources.Load<Sprite>("AbilityImages/GenericBuff");
@@ -33,8 +31,13 @@ public class EnemyApplyBuffMove : EnemyMove
 
     public override void onCast(Character C)
     {
-        Buff B = BuffLibrary.GetBuffFromName(BuffName, C, EC, Intensity, Duration);
-        BattleLogicHandler.OnBuffApply(B);
+        foreach (Buff b in BuffList)
+        {
+            if (b.getBuffTarget() == C)
+            {
+                BattleLogicHandler.OnBuffApply(b);
+            }
+        }
     }
 
     public override void AdditionalMoveDeletion()
