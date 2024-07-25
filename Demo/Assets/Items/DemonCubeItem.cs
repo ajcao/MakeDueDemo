@@ -32,7 +32,7 @@ public class DemonCubeItem : GameItem
     
     public override string GetTooltipString()
     {
-        return "Every 10 turns, deal 200 damage to all enemies";
+        return "Every 10 turns of full resolve, deal 200 damage to all enemies";
     }
 }
 

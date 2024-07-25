@@ -35,7 +35,7 @@ public class BatteryItemBuff : Buff
     
     public override string GetTooltipString()
     {
-        string s1 = "Every 12th abilities cast, refresh all cooldown";
+        string s1 = "Every 8th abilities cast, refresh all cooldown";
         return s1;
     }
     
@@ -46,7 +46,7 @@ public class BatteryItemBuff : Buff
         {
             this.Intensity += 1;
             
-            if (this.Intensity >= 12)
+            if (this.Intensity >= 8)
             {
                 this.Intensity = 0;
                 ((PlayableCharacter) this.BuffTarget).ResetAllCooldown();

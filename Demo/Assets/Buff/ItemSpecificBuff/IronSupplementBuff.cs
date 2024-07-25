@@ -36,7 +36,7 @@ public class IronSupplementBuff : Buff
     
     public override string GetTooltipString()
     {
-        string s1 = "At the end of the round, excess armor is turned a stack. When the stack reaches 100, heal 30";
+        string s1 = "At the end of the round, excess armor is turned a stack. When the stack reaches 100, heal 20";
         return s1;
     }
     
@@ -47,7 +47,7 @@ public class IronSupplementBuff : Buff
         while (this.Intensity >= 100)
         {
             this.Intensity -= 100;
-            BattleLogicHandler.GainHealth(this.BuffTarget, 30);
+            BattleLogicHandler.GainHealth(this.BuffTarget, 20);
         }
         
     }

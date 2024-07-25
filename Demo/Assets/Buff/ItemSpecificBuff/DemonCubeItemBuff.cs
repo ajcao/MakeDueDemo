@@ -35,7 +35,7 @@ public class DemonCubeItemBuff : Buff
     
     public override string GetTooltipString()
     {
-        string s1 = "At the end of every 10th turn, deal 200 damage to all enemies";
+        string s1 = "Every 10 turns of full resolve, deal 200 damage to all enemies";
         return s1;
     }
     
@@ -47,8 +47,11 @@ public class DemonCubeItemBuff : Buff
             onPreTurnTrigger T = (onPreTurnTrigger) E;
             if (this.BuffTarget.GetType().IsSubclassOf(T.CharacterType))
             {
-                int roundNum = BattleSceneHandler.GetRound();
-                this.Intensity = roundNum;
+                PlayableCharacter PC = this.BuffTarget as PlayableCharacter;
+                if (PC.getResolve() == PC.getMaxResolve())
+                {
+                    this.Intensity++;
+                }
             }
         }
 
@@ -69,6 +72,7 @@ public class DemonCubeItemBuff : Buff
                     }
                     
                 }
+                this.Intensity = 0;
             }
         }
     }

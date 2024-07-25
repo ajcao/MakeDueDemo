@@ -8,7 +8,7 @@ namespace AbilityUtil
 
 public class HealAbility : Ability
 {
-    private int healamount = 50;
+    private int healamount = 40;
     public HealAbility(PlayableCharacter inputC)
     {
         this.AssignCharacter(inputC);
