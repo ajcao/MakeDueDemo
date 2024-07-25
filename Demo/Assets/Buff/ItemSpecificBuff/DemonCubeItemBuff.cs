@@ -60,7 +60,7 @@ public class DemonCubeItemBuff : Buff
         {
             onPostTurnTrigger T = (onPostTurnTrigger) E;
             
-            if (this.BuffTarget.GetType().IsSubclassOf(T.CharacterType) && (this.Intensity % 10) == 0)
+            if (this.BuffTarget.GetType().IsSubclassOf(T.CharacterType) && this.Intensity >= 10)
             {
                 List<GameObject> CurrentEncounter = EnemyEncounter.GetLivingEncounterMembers();
                 foreach (GameObject G in CurrentEncounter)
