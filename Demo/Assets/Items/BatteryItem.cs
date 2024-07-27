@@ -32,7 +32,7 @@ public class BatteryItem : GameItem
     
     public override string GetTooltipString()
     {
-        return "Every 12th abilities cast, refresh all cooldown";
+        return "Every 8th abilities cast, refresh all cooldown";
     }
 }
 

@@ -35,8 +35,8 @@ public class SimpleStoneItemBuff : Buff
     
     public override string GetTooltipString()
     {
-        string s1 = "Whenever you basic attack or defend,";
-        string s2 = "Gain +5 dmg and +5 def";
+        string s1 = "Whenever you basic attack,";
+        string s2 = "Gain +5 dmg";
         return s1 + "\n" + s2;
     }
     
@@ -51,25 +51,7 @@ public class SimpleStoneItemBuff : Buff
             {
                 Buff B = new AttackUpBuff(BuffTarget, BuffTarget, this.Intensity.Value, null);
                 BattleLogicHandler.OnBuffApply(B);
-                
-                B = new DefenseUpBuff(BuffTarget, BuffTarget, this.Intensity.Value, null);
-                BattleLogicHandler.OnBuffApply(B);
             }
-        }
-        
-        else //Did character gain armor
-        {
-            onPlayerBasicDefendTrigger TE = (onPlayerBasicDefendTrigger) E;
-            
-            if (TE.CastingPlayer == this.BuffTarget)
-            {
-                Buff B = new AttackUpBuff(BuffTarget, BuffTarget, this.Intensity.Value, null);
-                BattleLogicHandler.OnBuffApply(B);
-                
-                B = new DefenseUpBuff(BuffTarget, BuffTarget, this.Intensity.Value, null);
-                BattleLogicHandler.OnBuffApply(B);
-            }
-            
         }
     }
 }

@@ -9,7 +9,7 @@ namespace AbilityUtil
 public class MushroomHealAbility : Ability
 {
     
-    private int healamount = 20;
+    private int healamount = 10;
     public MushroomHealAbility(PlayableCharacter inputC)
     {
         this.AssignCharacter(inputC);

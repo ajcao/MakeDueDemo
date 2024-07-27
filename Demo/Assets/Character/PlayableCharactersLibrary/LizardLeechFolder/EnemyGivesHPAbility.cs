@@ -10,7 +10,7 @@ namespace AbilityUtil
 public class EnemyGivesHPAbilty : Ability
 {
     private int duration = 3;
-    private int intensity = 10;
+    private int intensity = 7;
     
     public EnemyGivesHPAbilty(PlayableCharacter inputC)
     {

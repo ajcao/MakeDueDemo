@@ -35,7 +35,7 @@ public class LawBookItemBuff : Buff
     
     public override string GetTooltipString()
     {
-        string s1 = "Every 8th skill cast, give 50% resolve to all allies";
+        string s1 = "Every 6th skill cast, give 50% resolve to all allies";
         return s1;
     }
     
@@ -46,7 +46,7 @@ public class LawBookItemBuff : Buff
         {
             this.Intensity += 1;
             
-            if (this.Intensity >= 8)
+            if (this.Intensity >= 6)
             {
                 this.Intensity = 0;
                 foreach (GameObject G in PlayerParty.GetLivingPartyMembers())

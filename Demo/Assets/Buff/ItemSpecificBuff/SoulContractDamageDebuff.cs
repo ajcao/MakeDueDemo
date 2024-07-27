@@ -37,7 +37,7 @@ public class SoulContractDamageDebuff : Buff
     
     public override string GetTooltipString()
     {
-        string s1 = "Every turn take " + this.Intensity + " damage and increase this amount by 5";
+        string s1 = "Every turn take " + this.Intensity + " damage and increase this amount by 5 to a max of 50";
         return s1;
     }
     
@@ -45,7 +45,7 @@ public class SoulContractDamageDebuff : Buff
     {
         onRoundEndTrigger TE = (onRoundEndTrigger) E;
         BattleLogicHandler.BuffDamage(this.BuffTarget, this.Intensity.Value);
-        this.Intensity += 5;
+        this.Intensity = Mathf.Min(50, this.Intensity.Value + 5);
     }
 }
 
