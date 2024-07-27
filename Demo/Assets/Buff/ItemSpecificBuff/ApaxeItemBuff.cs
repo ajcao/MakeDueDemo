@@ -40,7 +40,7 @@ public class ApaxeItemBuff : Buff
     public override string GetTooltipString()
     {
         string s1 = "Increase damage by " + this.Intensity.Value + ".";
-        string s2 = "Everytime you basic attack, inflict " + this.Intensity + " damange on two random enemies";
+        string s2 = "Everytime you basic attack, inflict " + this.Intensity + " damage on two random enemies";
         return s1 + "\n" + s2;
     }
     
