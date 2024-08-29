@@ -13,6 +13,8 @@ public class ItemDragDropScript : MonoBehaviour, IBeginDragHandler, IDragHandler
     public GameItem CurrentItem;
     
     bool isDragged = false;
+
+    public bool canBeDragged = true;
     
     public GameObject ItemSlot;
     
@@ -38,9 +40,11 @@ public class ItemDragDropScript : MonoBehaviour, IBeginDragHandler, IDragHandler
     
     public void OnBeginDrag(PointerEventData eventData)
     {
-        
-        this.isDragged = true;
-        this.GetComponent<Image>().raycastTarget = false;
+        if (canBeDragged)
+        {
+            this.isDragged = true;
+            this.GetComponent<Image>().raycastTarget = false;
+        }
     }
     
     public void OnDrag(PointerEventData eventData)
@@ -56,8 +60,11 @@ public class ItemDragDropScript : MonoBehaviour, IBeginDragHandler, IDragHandler
     
     public void OnEndDrag(PointerEventData eventData)
     {
-        isDragged = false;
-        this.GetComponent<Image>().raycastTarget = true;
+        if (canBeDragged)
+        {
+            isDragged = false;
+            this.GetComponent<Image>().raycastTarget = true;
+        }
     }
     
     //If the item was not dropped in a box as a last resort reset position if needed
@@ -72,5 +79,12 @@ public class ItemDragDropScript : MonoBehaviour, IBeginDragHandler, IDragHandler
     public string GetTooltipString()
     {
         return CurrentItem.GetTooltipString();
+    }
+
+    public void disableItem()
+    {
+        canBeDragged = false;
+        this.gameObject.GetComponent<Image>().color -= new Color(0.0f, 0.0f, 0.0f, 0.5f);
+
     }
 }

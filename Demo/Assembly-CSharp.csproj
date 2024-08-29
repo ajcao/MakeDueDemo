@@ -239,6 +239,7 @@
     <Compile Include="Assets\Character\PlayableCharactersLibrary\PalmTreeFolder\CoconutArmorAbility.cs" />
     <Compile Include="Assets\Character\EnemyCharactersLibrary\EnemyMove.cs" />
     <Compile Include="Assets\Items\MagicMissileCannedItem.cs" />
+    <Compile Include="Assets\ItemSelectionScene\ItemSelectionSceneScripts\SecondItemSelectionSceneHandler.cs" />
     <Compile Include="Assets\Character\PlayableCharactersLibrary\LizardLeechFolder\LizardLeechBehavior.cs" />
   </ItemGroup>
   <ItemGroup>

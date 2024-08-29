@@ -23,7 +23,7 @@ public class StartBattleButtonScript : MonoBehaviour
             for (int j = 0; j < 3; j++)
             {
                 GameObject DragItem = AllCharacterInventories[i].InventorySlots[j].GetComponent<InventorySingleboxScript>().ItemInSlot;
-                if (DragItem != null)
+                if (DragItem != null && DragItem.GetComponent<ItemDragDropScript>().canBeDragged)
                 {
                     GameItem I = DragItem.GetComponent<ItemDragDropScript>().CurrentItem;
                     PlayerParty.getPartyMember(i).GetComponent<PlayableCharacter>().AddToInventory(I);
@@ -33,7 +33,7 @@ public class StartBattleButtonScript : MonoBehaviour
             //Click on character no longer opens up Character Data scene, avoids potential crashes
             PlayerParty.getPartyMember(i).GetComponent<PlayableCharacter>().ToggleCharacterData(false);
         }
-        
-        SceneManager.LoadScene("BattleSelectionScene", LoadSceneMode.Single);
+
+        SceneCoordinator.nextSceneInBattle();
     }
 }

@@ -15,7 +15,12 @@ public class BattleSelectionButtonScript : MonoBehaviour
     void Start()
     {
         TextBox.text = BattleString;
-        
+
+        //If there is a normal encounter left, the shop and boss are hidden
+        //if ((BattleString == "Shop" || BattleString == "FinalBoss") && (!SceneCoordinator.NormalEncountersFinished()))
+        if (false)
+            this.gameObject.SetActive(false);
+
         if (SceneCoordinator.GetBattleStatus(BattleString))
         {
             this.gameObject.GetComponent<Button>().interactable = false;
@@ -27,12 +32,19 @@ public class BattleSelectionButtonScript : MonoBehaviour
     public void onButtonClick()
     {
         //Mark Battle as beaten/attempted
-        SceneCoordinator.BattleBeaten(BattleString);
-        
-        GameObject BattleData = Instantiate(BattleDataPrefab, new Vector2(0.0f,0.0f), Quaternion.identity) as GameObject;
-        DontDestroyOnLoad(BattleData);
-        BattleData.name = "EnemyEncounterDataGameObject";
-        
-        SceneCoordinator.LoadBattleEncounter();
+        SceneCoordinator.BattleAttempted(BattleString);
+
+        if (BattleString != "Shop")
+        {
+            GameObject BattleData = Instantiate(BattleDataPrefab, new Vector2(0.0f, 0.0f), Quaternion.identity) as GameObject;
+            DontDestroyOnLoad(BattleData);
+            BattleData.name = "EnemyEncounterDataGameObject";
+
+            SceneCoordinator.LoadBattleEncounter();
+        }
+        else //String is a shop
+        {
+            SceneCoordinator.LoadSecondShop();
+        }
     }
 }

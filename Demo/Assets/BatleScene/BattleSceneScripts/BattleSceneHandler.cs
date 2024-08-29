@@ -45,7 +45,7 @@ public class BattleSceneHandler : MonoBehaviour
             Object.Destroy(G.GetComponentInChildren<HealthArmorScript>().gameObject);
         }
 
-        if (PlayerParty.IsPartyDead() || isTutorial)
+        if (PlayerParty.IsPartyDead() || isTutorial || SceneCoordinator.FinalBossFightAttempted)
         {
             //Changes the End Turn button to move to return to the title scene
             AB_Handler.NextTurnButton.gameObject.GetComponent<NextTurnButtonScript>().EditButtonFunction("ReturnToTitleScene");

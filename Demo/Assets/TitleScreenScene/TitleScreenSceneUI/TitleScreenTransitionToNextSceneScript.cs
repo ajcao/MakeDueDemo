@@ -21,6 +21,8 @@ public class TitleScreenTransitionToNextSceneScript : MonoBehaviour
         switch (SceneType)
         {
             case ("StartGame"):
+                //Reset BattleScene
+                SceneCoordinator.ResetBattleStatus();
                 SceneManager.LoadScene("ItemSelectionScene", LoadSceneMode.Single);
                 break;
             case ("HowToPlay"):

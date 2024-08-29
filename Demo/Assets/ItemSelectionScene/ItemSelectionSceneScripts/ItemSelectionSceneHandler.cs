@@ -15,9 +15,6 @@ public class ItemSelectionSceneHandler : MonoBehaviour
     //This scene is only entered when a new round has started
     void Start()
     {        
-        //Reset BattleScene
-        SceneCoordinator.ResetBattleStatus();
-
         //Generate new party if this is the player's first game
         //Otherwise keep the previous party but generate new gameobjects
         if (PlayerParty.CheckPartyEmpty())
