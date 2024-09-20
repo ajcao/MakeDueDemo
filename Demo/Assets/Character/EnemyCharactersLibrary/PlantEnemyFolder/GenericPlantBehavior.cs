@@ -35,6 +35,7 @@ public class GenericPlantBehavior : EnemyCharacter
     {
         Debug.Log("Generating moves");
         Character[] Target;
+    
         
         //If Saplings have never been summoned, always attempt to spawn all two saplings
         if (EnemyEncounter.getEncounterMember(0) == null && EnemyEncounter.getEncounterMember(1) == null)
@@ -89,8 +90,6 @@ public class GenericPlantBehavior : EnemyCharacter
                 Moves.Push(new EnemyDefendMove(this, 100, Target));
             }
         }
-        
-        
         
     }
 }
