@@ -32,7 +32,13 @@ public class GenericMonsterPhase2Behavior : EnemyCharacter
     
     
     public bool AttackMode = true;
-    
+
+    public override void InitialBuffs()
+    {
+        Buff B = new LegendarySaveBuff(this, this, 2, null);
+        BattleLogicHandler.OnBuffApply(B);
+    }
+
     public override void GenerateMoves()
     {
         Debug.Log("Generating moves");

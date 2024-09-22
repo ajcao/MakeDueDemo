@@ -37,6 +37,7 @@ public enum TriggerEventEnum
 	onDealArmorDamagePostEnum,
 	onDealHealthDamagePostEnum,
 	
+	onDealPoiseDamageSpecialEnum,
 	onPoiseWasLostEnum,
 	
 	onResolveGainSpecialEnum,
@@ -306,7 +307,19 @@ public class onDealHealthDamagePostTrigger : TriggerEvent
 	}
 }
 
-public class onPoiseWasLostTrigger : TriggerEvent
+public class onDealPoiseDamageSpecialTrigger : TriggerEvent
+{
+    public EnemyCharacter ReceivingChar;
+    public int PoiseAmount;
+
+    public onDealPoiseDamageSpecialTrigger(EnemyCharacter RC, int d)
+    {
+        ReceivingChar = RC;
+        PoiseAmount = d;
+    }
+}
+
+    public class onPoiseWasLostTrigger : TriggerEvent
 {
 	public EnemyCharacter ReceivingChar;
 	public int PoiseAmount;

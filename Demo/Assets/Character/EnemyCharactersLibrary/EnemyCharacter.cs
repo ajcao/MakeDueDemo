@@ -40,6 +40,7 @@ public abstract class EnemyCharacter : Character
 				canPoiseRegenerate = false;
 			}
 			this.Poise = Mathf.Max(s,0);
+			this.Poise = Mathf.Min(s, this.getMaxPoise());
 			if (this.Poise <= 0)
 			{
 				this.GetStunned();

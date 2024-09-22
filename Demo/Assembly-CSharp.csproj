@@ -241,6 +241,7 @@
     <Compile Include="Assets\Items\MagicMissileCannedItem.cs" />
     <Compile Include="Assets\ItemSelectionScene\ItemSelectionSceneScripts\SecondItemSelectionSceneHandler.cs" />
     <Compile Include="Assets\Character\PlayableCharactersLibrary\LizardLeechFolder\LizardLeechBehavior.cs" />
+    <Compile Include="Assets\Buff\EnemySpecificBuff\LegendarySaveBuff.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

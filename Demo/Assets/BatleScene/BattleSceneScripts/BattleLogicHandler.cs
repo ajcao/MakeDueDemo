@@ -5,6 +5,7 @@ using UnityEngine;
 using TriggerEventUtil;
 using CharacterUtil;
 using BuffUtil;
+using UnityEngine.Windows;
 
 public static class BattleLogicHandler
 {
@@ -173,14 +174,20 @@ public static class BattleLogicHandler
 		C.setCurrentArmor(Mathf.Max(C.getCurrentArmor() - d, 0));
 	}
 	
-	public static void LowerPoise(EnemyCharacter E, int d)
+	public static void LowerPoise(EnemyCharacter E, int inputD)
 	{
-		E.setPoise(Mathf.Max(E.getPoise() - d, 0));
+        int d = inputD;
+		TriggerEvent TE;
+
+        TE = new onDealPoiseDamageSpecialTrigger(E, d);
+        BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onDealPoiseDamageSpecialEnum, TE, ref d);
+
+        E.setPoise(Mathf.Max(E.getPoise() - d, 0));
 		
 		if (d > 0)
 		{
 			int dummy = 0;
-			TriggerEvent TE = new onPoiseWasLostTrigger(E, d);
+			TE = new onPoiseWasLostTrigger(E, d);
 			BuffHandler.TriggerBuffsinBuffsList(TriggerEventEnum.onPoiseWasLostEnum, TE, ref dummy);
 		}
 		
