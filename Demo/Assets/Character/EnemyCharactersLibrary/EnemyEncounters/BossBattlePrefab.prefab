@@ -46,11 +46,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EncounterSize: 3
   InitialSpawnPool:
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 2465709451207476951, guid: 629813fe3075e68408618dfe07e07d83, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
   SpawnLocation:
   - {x: 4, y: 0}
   - {x: 6, y: 0}
   - {x: 8, y: 0}
-  SpawnPool: []
+  SpawnPool:
+  - {fileID: 2465709451207476951, guid: 69318bc11115640f998d899cee04e1a6, type: 3}
+  - {fileID: 6710686837782463586, guid: d5862d0e9954a4659a0611671bcec103, type: 3}

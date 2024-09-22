@@ -48,8 +48,8 @@ public class RatEnemyBehavior : EnemyCharacter
         if (this.Forms != "Sleeping")
         {
             
-            //When enranged, only attack
-            if (this.Forms == "Enranged")
+            //Attack only when enraged
+            if (this.Forms == "Enraged")
             {
                     Target = EnemyTargetingLibrary.TargetNRandomHeroes(1);
                     Moves.Push(new EnemyAttackDefendMove(this, 120, 60, Target));
@@ -92,7 +92,7 @@ public class RatEnemyBehavior : EnemyCharacter
                 BattleLogicHandler.OnBuffApply(B);
                 this.Forms = s;
                 break;
-            case ("Enranged"):
+            case ("Enraged"):
                 currentSprite.sprite = Resources.Load<Sprite>("EnemyCharacterImages/EnragedRatEnemy");
                 B = new RatLifeStealBuff(this, this, null, null);
                 BattleLogicHandler.OnBuffApply(B);

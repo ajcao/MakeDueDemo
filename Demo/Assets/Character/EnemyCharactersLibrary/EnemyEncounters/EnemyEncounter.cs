@@ -76,6 +76,19 @@ public static class EnemyEncounter
         return Encounter[i];
     }
     
+    public static void setEncounterMember(int i, GameObject newEnemy)
+    {
+        if (i >= 0 && i < Encounter.Length)
+        {
+            Encounter[i] = newEnemy;
+        }
+        else
+        {
+            Debug.LogError($"Invalid position {i} for Encounter array.");
+        }
+    }
+
+
     public static int getEncounterIndex(GameObject C)
     {
         int i = 0;
