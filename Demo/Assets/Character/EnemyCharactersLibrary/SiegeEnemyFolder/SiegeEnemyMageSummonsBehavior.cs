@@ -6,7 +6,7 @@ using EnemyMoveUtil;
 using EnemyTargetingLibraryUtil;
 using BuffUtil;
 
-public class SiegeEnemySpearSummonsBehavior : EnemyCharacter
+public class SiegeEnemyMageSummonsBehavior : EnemyCharacter
 {
     private int noBuffTurn;
 
@@ -14,8 +14,8 @@ public class SiegeEnemySpearSummonsBehavior : EnemyCharacter
     void Awake()
     {
         this.Alive = true;
-        this.CurrentHealth = 2;
-        this.MaxHealth = 100;
+        this.CurrentHealth = 1;
+        this.MaxHealth = 1;
         this.CurrentArmor = 0;
         this.ArmorRetain = 0;
         this.DamageOutputModifier = 0;
@@ -29,28 +29,27 @@ public class SiegeEnemySpearSummonsBehavior : EnemyCharacter
 
         noBuffTurn = Random.Range(0, 2);
 
-        this.CharacterIcon = Resources.Load<Sprite>("EnemyCharacterImages/OrcWarriorEnemy.png");
+        this.CharacterIcon = Resources.Load<Sprite>("EnemyCharacterImages/OrcMageEnemy.png");
         
     }
 
     public override void GenerateMoves()
     {
         Character[] Target;
-        List<Buff> appliedBuffs;
 
-        //If the buff was never applied, try to apply
-        if (!BuffHandler.CharacterHaveBuff(this, new PermaAttackScaleBuff(this, this, 5, null), true))
+        if (Random.Range(0.0f, 1.0f) <= 0.20f + 0.20f * noBuffTurn)
         {
             Target = new Character[] { (Character)this };
-            appliedBuffs = new List<Buff>();
-            appliedBuffs.Add(new PermaAttackScaleBuff(this, this, 5, null));
-            EnemyApplyBuffMove E = new EnemyApplyBuffMove(this, Target, appliedBuffs);
-            Moves.Push(E);
+            List<Buff> appliedBuffs = new List<Buff>();
+            appliedBuffs.Add(new AttackUpBuff(this, this, 10, null));
+            Moves.Push(new EnemyApplyBuffMove(this, Target, appliedBuffs));
+            noBuffTurn = 0;
         }
         else
         {
-            Target = EnemyTargetingLibrary.TargetNRandomHeroes(1);
-            Moves.Push(new EnemyAttackMove(this, 30, Target));
+            Target = EnemyTargetingLibrary.TargetNRandomHeroes(2);
+            Moves.Push(new EnemyAttackMove(this, 40, Target));
+            noBuffTurn += 1;
         }
     }
 }

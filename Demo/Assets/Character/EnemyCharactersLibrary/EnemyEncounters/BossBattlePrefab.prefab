@@ -55,4 +55,5 @@ MonoBehaviour:
   - {x: 8, y: 0}
   SpawnPool:
   - {fileID: 2465709451207476951, guid: 69318bc11115640f998d899cee04e1a6, type: 3}
+  - {fileID: 6710686837782463586, guid: 206f5741bf3ad58478e671b6b867d38d, type: 3}
   - {fileID: 6710686837782463586, guid: d5862d0e9954a4659a0611671bcec103, type: 3}

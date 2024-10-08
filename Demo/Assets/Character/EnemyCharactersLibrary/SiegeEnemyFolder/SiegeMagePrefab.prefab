@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: eec48ca96287f0048bd3e38cc12e7bab, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3f3e62442525cd24a8d7c296b49a3307, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -94,9 +94,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5736865860011297563}
   - component: {fileID: 1410355375530367107}
-  - component: {fileID: 3062069663328671350}
+  - component: {fileID: -3774273266788046678}
   m_Layer: 0
-  m_Name: SiegeBuilderPrefab
+  m_Name: SiegeMagePrefab
   m_TagString: EnemyCharacter
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -144,7 +144,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.2, y: 0.5}
   m_EdgeRadius: 0
---- !u!114 &3062069663328671350
+--- !u!114 &-3774273266788046678
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -153,7 +153,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6710686837782463586}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51226492e691a4561b7f5bbe59249b30, type: 3}
+  m_Script: {fileID: 11500000, guid: 4faae96a0a665e34a8245937d50ede94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   BuffListDirty: 0

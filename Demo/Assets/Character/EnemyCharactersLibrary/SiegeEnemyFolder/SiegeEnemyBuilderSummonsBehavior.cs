@@ -37,19 +37,8 @@ public class SiegeEnemyBuilderSummonsBehavior : EnemyCharacter
     {
         Character[] Target;
 
-        if (Random.Range(0.0f, 1.0f) <= 0.20f + 0.20f * noBuffTurn)
-        {
-            Target = new Character[] { (Character)this };
-            List<Buff> appliedBuffs = new List<Buff>();
-            appliedBuffs.Add(new AttackUpBuff(this, this, 10, null));
-            Moves.Push(new EnemyApplyBuffMove(this, Target, appliedBuffs));
-            noBuffTurn = 0;
-        }
-        else
-        {
-            Target = EnemyTargetingLibrary.TargetNRandomHeroes(2);
-            Moves.Push(new EnemyAttackMove(this, 40, Target));
-            noBuffTurn += 1;
-        }
+        Target = EnemyTargetingLibrary.TargetEnemyType<SiegeEnemyBehavior>();
+
+        Moves.Push(new EnemyDefendMove(this, 60, Target));
     }
 }
