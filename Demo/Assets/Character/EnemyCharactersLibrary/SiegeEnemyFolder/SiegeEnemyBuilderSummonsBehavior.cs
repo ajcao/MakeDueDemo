@@ -14,22 +14,22 @@ public class SiegeEnemyBuilderSummonsBehavior : EnemyCharacter
     void Awake()
     {
         this.Alive = true;
-        this.CurrentHealth = 1;
-        this.MaxHealth = 1;
+        this.CurrentHealth = 200;
+        this.MaxHealth = 200;
         this.CurrentArmor = 0;
         this.ArmorRetain = 0;
         this.DamageOutputModifier = 0;
         this.DefenseOutputModifier = 0;
         this.canPoiseRegenerate = true;
         this.IsStunned = false;
-        this.Poise = 50;
+        this.Poise = 100;
         this.MaxPoise = this.Poise;
         this.PoiseRegeneration = this.MaxPoise / 2;
         Moves = new Stack<EnemyMove>();
 
         noBuffTurn = Random.Range(0, 2);
 
-        this.CharacterIcon = Resources.Load<Sprite>("EnemyCharacterImages/OrcMageEnemy.png");
+        this.CharacterIcon = Resources.Load<Sprite>("EnemyCharacterImages/OrcBuilderEnemy.png");
         
     }
 
@@ -39,6 +39,6 @@ public class SiegeEnemyBuilderSummonsBehavior : EnemyCharacter
 
         Target = EnemyTargetingLibrary.TargetEnemyType<SiegeEnemyBehavior>();
 
-        Moves.Push(new EnemyDefendMove(this, 60, Target));
+        Moves.Push(new EnemyDefendMove(this, 80, Target));
     }
 }

@@ -138,6 +138,12 @@ public abstract class PlayableCharacter : Character
 	{
 		GetCharacterDataScene = B;
 	}
+
+	public void reviveCharacterForNextBattle()
+	{
+		this.Alive = true;
+		this.setCurrentHealth(1);
+	}
 	
 	public abstract string GetLoreData();
 	

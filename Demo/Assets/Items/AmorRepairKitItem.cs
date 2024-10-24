@@ -13,7 +13,7 @@ namespace ItemUtil
     
 public class ArmorRepairKitItem : GameItem
 {
-    private int ItemLevel = 40;
+    private int ItemLevel = 80;
     
     public ArmorRepairKitItem()
     {

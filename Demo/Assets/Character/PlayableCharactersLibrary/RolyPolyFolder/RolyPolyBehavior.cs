@@ -16,7 +16,7 @@ public class RolyPolyBehavior : PlayableCharacter
         this.CurrentHealth = 80;
         this.MaxHealth = 100;
         this.CurrentArmor = 0;
-        this.ArmorRetain = 0;
+        this.ArmorRetain = 20;
         this.DamageOutputModifier = 0;
         this.DefenseOutputModifier = 0;
         this.AttackStat = 20;

@@ -16,7 +16,7 @@ public class SpikeyRockBehavior : PlayableCharacter
         this.CurrentHealth = 140;
         this.MaxHealth = 160;
         this.CurrentArmor = 0;
-        this.ArmorRetain = 0;
+        this.ArmorRetain = 30;
         this.DamageOutputModifier = 0;
         this.DefenseOutputModifier = 0;
         this.AttackStat = 30;

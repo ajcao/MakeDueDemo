@@ -97,6 +97,7 @@
     <Compile Include="Assets\Items\BrainSlugItem.cs" />
     <Compile Include="Assets\Character\Character.cs" />
     <Compile Include="Assets\Character\PlayableCharactersLibrary\SpikeyRockFolder\GiveSelfSpikeAbility.cs" />
+    <Compile Include="Assets\Character\EnemyCharactersLibrary\SiegeEnemyFolder\SiegeEnemyWelderSummonsBehavior.cs" />
     <Compile Include="Assets\BatleScene\BattleSceneScripts\TriggerEvent.cs" />
     <Compile Include="Assets\Character\PlayableCharactersLibrary\ORBFolder\GiveResolveAbility.cs" />
     <Compile Include="Assets\Items\LivingWoodArmor.cs" />
@@ -159,6 +160,7 @@
     <Compile Include="Assets\BatleScene\BattleSceneScripts\BattleSceneHandler.cs" />
     <Compile Include="Assets\Character\EnemyCharactersLibrary\EmemyStunnedMove.cs" />
     <Compile Include="Assets\Character\PlayableCharactersLibrary\MushroomFolder\MushroomHealAbility.cs" />
+    <Compile Include="Assets\Buff\PermaAttackScaleBuff.cs" />
     <Compile Include="Assets\Items\EnergyPillsItem.cs" />
     <Compile Include="Assets\Buff\WeakBuff.cs" />
     <Compile Include="Assets\Buff\NullBuff.cs" />
@@ -245,9 +247,9 @@
     <Compile Include="Assets\Character\EnemyCharactersLibrary\EnemyMove.cs" />
     <Compile Include="Assets\Items\MagicMissileCannedItem.cs" />
     <Compile Include="Assets\ItemSelectionScene\ItemSelectionSceneScripts\SecondItemSelectionSceneHandler.cs" />
-    <Compile Include="Assets\Character\PlayableCharactersLibrary\LizardLeechFolder\LizardLeechBehavior.cs" />
     <Compile Include="Assets\Character\EnemyCharactersLibrary\SiegeEnemyFolder\SiegeEnemyMageSummonsBehavior.cs" />
-    <Compile Include="Assets\Buff\PermaAttackScaleBuff.cs" />
+    <Compile Include="Assets\Character\PlayableCharactersLibrary\LizardLeechFolder\LizardLeechBehavior.cs" />
+    <Compile Include="Assets\Buff\EnemySpecificBuff\DamagedFormBuff.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

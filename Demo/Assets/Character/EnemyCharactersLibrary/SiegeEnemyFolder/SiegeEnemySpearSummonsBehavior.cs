@@ -14,15 +14,15 @@ public class SiegeEnemySpearSummonsBehavior : EnemyCharacter
     void Awake()
     {
         this.Alive = true;
-        this.CurrentHealth = 2;
-        this.MaxHealth = 100;
+        this.CurrentHealth = 300;
+        this.MaxHealth = 300;
         this.CurrentArmor = 0;
         this.ArmorRetain = 0;
         this.DamageOutputModifier = 0;
         this.DefenseOutputModifier = 0;
         this.canPoiseRegenerate = true;
         this.IsStunned = false;
-        this.Poise = 50;
+        this.Poise = 200;
         this.MaxPoise = this.Poise;
         this.PoiseRegeneration = this.MaxPoise / 2;
         Moves = new Stack<EnemyMove>();

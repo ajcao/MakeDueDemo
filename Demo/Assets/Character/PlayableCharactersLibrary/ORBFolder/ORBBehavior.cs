@@ -16,7 +16,7 @@ public class ORBBehavior : PlayableCharacter
         this.CurrentHealth = 60;
         this.MaxHealth = 80;
         this.CurrentArmor = 0;
-        this.ArmorRetain = 0;
+        this.ArmorRetain = 30;
         this.DamageOutputModifier = 0;
         this.DefenseOutputModifier = 0;
         this.AttackStat = 10;

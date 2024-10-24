@@ -16,7 +16,7 @@ public class PalmTreeBehavior : PlayableCharacter
         this.CurrentHealth = 100;
         this.MaxHealth = 120;
         this.CurrentArmor = 0;
-        this.ArmorRetain = 0;
+        this.ArmorRetain = 20;
         this.DamageOutputModifier = 0;
         this.DefenseOutputModifier = 0;
         this.AttackStat = 30;

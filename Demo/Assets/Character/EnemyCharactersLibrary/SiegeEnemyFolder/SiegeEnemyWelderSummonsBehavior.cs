@@ -6,28 +6,27 @@ using EnemyMoveUtil;
 using EnemyTargetingLibraryUtil;
 using BuffUtil;
 
-public class SiegeEnemyMageSummonsBehavior : EnemyCharacter
+public class SiegeEnemyWelderSummonsBehavior : EnemyCharacter
 {
 
     //Initalize Stats
     void Awake()
     {
         this.Alive = true;
-        this.CurrentHealth = 400;
-        this.MaxHealth = 400;
+        this.CurrentHealth = 300;
+        this.MaxHealth = 300;
         this.CurrentArmor = 0;
         this.ArmorRetain = 0;
         this.DamageOutputModifier = 0;
         this.DefenseOutputModifier = 0;
         this.canPoiseRegenerate = true;
         this.IsStunned = false;
-        this.Poise = 200;
+        this.Poise = 150;
         this.MaxPoise = this.Poise;
         this.PoiseRegeneration = this.MaxPoise / 2;
         Moves = new Stack<EnemyMove>();
 
-
-        this.CharacterIcon = Resources.Load<Sprite>("EnemyCharacterImages/OrcMageEnemy.png");
+        this.CharacterIcon = Resources.Load<Sprite>("EnemyCharacterImages/OrcWelderEnemy.png");
         
     }
 
@@ -35,7 +34,14 @@ public class SiegeEnemyMageSummonsBehavior : EnemyCharacter
     {
         Character[] Target;
 
-        Target = EnemyTargetingLibrary.TargetNRandomHeroes(2);
-        Moves.Push(new EnemyAttackMove(this, 80, Target));
+        Target = EnemyTargetingLibrary.TargetEnemyType<SiegeEnemyBehavior>();
+
+        List<Buff> appliedBuffs = new List<Buff>();
+        foreach (Character C in Target)
+        {
+            appliedBuffs.Add(new GainArmorBuff(C, this, 20, null));
+            appliedBuffs.Add(new SpikeBuff(C, this, 10, null));
+        }
+        Moves.Push(new EnemyApplyBuffMove(this, Target, appliedBuffs));
     }
 }

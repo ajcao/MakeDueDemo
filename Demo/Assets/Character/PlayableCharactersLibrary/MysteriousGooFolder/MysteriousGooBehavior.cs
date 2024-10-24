@@ -16,7 +16,7 @@ public class MysteriousGooBehavior : PlayableCharacter
         this.CurrentHealth = 120;
         this.MaxHealth = 140;
         this.CurrentArmor = 0;
-        this.ArmorRetain = 0;
+        this.ArmorRetain = 20;
         this.DamageOutputModifier = 0;
         this.DefenseOutputModifier = 0;
         this.AttackStat = 10;

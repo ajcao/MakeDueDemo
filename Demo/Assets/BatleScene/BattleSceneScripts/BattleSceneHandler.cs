@@ -95,15 +95,21 @@ public class BattleSceneHandler : MonoBehaviour
         }
 
         //Place Player in correct location
-        if (PlayerParty.getPartyMember(0).GetComponent<Character>().isAlive())
-            PlayerParty.getPartyMember(0).transform.position = new Vector3(-8.0f,0.0f,0.0f);
-        if (PlayerParty.getPartyMember(1).GetComponent<Character>().isAlive())
-            PlayerParty.getPartyMember(1).transform.position = new Vector3(-6.0f,0.0f,0.0f);
-        if (PlayerParty.getPartyMember(2).GetComponent<Character>().isAlive())
-            PlayerParty.getPartyMember(2).transform.position = new Vector3(-4.0f,0.0f,0.0f);
-        if (PlayerParty.getPartyMember(3).GetComponent<Character>().isAlive())
-            PlayerParty.getPartyMember(3).transform.position = new Vector3(-2.0f,0.0f,0.0f);
-        
+        PlayerParty.getPartyMember(0).transform.position = new Vector3(-8.0f, 0.0f, 0.0f);
+        PlayerParty.getPartyMember(1).transform.position = new Vector3(-6.0f, 0.0f, 0.0f);
+        PlayerParty.getPartyMember(2).transform.position = new Vector3(-4.0f, 0.0f, 0.0f);
+        PlayerParty.getPartyMember(3).transform.position = new Vector3(-2.0f, 0.0f, 0.0f);
+
+        //Restore hp of dead characters
+        if (!PlayerParty.getPartyMember(0).GetComponent<PlayableCharacter>().isAlive())
+            PlayerParty.getPartyMember(0).GetComponent<PlayableCharacter>().reviveCharacterForNextBattle();
+        if (!PlayerParty.getPartyMember(1).GetComponent<PlayableCharacter>().isAlive())
+            PlayerParty.getPartyMember(1).GetComponent<PlayableCharacter>().reviveCharacterForNextBattle();
+        if (!PlayerParty.getPartyMember(2).GetComponent<PlayableCharacter>().isAlive())
+            PlayerParty.getPartyMember(2).GetComponent<PlayableCharacter>().reviveCharacterForNextBattle();
+        if (!PlayerParty.getPartyMember(3).GetComponent<PlayableCharacter>().isAlive())
+            PlayerParty.getPartyMember(3).GetComponent<PlayableCharacter>().reviveCharacterForNextBattle();
+
         EnemyEncounter.LoadEncounter();
                 
         //--------------------------------------------------------------------------------------------------------------

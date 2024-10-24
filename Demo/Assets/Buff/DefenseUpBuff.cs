@@ -28,11 +28,13 @@ public class DefenseUpBuff : Buff
     public override void onApplication()
     {
         this.BuffTarget.setDefenseOutputModifier(this.BuffTarget.getDefenseOutputModifier() + this.Intensity.Value);
+        this.BuffTarget.setArmorRetain(this.BuffTarget.getArmorRetain() + this.Intensity.Value);
     }
     
     public override void onExpire()
     {
         this.BuffTarget.setDefenseOutputModifier(this.BuffTarget.getDefenseOutputModifier() - this.Intensity.Value);
+        this.BuffTarget.setArmorRetain(this.BuffTarget.getArmorRetain() - this.Intensity.Value);
     }
     
     public override string GetTooltipString()
