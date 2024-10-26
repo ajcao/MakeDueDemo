@@ -32,7 +32,7 @@ public class HeavensSpearItem : GameItem
     
     public override string GetTooltipString()
     {
-        return "Increase basic attack damage by 50. User can no longer heal. On user death allies takes huge damage";
+        return this.ItemName + "\n\n" + "Increase basic attack damage by 50. User can no longer heal. On user death allies takes huge damage";
     }
 }
 

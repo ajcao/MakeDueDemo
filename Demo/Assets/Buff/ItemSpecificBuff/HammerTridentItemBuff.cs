@@ -48,11 +48,13 @@ public class HammerTridentItemBuff : Buff
             
             if (this.Intensity == 7)
             {
+                ToggleFlashing(true);
                 Buff B = new TempDoubleDamageBuff(BuffTarget, BuffTarget, 1, null);
                 BattleLogicHandler.OnBuffApply(B);
             }
             if (this.Intensity >= 8)
             {
+                ToggleFlashing(false);
                 this.Intensity = 0;
             }
         }

@@ -32,7 +32,7 @@ public class ShinobiKatanaItem : GameItem
     
     public override string GetTooltipString()
     {
-        return "Whenever you block an enemy attack, deal triple the blocked damage as poise damage";
+        return this.ItemName + "\n\n" + "Whenever you block an enemy attack, deal triple the blocked damage as poise damage";
     }
 }
 

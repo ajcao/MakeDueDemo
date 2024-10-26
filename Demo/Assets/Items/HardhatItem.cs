@@ -31,7 +31,7 @@ public class HardhatItem : GameItem
     
     public override string GetTooltipString()
     {
-        return "Gain 30 Defense at the start of the battle";
+        return this.ItemName + "\n\n" + "Gain 30 Defense at the start of the battle";
     }
 }
 

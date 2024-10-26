@@ -32,7 +32,7 @@ public class WarBannerItem : GameItem
     
     public override string GetTooltipString()
     {
-        return "Every attack during the first turn, apply 3 vulnurable to all enemies";
+        return this.ItemName + "\n\n" + "Every attack during the first turn, apply 2 vulnurable and 2 weak to all enemies";
     }
 }
 

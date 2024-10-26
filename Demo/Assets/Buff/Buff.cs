@@ -23,8 +23,8 @@ public abstract class Buff
 	public bool Stackable;
 	
 	public GameObject BuffIndicator = null;
-	
-	public void AssignBuffIndicator(GameObject Indict)
+
+    public void AssignBuffIndicator(GameObject Indict)
 	{
 		this.BuffIndicator = Indict;
 	}
@@ -175,7 +175,12 @@ public abstract class Buff
 	public abstract void onApplication();
 	public abstract void onExpire();
 	public abstract void onTriggerEffect(TriggerEvent E, ref int v);
-	
-}
+
+	public void ToggleFlashing(bool b)
+	{
+		this.BuffIndicator.GetComponent<BuffIconScript>().ToggleFlashing(b);
+	}
+
+    }
 
 }

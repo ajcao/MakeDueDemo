@@ -33,7 +33,7 @@ public class ArmorRepairKitItem : GameItem
     
     public override string GetTooltipString()
     {
-        return "Retain " + ItemLevel + " armor";
+        return this.ItemName + "\n\n" + "Retain " + ItemLevel + " armor";
     }
 }
 

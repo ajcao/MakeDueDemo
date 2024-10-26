@@ -36,7 +36,7 @@ public class WarBannerBuff : Buff
     
     public override string GetTooltipString()
     {
-        string s1 = "Every attack during the first turn, apply 3 vulnurable to all enemies";
+        string s1 = "Every attack during the first turn, apply 2 vulnurable and 2 weak to all enemies";
         return s1;
     }
     
@@ -48,11 +48,14 @@ public class WarBannerBuff : Buff
             List<GameObject> CurrentEncounter = EnemyEncounter.GetLivingEncounterMembers();
             foreach (GameObject G in CurrentEncounter)
             {
+                Buff B;
                 EnemyCharacter Enem = G.GetComponent<EnemyCharacter>();
-                Buff B = new VulnurableBuff((Character) Enem, BuffTarget, null, 3);
+                B = new VulnurableBuff((Character) Enem, BuffTarget, null, 2);
                 BattleLogicHandler.OnBuffApply(B);
-                
-            }
+                B = new WeakBuff((Character)Enem, BuffTarget, null, 2);
+                BattleLogicHandler.OnBuffApply(B);
+
+                }
         }
     }
 }

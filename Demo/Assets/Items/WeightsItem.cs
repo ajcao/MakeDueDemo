@@ -32,7 +32,7 @@ public class WeightsItem : GameItem
     
     public override string GetTooltipString()
     {
-        return "Gain 30 Attack at the start of the battle";
+        return this.ItemName + "\n\n" + "Gain 30 Attack at the start of the battle";
     }
 }
 

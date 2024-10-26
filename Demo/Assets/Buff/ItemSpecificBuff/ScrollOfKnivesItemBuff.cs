@@ -51,9 +51,11 @@ public class ScrollOfKnivesItemBuff : Buff
             
             if (this.Intensity == 1)
             {
+                ToggleFlashing(true);
                 return;
             }
             
+            ToggleFlashing(false);
             List<GameObject> CurrentEncounter = EnemyEncounter.GetLivingEncounterMembers();
             foreach (GameObject G in CurrentEncounter)
             {

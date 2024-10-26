@@ -31,7 +31,7 @@ public class BluePhilospherStoneItem : GameItem
     
     public override string GetTooltipString()
     {
-        return "At the end of turn, all armor is turned into resolve";
+        return this.ItemName + "\n\n" + "At the end of turn, all armor is turned into resolve";
     }
 }
 

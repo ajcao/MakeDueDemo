@@ -31,7 +31,7 @@ public class LivingWoodArmorItem : GameItem
     
     public override string GetTooltipString()
     {
-        return "Gain 20 armor at the end of every round";
+        return this.ItemName + "\n\n" + "Gain 20 armor at the end of every round";
     }
 }
 

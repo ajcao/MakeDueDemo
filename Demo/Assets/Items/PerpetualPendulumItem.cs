@@ -32,7 +32,7 @@ public class PerpetualPendulumItem : GameItem
     
     public override string GetTooltipString()
     {
-        return "Cooldoowns are reduced twice as fast. Reduce Resolve gain by 50% for everyone";
+        return this.ItemName + "\n\n" + "Cooldoowns are reduced twice as fast. Reduce Resolve gain by 50% for everyone";
     }
 }
 

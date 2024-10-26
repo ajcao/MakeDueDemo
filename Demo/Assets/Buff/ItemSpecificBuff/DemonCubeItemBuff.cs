@@ -60,6 +60,11 @@ public class DemonCubeItemBuff : Buff
         {
             onPostTurnTrigger T = (onPostTurnTrigger) E;
             
+            if (this.Intensity == 9)
+            {
+                ToggleFlashing(true);
+            }
+
             if (this.BuffTarget.GetType().IsSubclassOf(T.CharacterType) && this.Intensity >= 10)
             {
                 List<GameObject> CurrentEncounter = EnemyEncounter.GetLivingEncounterMembers();
@@ -72,6 +77,7 @@ public class DemonCubeItemBuff : Buff
                     }
                     
                 }
+                ToggleFlashing(false);
                 this.Intensity = 0;
             }
         }

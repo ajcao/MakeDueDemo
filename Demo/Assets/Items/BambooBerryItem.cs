@@ -32,7 +32,7 @@ public class BambooBerryItem : GameItem
     
     public override string GetTooltipString()
     {
-        return "Gain 20 hp at start of every turn";
+        return this.ItemName + "\n\n" + "Gain 20 hp at start of every turn";
     }
 }
 

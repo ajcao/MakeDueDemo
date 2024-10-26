@@ -31,8 +31,8 @@ public static class TutorialBoxText
         {
             "Players and Enemies can acquire armor through moves or buffs",
             "Armor directly subtracts the damage dealt by attackers.",
-            "When a character's turn begins, all their armor is removed",
-            "Armor retain allows a character to keep a proportion of armor for next turn.",
+            "When a character's turn begins, all their armor is removed (unless they have armor retain)",
+            "Armor retain allows a character to keep a proportion of armor for next turn (equal to their armor retain value)",
             "All Playable characters have a base armor retain equal to their base defense + defense modifiers"
         }
     );
@@ -68,7 +68,8 @@ public static class TutorialBoxText
         {
             "Enemies display their current and future moves above their model.",
             "The bottommost move is their current moves\nEvery subsequent indicator represents a future move.",
-            "Stuns from poisebreaks are able to interrupt an enemy's move"
+            "Stuns from poisebreaks are able to interrupt an enemy's move",
+            "Hover over the enemy intent to see who they are targeting"
         }
     );
 

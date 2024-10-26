@@ -4,6 +4,7 @@ using UnityEngine;
 using TriggerEventUtil;
 using CharacterUtil;
 using TooltipUtil;
+using Packages.Rider.Editor.UnitTesting;
 
 namespace BuffUtil
 {
@@ -46,9 +47,14 @@ public class BlessedWineItemBuff : Buff
         {
             this.Intensity += 1;
             
+            if (this.Intensity == 11)
+            {
+                ToggleFlashing(true);
+            }
             if (this.Intensity >= 12)
             {
                 this.Intensity = 0;
+                ToggleFlashing(false);
                 BattleLogicHandler.GainHealth(BuffTarget, BuffTarget.getMaxHealth());
                 
             }

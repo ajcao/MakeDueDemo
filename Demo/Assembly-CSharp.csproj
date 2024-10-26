@@ -97,6 +97,7 @@
     <Compile Include="Assets\Items\BrainSlugItem.cs" />
     <Compile Include="Assets\Character\Character.cs" />
     <Compile Include="Assets\Character\PlayableCharactersLibrary\SpikeyRockFolder\GiveSelfSpikeAbility.cs" />
+    <Compile Include="Assets\TitleScreenScene\ReturnToTitleButtonScript.cs" />
     <Compile Include="Assets\Character\EnemyCharactersLibrary\SiegeEnemyFolder\SiegeEnemyWelderSummonsBehavior.cs" />
     <Compile Include="Assets\BatleScene\BattleSceneScripts\TriggerEvent.cs" />
     <Compile Include="Assets\Character\PlayableCharactersLibrary\ORBFolder\GiveResolveAbility.cs" />
@@ -134,6 +135,7 @@
     <Compile Include="Assets\Items\AmorRepairKitItem.cs" />
     <Compile Include="Assets\Tooltip\TooltipHandler.cs" />
     <Compile Include="Assets\Buff\ItemSpecificBuff\HammerTridentItemBuff.cs" />
+    <Compile Include="Assets\Buff\EnemySpecificBuff\DamagedFormBuff.cs" />
     <Compile Include="Assets\Tooltip\TooltipStringInterface.cs" />
     <Compile Include="Assets\Character\PlayableCharactersLibrary\RolyPolyFolder\DefensiveCurlAbility.cs" />
     <Compile Include="Assets\Character\PlayableCharactersLibrary\PlayerParty.cs" />
@@ -146,6 +148,7 @@
     <Compile Include="Assets\BatleScene\BattleSceneScripts\BattleAnimationHandler.cs" />
     <Compile Include="Assets\Character\PlayableCharactersLibrary\PalmTreeFolder\PalmTreeBehavior.cs" />
     <Compile Include="Assets\Buff\ItemSpecificBuff\LawBookItemBuff.cs" />
+    <Compile Include="Assets\Buff\EnemySpecificBuff\MasterBuff.cs" />
     <Compile Include="Assets\Buff\ItemSpecificBuff\IronSupplementBuff.cs" />
     <Compile Include="Assets\Character\PlayableCharactersLibrary\ORBFolder\OrbAttackArmorAbility.cs" />
     <Compile Include="Assets\BatleScene\BattleUI\Button\NextTurnButtonScript.cs" />
@@ -202,6 +205,7 @@
     <Compile Include="Assets\Character\EnemyCharactersLibrary\EnemyHealMove.cs" />
     <Compile Include="Assets\Items\MusicalHammerItem.cs" />
     <Compile Include="Assets\Buff\FrailBuff.cs" />
+    <Compile Include="Assets\Buff\EnemySpecificBuff\RelentlessBuff.cs" />
     <Compile Include="Assets\BatleScene\BattleUI\BattleTurnIndicatorScript.cs" />
     <Compile Include="Assets\TitleScreenScene\TitleScreenSceneUI\TitleScreenTransitionToNextSceneScript.cs" />
     <Compile Include="Assets\Character\EnemyCharactersLibrary\EnemyCharacter.cs" />
@@ -249,7 +253,6 @@
     <Compile Include="Assets\ItemSelectionScene\ItemSelectionSceneScripts\SecondItemSelectionSceneHandler.cs" />
     <Compile Include="Assets\Character\EnemyCharactersLibrary\SiegeEnemyFolder\SiegeEnemyMageSummonsBehavior.cs" />
     <Compile Include="Assets\Character\PlayableCharactersLibrary\LizardLeechFolder\LizardLeechBehavior.cs" />
-    <Compile Include="Assets\Buff\EnemySpecificBuff\DamagedFormBuff.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

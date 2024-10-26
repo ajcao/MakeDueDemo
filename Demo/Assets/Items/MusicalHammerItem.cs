@@ -33,7 +33,7 @@ public class MusicalHammerItem : GameItem
     
     public override string GetTooltipString()
     {
-        return "If your attack breaks an enemy armor, deal " + PoiseAmt + " poise damage";
+        return this.ItemName + "\n\n" + "If your attack breaks an enemy armor, deal " + PoiseAmt + " poise damage";
     }
 }
 

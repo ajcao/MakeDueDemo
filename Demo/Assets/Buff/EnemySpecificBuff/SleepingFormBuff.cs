@@ -55,7 +55,7 @@ public class SleepingFormBuff : Buff
             }
         }
         
-        else //Did character gain armor
+        else
         {
             onHealthDamageWasTakenTrigger TE = (onHealthDamageWasTakenTrigger) E;
             

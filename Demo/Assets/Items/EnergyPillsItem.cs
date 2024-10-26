@@ -32,7 +32,7 @@ public class EnergyPillsItem : GameItem
     
     public override string GetTooltipString()
     {
-        return "Gain max resolve for first two turns";
+        return this.ItemName + "\n\n" + "Gain max resolve for first two turns";
     }
 }
 

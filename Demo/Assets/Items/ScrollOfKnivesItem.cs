@@ -31,7 +31,7 @@ public class ScrollOfKnivesItem : GameItem
     
     public override string GetTooltipString()
     {
-        return "Every two times you play a skill, deal 30 damage to everyone";
+        return this.ItemName + "\n\n" + "Every two times you play a skill, deal 30 damage to everyone";
     }
 }
 

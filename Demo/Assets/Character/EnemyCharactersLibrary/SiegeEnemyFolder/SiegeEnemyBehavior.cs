@@ -6,9 +6,7 @@ using EnemyMoveUtil;
 using EnemyTargetingLibraryUtil;
 using BuffUtil;
 using JetBrains.Annotations;
-using UnityEditor.Experimental.GraphView;
 using static UnityEngine.GraphicsBuffer;
-using UnityEditor.U2D.Animation;
 
 public class SiegeEnemyBehavior : EnemyCharacter
 {
@@ -36,7 +34,12 @@ public class SiegeEnemyBehavior : EnemyCharacter
 
     public override void InitialBuffs()
     {
-        Buff B = new DamagedFormBuff(this, this, 500, null);
+        Buff B;
+
+        B = new DamagedFormBuff(this, this, 500, null);
+        BattleLogicHandler.OnBuffApply(B);
+
+        B = new MasterBuff(this, this, null, null);
         BattleLogicHandler.OnBuffApply(B);
     }
 

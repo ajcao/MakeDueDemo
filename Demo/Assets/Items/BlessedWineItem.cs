@@ -32,7 +32,7 @@ public class BlessedWineItem : GameItem
     
     public override string GetTooltipString()
     {
-        return "Every 12th abilities cast, heal to full";
+        return this.ItemName + "\n\n" + "Every 12th abilities cast, heal to full";
     }
 }
 

@@ -46,8 +46,14 @@ public class LawBookItemBuff : Buff
         {
             this.Intensity += 1;
             
+            if (this.Intensity == 5)
+            {
+                ToggleFlashing(true);
+
+            }
             if (this.Intensity >= 6)
             {
+                ToggleFlashing(false);
                 this.Intensity = 0;
                 foreach (GameObject G in PlayerParty.GetLivingPartyMembers())
                 {

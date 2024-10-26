@@ -32,7 +32,7 @@ public class IronSupplementItem : GameItem
     
     public override string GetTooltipString()
     {
-        return "At the end of the round, excess armor is turned a stack. When the stack reaches 100, heal 20";
+        return this.ItemName + "\n\n" + "At the end of the round, excess armor is turned a stack. When the stack reaches 100, heal 20";
     }
 }
 

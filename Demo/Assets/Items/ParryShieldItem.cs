@@ -32,7 +32,7 @@ public class ParryShieldItem : GameItem
     
     public override string GetTooltipString()
     {
-        return "Deal 20 damage whenever you gain armor or block another character";
+        return this.ItemName + "\n\n" + "Deal 20 damage whenever you gain armor or block another character";
     }
 }
 

@@ -32,7 +32,7 @@ public class BrainSlugItem : GameItem
     
     public override string GetTooltipString()
     {
-        return "Whenever you deal damage via attacks, gain 30 resolve";
+        return this.ItemName + "\n\n" + "Whenever you deal damage via attacks, gain 30 resolve";
     }
 }
 

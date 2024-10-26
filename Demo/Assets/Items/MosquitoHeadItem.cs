@@ -32,7 +32,7 @@ public class MosquitoHeadItem : GameItem
     
     public override string GetTooltipString()
     {
-        return "Whenever you deal damage via attacks, gain 3 hp";
+        return this.ItemName + "\n\n" + "Whenever you deal damage via attacks, gain 3 hp";
     }
 }
 

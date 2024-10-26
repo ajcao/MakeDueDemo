@@ -32,7 +32,7 @@ public class MagicMissileCannedItem : GameItem
     
     public override string GetTooltipString()
     {
-        return "Whenever you proc resolve, deal 50 damage to random enemy";
+        return this.ItemName + "\n\n" + "Whenever you proc resolve, deal 50 damage to random enemy";
     }
 }
 

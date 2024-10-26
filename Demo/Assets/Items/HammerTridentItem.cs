@@ -32,7 +32,7 @@ public class HammerTridentItem : GameItem
     
     public override string GetTooltipString()
     {
-        return "Every 8th attack deals double damage";
+        return this.ItemName + "\n\n" + "Every 8th attack deals double damage";
     }
 }
 

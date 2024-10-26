@@ -31,7 +31,7 @@ public class MetalRoseItem : GameItem
     
     public override string GetTooltipString()
     {
-        return "Gain 30 spike";
+        return this.ItemName + "\n\n" + "Gain 30 spike";
     }
 }
 

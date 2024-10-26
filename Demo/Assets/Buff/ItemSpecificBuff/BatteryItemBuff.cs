@@ -46,10 +46,16 @@ public class BatteryItemBuff : Buff
         {
             this.Intensity += 1;
             
+            if (this.Intensity == 7)
+            {
+                ToggleFlashing(true);
+            }
             if (this.Intensity >= 8)
             {
                 this.Intensity = 0;
+                ToggleFlashing(false);
                 ((PlayableCharacter) this.BuffTarget).ResetAllCooldown();
+
                 
             }
             

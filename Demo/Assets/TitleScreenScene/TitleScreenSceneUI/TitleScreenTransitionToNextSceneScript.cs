@@ -29,6 +29,7 @@ public class TitleScreenTransitionToNextSceneScript : MonoBehaviour
                 SceneManager.LoadScene("HowToPlayScene", LoadSceneMode.Single);
                 break;
             case ("Story"):
+                SceneManager.LoadScene("StoryScene", LoadSceneMode.Single);
                 break;
             default:
                 break;

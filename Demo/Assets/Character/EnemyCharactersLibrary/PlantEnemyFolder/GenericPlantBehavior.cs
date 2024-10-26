@@ -29,8 +29,13 @@ public class GenericPlantBehavior : EnemyCharacter
         
         
     }
-    
-    
+
+    public override void InitialBuffs()
+    {
+        Buff B = new MasterBuff(this, this, null, null);
+        BattleLogicHandler.OnBuffApply(B);
+    }
+
     public override void GenerateMoves()
     {
         Debug.Log("Generating moves");

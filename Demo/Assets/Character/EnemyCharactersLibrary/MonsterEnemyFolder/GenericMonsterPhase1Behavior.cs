@@ -36,7 +36,13 @@ public class GenericMonsterPhase1Behavior : EnemyCharacter
     
     public int ApplyFrailCounter = 0;
     public bool WasFrailProc = false;
-    
+
+    public override void InitialBuffs()
+    {
+        Buff B = new RelentlessBuff(this, this, null, null);
+        BattleLogicHandler.OnBuffApply(B);
+    }
+
     public override void GenerateMoves()
     {
         Debug.Log("Generating moves");

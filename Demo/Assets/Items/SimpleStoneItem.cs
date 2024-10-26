@@ -32,7 +32,7 @@ public class SimpleStoneItem : GameItem
     
     public override string GetTooltipString()
     {
-        return "Whenever you basic attack, gain +5 dmg";
+        return this.ItemName + "\n\n" + "Whenever you basic attack, gain +5 dmg";
     }
 }
 

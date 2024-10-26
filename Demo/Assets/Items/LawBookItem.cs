@@ -32,7 +32,7 @@ public class LawBookItem : GameItem
     
     public override string GetTooltipString()
     {
-        return "Every 6th skill cast, give 50% resolve to all allies";
+        return this.ItemName + "\n\n" + "Every 6th skill cast, give 50% resolve to all allies";
     }
 }
 
