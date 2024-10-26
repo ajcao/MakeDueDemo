@@ -29,8 +29,9 @@ public class SiegeEnemyBuilderSummonsBehavior : EnemyCharacter
 
         noBuffTurn = Random.Range(0, 2);
 
-        this.CharacterIcon = Resources.Load<Sprite>("EnemyCharacterImages/OrcBuilderEnemy.png");
-        
+        this.CharacterIcon = Resources.Load<Sprite>("EnemyCharacterImages/BuilderIcon");
+
+
     }
 
     public override void GenerateMoves()

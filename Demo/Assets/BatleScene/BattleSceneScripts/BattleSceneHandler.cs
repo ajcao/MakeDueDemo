@@ -92,23 +92,31 @@ public class BattleSceneHandler : MonoBehaviour
             Party[1].GetComponent<Character>().transform.position = new Vector3(0, -500, 0);
             AB_Handler.HideCharacterSelectionDuringTutorial(1);
 
+            //Place Player in correct location
+            PlayerParty.getPartyMember(0).transform.position = new Vector3(-8.0f, -500.0f, 0.0f);
+            PlayerParty.getPartyMember(1).transform.position = new Vector3(-6.0f, -500.0f, 0.0f);
+            PlayerParty.getPartyMember(2).transform.position = new Vector3(-4.0f, 0.0f, 0.0f);
+            PlayerParty.getPartyMember(3).transform.position = new Vector3(-2.0f, 0.0f, 0.0f);
+
         }
+        else
+        {
+            //Restore hp of dead characters
+            if (!PlayerParty.getPartyMember(0).GetComponent<PlayableCharacter>().isAlive())
+                PlayerParty.getPartyMember(0).GetComponent<PlayableCharacter>().reviveCharacterForNextBattle();
+            if (!PlayerParty.getPartyMember(1).GetComponent<PlayableCharacter>().isAlive())
+                PlayerParty.getPartyMember(1).GetComponent<PlayableCharacter>().reviveCharacterForNextBattle();
+            if (!PlayerParty.getPartyMember(2).GetComponent<PlayableCharacter>().isAlive())
+                PlayerParty.getPartyMember(2).GetComponent<PlayableCharacter>().reviveCharacterForNextBattle();
+            if (!PlayerParty.getPartyMember(3).GetComponent<PlayableCharacter>().isAlive())
+                PlayerParty.getPartyMember(3).GetComponent<PlayableCharacter>().reviveCharacterForNextBattle();
 
-        //Place Player in correct location
-        PlayerParty.getPartyMember(0).transform.position = new Vector3(-8.0f, 0.0f, 0.0f);
-        PlayerParty.getPartyMember(1).transform.position = new Vector3(-6.0f, 0.0f, 0.0f);
-        PlayerParty.getPartyMember(2).transform.position = new Vector3(-4.0f, 0.0f, 0.0f);
-        PlayerParty.getPartyMember(3).transform.position = new Vector3(-2.0f, 0.0f, 0.0f);
-
-        //Restore hp of dead characters
-        if (!PlayerParty.getPartyMember(0).GetComponent<PlayableCharacter>().isAlive())
-            PlayerParty.getPartyMember(0).GetComponent<PlayableCharacter>().reviveCharacterForNextBattle();
-        if (!PlayerParty.getPartyMember(1).GetComponent<PlayableCharacter>().isAlive())
-            PlayerParty.getPartyMember(1).GetComponent<PlayableCharacter>().reviveCharacterForNextBattle();
-        if (!PlayerParty.getPartyMember(2).GetComponent<PlayableCharacter>().isAlive())
-            PlayerParty.getPartyMember(2).GetComponent<PlayableCharacter>().reviveCharacterForNextBattle();
-        if (!PlayerParty.getPartyMember(3).GetComponent<PlayableCharacter>().isAlive())
-            PlayerParty.getPartyMember(3).GetComponent<PlayableCharacter>().reviveCharacterForNextBattle();
+            //Place Player in correct location
+            PlayerParty.getPartyMember(0).transform.position = new Vector3(-8.0f, 0.0f, 0.0f);
+            PlayerParty.getPartyMember(1).transform.position = new Vector3(-6.0f, 0.0f, 0.0f);
+            PlayerParty.getPartyMember(2).transform.position = new Vector3(-4.0f, 0.0f, 0.0f);
+            PlayerParty.getPartyMember(3).transform.position = new Vector3(-2.0f, 0.0f, 0.0f);
+        }
 
         EnemyEncounter.LoadEncounter();
                 

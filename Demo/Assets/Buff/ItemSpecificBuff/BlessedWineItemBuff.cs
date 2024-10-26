@@ -4,7 +4,6 @@ using UnityEngine;
 using TriggerEventUtil;
 using CharacterUtil;
 using TooltipUtil;
-using Packages.Rider.Editor.UnitTesting;
 
 namespace BuffUtil
 {

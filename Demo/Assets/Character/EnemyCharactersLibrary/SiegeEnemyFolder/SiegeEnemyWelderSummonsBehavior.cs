@@ -26,7 +26,7 @@ public class SiegeEnemyWelderSummonsBehavior : EnemyCharacter
         this.PoiseRegeneration = this.MaxPoise / 2;
         Moves = new Stack<EnemyMove>();
 
-        this.CharacterIcon = Resources.Load<Sprite>("EnemyCharacterImages/OrcWelderEnemy.png");
+        this.CharacterIcon = Resources.Load<Sprite>("EnemyCharacterImages/WelderIcon");
         
     }
 

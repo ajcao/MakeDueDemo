@@ -105,10 +105,6 @@ public static class SceneCoordinator
         if (AllNormalEncounterAlive())
             SceneManager.LoadScene("BattleSelectionScene", LoadSceneMode.Single);
 
-        //If final boss is not beaten, return to title screen
-        else if (FinalBossFightAttempted && !EnemyEncounter.IsEncounterDead())
-            SceneManager.LoadScene("TitleScreenScene", LoadSceneMode.Single);
-
         //Whether final boss is beaten, go to victory screen
         else if (FinalBossFightAttempted && EnemyEncounter.IsEncounterDead())
             SceneManager.LoadScene("VictoryScene", LoadSceneMode.Single);
@@ -121,9 +117,6 @@ public static class SceneCoordinator
         else if (EnemyEncounter.IsEncounterDead())
             SceneManager.LoadScene("BattleSelectionScene", LoadSceneMode.Single);
 
-        //Player is dead, return to title screen
-        else if (PlayerParty.IsPartyDead())
-            SceneManager.LoadScene("TitleScreenScene", LoadSceneMode.Single);
 
         else
             SceneManager.LoadScene("TitleScreenScene", LoadSceneMode.Single);

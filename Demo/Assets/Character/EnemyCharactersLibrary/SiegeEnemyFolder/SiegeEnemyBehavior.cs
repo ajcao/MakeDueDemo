@@ -29,7 +29,7 @@ public class SiegeEnemyBehavior : EnemyCharacter
 
         this.Forms = "Normal";
 
-        this.CharacterIcon = Resources.Load<Sprite>("EnemyCharacterImages/GenericMonsterIcon");
+        this.CharacterIcon = Resources.Load<Sprite>("EnemyCharacterImages/SiegeIcon");
     }
 
     public override void InitialBuffs()

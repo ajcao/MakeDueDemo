@@ -29,7 +29,7 @@ public class SiegeEnemySpearSummonsBehavior : EnemyCharacter
 
         noBuffTurn = Random.Range(0, 2);
 
-        this.CharacterIcon = Resources.Load<Sprite>("EnemyCharacterImages/OrcWarriorEnemy.png");
+        this.CharacterIcon = Resources.Load<Sprite>("EnemyCharacterImages/OrcWarriorIcon");
         
     }
 

@@ -17,8 +17,7 @@ public class BattleSelectionButtonScript : MonoBehaviour
         TextBox.text = BattleString;
 
         //If there is a normal encounter left, the shop and boss are hidden
-        //if ((BattleString == "Shop" || BattleString == "FinalBoss") && (!SceneCoordinator.NormalEncountersFinished()))
-        if (false)
+        if ((BattleString == "Shop" || BattleString == "FinalBoss") && (!SceneCoordinator.NormalEncountersFinished()))
             this.gameObject.SetActive(false);
 
         if (SceneCoordinator.GetBattleStatus(BattleString))

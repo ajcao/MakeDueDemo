@@ -58,7 +58,10 @@ public class NextTurnButtonScript : MonoBehaviour
             GameObject EE_Data = GameObject.Find("EnemyEncounterDataGameObject");
             Destroy(EE_Data);
 
-            SceneCoordinator.nextSceneInBattle();
+            if (ButtonFunction == "ReturnToTitleScene")
+                SceneManager.LoadScene("TitleScreenScene", LoadSceneMode.Single);
+            else
+                SceneCoordinator.nextSceneInBattle();
         }
     }
 }

@@ -27,7 +27,7 @@ public class SiegeEnemyMageSummonsBehavior : EnemyCharacter
         Moves = new Stack<EnemyMove>();
 
 
-        this.CharacterIcon = Resources.Load<Sprite>("EnemyCharacterImages/OrcMageEnemy.png");
+        this.CharacterIcon = Resources.Load<Sprite>("EnemyCharacterImages/MageIcon");
         
     }
 

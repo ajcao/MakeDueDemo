@@ -47,7 +47,7 @@ public class MushroomBehavior : PlayableCharacter
         string attack = String.Format("Basic Attack: {0}",  this.AttackStat);
         string defense = String.Format("Basic Defend: {0}", this.DefenseStat);
         
-        string lore = "This is a standard mushroom. There is nothing particularly interesting about this one. The mushroom uses dense mycelium roots to gather nutrients from the soil. The spores of the mushroom are slightly toxic, causing a hallugenic effect when entering the bloodstream by inhalation or injection. Finally, the pileus of the mushroom is edible and is used as a alternative health option in multiple countries";
+        string lore = "This is a standard mushroom. There is nothing particularly interesting about this one. The mushroom uses dense mycelium roots to gather nutrients from the soil. The spores of the mushroom are slightly toxic, causing a hallugenic effect when entering the bloodstream by inhalation or injection. Finally, the pileus of the mushroom is edible and is used as a alternative health option in multiple cities";
         
         return String.Format("{0}\n{1}\n{2}\n{3}\n\n\n{4}", hp, resolve, attack, defense, lore);
         
